@@ -1,0 +1,56 @@
+# env / secrets
+.env
+.env.*
+!.env.example
+*.jks
+*.keystore
+data/
+
+# node
+node_modules/
+.next/
+out/
+*.log
+.turbo/
+
+# python
+__pycache__/
+*.pyc
+.venv/
+.pytest_cache/
+
+# android
+android/.gradle/
+android/build/
+android/**/build/
+android/local.properties
+android/.idea/
+android/*.iml
+android/captures/
+templates/**/.gradle/
+templates/**/build/
+templates/**/local.properties
+
+# os / editor
+.DS_Store
+.idea/
+.vscode/
+
+# kotlin 2.x
+.kotlin/
+**/.kotlin/
+
+# sandbox-mounted dotfiles (not part of the project)
+/.bash_profile
+/.bashrc
+/.gitconfig
+/.gitmodules
+/.idea
+/.mcp.json
+/.profile
+/.ripgreprc
+/.vscode
+/.zprofile
+/.zshrc
+/.claude/*
+!/.claude/settings.json

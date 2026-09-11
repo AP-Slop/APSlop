@@ -1,0 +1,4 @@
+<resources>
+    <!-- Material3 base theme; colors are defined in Compose (ui/Theme.kt). -->
+    <style name="Theme.OpenApApp" parent="android:Theme.Material.Light.NoActionBar" />
+</resources>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Cleartext (http://) is allowed so the store can talk to a local development
+  server (e.g. http://10.0.2.2:8080). For production, point the store at an
+  https:// repository and set cleartextTrafficPermitted="false".
+-->
+<network-security-config>
+    <base-config cleartextTrafficPermitted="true">
+        <trust-anchors>
+            <certificates src="system" />
+        </trust-anchors>
+    </base-config>
+</network-security-config>

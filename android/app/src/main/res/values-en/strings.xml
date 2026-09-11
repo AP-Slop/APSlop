@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">OpenAP Store</string>
+    <string name="title_apps">Apps</string>
+    <string name="title_settings">Settings</string>
+    <string name="search_hint">Search apps</string>
+    <string name="empty_apps">No apps yet</string>
+    <string name="error_loading">Failed to load: %1$s</string>
+    <string name="retry">Retry</string>
+    <string name="refresh">Refresh</string>
+    <string name="back">Back</string>
+    <string name="action_install">Install</string>
+    <string name="action_update">Update</string>
+    <string name="action_open">Open</string>
+    <string name="action_cancel">Cancel</string>
+    <string name="installing">Installing…</string>
+    <string name="downloading">Downloading %1$d%%</string>
+    <string name="install_success">Installed</string>
+    <string name="install_failed">Install failed: %1$s</string>
+    <string name="download_failed">Download failed: %1$s</string>
+    <string name="label_version">Version</string>
+    <string name="label_installed_version">Installed</string>
+    <string name="label_size">Size</string>
+    <string name="label_min_sdk">Min Android API</string>
+    <string name="label_updated">Updated</string>
+    <string name="label_package">Package</string>
+    <string name="source_code">Source code</string>
+    <string name="website">Website</string>
+    <string name="settings_repo_url">Repository URL</string>
+    <string name="settings_repo_url_hint">https://example.ac.jp/fdroid/repo</string>
+    <string name="settings_save">Save and refresh</string>
+    <string name="settings_reset">Reset to default</string>
+    <string name="settings_saved">Saved</string>
+    <string name="settings_repo_info">You can also add this URL to the official F-Droid client to get the same apps.</string>
+    <string name="unknown_sources_title">Allow installs from this store</string>
+    <string name="unknown_sources_message">To install apps, allow this store to install unknown apps. The system settings screen will open.</string>
+    <string name="open_settings">Open settings</string>
+    <string name="apps_count">%1$d apps</string>
+</resources>

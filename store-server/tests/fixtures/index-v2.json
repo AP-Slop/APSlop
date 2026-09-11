@@ -1,0 +1,29 @@
+{
+  "repo": {"name": {"en-US": "OpenAP University Apps"}, "timestamp": 1757400000000, "address": "http://localhost:8080/fdroid/repo"},
+  "packages": {
+    "dev.openap.apps.todo": {
+      "metadata": {
+        "added": 1757300000000,
+        "lastUpdated": 1757400000000,
+        "name": {"en-US": "Todo"},
+        "summary": {"en-US": "Simple todo list"},
+        "description": {"en-US": "A todo app."},
+        "sourceCode": "https://github.com/my-univ-apps/todo",
+        "webSite": "https://github.com/my-univ-apps/todo",
+        "icon": {"en-US": {"name": "/icons-640/dev.openap.apps.todo.2.png", "sha256": "abc"}}
+      },
+      "versions": {
+        "aaaa": {"added": 1757300000000, "file": {"name": "/dev.openap.apps.todo_1.apk", "sha256": "aaaa", "size": 10},
+                  "manifest": {"versionName": "0.1.0", "versionCode": 1}},
+        "bbbb": {"added": 1757400000000, "file": {"name": "/dev.openap.apps.todo_2.apk", "sha256": "bbbb", "size": 11},
+                  "manifest": {"versionName": "0.2.0", "versionCode": 2}}
+      }
+    },
+    "dev.openap.apps.old": {
+      "metadata": {"added": 1, "lastUpdated": 1, "name": {"ja": "古いアプリ"}},
+      "versions": {
+        "cccc": {"file": {"name": "/dev.openap.apps.old_5.apk"}, "manifest": {"versionName": "5", "versionCode": 5}}
+      }
+    }
+  }
+}

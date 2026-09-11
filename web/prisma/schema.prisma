@@ -1,0 +1,57 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "sqlite"
+}
+
+model User {
+  id          String       @id @default(cuid())
+  githubId    Int          @unique
+  login       String
+  name        String?
+  avatarUrl   String?
+  email       String?
+  createdAt   DateTime     @default(now())
+  apps        App[]
+  generations Generation[]
+}
+
+model App {
+  id                String    @id @default(cuid())
+  slug              String    @unique
+  repoFullName      String    @unique
+  name              String
+  summary           String
+  description       String
+  platform          String    @default("ANDROID") // ANDROID | WEB
+  packageName       String?
+  webUrl            String?
+  iconUrl           String?
+  status            String    @default("DRAFT") // DRAFT | PUBLISHED | FAILED
+  latestVersion     String?
+  latestVersionCode Int?
+  latestApkName     String?
+  ownerId           String
+  owner             User      @relation(fields: [ownerId], references: [id])
+  createdAt         DateTime  @default(now())
+  updatedAt         DateTime  @updatedAt
+  publishedAt       DateTime?
+}
+
+model Generation {
+  id           String    @id @default(cuid())
+  userId       String
+  user         User      @relation(fields: [userId], references: [id])
+  kind         String // CREATE | MODIFY
+  prompt       String
+  model        String
+  status       String    @default("PENDING") // PENDING | DONE | FAILED
+  repoFullName String?
+  prNumber     Int?
+  error        String?
+  createdAt    DateTime  @default(now())
+  finishedAt   DateTime?
+}

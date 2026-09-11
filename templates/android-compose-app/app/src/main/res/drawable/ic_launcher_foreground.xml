@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <!-- Simple rounded square with a white "A" mark. Replace freely. -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M54,26 L78,80 L68,80 L62.5,67 L45.5,67 L40,80 L30,80 Z M54,44 L48.5,58 L59.5,58 Z" />
+</vector>

@@ -1,0 +1,29 @@
+{
+  "permissions": {
+    "deny": [
+      "Read(./**/*.jks)",
+      "Read(./**/*.keystore)",
+      "Read(./**/keystore.p12)"
+    ]
+  },
+  "sandbox": {
+    "network": {
+      "allowedDomains": [
+        "api.github.com",
+        "github.com",
+        "uploads.github.com",
+        "objects.githubusercontent.com",
+        "api.anthropic.com",
+        "registry.npmjs.org",
+        "pypi.org",
+        "files.pythonhosted.org"
+      ]
+    },
+    "credentials": {
+      "files": [
+        { "path": "web/data", "mode": "deny" },
+        { "path": "store-server/data", "mode": "deny" }
+      ]
+    }
+  }
+}

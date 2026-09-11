@@ -1,0 +1,26 @@
+# OpenAP 本番用 Caddyfile。OPENAP_DOMAIN は .env から compose 経由で渡される。
+# Let's Encrypt の証明書は自動取得 (80/443 が外部から到達できる必要がある)。
+{$OPENAP_DOMAIN} {
+	encode gzip
+
+	# webhook / API の本文上限 (APK は GET なので影響なし)
+	request_body {
+		max_size 200MB
+	}
+
+	header {
+		Strict-Transport-Security "max-age=31536000"
+		X-Content-Type-Options "nosniff"
+		-Server
+	}
+
+	# F-Droid 互換リポジトリ (index / APK / アイコン) は store-server へ。パスはそのまま渡す
+	handle /fdroid/* {
+		reverse_proxy store-server:8080
+	}
+
+	# それ以外は Next.js
+	handle {
+		reverse_proxy web:3000
+	}
+}

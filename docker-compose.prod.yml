@@ -1,0 +1,33 @@
+# 本番用オーバーライド (Oracle Cloud Always Free など)。
+#   docker compose -f docker-compose.yml -f docker-compose.prod.yml up -d --build
+# Caddy が 80/443 で TLS を終端し、/fdroid/* を store-server、それ以外を web に振り分ける。
+# web / store-server のホスト側ポート公開は無効化する (Caddy 経由のみ)。
+services:
+  caddy:
+    image: caddy:2
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+      - "443:443/udp"
+    environment:
+      OPENAP_DOMAIN: ${OPENAP_DOMAIN:?set OPENAP_DOMAIN in .env}
+    volumes:
+      - ./deploy/Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy-data:/data
+      - caddy-config:/config
+    depends_on:
+      - web
+      - store-server
+
+  web:
+    restart: unless-stopped
+    ports: !reset []
+
+  store-server:
+    restart: unless-stopped
+    ports: !reset []
+
+volumes:
+  caddy-data:
+  caddy-config:

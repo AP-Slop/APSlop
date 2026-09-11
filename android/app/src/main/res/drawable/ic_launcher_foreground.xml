@@ -1,0 +1,16 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <!-- simple "open box" store glyph -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M54,26 L78,38 L78,66 L54,78 L30,66 L30,38 Z" />
+    <path
+        android:fillColor="#1E5EFF"
+        android:pathData="M54,32 L72,41 L54,50 L36,41 Z" />
+    <path
+        android:fillColor="#C7D7FF"
+        android:pathData="M36,45 L54,54 L54,72 L36,63 Z" />
+</vector>
