@@ -7,6 +7,6 @@ export default defineConfig({
     path: "prisma/migrations",
   },
   datasource: {
-    url: process.env["DATABASE_URL"] ?? "file:./data/openap.db",
+    url: process.env["DATABASE_URL"] ?? "file:./data/apslop.db",
   },
 });

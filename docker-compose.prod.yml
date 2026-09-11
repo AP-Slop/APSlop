@@ -11,7 +11,7 @@ services:
       - "443:443"
       - "443:443/udp"
     environment:
-      OPENAP_DOMAIN: ${OPENAP_DOMAIN:?set OPENAP_DOMAIN in .env}
+      APSLOP_DOMAIN: ${APSLOP_DOMAIN:?set APSLOP_DOMAIN in .env}
     volumes:
       - ./deploy/Caddyfile:/etc/caddy/Caddyfile:ro
       - caddy-data:/data

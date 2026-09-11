@@ -113,7 +113,7 @@ export function NewAppWizard() {
               value={app.slug}
               onChange={(e) => {
                 const slug = e.target.value.toLowerCase().replace(/[^a-z0-9-]/g, "");
-                setApp({ ...app, slug, packageName: `dev.openap.apps.${slug.replace(/-/g, "_")}` });
+                setApp({ ...app, slug, packageName: `dev.apslop.apps.${slug.replace(/-/g, "_")}` });
               }}
               className="mt-1 w-full rounded-md border border-border px-2 py-1 font-mono"
             />

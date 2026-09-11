@@ -6,17 +6,17 @@ plugins {
 
 // Version comes from gradle.properties, overridable by CI through environment variables.
 val appVersionCode: Int =
-    (System.getenv("OPENAP_VERSION_CODE") ?: project.findProperty("VERSION_CODE")?.toString() ?: "1").toInt()
+    (System.getenv("APSLOP_VERSION_CODE") ?: project.findProperty("VERSION_CODE")?.toString() ?: "1").toInt()
 val appVersionName: String =
-    System.getenv("OPENAP_VERSION_NAME") ?: project.findProperty("VERSION_NAME")?.toString() ?: "0.1.0"
+    System.getenv("APSLOP_VERSION_NAME") ?: project.findProperty("VERSION_NAME")?.toString() ?: "0.1.0"
 
 android {
-    // AI: change both `namespace` and `applicationId` to dev.openap.apps.<your_slug>
-    namespace = "dev.openap.apps.template"
+    // AI: change both `namespace` and `applicationId` to dev.apslop.apps.<your_slug>
+    namespace = "dev.apslop.apps.template"
     compileSdk = 35
 
     defaultConfig {
-        applicationId = "dev.openap.apps.template"
+        applicationId = "dev.apslop.apps.template"
         minSdk = 26
         targetSdk = 35
         versionCode = appVersionCode
@@ -25,7 +25,7 @@ android {
 
     buildTypes {
         release {
-            // Intentionally NO signingConfig: the OpenAP store signs the APK on ingest.
+            // Intentionally NO signingConfig: the APSlop store signs the APK on ingest.
             isMinifyEnabled = false
             isShrinkResources = false
         }

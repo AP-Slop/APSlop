@@ -1,7 +1,7 @@
 # Oracle Cloud Always Free でホストする
 
-OpenAP を Oracle Cloud Infrastructure (OCI) の Always Free 枠(Ampere A1、ARM64)で公開する手順。
-構成は「1 台の VM + Docker Compose + Caddy(自動 HTTPS)」で、公開ホスト名は 1 つ(`OPENAP_DOMAIN`)。
+APSlop を Oracle Cloud Infrastructure (OCI) の Always Free 枠(Ampere A1、ARM64)で公開する手順。
+構成は「1 台の VM + Docker Compose + Caddy(自動 HTTPS)」で、公開ホスト名は 1 つ(`APSLOP_DOMAIN`)。
 
 ```
 インターネット ──443──▶ Caddy ──┬── /fdroid/*  ──▶ store-server:8080  (F-Droid リポジトリ)
@@ -50,7 +50,7 @@ Networking → Virtual cloud networks → 作成された VCN → Security Lists
 
 公開ホスト名を Public IP に向ける。
 
-- 自前ドメインなら A レコード: `openap.example.com → <Public IP>`
+- 自前ドメインなら A レコード: `apslop.example.com → <Public IP>`
 - 無料で済ませるなら DuckDNS: https://www.duckdns.org で `xxxx.duckdns.org` を作り IP を登録する
 
 `dig +short <ホスト名>` が Public IP を返すことを確認してから先へ進む(証明書取得に必要)。
@@ -70,7 +70,7 @@ curl -fsSL https://raw.githubusercontent.com/<org>/<repo>/main/deploy/oracle/set
 - apt upgrade、Docker CE + compose plugin の導入(arm64 対応の公式リポジトリ)、`ubuntu` を docker グループへ
 - 4 GB のスワップ作成(`SWAP_GB` で変更可)
 - **OCI の Ubuntu イメージは iptables で 22 以外を REJECT している**ため、80/443 を ACCEPT して `netfilter-persistent` で永続化
-- `~/openap` に clone(既にあれば `git pull`)
+- `~/apslop` に clone(既にあれば `git pull`)
 - `.env` が無ければ `.env.example` から作成(このときは起動せず終了する)
 - `templates/android-compose-app` を `web/template` に同期(web イメージのビルドに必要)
 
@@ -78,17 +78,17 @@ curl -fsSL https://raw.githubusercontent.com/<org>/<repo>/main/deploy/oracle/set
 
 ## 6. `.env` を本番用に編集する
 
-`~/openap/.env` を編集する。ローカル用との違いは URL 系と `AUTH_TRUST_HOST`。
+`~/apslop/.env` を編集する。ローカル用との違いは URL 系と `AUTH_TRUST_HOST`。
 
 ```sh
 # 公開ホスト名 (Caddy が証明書を取る名前)
-OPENAP_DOMAIN=openap.example.com
+APSLOP_DOMAIN=apslop.example.com
 
-# URL は全部 https://<OPENAP_DOMAIN>
-AUTH_URL=https://openap.example.com
-NEXT_PUBLIC_APP_URL=https://openap.example.com
-NEXT_PUBLIC_STORE_URL=https://openap.example.com
-STORE_PUBLIC_URL=https://openap.example.com
+# URL は全部 https://<APSLOP_DOMAIN>
+AUTH_URL=https://apslop.example.com
+NEXT_PUBLIC_APP_URL=https://apslop.example.com
+NEXT_PUBLIC_STORE_URL=https://apslop.example.com
+STORE_PUBLIC_URL=https://apslop.example.com
 # Caddy 配下なので必須
 AUTH_TRUST_HOST=true
 
@@ -115,15 +115,15 @@ NEXT_PUBLIC_SITE_NAME=...
 
 ## 7. GitHub 側の URL を本番に合わせる
 
-- **OAuth App**: Authorization callback URL を `https://<OPENAP_DOMAIN>/api/auth/callback/github` に変更(または本番用の OAuth App を別に作る)。
-- **Org Webhook**: Payload URL を `https://<OPENAP_DOMAIN>/api/webhooks/github`、Secret を `GITHUB_WEBHOOK_SECRET` と同じ値に。イベントは `Workflow runs`, `Releases`, `Pull requests`, `Pushes`。
+- **OAuth App**: Authorization callback URL を `https://<APSLOP_DOMAIN>/api/auth/callback/github` に変更(または本番用の OAuth App を別に作る)。
+- **Org Webhook**: Payload URL を `https://<APSLOP_DOMAIN>/api/webhooks/github`、Secret を `GITHUB_WEBHOOK_SECRET` と同じ値に。イベントは `Workflow runs`, `Releases`, `Pull requests`, `Pushes`。
 
 その他は [docs/SETUP_GITHUB.md](SETUP_GITHUB.md) と同じ。
 
 ## 8. 起動と確認
 
 ```sh
-cd ~/openap
+cd ~/apslop
 docker compose -f docker-compose.yml -f docker-compose.prod.yml up -d --build
 docker compose -f docker-compose.yml -f docker-compose.prod.yml ps
 ```
@@ -132,23 +132,23 @@ docker compose -f docker-compose.yml -f docker-compose.prod.yml ps
 
 ```sh
 # 証明書と web
-curl -sI https://<OPENAP_DOMAIN>/ | head -3
-# F-Droid index (repo.address が https://<OPENAP_DOMAIN>/fdroid/repo になっている)
-curl -s https://<OPENAP_DOMAIN>/fdroid/repo/index-v2.json | head -c 300
+curl -sI https://<APSLOP_DOMAIN>/ | head -3
+# F-Droid index (repo.address が https://<APSLOP_DOMAIN>/fdroid/repo になっている)
+curl -s https://<APSLOP_DOMAIN>/fdroid/repo/index-v2.json | head -c 300
 # store-server のヘルス (内部)
 docker compose -f docker-compose.yml -f docker-compose.prod.yml exec store-server curl -s http://localhost:8080/healthz
 # webhook 署名検証が効いている (401 が正常)
-curl -s -X POST -H 'x-github-event: ping' https://<OPENAP_DOMAIN>/api/webhooks/github
+curl -s -X POST -H 'x-github-event: ping' https://<APSLOP_DOMAIN>/api/webhooks/github
 ```
 
-Android クライアントや公式 F-Droid クライアントには `https://<OPENAP_DOMAIN>/fdroid/repo` を登録する。
+Android クライアントや公式 F-Droid クライアントには `https://<APSLOP_DOMAIN>/fdroid/repo` を登録する。
 
 ## 9. 運用
 
 ### ログ
 
 ```sh
-cd ~/openap
+cd ~/apslop
 docker compose -f docker-compose.yml -f docker-compose.prod.yml logs -f --tail 100
 docker compose -f docker-compose.yml -f docker-compose.prod.yml logs -f caddy   # 証明書取得の様子
 ```
@@ -156,7 +156,7 @@ docker compose -f docker-compose.yml -f docker-compose.prod.yml logs -f caddy   
 ### 更新
 
 ```sh
-cd ~/openap
+cd ~/apslop
 git pull
 bash deploy/oracle/setup.sh          # 雛形同期を含めて再ビルド・再起動 (.env はそのまま)
 ```
@@ -166,18 +166,18 @@ bash deploy/oracle/setup.sh          # 雛形同期を含めて再ビルド・�
 `store-data` ボリュームの `keys/*.jks` は **アプリごとの APK 署名鍵**で、失うとそのアプリは二度と更新配信できない(署名が変わると Android が更新を拒否する)。`keystore.p12` はリポジトリ署名鍵で、失うと全利用者がリポジトリを登録し直す必要がある。
 
 ```sh
-bash ~/openap/deploy/oracle/backup.sh           # ~/backups/openap-YYYYmmdd-HHMM.tar.gz
+bash ~/apslop/deploy/oracle/backup.sh           # ~/backups/apslop-YYYYmmdd-HHMM.tar.gz
 # 毎日 4:00 に取る
-( crontab -l 2>/dev/null; echo '0 4 * * * /home/ubuntu/openap/deploy/oracle/backup.sh >> /home/ubuntu/backups/backup.log 2>&1' ) | crontab -
+( crontab -l 2>/dev/null; echo '0 4 * * * /home/ubuntu/apslop/deploy/oracle/backup.sh >> /home/ubuntu/backups/backup.log 2>&1' ) | crontab -
 ```
 
-`RCLONE_REMOTE=gdrive:openap-backups` を設定すると rclone で外部にも送る。VM 1 台に鍵を置くだけにしないこと。
+`RCLONE_REMOTE=gdrive:apslop-backups` を設定すると rclone で外部にも送る。VM 1 台に鍵を置くだけにしないこと。
 
 復元は、ボリュームを alpine にマウントして tar を展開する:
 
 ```sh
-docker run --rm -v openap_store-data:/dst/store -v openap_web-data:/dst/web -v ~/backups:/in:ro alpine:3 \
-  sh -c 'cd /dst && tar xzf /in/openap-<日時>.tar.gz'
+docker run --rm -v apslop_store-data:/dst/store -v apslop_web-data:/dst/web -v ~/backups:/in:ro alpine:3 \
+  sh -c 'cd /dst && tar xzf /in/apslop-<日時>.tar.gz'
 ```
 
 ### Always Free の制限

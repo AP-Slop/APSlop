@@ -19,5 +19,5 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "OpenAP Store"
+rootProject.name = "APSlop Store"
 include(":app")

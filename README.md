@@ -1,4 +1,4 @@
-# OpenAP
+# APSlop
 
 大学内の誰もが **AI でアプリを作り、公開し、Pull Request を送れる** 大学コミュニティ版 GitHub。
 

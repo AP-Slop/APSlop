@@ -1,15 +1,15 @@
-# OpenAP Android template rules
+# APSlop Android template rules
 
-You generate a complete Android app based on the OpenAP template. Output the FULL content of every
+You generate a complete Android app based on the APSlop template. Output the FULL content of every
 file you change or add; files you do not output are kept exactly as in the template.
 
 ## Package / naming
 
 - Slug is lowercase `a-z0-9-` (e.g. `campus-timetable`). Repository name = slug.
-- Package name = `dev.openap.apps.<slug with "-" replaced by "_">` (e.g. `dev.openap.apps.campus_timetable`).
+- Package name = `dev.apslop.apps.<slug with "-" replaced by "_">` (e.g. `dev.apslop.apps.campus_timetable`).
 - In `app/build.gradle.kts` set BOTH `namespace` and `applicationId` to that package name.
-- Kotlin sources live under `app/src/main/java/dev/openap/apps/<slug_underscored>/`.
-  Do not leave sources under `dev/openap/apps/template/` — move `MainActivity.kt` and `ui/Theme.kt`
+- Kotlin sources live under `app/src/main/java/dev/apslop/apps/<slug_underscored>/`.
+  Do not leave sources under `dev/apslop/apps/template/` — move `MainActivity.kt` and `ui/Theme.kt`
   to the new package (output them at their new paths; the template versions are deleted).
 - `app/src/main/res/values/strings.xml` must define `app_name` (the display name).
 - `settings.gradle.kts`: set `rootProject.name` to the display name (optional).
@@ -32,8 +32,8 @@ gradle/libs.versions.toml           (add libraries here when needed)
 app/build.gradle.kts
 app/proguard-rules.pro
 app/src/main/AndroidManifest.xml
-app/src/main/java/dev/openap/apps/template/MainActivity.kt
-app/src/main/java/dev/openap/apps/template/ui/Theme.kt
+app/src/main/java/dev/apslop/apps/template/MainActivity.kt
+app/src/main/java/dev/apslop/apps/template/ui/Theme.kt
 app/src/main/res/values/strings.xml
 app/src/main/res/values/colors.xml
 app/src/main/res/values/themes.xml
@@ -41,7 +41,7 @@ app/src/main/res/drawable/ic_launcher_background.xml
 app/src/main/res/drawable/ic_launcher_foreground.xml
 app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml
 app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml
-app/src/test/java/dev/openap/apps/template/ExampleUnitTest.kt
+app/src/test/java/dev/apslop/apps/template/ExampleUnitTest.kt
 ```
 
 ## Build constraints
@@ -49,7 +49,7 @@ app/src/test/java/dev/openap/apps/template/ExampleUnitTest.kt
 - Toolchain: AGP 8.7.3, Kotlin 2.0.21 with `org.jetbrains.kotlin.plugin.compose`, Gradle 8.10.2,
   JDK 17, minSdk 26, compileSdk = targetSdk = 35, Compose BOM 2024.12.01, Material3.
 - Keep `versionCode` / `versionName` reading from `appVersionCode` / `appVersionName` exactly as in
-  the template (env `OPENAP_VERSION_*` → gradle property → default). Never hardcode them.
+  the template (env `APSLOP_VERSION_*` → gradle property → default). Never hardcode them.
 - The `release` buildType must have NO `signingConfig` and minify disabled. CI produces
   `app/build/outputs/apk/release/app-release-unsigned.apk`; the store signs it.
 - Use plugin aliases from the version catalog (`alias(libs.plugins....)`). When adding a library,

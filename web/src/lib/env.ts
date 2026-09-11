@@ -9,7 +9,7 @@ const schema = z.object({
   AUTH_SECRET: z.string().min(1),
   ANTHROPIC_API_KEY: z.string().optional(),
   ANTHROPIC_MODEL: z.string().default("claude-opus-5"),
-  DATABASE_URL: z.string().default("file:./data/openap.db"),
+  DATABASE_URL: z.string().default("file:./data/apslop.db"),
   STORE_SERVER_URL: z.string().default("http://store-server:8080"),
   STORE_TOKEN: z.string().default(""),
   TEMPLATE_DIR: z.string().default("/app/template"),
@@ -44,7 +44,7 @@ function runtimeEnv(name: string, fallback: string): string {
 export const publicEnv = {
   appUrl: runtimeEnv("NEXT_PUBLIC_APP_URL", "http://localhost:3000"),
   storeUrl: runtimeEnv("NEXT_PUBLIC_STORE_URL", "http://localhost:8080"),
-  siteName: runtimeEnv("NEXT_PUBLIC_SITE_NAME", "OpenAP"),
+  siteName: runtimeEnv("NEXT_PUBLIC_SITE_NAME", "APSlop"),
 };
 
 export function fdroidRepoUrl(): string {

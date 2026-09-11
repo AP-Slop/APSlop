@@ -42,7 +42,7 @@ next-env.d.ts
 
 /src/generated/prisma
 
-# OpenAP
+# APSlop
 /data
 /template
 /src/generated

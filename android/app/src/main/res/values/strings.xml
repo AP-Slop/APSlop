@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">OpenAP Store</string>
+    <string name="app_name">APSlop Store</string>
     <string name="title_apps">アプリ</string>
     <string name="title_settings">設定</string>
     <string name="search_hint">アプリを検索</string>

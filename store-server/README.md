@@ -43,7 +43,7 @@ config.yml と keystore は `/fdroid/` 配下に公開されない (`repo/` と 
 1. F-Droid アプリ → 設定 → リポジトリ → 「+」
 2. `https://<STORE_PUBLIC_URL>/fdroid/repo` を入力
 3. フィンガープリントは `index-v2.json` 署名鍵のもの。取得方法:
-   `keytool -list -keystore /data/fdroid/keystore.p12 -storepass "$STORE_KEY_PASSWORD" -alias openap -v | grep SHA256`
+   `keytool -list -keystore /data/fdroid/keystore.p12 -storepass "$STORE_KEY_PASSWORD" -alias apslop -v | grep SHA256`
    (`https://<host>/fdroid/repo?fingerprint=<SHA256 をコロン抜き大文字>` の形で共有すると便利)
 
 ## ローカル開発
@@ -65,7 +65,7 @@ curl -X POST localhost:8080/sync -H "X-Store-Token: $STORE_TOKEN" \
 ## 環境変数
 
 `STORE_TOKEN`, `GITHUB_ADMIN_TOKEN`, `STORE_PUBLIC_URL`, `STORE_REPO_NAME`, `STORE_REPO_DESCRIPTION`,
-`STORE_KEY_PASSWORD`, 任意: `STORE_DATA_DIR` (既定 `/data`), `STORE_REPO_KEYALIAS` (`openap`),
+`STORE_KEY_PASSWORD`, 任意: `STORE_DATA_DIR` (既定 `/data`), `STORE_REPO_KEYALIAS` (`apslop`),
 `STORE_KEY_DNAME`, `STORE_DRY_RUN`.
 
 ## androguard のバージョン固定

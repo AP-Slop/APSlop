@@ -28,8 +28,8 @@ export const POST = handle(async (req: Request, ctx: { params: Promise<{ name: s
   try {
     const current = await getAllTextFiles(name, repo.default_branch);
     const proposal = await proposeChanges(prompt, current);
-    const branch = `openap/${proposal.branch}-${Date.now().toString(36)}`;
-    const body = `${proposal.body}\n\n---\n_OpenAP の AI が @${session.user.login} の依頼で作成した Pull Request です。_`;
+    const branch = `apslop/${proposal.branch}-${Date.now().toString(36)}`;
+    const body = `${proposal.body}\n\n---\n_APSlop の AI が @${session.user.login} の依頼で作成した Pull Request です。_`;
     const pr = await createBranchCommitAndPr(
       session.accessToken,
       name,

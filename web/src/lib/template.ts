@@ -7,7 +7,7 @@ const TEXT_EXT = /\.(kt|kts|xml|md|txt|yml|yaml|json|properties|gradle|pro|sh|ba
 /** Rules for the AI prompt; never committed into student repos. */
 const RULES_FILE = "TEMPLATE_RULES.md";
 /** Source dirs of the template's placeholder package, dropped once the AI supplies its own package. */
-const TEMPLATE_PKG_DIRS = ["app/src/main/java/dev/openap/apps/template/", "app/src/test/java/dev/openap/apps/template/"];
+const TEMPLATE_PKG_DIRS = ["app/src/main/java/dev/apslop/apps/template/", "app/src/test/java/dev/apslop/apps/template/"];
 
 /** Reads TEMPLATE_RULES.md from the template dir, or "" if absent. */
 export async function readTemplateRules(): Promise<string> {

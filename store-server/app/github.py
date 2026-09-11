@@ -16,7 +16,7 @@ class GitHubError(Exception):
 
 
 def _headers(accept: str = "application/vnd.github+json") -> dict[str, str]:
-    h = {"Accept": accept, "X-GitHub-Api-Version": "2022-11-28", "User-Agent": "openap-store-server"}
+    h = {"Accept": accept, "X-GitHub-Api-Version": "2022-11-28", "User-Agent": "apslop-store-server"}
     if settings.github_token:
         h["Authorization"] = f"Bearer {settings.github_token}"
     return h

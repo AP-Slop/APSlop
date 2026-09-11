@@ -1,5 +1,5 @@
 # Builds an UNSIGNED release APK when a tag like v1.2.3 is pushed and attaches it
-# to the GitHub Release. The OpenAP store signs the APK when it ingests the release.
+# to the GitHub Release. The APSlop store signs the APK when it ingests the release.
 name: Release APK
 
 on:
@@ -36,8 +36,8 @@ jobs:
 
       - name: Build unsigned release APK
         env:
-          OPENAP_VERSION_NAME: ${{ steps.version.outputs.name }}
-          OPENAP_VERSION_CODE: ${{ steps.version.outputs.code }}
+          APSLOP_VERSION_NAME: ${{ steps.version.outputs.name }}
+          APSLOP_VERSION_CODE: ${{ steps.version.outputs.code }}
         run: ./gradlew --no-daemon assembleRelease
 
       - name: Rename APK

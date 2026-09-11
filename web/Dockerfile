@@ -20,7 +20,7 @@ ENV NEXT_TELEMETRY_DISABLED=1
 ENV PORT=3000
 ENV HOSTNAME=0.0.0.0
 ENV TEMPLATE_DIR=/app/template
-ENV DATABASE_URL=file:/app/data/openap.db
+ENV DATABASE_URL=file:/app/data/apslop.db
 RUN apk add --no-cache libc6-compat
 # Prisma CLI for `db push` at container start
 COPY --from=deps /app/node_modules ./node_modules

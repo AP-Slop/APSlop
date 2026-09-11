@@ -6,7 +6,7 @@ import type { RepoFile } from "@/lib/github";
 import { readTemplateFiles, readTemplateRules, templateForPrompt } from "@/lib/template";
 
 export const GeneratedFileSchema = z.object({
-  path: z.string().describe("リポジトリルートからの相対パス。例: app/src/main/java/dev/openap/apps/foo/MainActivity.kt"),
+  path: z.string().describe("リポジトリルートからの相対パス。例: app/src/main/java/dev/apslop/apps/foo/MainActivity.kt"),
   content: z.string().describe("ファイルの完全な内容"),
 });
 
@@ -18,8 +18,8 @@ export const GeneratedAppSchema = z.object({
     .describe("リポジトリ名。小文字英数字とハイフンのみ、2〜39文字"),
   packageName: z
     .string()
-    .regex(/^dev\.openap\.apps\.[a-z][a-z0-9_]*$/)
-    .describe("Android パッケージ名。必ず dev.openap.apps.<slug の - を _ に置換> の形式"),
+    .regex(/^dev\.apslop\.apps\.[a-z][a-z0-9_]*$/)
+    .describe("Android パッケージ名。必ず dev.apslop.apps.<slug の - を _ に置換> の形式"),
   summary: z.string().max(80).describe("80文字以内の一言説明"),
   description: z.string().describe("Markdown 形式の説明 (機能、使い方)"),
   files: z.array(GeneratedFileSchema).describe("生成・変更するファイル一式"),
@@ -40,13 +40,13 @@ export const ProposedChangesSchema = z.object({
 export type ProposedChanges = z.infer<typeof ProposedChangesSchema>;
 
 const ANDROID_RULES = `
-あなたは大学コミュニティ向けプラットフォーム「OpenAP」の Android アプリ生成エンジンです。
+あなたは大学コミュニティ向けプラットフォーム「APSlop」の Android アプリ生成エンジンです。
 利用者はプログラミング初心者のことが多く、生成物はそのまま GitHub Actions で \`./gradlew assembleRelease\` が通り、
 F-Droid 互換ストアに配信されます。
 
 ## 必ず守るルール
 - 言語は Kotlin、UI は Jetpack Compose (Material 3)。XML レイアウトは使わない。
-- パッケージ名は \`dev.openap.apps.<slug>\` (slug の \`-\` は \`_\` に置換)。
+- パッケージ名は \`dev.apslop.apps.<slug>\` (slug の \`-\` は \`_\` に置換)。
   \`app/build.gradle.kts\` の \`namespace\` と \`applicationId\`、AndroidManifest、Kotlin ファイルのディレクトリと package 宣言をすべて一致させる。
 - テンプレートの Gradle 設定 (settings.gradle.kts / build.gradle.kts / gradle/libs.versions.toml / gradle.properties / .github/workflows/release.yml) は
   依存関係の追加が必要な場合を除き変更しない。変更する場合も完全なファイルを出力する。
@@ -55,7 +55,7 @@ F-Droid 互換ストアに配信されます。
 - \`versionCode\` は 1、\`versionName\` は "0.1.0" から始める。
 - ネットワーク権限が必要なら AndroidManifest に INTERNET を追加する。外部 API キーは埋め込まない。
 - ローカル永続化が必要なら DataStore Preferences か Room を使う (依存は libs.versions.toml とテンプレの流儀に合わせる)。
-- README.md にはアプリの説明、使い方、生成元が OpenAP であることを書く。
+- README.md にはアプリの説明、使い方、生成元が APSlop であることを書く。
 - 出力は日本語 UI を基本にする (strings.xml)。
 - 生成するファイルは必要最小限にし、テンプレに含まれるファイルで変更不要なものは出力しない。
 `;
@@ -109,7 +109,7 @@ export async function generateApp(prompt: string): Promise<GeneratedApp> {
       : "\n## テンプレートは利用できないため、Gradle 設定を含む全ファイルを出力すること。");
   const user = `次の説明から Android アプリを生成してください。\n\n<request>\n${prompt}\n</request>`;
   const app = await runStructured(GeneratedAppSchema, system, user);
-  const expectedPkg = `dev.openap.apps.${app.slug.replace(/-/g, "_")}`;
+  const expectedPkg = `dev.apslop.apps.${app.slug.replace(/-/g, "_")}`;
   if (app.packageName !== expectedPkg) app.packageName = expectedPkg;
   return app;
 }

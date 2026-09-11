@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">Template App</string>
-    <string name="greeting">Hello from OpenAP!</string>
+    <string name="greeting">Hello from APSlop!</string>
     <string name="counter_label">Tapped %1$d times</string>
     <string name="increment">Tap me</string>
     <string name="reset">Reset</string>

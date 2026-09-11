@@ -1,4 +1,4 @@
-# OpenAP アーキテクチャ
+# APSlop アーキテクチャ
 
 大学コミュニティ向けの「AI でアプリを作って公開できる GitHub」。
 Git の実体は github.com 上の Organization に置き、自前サーバーは
@@ -60,10 +60,10 @@ POST {STORE_SERVER_URL}/sync
 Headers: X-Store-Token: {STORE_TOKEN}
 Body: { "repo": "org/name", "tag": "v1.2.3" }   // tag 省略時は latest release
 200: {
-  "packageName": "dev.openap.apps.foo",
+  "packageName": "dev.apslop.apps.foo",
   "versionName": "1.2.3",
   "versionCode": 10203,
-  "apkName": "dev.openap.apps.foo_10203.apk",
+  "apkName": "dev.apslop.apps.foo_10203.apk",
   "sha256": "...",
   "signer": "<sha256 of signing cert>"
 }
@@ -99,7 +99,7 @@ Android クライアントは `index-v2.json` のみ読む。
 type GeneratedApp = {
   name: string;          // 表示名
   slug: string;          // リポジトリ名 (a-z0-9-)
-  packageName: string;   // "dev.openap.apps.<slug の _ 版>"
+  packageName: string;   // "dev.apslop.apps.<slug の _ 版>"
   summary: string;       // 80 文字以内
   description: string;   // Markdown
   files: { path: string; content: string }[]; // 雛形からの差分ではなく完全なファイル一式

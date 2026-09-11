@@ -32,13 +32,13 @@ def test_sync_calls_sync_release(client, monkeypatch):
 
     def fake(repo, tag):
         calls.append((repo, tag))
-        return {"packageName": "dev.openap.apps.todo", "versionName": "1.0", "versionCode": 1,
-                "apkName": "dev.openap.apps.todo_1.apk", "sha256": "x", "signer": "y"}
+        return {"packageName": "dev.apslop.apps.todo", "versionName": "1.0", "versionCode": 1,
+                "apkName": "dev.apslop.apps.todo_1.apk", "sha256": "x", "signer": "y"}
 
     monkeypatch.setattr(main, "sync_release", fake)
     r = client.post("/sync", json={"repo": "org/app", "tag": "v1.0"}, headers={"X-Store-Token": "test-token"})
     assert r.status_code == 200
-    assert r.json()["packageName"] == "dev.openap.apps.todo"
+    assert r.json()["packageName"] == "dev.apslop.apps.todo"
     assert calls == [("org/app", "v1.0")]
 
 
@@ -59,7 +59,7 @@ def test_apps_serves_parsed_index(client, monkeypatch):
     r = client.get("/apps")
     assert r.status_code == 200
     names = {a["packageName"] for a in r.json()}
-    assert names == {"dev.openap.apps.todo", "dev.openap.apps.old"}
+    assert names == {"dev.apslop.apps.todo", "dev.apslop.apps.old"}
     # static mount serves the index too, but must not expose config.yml
     assert client.get("/fdroid/repo/index-v2.json").status_code == 200
     assert client.get("/fdroid/config.yml").status_code == 404

@@ -1,6 +1,6 @@
 # GitHub 側のセットアップ手順
 
-OpenAP は github.com の Organization をバックエンドにする。運用者が一度だけ行う設定。
+APSlop は github.com の Organization をバックエンドにする。運用者が一度だけ行う設定。
 
 ## 1. Organization を作る
 
@@ -30,7 +30,7 @@ PR の作成・レビュー・マージ、Issue 作成、リリース作成は**
 ### 発行手順 (Fine-grained personal access token)
 
 1. Org の **オーナー権限を持つアカウント** で https://github.com/settings/personal-access-tokens/new を開く。
-2. **Token name**: `openap-server` など。**Expiration**: 運用に合わせる(最長 1 年。切れたら再発行して `.env` を差し替える)。
+2. **Token name**: `apslop-server` など。**Expiration**: 運用に合わせる(最長 1 年。切れたら再発行して `.env` を差し替える)。
 3. **Resource owner**: 自分ではなく **作成した Organization** を選ぶ。
    Org が候補に出ない場合は Org の Settings → Third-party Access → Personal access tokens で
    fine-grained token の利用を許可する(`Allow access via fine-grained personal access tokens`)。

@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# OpenAP: Oracle Cloud Always Free (Ampere A1, Ubuntu 24.04) 用の初期セットアップ。
+# APSlop: Oracle Cloud Always Free (Ampere A1, Ubuntu 24.04) 用の初期セットアップ。
 # ubuntu ユーザーで実行する (sudo を内部で使う)。何度実行しても安全 (冪等)。
 #
 #   curl -fsSL https://raw.githubusercontent.com/<org>/<repo>/main/deploy/oracle/setup.sh | \
@@ -8,12 +8,12 @@
 #
 # 環境変数:
 #   REPO_URL   clone 元 (未指定なら clone をスキップし、カレントの checkout を使う)
-#   APP_DIR    配置先 (既定 ~/openap)
+#   APP_DIR    配置先 (既定 ~/apslop)
 #   SWAP_GB    スワップサイズ GB (既定 4、0 で作らない)
 #   NO_START=1 compose の起動をスキップ (.env を先に編集したいとき)
 set -euo pipefail
 
-APP_DIR="${APP_DIR:-$HOME/openap}"
+APP_DIR="${APP_DIR:-$HOME/apslop}"
 SWAP_GB="${SWAP_GB:-4}"
 REPO_URL="${REPO_URL:-}"
 COMPOSE=(docker compose -f docker-compose.yml -f docker-compose.prod.yml)
@@ -118,8 +118,8 @@ if [ ! -f .env ]; then
     GITHUB_ORG, GITHUB_ADMIN_TOKEN, GITHUB_CLIENT_ID, GITHUB_CLIENT_SECRET, GITHUB_WEBHOOK_SECRET
     AUTH_SECRET (openssl rand -base64 32), ANTHROPIC_API_KEY
     STORE_TOKEN, STORE_KEY_PASSWORD (6 文字以上)
-    OPENAP_DOMAIN=<公開ホスト名>
-    AUTH_URL / NEXT_PUBLIC_APP_URL / NEXT_PUBLIC_STORE_URL / STORE_PUBLIC_URL = https://<OPENAP_DOMAIN>
+    APSLOP_DOMAIN=<公開ホスト名>
+    AUTH_URL / NEXT_PUBLIC_APP_URL / NEXT_PUBLIC_STORE_URL / STORE_PUBLIC_URL = https://<APSLOP_DOMAIN>
     AUTH_TRUST_HOST=true
 EOT
 fi
@@ -140,7 +140,7 @@ else
   log "ビルドして起動 (初回は 10 分前後かかります)"
   dockerx "${COMPOSE[@]}" up -d --build
   dockerx "${COMPOSE[@]}" ps
-  log "確認: https://$(grep -E '^OPENAP_DOMAIN=' .env | cut -d= -f2)/fdroid/repo/index-v2.json"
+  log "確認: https://$(grep -E '^APSLOP_DOMAIN=' .env | cut -d= -f2)/fdroid/repo/index-v2.json"
 fi
 
 if [ "${ADDED_TO_DOCKER_GROUP:-}" = "1" ]; then

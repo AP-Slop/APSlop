@@ -1,6 +1,6 @@
-# OpenAP 本番用 Caddyfile。OPENAP_DOMAIN は .env から compose 経由で渡される。
+# APSlop 本番用 Caddyfile。APSLOP_DOMAIN は .env から compose 経由で渡される。
 # Let's Encrypt の証明書は自動取得 (80/443 が外部から到達できる必要がある)。
-{$OPENAP_DOMAIN} {
+{$APSLOP_DOMAIN} {
 	encode gzip
 
 	# webhook / API の本文上限 (APK は GET なので影響なし)

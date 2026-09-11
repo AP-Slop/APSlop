@@ -5,15 +5,15 @@ plugins {
     alias(libs.plugins.kotlin.serialization)
 }
 
-val defaultRepoUrl: String = (project.findProperty("openap.repoUrl") as String?)
+val defaultRepoUrl: String = (project.findProperty("apslop.repoUrl") as String?)
     ?: "http://10.0.2.2:8080/fdroid/repo"
 
 android {
-    namespace = "dev.openap.store"
+    namespace = "dev.apslop.store"
     compileSdk = 35
 
     defaultConfig {
-        applicationId = "dev.openap.store"
+        applicationId = "dev.apslop.store"
         minSdk = 26
         targetSdk = 35
         versionCode = 1

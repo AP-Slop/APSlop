@@ -4,7 +4,9 @@
 !.env.example
 *.jks
 *.keystore
-data/
+# runtime data (compose volumes / local dev). Do NOT use a bare `data/` here: it would hide Kotlin `data` packages.
+/web/data/
+/store-server/data/
 
 # node
 node_modules/
@@ -52,5 +54,9 @@ templates/**/local.properties
 /.vscode
 /.zprofile
 /.zshrc
+# Claude Code: keep only the project settings; sandbox-mounted sentinels (.claude/, .mcp.json in subdirs) are ignored
+.claude/
+!/.claude/
 /.claude/*
 !/.claude/settings.json
+.mcp.json

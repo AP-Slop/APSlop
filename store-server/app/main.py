@@ -1,4 +1,4 @@
-"""OpenAP store-server: F-Droid compatible repository generator & host."""
+"""APSlop store-server: F-Droid compatible repository generator & host."""
 from __future__ import annotations
 
 import logging
@@ -32,7 +32,7 @@ async def lifespan(_: FastAPI):
     yield
 
 
-app = FastAPI(title="OpenAP store-server", version="0.1.0", lifespan=lifespan)
+app = FastAPI(title="APSlop store-server", version="0.1.0", lifespan=lifespan)
 
 
 def require_token(x_store_token: str | None = Header(default=None)) -> None:

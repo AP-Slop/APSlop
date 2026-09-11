@@ -1,4 +1,4 @@
-# web — OpenAP Web アプリ
+# web — APSlop Web アプリ
 
 Next.js 16 (App Router) / Auth.js v5 (GitHub OAuth) / Octokit / Anthropic SDK / Prisma 7 + SQLite (libsql adapter) / Tailwind v4。
 

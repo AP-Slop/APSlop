@@ -23,7 +23,7 @@ export const POST = handle(async (req: Request) => {
     for (let i = 2; await prisma.app.findUnique({ where: { slug } }); i++) slug = `${app.slug}-${i}`;
     if (slug !== app.slug) {
       app.slug = slug;
-      app.packageName = `dev.openap.apps.${slug.replace(/-/g, "_")}`;
+      app.packageName = `dev.apslop.apps.${slug.replace(/-/g, "_")}`;
     }
     await prisma.generation.update({
       where: { id: generation.id },

@@ -1,9 +1,9 @@
-# OpenAP Store (Android クライアント)
+# APSlop Store (Android クライアント)
 
 大学コミュニティ向けアプリストアの Android クライアント。
 `store-server` が生成する **F-Droid 互換リポジトリ (index-v2)** を読み、アプリの一覧・詳細・インストール・更新を行う。
 
-- パッケージ名: `dev.openap.store`
+- パッケージ名: `dev.apslop.store`
 - Kotlin 2.2 / Jetpack Compose (Material 3) / minSdk 26 / targetSdk 35
 - 依存: navigation-compose, lifecycle-viewmodel-compose, kotlinx-serialization, OkHttp, Coil, DataStore
 
@@ -22,10 +22,10 @@ cd android
 ## ストアの向き先
 
 既定のリポジトリ URL はビルド時に埋め込まれる (`BuildConfig.DEFAULT_REPO_URL`)。
-`gradle.properties` の `openap.repoUrl`、または `-P` で上書きする。
+`gradle.properties` の `apslop.repoUrl`、または `-P` で上書きする。
 
 ```sh
-./gradlew :app:assembleDebug -Popenap.repoUrl=https://apps.example.ac.jp/fdroid/repo
+./gradlew :app:assembleDebug -Papslop.repoUrl=https://apps.example.ac.jp/fdroid/repo
 ```
 
 既定値 `http://10.0.2.2:8080/fdroid/repo` はエミュレータからホストの `docker compose up` (store-server: 8080) を指す。
@@ -64,7 +64,7 @@ cd android
 ## 構成
 
 ```
-app/src/main/java/dev/openap/store/
+app/src/main/java/dev/apslop/store/
   StoreApplication.kt      依存の生成 (Settings / Repository / Installer)
   MainActivity.kt
   data/IndexModels.kt      index-v2 のモデル + ドメインモデル

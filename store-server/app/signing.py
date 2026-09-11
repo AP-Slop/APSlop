@@ -85,7 +85,7 @@ def ensure_package_key(package_name: str) -> Path:
             tool, "-genkeypair", "-keystore", str(ks), "-storetype", "PKCS12",
             "-storepass", settings.key_password, "-keypass", settings.key_password,
             "-alias", package_name, "-keyalg", "RSA", "-keysize", "4096", "-validity", "10000",
-            "-dname", f"CN={package_name}, O=OpenAP",
+            "-dname", f"CN={package_name}, O=APSlop",
         ]
     )
     ks.chmod(0o600)
@@ -100,7 +100,7 @@ def sign_apk(src: Path, dest: Path, package_name: str) -> Path:
     if not apksigner:
         raise SigningError("apksigner not found")
     # The aligned copy goes to a scratch dir: `src` may live on a read-only mount.
-    with tempfile.TemporaryDirectory(prefix="openap-sign-") as tmp:
+    with tempfile.TemporaryDirectory(prefix="apslop-sign-") as tmp:
         aligned = src
         za = which("zipalign")
         if za:

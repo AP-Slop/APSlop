@@ -1,13 +1,13 @@
 {
   "repo": {
-    "name": {"en-US": "OpenAP University Apps"},
+    "name": {"en-US": "APSlop University Apps"},
     "description": {"en-US": "Apps built by the university community"},
     "icon": {"en-US": {"name": "/icons/icon.png", "sha256": "abc", "size": 1234}},
     "address": "http://localhost:8080/fdroid/repo",
     "timestamp": 1757400000000
   },
   "packages": {
-    "dev.openap.apps.timetable": {
+    "dev.apslop.apps.timetable": {
       "metadata": {
         "added": 1757000000000,
         "lastUpdated": 1757300000000,
@@ -17,12 +17,12 @@
         "name": {"en-US": "Timetable", "ja": "時間割"},
         "summary": {"en-US": "Campus timetable viewer"},
         "description": {"en-US": "Shows your weekly timetable."},
-        "icon": {"en-US": {"name": "/icons/dev.openap.apps.timetable.10002.png", "sha256": "def", "size": 4321}}
+        "icon": {"en-US": {"name": "/icons/dev.apslop.apps.timetable.10002.png", "sha256": "def", "size": 4321}}
       },
       "versions": {
         "aaaa": {
           "added": 1757100000000,
-          "file": {"name": "/dev.openap.apps.timetable_10001.apk", "sha256": "1111", "size": 100000},
+          "file": {"name": "/dev.apslop.apps.timetable_10001.apk", "sha256": "1111", "size": 100000},
           "manifest": {
             "versionName": "1.0.1", "versionCode": 10001,
             "usesSdk": {"minSdkVersion": 26, "targetSdkVersion": 35},
@@ -34,7 +34,7 @@
         },
         "bbbb": {
           "added": 1757300000000,
-          "file": {"name": "/dev.openap.apps.timetable_10002.apk", "sha256": "2222", "size": 120000},
+          "file": {"name": "/dev.apslop.apps.timetable_10002.apk", "sha256": "2222", "size": 120000},
           "manifest": {
             "versionName": "1.0.2", "versionCode": 10002,
             "usesSdk": {"minSdkVersion": 26, "targetSdkVersion": 35}
@@ -42,7 +42,7 @@
         }
       }
     },
-    "dev.openap.apps.notes": {
+    "dev.apslop.apps.notes": {
       "metadata": {
         "added": 1756000000000,
         "lastUpdated": 1756100000000,
@@ -54,12 +54,12 @@
       "versions": {
         "cccc": {
           "added": 1756100000000,
-          "file": {"name": "/dev.openap.apps.notes_1.apk", "sha256": "3333", "size": 50000},
+          "file": {"name": "/dev.apslop.apps.notes_1.apk", "sha256": "3333", "size": 50000},
           "manifest": {"versionName": "0.1", "versionCode": 1}
         }
       }
     },
-    "dev.openap.apps.empty": {
+    "dev.apslop.apps.empty": {
       "metadata": {"name": {"en-US": "No versions"}},
       "versions": {}
     }
