@@ -72,6 +72,7 @@ app/src/main/java/dev/apslop/store/
   data/StoreRepository.kt  index の取得・保持、インストール状態
   data/Downloader.kt       APK ダウンロード + SHA-256 検証
   data/SettingsStore.kt    DataStore (リポジトリ URL)
+  markdown/Markdown.kt     説明文 (各アプリの README) の Markdown パーサー (純 Kotlin)
   install/AppInstaller.kt  PackageInstaller セッション
   install/InstallReceiver.kt / InstallEvents.kt
   viewmodel/               AppListViewModel, AppDetailViewModel

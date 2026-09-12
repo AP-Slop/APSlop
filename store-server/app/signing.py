@@ -1,10 +1,12 @@
 """APK inspection (androguard) and keytool / apksigner / zipalign wrappers."""
 from __future__ import annotations
 
+import functools
 import hashlib
 import re
 import shutil
 import subprocess
+import sys
 import tempfile
 from dataclasses import dataclass
 from pathlib import Path
@@ -21,6 +23,7 @@ class ApkInfo:
     package_name: str
     version_code: int
     version_name: str
+    app_name: str = ""  # android:label resolved from resources; "" if it could not be resolved
 
 
 def run(cmd: list[str], cwd: Path | None = None, check: bool = True) -> subprocess.CompletedProcess[str]:
@@ -35,7 +38,19 @@ def which(tool: str) -> str | None:
     return shutil.which(tool)
 
 
+@functools.cache
+def _quiet_androguard() -> None:
+    """androguard 4 logs every parsed resource chunk through loguru at DEBUG; keep errors only."""
+    try:
+        from loguru import logger
+    except ImportError:  # pragma: no cover
+        return
+    logger.remove()
+    logger.add(sys.stderr, level="ERROR")
+
+
 def inspect_apk(path: Path) -> ApkInfo:
+    _quiet_androguard()
     try:
         from androguard.core.apk import APK  # androguard >= 4 (bundled with fdroidserver)
     except ImportError:  # pragma: no cover
@@ -49,7 +64,13 @@ def inspect_apk(path: Path) -> ApkInfo:
     vn = apk.get_androidversion_name() or "0"
     if not pkg or not vc:
         raise SigningError(f"could not read package/versionCode from {path.name}")
-    return ApkInfo(package_name=pkg, version_code=int(vc), version_name=str(vn))
+    try:
+        label = (apk.get_app_name() or "").strip()
+    except Exception:  # noqa: BLE001 - the label is cosmetic; callers fall back to the repo name
+        label = ""
+    if label.startswith("@"):  # unresolved resource reference such as "@7F0F001D"
+        label = ""
+    return ApkInfo(package_name=pkg, version_code=int(vc), version_name=str(vn), app_name=label)
 
 
 def is_signed(path: Path) -> bool:

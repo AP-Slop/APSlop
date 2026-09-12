@@ -177,7 +177,7 @@ private fun DetailContent(
         HorizontalDivider()
 
         if (app.description.isNotBlank()) {
-            Text(app.description, style = MaterialTheme.typography.bodyMedium)
+            MarkdownText(app.description)
             HorizontalDivider()
         }
 

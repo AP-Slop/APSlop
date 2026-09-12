@@ -78,6 +78,8 @@ GET {STORE_SERVER_URL}/healthz  -> {"ok": true}
 store-server は GitHub の Release アセットを `GITHUB_ADMIN_TOKEN` で取得する(private repo でも可)。
 アセット名は `*.apk` を対象とし、`*-unsigned.apk` / 未署名 APK は `apksigner` で署名する。
 署名鍵は `/data/keys/<packageName>.jks` に無ければ `keytool` で生成する(パスワードは `STORE_KEY_PASSWORD`)。
+ストアに表示する名前は APK の `android:label`(`app_name`)、概要は GitHub リポジトリの description、
+説明はタグ時点の `README.md`(Markdown。無ければ description)。Release のリリースノートは使わない。
 
 ### store-server が配信するもの
 

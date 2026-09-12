@@ -19,6 +19,8 @@ from .sync import SyncError, sync_release
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s %(name)s %(levelname)s %(message)s")
 log = logging.getLogger("store")
+# httpx logs every request URL at INFO, including GitHub's pre-signed release-asset download URLs.
+logging.getLogger("httpx").setLevel(logging.WARNING)
 
 mimetypes.add_type("application/vnd.android.package-archive", ".apk")
 mimetypes.add_type("application/json", ".json")
