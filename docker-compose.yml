@@ -1,7 +1,11 @@
 services:
   web:
     build: ./web
-    env_file: .env
+    env_file: &env_files
+      - .env
+      # 秘密情報だけを分けたファイル (ローカルでは ~/.secrets への symlink)。無ければ .env だけを使う
+      - path: .env.secrets
+        required: false
     ports:
       - "3000:3000"
     volumes:
@@ -12,7 +16,7 @@ services:
 
   store-server:
     build: ./store-server
-    env_file: .env
+    env_file: *env_files
     ports:
       # ホスト側ポートは STORE_PORT で変更可 (既定 8080)。変更時は STORE_PUBLIC_URL / NEXT_PUBLIC_STORE_URL も合わせる
       - "${STORE_PORT:-8080}:8080"

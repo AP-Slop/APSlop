@@ -11,7 +11,8 @@ file you change or add; files you do not output are kept exactly as in the templ
 - Kotlin sources live under `app/src/main/java/dev/apslop/apps/<slug_underscored>/`.
   Do not leave sources under `dev/apslop/apps/template/` — move `MainActivity.kt` and `ui/Theme.kt`
   to the new package (output them at their new paths; the template versions are deleted).
-- `app/src/main/res/values/strings.xml` must define `app_name` (the display name).
+- `app/src/main/res/values/strings.xml` must define `app_name` (the display name). The store lists
+  the app under this name, so make it the same human-readable name, not the slug.
 - `settings.gradle.kts`: set `rootProject.name` to the display name (optional).
 
 ## Files in the template (paths relative to repository root)
@@ -70,4 +71,5 @@ app/src/test/java/dev/apslop/apps/template/ExampleUnitTest.kt
 - Keep `android.enableResourceOptimizations=false` in `gradle.properties`: the store reads
   icons by resource path and shortened paths break it.
 - Unit tests under `app/src/test/...` must pass with `./gradlew testDebugUnitTest`.
-- Write the README in Japanese describing the app, features, and how to build.
+- Write the README in Japanese describing the app, features, and how to build. The store shows the
+  README (Markdown) as the app description, so lead with what the app does for its users.

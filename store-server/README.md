@@ -8,9 +8,10 @@ F-Droid 互換のアプリリポジトリを生成・配信するサービス。
 ```
 POST /sync {repo, tag?}
   1. GitHub API で Release とアセット(*.apk)を取得 (GITHUB_ADMIN_TOKEN)
-  2. androguard で packageName / versionCode / versionName を読む
+  2. androguard で packageName / versionCode / versionName / app_name (android:label) を読む
   3. apksigner verify で署名確認。未署名なら /data/keys/<pkg>.jks で署名 (無ければ keytool で生成)
-  4. metadata/<pkg>.yml に Name / Summary / Description / SourceCode を書く (GitHub の repo 情報)
+  4. metadata/<pkg>.yml を書く: Name = APK の app_name、Summary = repo の description、
+     Description = タグ時点の README.md (無ければ description)、SourceCode = repo URL
   5. repo/<pkg>_<versionCode>.apk に配置して fdroid update --create-metadata
 GET  /apps                    index-v2.json を平坦化した一覧
 GET  /fdroid/repo/…           F-Droid クライアントが読む静的ファイル (index-v2.json, APK, icons)

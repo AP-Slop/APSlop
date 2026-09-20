@@ -1,4 +1,4 @@
-"""Environment-driven configuration (see .env.example at repo root)."""
+"""Environment-driven configuration (see docs/ARCHITECTURE.md)."""
 from __future__ import annotations
 
 import os

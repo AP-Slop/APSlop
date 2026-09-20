@@ -1,7 +1,6 @@
 # env / secrets
 .env
 .env.*
-!.env.example
 *.jks
 *.keystore
 # runtime data (compose volumes / local dev). Do NOT use a bare `data/` here: it would hide Kotlin `data` packages.

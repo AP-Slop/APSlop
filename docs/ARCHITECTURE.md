@@ -78,6 +78,8 @@ GET {STORE_SERVER_URL}/healthz  -> {"ok": true}
 store-server は GitHub の Release アセットを `GITHUB_ADMIN_TOKEN` で取得する(private repo でも可)。
 アセット名は `*.apk` を対象とし、`*-unsigned.apk` / 未署名 APK は `apksigner` で署名する。
 署名鍵は `/data/keys/<packageName>.jks` に無ければ `keytool` で生成する(パスワードは `STORE_KEY_PASSWORD`)。
+ストアに表示する名前は APK の `android:label`(`app_name`)、概要は GitHub リポジトリの description、
+説明はタグ時点の `README.md`(Markdown。無ければ description)。Release のリリースノートは使わない。
 
 ### store-server が配信するもの
 
@@ -120,12 +122,49 @@ Generation  id, userId -> User, kind (CREATE|MODIFY), prompt, model, status,
 
 ## 環境変数
 
-`.env.example` を参照。web と store-server は同じ `.env` を docker compose から読む。
+web と store-server は docker compose から同じ設定を読む。非秘密は `.env`、秘密は `.env.secrets`
+(compose では optional。ローカルでは `~/.secrets/apslop.env` への symlink)に置く。どちらも git 管理外。
+
+### `.env` (非秘密)
+
+| 変数 | 既定 / 例 | 用途 |
+|---|---|---|
+| `GITHUB_ORG` | `AP-Slop` | 全リポジトリを置く Organization |
+| `GITHUB_CLIENT_ID` | `Iv1.xxx` | 利用者ログイン用 OAuth App |
+| `AUTH_URL` | `http://localhost:3000` | Auth.js のベース URL |
+| `AUTH_TRUST_HOST` | 本番で `true` | リバースプロキシ配下では必須 |
+| `ANTHROPIC_MODEL` | `claude-opus-5` | アプリ生成に使うモデル |
+| `DATABASE_URL` | `file:./data/apslop.db` | web の SQLite |
+| `NEXT_PUBLIC_APP_URL` | `http://localhost:3000` | ブラウザから見える web の URL |
+| `NEXT_PUBLIC_STORE_URL` | `http://localhost:8080` | 同じくストアの URL |
+| `NEXT_PUBLIC_SITE_NAME` | `APSlop` | 大学名など表示用 |
+| `STORE_SERVER_URL` | `http://store-server:8080` | web → store-server の内部 URL (compose 内) |
+| `STORE_PORT` | `8080` | ホスト側に公開するポート |
+| `STORE_PUBLIC_URL` | `http://localhost:8080` | F-Droid index に埋め込む公開 URL |
+| `STORE_REPO_NAME` / `STORE_REPO_DESCRIPTION` | — | ストアの表示名と説明 |
+| `APSLOP_DOMAIN` | `apslop.example.com` | 本番の公開ホスト名 (Caddy が証明書を取る名前) |
+
+### `.env.secrets` (秘密)
+
+| 変数 | 用途 |
+|---|---|
+| `GITHUB_ADMIN_TOKEN` | Org 管理権限の fine-grained PAT (Administration / Contents / Members / Webhooks RW) |
+| `GITHUB_CLIENT_SECRET` | OAuth App の secret |
+| `GITHUB_WEBHOOK_SECRET` | Org webhook の署名検証 |
+| `AUTH_SECRET` | Auth.js の署名鍵 (`openssl rand -base64 32`) |
+| `ANTHROPIC_API_KEY` | アプリ生成 |
+| `STORE_TOKEN` | web ↔ store-server の共有トークン |
+| `STORE_KEY_PASSWORD` | APK 署名鍵 / リポジトリ鍵のパスワード (6 文字以上) |
+
+本番では URL 系を全て `https://<APSLOP_DOMAIN>` に揃える
+(`AUTH_URL` / `NEXT_PUBLIC_APP_URL` / `NEXT_PUBLIC_STORE_URL` / `STORE_PUBLIC_URL`)。
+store-server にはこのほか `STORE_DATA_DIR` / `GITHUB_API_URL` / `STORE_REPO_KEYALIAS` /
+`STORE_KEY_DNAME` / `STORE_DRY_RUN` があり、既定値は `store-server/app/config.py` を参照。
 
 ## ローカル起動
 
 ```
-cp .env.example .env   # 値を埋める
+# .env と .env.secrets を用意してから
 docker compose up --build
 # web:   http://localhost:3000
 # store: http://localhost:8080  (fdroid repo: http://localhost:8080/fdroid/repo)

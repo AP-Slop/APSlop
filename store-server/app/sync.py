@@ -44,6 +44,9 @@ def sync_release(repo_full_name: str, tag: str | None) -> dict[str, Any]:
     try:
         repo = github.get_repo(repo_full_name)
         release = github.get_release(repo_full_name, tag)
+        # The store description is the README as of the released tag. Release notes are a
+        # changelog (GitHub's generated ones are just a compare link), not a description.
+        readme = github.get_readme(repo_full_name, release.get("tag_name"))
     except github.GitHubError as e:
         raise SyncError(404 if e.status == 404 else 502, str(e)) from e
 
@@ -65,9 +68,10 @@ def sync_release(repo_full_name: str, tag: str | None) -> dict[str, Any]:
             for pinfo, _ in {p[0].package_name: p for p in prepared}.values():
                 fdroid.write_metadata(
                     pinfo.package_name,
-                    name=repo.get("name") or pinfo.package_name,
+                    # The label shown on the home screen, so the store and the launcher agree.
+                    name=pinfo.app_name or repo.get("name") or pinfo.package_name,
                     summary=repo.get("description") or "",
-                    description=(release.get("body") or repo.get("description") or ""),
+                    description=readme or repo.get("description") or "",
                     source_code=repo.get("html_url", ""),
                     website=repo.get("homepage") or repo.get("html_url", ""),
                 )

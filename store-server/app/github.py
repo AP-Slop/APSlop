@@ -50,6 +50,17 @@ def get_release(full_name: str, tag: str | None) -> dict[str, Any]:
         return r.json()
 
 
+def get_readme(full_name: str, ref: str | None = None) -> str:
+    """README of the repo at `ref` as raw Markdown, or "" if the repo has none."""
+    params = {"ref": ref} if ref else None
+    with _client() as c:
+        r = c.get(f"/repos/{full_name}/readme", params=params, headers={"Accept": "application/vnd.github.raw+json"})
+        if r.status_code == 404:
+            return ""
+        _raise_for(r)
+        return r.content.decode("utf-8", errors="replace")
+
+
 def apk_assets(release: dict[str, Any]) -> list[dict[str, Any]]:
     return [a for a in release.get("assets", []) if str(a.get("name", "")).lower().endswith(".apk")]
 

@@ -110,10 +110,53 @@ cd "$APP_DIR"
 
 # ---------------------------------------------------------------- .env
 if [ ! -f .env ]; then
-  cp .env.example .env
+  # 変数の一覧と意味は docs/ARCHITECTURE.md を参照
+  cat > .env <<'ENVEOT'
+# ---- GitHub ----
+# 全リポジトリを置く Organization 名
+GITHUB_ORG=AP-Slop
+# Org 管理権限を持つトークン (fine-grained PAT: Administration/Contents/Members/Webhooks RW)
+GITHUB_ADMIN_TOKEN=
+# 利用者ログイン用 OAuth App
+GITHUB_CLIENT_ID=
+GITHUB_CLIENT_SECRET=
+# Org webhook の secret
+GITHUB_WEBHOOK_SECRET=
+
+# ---- Auth.js ----
+AUTH_SECRET=
+AUTH_URL=https://apslop.example.com
+# リバースプロキシ配下では必須 (Auth.js が X-Forwarded-* を信頼する)
+AUTH_TRUST_HOST=true
+
+# ---- Anthropic ----
+ANTHROPIC_API_KEY=
+ANTHROPIC_MODEL=claude-opus-5
+
+# ---- web ----
+DATABASE_URL=file:./data/apslop.db
+NEXT_PUBLIC_APP_URL=https://apslop.example.com
+NEXT_PUBLIC_STORE_URL=https://apslop.example.com
+# 大学名など表示用
+NEXT_PUBLIC_SITE_NAME=APSlop
+
+# ---- store-server ----
+STORE_SERVER_URL=http://store-server:8080
+STORE_TOKEN=
+STORE_PORT=8080
+STORE_PUBLIC_URL=https://apslop.example.com
+STORE_REPO_NAME=APSlop University Apps
+STORE_REPO_DESCRIPTION=大学コミュニティで作られたアプリの F-Droid 互換リポジトリ
+# APK 署名鍵 / リポジトリ鍵のパスワード
+STORE_KEY_PASSWORD=
+
+# ---- 本番 (docker-compose.prod.yml / Caddy) ----
+# 公開ホスト名。Caddy がこの名前で Let's Encrypt 証明書を取得する
+APSLOP_DOMAIN=apslop.example.com
+ENVEOT
   chmod 600 .env
   ENV_CREATED=1
-  log ".env を .env.example から作成しました。起動前に次を編集してください:"
+  log ".env の雛形を作成しました。起動前に次を編集してください:"
   cat <<'EOT'
     GITHUB_ORG, GITHUB_ADMIN_TOKEN, GITHUB_CLIENT_ID, GITHUB_CLIENT_SECRET, GITHUB_WEBHOOK_SECRET
     AUTH_SECRET (openssl rand -base64 32), ANTHROPIC_API_KEY
