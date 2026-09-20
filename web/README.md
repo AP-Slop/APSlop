@@ -24,7 +24,7 @@ API: `POST /api/generate`, `POST /api/apps`, `POST /api/apps/[slug]/sync`, `POST
 ## セットアップ
 
 ```sh
-cp ../.env.example ../.env   # リポジトリルートの .env を編集
+# リポジトリルートに .env / .env.secrets を用意 (変数一覧は ../docs/ARCHITECTURE.md)
 npm install                  # postinstall で prisma generate が走る
 npm run sync-template        # ../templates/android-compose-app を ./template にコピー
 npm run db:push              # SQLite にスキーマを反映 (DATABASE_URL)

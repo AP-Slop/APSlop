@@ -71,7 +71,7 @@ curl -fsSL https://raw.githubusercontent.com/<org>/<repo>/main/deploy/oracle/set
 - 4 GB のスワップ作成(`SWAP_GB` で変更可)
 - **OCI の Ubuntu イメージは iptables で 22 以外を REJECT している**ため、80/443 を ACCEPT して `netfilter-persistent` で永続化
 - `~/apslop` に clone(既にあれば `git pull`)
-- `.env` が無ければ `.env.example` から作成(このときは起動せず終了する)
+- `.env` が無ければ雛形を生成(このときは起動せず終了する)
 - `templates/android-compose-app` を `web/template` に同期(web イメージのビルドに必要)
 
 初回は `.env` を作って止まるので、手順 6 の後に起動する。

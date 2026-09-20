@@ -20,7 +20,7 @@ Git の実体は github.com の Organization に置き、本リポジトリは W
 ## 起動
 
 ```sh
-cp .env.example .env   # GitHub / Anthropic の値を埋める
+# .env (設定) と .env.secrets (秘密) を用意する。変数一覧は docs/ARCHITECTURE.md
 docker compose up --build
 ```
 
