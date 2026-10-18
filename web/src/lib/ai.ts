@@ -75,6 +75,23 @@ function firstText(message: Anthropic.Message): string {
   return "";
 }
 
+/** Turn Anthropic API failures into messages a user can act on (the raw JSON is not shown). */
+export function friendlyApiError(e: unknown): Error {
+  if (e instanceof Anthropic.AuthenticationError || e instanceof Anthropic.PermissionDeniedError) {
+    return Object.assign(
+      new Error("AI is not available: the server's AI key was rejected. Ask the site administrator to update it."),
+      { status: 503 },
+    );
+  }
+  if (e instanceof Anthropic.RateLimitError || (e instanceof Anthropic.APIError && e.status === 529)) {
+    return Object.assign(new Error("AI is busy right now. Wait a minute and try again."), { status: 503 });
+  }
+  if (e instanceof Anthropic.APIConnectionError) {
+    return Object.assign(new Error("Could not reach AI. Check the server's network and try again."), { status: 503 });
+  }
+  return e instanceof Error ? e : new Error(String(e));
+}
+
 async function runStructured<T>(schema: z.ZodType<T>, system: string, user: string): Promise<T> {
   const stream = client().messages.stream({
     model: model(),
@@ -83,7 +100,12 @@ async function runStructured<T>(schema: z.ZodType<T>, system: string, user: stri
     messages: [{ role: "user", content: user }],
     output_config: { format: zodOutputFormat(schema) },
   });
-  const message = await stream.finalMessage();
+  let message: Anthropic.Message;
+  try {
+    message = await stream.finalMessage();
+  } catch (e) {
+    throw friendlyApiError(e);
+  }
   if (message.stop_reason === "refusal") {
     throw new Error("AI がこのリクエストの生成を拒否しました。内容を見直してください。");
   }
