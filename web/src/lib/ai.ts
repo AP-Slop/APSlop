@@ -66,9 +66,9 @@ type Provider = {
   model: string;
   /**
    * How a JSON answer is requested. Claude takes structured outputs (output_config.format).
-   * DeepSeek's Anthropic-compatible endpoint ignores that field but supports a forced tool call.
+   * DeepSeek's Anthropic-compatible endpoint ignores that field, so it is asked to answer through a tool.
    */
-  structured: "output_config" | "forced_tool";
+  structured: "output_config" | "result_tool";
 };
 
 function provider(choice: ModelChoice): Provider {
@@ -78,7 +78,7 @@ function provider(choice: ModelChoice): Provider {
     return {
       client: new Anthropic({ apiKey: e.DEEPSEEK_API_KEY, baseURL: e.DEEPSEEK_BASE_URL }),
       model: e.DEEPSEEK_MODEL,
-      structured: "forced_tool",
+      structured: "result_tool",
     };
   }
   return { client: new Anthropic({ apiKey: e.ANTHROPIC_API_KEY }), model: e.ANTHROPIC_MODEL, structured: "output_config" };
@@ -137,6 +137,13 @@ async function runStructured<T>(
       message = await p.client.messages
         .stream({
           ...base,
+          system: [
+            ...base.system,
+            {
+              type: "text",
+              text: `\n## 回答の方法\n回答は必ず \`${RESULT_TOOL}\` ツールを 1 回だけ呼び出して渡す。本文に回答を書かない。`,
+            },
+          ],
           tools: [
             {
               name: RESULT_TOOL,
@@ -144,7 +151,8 @@ async function runStructured<T>(
               input_schema: inputSchema as Anthropic.Tool.InputSchema,
             },
           ],
-          tool_choice: { type: "tool", name: RESULT_TOOL },
+          // DeepSeek runs in thinking mode by default, which rejects a forced tool_choice ("tool"/"any").
+          tool_choice: { type: "auto" },
         })
         .finalMessage();
     }
@@ -166,8 +174,17 @@ async function runStructured<T>(
     }
   } else {
     const call = message.content.find((b): b is Anthropic.ToolUseBlock => b.type === "tool_use" && b.name === RESULT_TOOL);
-    if (!call) throw invalidOutput("no result");
-    raw = call.input;
+    if (call) {
+      raw = call.input;
+    } else {
+      // tool_choice is only "auto" here, so accept the same JSON written as plain text (optionally fenced).
+      const text = firstText(message).trim().replace(/^```(?:json)?\s*|\s*```$/g, "");
+      try {
+        raw = JSON.parse(text);
+      } catch {
+        throw invalidOutput("no result");
+      }
+    }
   }
   const parsed = schema.safeParse(raw);
   if (!parsed.success) {
