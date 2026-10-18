@@ -1,8 +1,8 @@
 import { prisma } from "@/lib/db";
 import { proposeChanges } from "@/lib/ai";
-import { env } from "@/lib/env";
 import { getBranchSha, getRepo, getTextFileAt, getTextFilesAt } from "@/lib/github";
 import { parseStoredProposal, type StoredProposal } from "@/lib/proposal";
+import { modelOption, type ModelChoice } from "@/lib/models";
 
 function httpError(message: string, status: number): Error {
   return Object.assign(new Error(message), { status });
@@ -12,15 +12,22 @@ function httpError(message: string, status: number): Error {
  * Ask AI for changes to a repo and keep them for review. Nothing is sent to GitHub.
  * Returns the Generation id (status READY) or throws after marking it FAILED.
  */
-export async function createProposal(userId: string, name: string, prompt: string): Promise<string> {
+export async function createProposal(
+  userId: string,
+  name: string,
+  prompt: string,
+  choice: ModelChoice = "claude",
+): Promise<string> {
+  const option = modelOption(choice);
+  if (!option.available) throw httpError(`${option.label} is not set up on this server.`, 400);
   const repo = await getRepo(name);
   const generation = await prisma.generation.create({
-    data: { userId, kind: "MODIFY", prompt, model: env().ANTHROPIC_MODEL, repoFullName: repo.full_name },
+    data: { userId, kind: "MODIFY", prompt, model: option.model, repoFullName: repo.full_name },
   });
   try {
     const baseSha = await getBranchSha(name, repo.default_branch);
     const current = await getTextFilesAt(name, baseSha);
-    const proposal = await proposeChanges(prompt, current);
+    const proposal = await proposeChanges(prompt, current, choice);
     const byPath = new Map(current.map((f) => [f.path, f.content]));
     const files = await Promise.all(
       proposal.files.map(async (f) => ({

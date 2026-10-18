@@ -134,6 +134,8 @@ web と store-server は docker compose から同じ設定を読む。非秘密�
 | `AUTH_URL` | `http://localhost:3000` | Auth.js のベース URL |
 | `AUTH_TRUST_HOST` | 本番で `true` | リバースプロキシ配下では必須 |
 | `ANTHROPIC_MODEL` | `claude-opus-5` | アプリ生成に使うモデル |
+| `DEEPSEEK_MODEL` | `deepseek-flash` | 「Create PR with AI」で使う DeepSeek のモデル (DeepSeek-V4.1-Flash-1017 は `deepseek-flash` で呼ぶ) |
+| `DEEPSEEK_BASE_URL` | `https://api.deepseek.com/anthropic` | DeepSeek の Anthropic 互換エンドポイント |
 | `DATABASE_URL` | `file:./data/apslop.db` | web の SQLite |
 | `NEXT_PUBLIC_APP_URL` | `http://localhost:3000` | ブラウザから見える web の URL |
 | `NEXT_PUBLIC_STORE_URL` | `http://localhost:8080` | 同じくストアの URL |
@@ -152,7 +154,8 @@ web と store-server は docker compose から同じ設定を読む。非秘密�
 | `GITHUB_CLIENT_SECRET` | OAuth App の secret |
 | `GITHUB_WEBHOOK_SECRET` | Org webhook の署名検証 |
 | `AUTH_SECRET` | Auth.js の署名鍵 (`openssl rand -base64 32`) |
-| `ANTHROPIC_API_KEY` | アプリ生成 |
+| `ANTHROPIC_API_KEY` | アプリ生成と「Create PR with AI」(Claude) |
+| `DEEPSEEK_API_KEY` | 任意。「Create PR with AI」で DeepSeek を選べるようにする。無ければ選択肢は「not set up」で選べない |
 | `STORE_TOKEN` | web ↔ store-server の共有トークン |
 | `STORE_KEY_PASSWORD` | APK 署名鍵 / リポジトリ鍵のパスワード (6 文字以上) |
 

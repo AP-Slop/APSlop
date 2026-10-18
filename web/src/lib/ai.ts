@@ -2,6 +2,7 @@ import Anthropic from "@anthropic-ai/sdk";
 import { zodOutputFormat } from "@anthropic-ai/sdk/helpers/zod";
 import { z } from "zod";
 import { env } from "@/lib/env";
+import type { ModelChoice } from "@/lib/models";
 import type { RepoFile } from "@/lib/github";
 import { readTemplateFiles, readTemplateRules, templateForPrompt } from "@/lib/template";
 
@@ -60,12 +61,27 @@ F-Droid 互換ストアに配信されます。
 - 生成するファイルは必要最小限にし、テンプレに含まれるファイルで変更不要なものは出力しない。
 `;
 
-function client(): Anthropic {
-  return new Anthropic({ apiKey: env().ANTHROPIC_API_KEY });
-}
+type Provider = {
+  client: Anthropic;
+  model: string;
+  /**
+   * How a JSON answer is requested. Claude takes structured outputs (output_config.format).
+   * DeepSeek's Anthropic-compatible endpoint ignores that field but supports a forced tool call.
+   */
+  structured: "output_config" | "forced_tool";
+};
 
-function model(): string {
-  return env().ANTHROPIC_MODEL;
+function provider(choice: ModelChoice): Provider {
+  const e = env();
+  if (choice === "deepseek") {
+    if (!e.DEEPSEEK_API_KEY) throw Object.assign(new Error("DeepSeek is not set up on this server."), { status: 400 });
+    return {
+      client: new Anthropic({ apiKey: e.DEEPSEEK_API_KEY, baseURL: e.DEEPSEEK_BASE_URL }),
+      model: e.DEEPSEEK_MODEL,
+      structured: "forced_tool",
+    };
+  }
+  return { client: new Anthropic({ apiKey: e.ANTHROPIC_API_KEY }), model: e.ANTHROPIC_MODEL, structured: "output_config" };
 }
 
 function firstText(message: Anthropic.Message): string {
@@ -92,17 +108,46 @@ export function friendlyApiError(e: unknown): Error {
   return e instanceof Error ? e : new Error(String(e));
 }
 
-async function runStructured<T>(schema: z.ZodType<T>, system: string, user: string): Promise<T> {
-  const stream = client().messages.stream({
-    model: model(),
+const RESULT_TOOL = "submit_result";
+
+function invalidOutput(detail: string): Error {
+  return new Error(`AI's answer was not in the expected form (${detail}). Try Regenerate.`);
+}
+
+async function runStructured<T>(
+  schema: z.ZodType<T>,
+  system: string,
+  user: string,
+  choice: ModelChoice = "claude",
+): Promise<T> {
+  const p = provider(choice);
+  const base = {
+    model: p.model,
     max_tokens: 64000,
-    system: [{ type: "text", text: system, cache_control: { type: "ephemeral" } }],
-    messages: [{ role: "user", content: user }],
-    output_config: { format: zodOutputFormat(schema) },
-  });
+    system: [{ type: "text" as const, text: system, cache_control: { type: "ephemeral" as const } }],
+    messages: [{ role: "user" as const, content: user }],
+  };
   let message: Anthropic.Message;
   try {
-    message = await stream.finalMessage();
+    if (p.structured === "output_config") {
+      message = await p.client.messages.stream({ ...base, output_config: { format: zodOutputFormat(schema) } }).finalMessage();
+    } else {
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      const { $schema, ...inputSchema } = z.toJSONSchema(schema) as Record<string, unknown>;
+      message = await p.client.messages
+        .stream({
+          ...base,
+          tools: [
+            {
+              name: RESULT_TOOL,
+              description: "Return the complete result. Call this exactly once.",
+              input_schema: inputSchema as Anthropic.Tool.InputSchema,
+            },
+          ],
+          tool_choice: { type: "tool", name: RESULT_TOOL },
+        })
+        .finalMessage();
+    }
   } catch (e) {
     throw friendlyApiError(e);
   }
@@ -112,10 +157,21 @@ async function runStructured<T>(schema: z.ZodType<T>, system: string, user: stri
   if (message.stop_reason === "max_tokens") {
     throw new Error("生成結果が長すぎて途中で切れました。アプリの規模を小さくして再試行してください。");
   }
-  const text = firstText(message);
-  const parsed = schema.safeParse(JSON.parse(text));
+  let raw: unknown;
+  if (p.structured === "output_config") {
+    try {
+      raw = JSON.parse(firstText(message));
+    } catch {
+      throw invalidOutput("not JSON");
+    }
+  } else {
+    const call = message.content.find((b): b is Anthropic.ToolUseBlock => b.type === "tool_use" && b.name === RESULT_TOOL);
+    if (!call) throw invalidOutput("no result");
+    raw = call.input;
+  }
+  const parsed = schema.safeParse(raw);
   if (!parsed.success) {
-    throw new Error(`AI の出力が想定形式ではありません: ${parsed.error.issues[0]?.message ?? ""}`);
+    throw invalidOutput(parsed.error.issues[0]?.message ?? "schema mismatch");
   }
   return parsed.data;
 }
@@ -137,7 +193,11 @@ export async function generateApp(prompt: string): Promise<GeneratedApp> {
 }
 
 /** Propose changes to an existing repo; returns files to commit on a new branch + PR text. */
-export async function proposeChanges(prompt: string, currentFiles: RepoFile[]): Promise<ProposedChanges> {
+export async function proposeChanges(
+  prompt: string,
+  currentFiles: RepoFile[],
+  choice: ModelChoice = "claude",
+): Promise<ProposedChanges> {
   const system =
     ANDROID_RULES +
     `
@@ -149,7 +209,7 @@ export async function proposeChanges(prompt: string, currentFiles: RepoFile[]): 
 `;
   const listing = currentFiles.map((f) => `<file path="${f.path}">\n${f.content}\n</file>`).join("\n\n");
   const user = `<repository>\n${listing}\n</repository>\n\n<request>\n${prompt}\n</request>`;
-  return runStructured(ProposedChangesSchema, system, user);
+  return runStructured(ProposedChangesSchema, system, user, choice);
 }
 
 /** Simple slug sanitizer for user-supplied names. */

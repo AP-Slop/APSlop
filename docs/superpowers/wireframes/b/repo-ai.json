@@ -2,7 +2,10 @@
   "version": 1,
   "id": "repo-ai",
   "title": "開発者: Create PR with AI(入力)",
-  "device": "desktop",
+  "device": {
+    "w": 1440,
+    "h": 980
+  },
   "elements": [
     {
       "id": "r734",
@@ -359,10 +362,24 @@
       }
     },
     {
+      "id": "i758",
+      "type": "input",
+      "name": "Model",
+      "x": 144,
+      "y": 480,
+      "w": 320,
+      "h": 56,
+      "text": "Model",
+      "props": {
+        "kind": "select",
+        "placeholder": "DeepSeek V4.1 Flash"
+      }
+    },
+    {
       "id": "b753",
       "type": "button",
       "x": 144,
-      "y": 480,
+      "y": 560,
       "w": 168,
       "h": 40,
       "text": "Generate changes",
@@ -372,7 +389,7 @@
       "id": "t754",
       "type": "text",
       "x": 328,
-      "y": 488,
+      "y": 568,
       "w": 400,
       "h": 24,
       "text": "At least 5 characters. Takes 1–3 minutes.",
@@ -385,7 +402,7 @@
       "id": "r757",
       "type": "rect",
       "x": 0,
-      "y": 844,
+      "y": 924,
       "w": 1440,
       "h": 56,
       "name": "Footer",

@@ -4,8 +4,17 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { buttonClass, Card, CardHeader, ErrorBox } from "@/components/ui";
 import { requestProposal } from "@/components/ProposeForm";
+import type { ModelChoice } from "@/lib/models";
 
-type Props = { name: string; id: string; prompt: string; title: string; body: string; canCreate: boolean };
+type Props = {
+  name: string;
+  id: string;
+  prompt: string;
+  model: ModelChoice;
+  title: string;
+  body: string;
+  canCreate: boolean;
+};
 
 async function post(url: string, payload?: unknown) {
   const res = await fetch(url, {
@@ -18,7 +27,7 @@ async function post(url: string, payload?: unknown) {
   return json;
 }
 
-export function ReviewActions({ name, id, prompt, title: aiTitle, body: aiBody, canCreate }: Props) {
+export function ReviewActions({ name, id, prompt, model, title: aiTitle, body: aiBody, canCreate }: Props) {
   const router = useRouter();
   const [title, setTitle] = useState(aiTitle);
   const [body, setBody] = useState(aiBody);
@@ -34,7 +43,7 @@ export function ReviewActions({ name, id, prompt, title: aiTitle, body: aiBody, 
         const { prNumber } = await post(`${base}/pr`, { title, body });
         router.push(`/repos/${name}/pulls/${prNumber}`);
       } else if (kind === "regenerate") {
-        const next = await requestProposal(name, prompt);
+        const next = await requestProposal(name, prompt, model); // same AI as this proposal
         await post(`${base}/discard`).catch(() => undefined); // the old proposal is replaced
         router.push(`/repos/${name}/ai/${next}`);
       } else {
