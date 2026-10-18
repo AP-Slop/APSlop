@@ -1,0 +1,1122 @@
+{
+  "version": 1,
+  "id": "pull-detail",
+  "title": "開発者: Pull Request の詳細",
+  "device": {
+    "w": 1440,
+    "h": 1520
+  },
+  "elements": [
+    {
+      "id": "r607",
+      "type": "rect",
+      "x": 0,
+      "y": 0,
+      "w": 1440,
+      "h": 56,
+      "name": "Developer Header",
+      "style": {
+        "fill": "#24292F",
+        "radius": 0
+      },
+      "children": [
+        {
+          "id": "i598",
+          "type": "icon",
+          "x": 144,
+          "y": 16,
+          "w": 24,
+          "h": 24,
+          "text": "AP logo"
+        },
+        {
+          "id": "t599",
+          "type": "text",
+          "x": 176,
+          "y": 16,
+          "w": 160,
+          "h": 24,
+          "text": "APSlop Developers",
+          "style": {
+            "weight": "bold",
+            "color": "#FFFFFF"
+          }
+        },
+        {
+          "id": "t600",
+          "type": "text",
+          "x": 360,
+          "y": 16,
+          "w": 88,
+          "h": 24,
+          "text": "Dashboard",
+          "style": {
+            "color": "#FFFFFF"
+          }
+        },
+        {
+          "id": "t601",
+          "type": "text",
+          "x": 464,
+          "y": 16,
+          "w": 104,
+          "h": 24,
+          "text": "Repositories",
+          "style": {
+            "color": "#FFFFFF"
+          }
+        },
+        {
+          "id": "t602",
+          "type": "text",
+          "x": 584,
+          "y": 16,
+          "w": 72,
+          "h": 24,
+          "text": "New app",
+          "style": {
+            "color": "#FFFFFF"
+          }
+        },
+        {
+          "id": "t603",
+          "type": "text",
+          "x": 880,
+          "y": 16,
+          "w": 136,
+          "h": 24,
+          "text": "← Store",
+          "style": {
+            "color": "#FFFFFF",
+            "align": "right"
+          }
+        },
+        {
+          "id": "i604",
+          "type": "icon",
+          "x": 1040,
+          "y": 16,
+          "w": 24,
+          "h": 24,
+          "text": "avatar"
+        },
+        {
+          "id": "t605",
+          "type": "text",
+          "x": 1072,
+          "y": 16,
+          "w": 112,
+          "h": 24,
+          "text": "taku1029-dev",
+          "style": {
+            "color": "#FFFFFF"
+          }
+        },
+        {
+          "id": "t606",
+          "type": "text",
+          "x": 1200,
+          "y": 16,
+          "w": 96,
+          "h": 24,
+          "text": "Sign out",
+          "style": {
+            "color": "#FFFFFF",
+            "align": "right"
+          }
+        }
+      ]
+    },
+    {
+      "id": "r623",
+      "type": "rect",
+      "x": 0,
+      "y": 56,
+      "w": 1440,
+      "h": 120,
+      "name": "Repo Header",
+      "style": {
+        "fill": "$surface",
+        "radius": 0
+      },
+      "children": [
+        {
+          "id": "t608",
+          "type": "text",
+          "x": 144,
+          "y": 16,
+          "w": 72,
+          "h": 24,
+          "text": "AP-Slop /",
+          "style": {
+            "color": "$muted",
+            "size": "sm"
+          }
+        },
+        {
+          "id": "t609",
+          "type": "text",
+          "x": 216,
+          "y": 16,
+          "w": 176,
+          "h": 24,
+          "text": "attendance-counter",
+          "style": {
+            "weight": "bold",
+            "color": "#0969DA"
+          }
+        },
+        {
+          "id": "r611",
+          "type": "rect",
+          "x": 400,
+          "y": 16,
+          "w": 68,
+          "h": 24,
+          "name": "Badge",
+          "style": {
+            "radius": 12,
+            "fill": "$bg"
+          },
+          "children": [
+            {
+              "id": "t610",
+              "type": "text",
+              "x": 8,
+              "y": 0,
+              "w": 52,
+              "h": 24,
+              "text": "Public",
+              "style": {
+                "size": "sm",
+                "color": "$muted",
+                "align": "center"
+              }
+            }
+          ]
+        },
+        {
+          "id": "r613",
+          "type": "rect",
+          "x": 480,
+          "y": 16,
+          "w": 148,
+          "h": 24,
+          "name": "Badge",
+          "style": {
+            "radius": 12,
+            "fill": "$bg"
+          },
+          "children": [
+            {
+              "id": "t612",
+              "type": "text",
+              "x": 8,
+              "y": 0,
+              "w": 132,
+              "h": 24,
+              "text": "Published v0.1.1",
+              "style": {
+                "size": "sm",
+                "color": "#1A7F37",
+                "align": "center"
+              }
+            }
+          ]
+        },
+        {
+          "id": "t614",
+          "type": "text",
+          "x": 928,
+          "y": 16,
+          "w": 120,
+          "h": 24,
+          "text": "Open on GitHub ↗",
+          "style": {
+            "color": "#0969DA",
+            "size": "sm"
+          }
+        },
+        {
+          "id": "b615",
+          "type": "button",
+          "x": 1104,
+          "y": 8,
+          "w": 192,
+          "h": 36,
+          "text": "Create PR with AI",
+          "variant": "filled"
+        },
+        {
+          "id": "t616",
+          "type": "text",
+          "x": 144,
+          "y": 48,
+          "w": 800,
+          "h": 24,
+          "text": "Count class attendance per course",
+          "style": {
+            "color": "$muted",
+            "size": "sm"
+          }
+        },
+        {
+          "id": "t617",
+          "type": "text",
+          "x": 144,
+          "y": 88,
+          "w": 48,
+          "h": 24,
+          "text": "Code",
+          "style": {
+            "weight": "normal"
+          }
+        },
+        {
+          "id": "t618",
+          "type": "text",
+          "x": 224,
+          "y": 88,
+          "w": 120,
+          "h": 24,
+          "text": "Pull requests 2",
+          "style": {
+            "weight": "bold"
+          }
+        },
+        {
+          "id": "r619",
+          "type": "rect",
+          "x": 224,
+          "y": 118,
+          "w": 120,
+          "h": 2,
+          "name": "Active Tab Underline",
+          "style": {
+            "fill": "#FD8C73",
+            "border": "none",
+            "radius": 0
+          }
+        },
+        {
+          "id": "t620",
+          "type": "text",
+          "x": 376,
+          "y": 88,
+          "w": 64,
+          "h": 24,
+          "text": "Issues 2",
+          "style": {
+            "weight": "normal"
+          }
+        },
+        {
+          "id": "t621",
+          "type": "text",
+          "x": 472,
+          "y": 88,
+          "w": 72,
+          "h": 24,
+          "text": "Releases",
+          "style": {
+            "weight": "normal"
+          }
+        },
+        {
+          "id": "t622",
+          "type": "text",
+          "x": 576,
+          "y": 88,
+          "w": 64,
+          "h": 24,
+          "text": "Settings",
+          "style": {
+            "weight": "normal"
+          }
+        }
+      ]
+    },
+    {
+      "id": "t624",
+      "type": "text",
+      "x": 144,
+      "y": 200,
+      "w": 800,
+      "h": 32,
+      "text": "Support dark mode  #3",
+      "style": {
+        "size": "lg",
+        "weight": "bold"
+      }
+    },
+    {
+      "id": "r626",
+      "type": "rect",
+      "x": 144,
+      "y": 244,
+      "w": 52,
+      "h": 24,
+      "name": "Badge",
+      "style": {
+        "radius": 12,
+        "fill": "$bg"
+      },
+      "children": [
+        {
+          "id": "t625",
+          "type": "text",
+          "x": 8,
+          "y": 0,
+          "w": 36,
+          "h": 24,
+          "text": "Open",
+          "style": {
+            "size": "sm",
+            "color": "#1A7F37",
+            "align": "center"
+          }
+        }
+      ]
+    },
+    {
+      "id": "t627",
+      "type": "text",
+      "x": 216,
+      "y": 244,
+      "w": 600,
+      "h": 24,
+      "text": "student-a wants to merge 1 commit into main from ai/dark-mode",
+      "style": {
+        "size": "sm"
+      }
+    },
+    {
+      "id": "t628",
+      "type": "text",
+      "x": 832,
+      "y": 244,
+      "w": 96,
+      "h": 24,
+      "text": "+24  −3",
+      "style": {
+        "size": "sm"
+      }
+    },
+    {
+      "id": "t629",
+      "type": "text",
+      "x": 1176,
+      "y": 244,
+      "w": 120,
+      "h": 24,
+      "text": "Open on GitHub ↗",
+      "style": {
+        "color": "#0969DA",
+        "size": "sm",
+        "align": "right"
+      }
+    },
+    {
+      "id": "r633",
+      "type": "rect",
+      "x": 144,
+      "y": 288,
+      "w": 1152,
+      "h": 112,
+      "name": "PR Body",
+      "style": {
+        "fill": "$bg"
+      },
+      "children": [
+        {
+          "id": "r632",
+          "type": "rect",
+          "x": 0,
+          "y": 0,
+          "w": 1152,
+          "h": 40,
+          "name": "Card Header",
+          "style": {
+            "fill": "$surface",
+            "radius": 0
+          },
+          "children": [
+            {
+              "id": "t631",
+              "type": "text",
+              "x": 16,
+              "y": 8,
+              "w": 1120,
+              "h": 24,
+              "text": "student-a  Sep 12, 2026 15:40",
+              "style": {
+                "weight": "bold"
+              }
+            }
+          ]
+        },
+        {
+          "id": "t630",
+          "type": "text",
+          "x": 16,
+          "y": 56,
+          "w": 1120,
+          "h": 24,
+          "text": "Switch colors to follow the system theme."
+        }
+      ]
+    },
+    {
+      "id": "r640",
+      "type": "rect",
+      "x": 144,
+      "y": 416,
+      "w": 1152,
+      "h": 96,
+      "name": "Review",
+      "style": {
+        "fill": "$bg"
+      },
+      "children": [
+        {
+          "id": "r638",
+          "type": "rect",
+          "x": 0,
+          "y": 0,
+          "w": 1152,
+          "h": 40,
+          "name": "Card Header",
+          "style": {
+            "fill": "$surface",
+            "radius": 0
+          },
+          "children": [
+            {
+              "id": "t634",
+              "type": "text",
+              "x": 16,
+              "y": 8,
+              "w": 120,
+              "h": 24,
+              "text": "taku1029-dev",
+              "style": {
+                "weight": "bold"
+              }
+            },
+            {
+              "id": "r636",
+              "type": "rect",
+              "x": 144,
+              "y": 8,
+              "w": 84,
+              "h": 24,
+              "name": "Badge",
+              "style": {
+                "radius": 12,
+                "fill": "$bg"
+              },
+              "children": [
+                {
+                  "id": "t635",
+                  "type": "text",
+                  "x": 8,
+                  "y": 0,
+                  "w": 68,
+                  "h": 24,
+                  "text": "Approved",
+                  "style": {
+                    "size": "sm",
+                    "color": "#1A7F37",
+                    "align": "center"
+                  }
+                }
+              ]
+            },
+            {
+              "id": "t637",
+              "type": "text",
+              "x": 240,
+              "y": 8,
+              "w": 200,
+              "h": 24,
+              "text": "Sep 12, 2026 16:02",
+              "style": {
+                "color": "$muted",
+                "size": "sm"
+              }
+            }
+          ]
+        },
+        {
+          "id": "t639",
+          "type": "text",
+          "x": 16,
+          "y": 56,
+          "w": 1120,
+          "h": 24,
+          "text": "Looks good to me."
+        }
+      ]
+    },
+    {
+      "id": "r644",
+      "type": "rect",
+      "x": 144,
+      "y": 528,
+      "w": 1152,
+      "h": 96,
+      "name": "Comment",
+      "style": {
+        "fill": "$bg"
+      },
+      "children": [
+        {
+          "id": "r643",
+          "type": "rect",
+          "x": 0,
+          "y": 0,
+          "w": 1152,
+          "h": 40,
+          "name": "Card Header",
+          "style": {
+            "fill": "$surface",
+            "radius": 0
+          },
+          "children": [
+            {
+              "id": "t642",
+              "type": "text",
+              "x": 16,
+              "y": 8,
+              "w": 1120,
+              "h": 24,
+              "text": "student-b  Sep 12, 2026 16:10",
+              "style": {
+                "weight": "bold"
+              }
+            }
+          ]
+        },
+        {
+          "id": "t641",
+          "type": "text",
+          "x": 16,
+          "y": 56,
+          "w": 1120,
+          "h": 24,
+          "text": "Could you also check the text contrast?"
+        }
+      ]
+    },
+    {
+      "id": "t645",
+      "type": "text",
+      "x": 144,
+      "y": 656,
+      "w": 600,
+      "h": 32,
+      "text": "Files changed (2)",
+      "style": {
+        "size": "lg",
+        "weight": "bold"
+      }
+    },
+    {
+      "id": "r588",
+      "type": "rect",
+      "x": 144,
+      "y": 704,
+      "w": 1152,
+      "h": 200,
+      "name": "Diff",
+      "style": {
+        "fill": "$bg"
+      },
+      "children": [
+        {
+          "id": "r577",
+          "type": "rect",
+          "x": 0,
+          "y": 0,
+          "w": 1152,
+          "h": 40,
+          "name": "Card Header",
+          "style": {
+            "fill": "$surface",
+            "radius": 0
+          },
+          "children": [
+            {
+              "id": "t574",
+              "type": "text",
+              "x": 16,
+              "y": 8,
+              "w": 600,
+              "h": 24,
+              "text": "app/src/main/java/.../ui/Theme.kt",
+              "style": {
+                "weight": "bold",
+                "size": "sm"
+              }
+            },
+            {
+              "id": "t575",
+              "type": "text",
+              "x": 640,
+              "y": 8,
+              "w": 120,
+              "h": 24,
+              "text": "Modified",
+              "style": {
+                "color": "$muted",
+                "size": "sm"
+              }
+            },
+            {
+              "id": "t576",
+              "type": "text",
+              "x": 1040,
+              "y": 8,
+              "w": 96,
+              "h": 24,
+              "text": "+20 −3",
+              "style": {
+                "color": "$muted",
+                "size": "sm",
+                "align": "right"
+              }
+            }
+          ]
+        },
+        {
+          "id": "r579",
+          "type": "rect",
+          "x": 0,
+          "y": 52,
+          "w": 1152,
+          "h": 28,
+          "name": "Diff Line",
+          "style": {
+            "fill": "#DDF4FF",
+            "border": "none",
+            "radius": 0
+          },
+          "children": [
+            {
+              "id": "t578",
+              "type": "text",
+              "x": 16,
+              "y": 2,
+              "w": 1100,
+              "h": 24,
+              "text": "@@ -10,7 +10,24 @@",
+              "style": {
+                "size": "sm"
+              }
+            }
+          ]
+        },
+        {
+          "id": "r581",
+          "type": "rect",
+          "x": 0,
+          "y": 80,
+          "w": 1152,
+          "h": 28,
+          "name": "Diff Line",
+          "style": {
+            "fill": "$bg",
+            "border": "none",
+            "radius": 0
+          },
+          "children": [
+            {
+              "id": "t580",
+              "type": "text",
+              "x": 16,
+              "y": 2,
+              "w": 1100,
+              "h": 24,
+              "text": "  10  10    private val LightColors = lightColorScheme(",
+              "style": {
+                "size": "sm"
+              }
+            }
+          ]
+        },
+        {
+          "id": "r583",
+          "type": "rect",
+          "x": 0,
+          "y": 108,
+          "w": 1152,
+          "h": 28,
+          "name": "Diff Line",
+          "style": {
+            "fill": "#DAFBE1",
+            "border": "none",
+            "radius": 0
+          },
+          "children": [
+            {
+              "id": "t582",
+              "type": "text",
+              "x": 16,
+              "y": 2,
+              "w": 1100,
+              "h": 24,
+              "text": "      11  + private val DarkColors = darkColorScheme(",
+              "style": {
+                "size": "sm"
+              }
+            }
+          ]
+        },
+        {
+          "id": "r585",
+          "type": "rect",
+          "x": 0,
+          "y": 136,
+          "w": 1152,
+          "h": 28,
+          "name": "Diff Line",
+          "style": {
+            "fill": "#FFEBE9",
+            "border": "none",
+            "radius": 0
+          },
+          "children": [
+            {
+              "id": "t584",
+              "type": "text",
+              "x": 16,
+              "y": 2,
+              "w": 1100,
+              "h": 24,
+              "text": "  14      - MaterialTheme(colorScheme = LightColors)",
+              "style": {
+                "size": "sm"
+              }
+            }
+          ]
+        },
+        {
+          "id": "r587",
+          "type": "rect",
+          "x": 0,
+          "y": 164,
+          "w": 1152,
+          "h": 28,
+          "name": "Diff Line",
+          "style": {
+            "fill": "#DAFBE1",
+            "border": "none",
+            "radius": 0
+          },
+          "children": [
+            {
+              "id": "t586",
+              "type": "text",
+              "x": 16,
+              "y": 2,
+              "w": 1100,
+              "h": 24,
+              "text": "      28  + MaterialTheme(colorScheme = if (dark) DarkColors else LightColors)",
+              "style": {
+                "size": "sm"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "r597",
+      "type": "rect",
+      "x": 144,
+      "y": 920,
+      "w": 1152,
+      "h": 116,
+      "name": "Diff",
+      "style": {
+        "fill": "$bg"
+      },
+      "children": [
+        {
+          "id": "r592",
+          "type": "rect",
+          "x": 0,
+          "y": 0,
+          "w": 1152,
+          "h": 40,
+          "name": "Card Header",
+          "style": {
+            "fill": "$surface",
+            "radius": 0
+          },
+          "children": [
+            {
+              "id": "t589",
+              "type": "text",
+              "x": 16,
+              "y": 8,
+              "w": 600,
+              "h": 24,
+              "text": "app/src/main/res/values/colors.xml",
+              "style": {
+                "weight": "bold",
+                "size": "sm"
+              }
+            },
+            {
+              "id": "t590",
+              "type": "text",
+              "x": 640,
+              "y": 8,
+              "w": 120,
+              "h": 24,
+              "text": "Modified",
+              "style": {
+                "color": "$muted",
+                "size": "sm"
+              }
+            },
+            {
+              "id": "t591",
+              "type": "text",
+              "x": 1040,
+              "y": 8,
+              "w": 96,
+              "h": 24,
+              "text": "+4 −0",
+              "style": {
+                "color": "$muted",
+                "size": "sm",
+                "align": "right"
+              }
+            }
+          ]
+        },
+        {
+          "id": "r594",
+          "type": "rect",
+          "x": 0,
+          "y": 52,
+          "w": 1152,
+          "h": 28,
+          "name": "Diff Line",
+          "style": {
+            "fill": "#DDF4FF",
+            "border": "none",
+            "radius": 0
+          },
+          "children": [
+            {
+              "id": "t593",
+              "type": "text",
+              "x": 16,
+              "y": 2,
+              "w": 1100,
+              "h": 24,
+              "text": "@@ -3,0 +4,4 @@",
+              "style": {
+                "size": "sm"
+              }
+            }
+          ]
+        },
+        {
+          "id": "r596",
+          "type": "rect",
+          "x": 0,
+          "y": 80,
+          "w": 1152,
+          "h": 28,
+          "name": "Diff Line",
+          "style": {
+            "fill": "#DAFBE1",
+            "border": "none",
+            "radius": 0
+          },
+          "children": [
+            {
+              "id": "t595",
+              "type": "text",
+              "x": 16,
+              "y": 2,
+              "w": 1100,
+              "h": 24,
+              "text": "       4  + <color name=\"surface_dark\">#121212</color>",
+              "style": {
+                "size": "sm"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "r655",
+      "type": "rect",
+      "x": 144,
+      "y": 1060,
+      "w": 1152,
+      "h": 304,
+      "name": "Review Actions",
+      "style": {
+        "fill": "$bg"
+      },
+      "children": [
+        {
+          "id": "r654",
+          "type": "rect",
+          "x": 0,
+          "y": 0,
+          "w": 1152,
+          "h": 40,
+          "name": "Card Header",
+          "style": {
+            "fill": "$surface",
+            "radius": 0
+          },
+          "children": [
+            {
+              "id": "t653",
+              "type": "text",
+              "x": 16,
+              "y": 8,
+              "w": 1120,
+              "h": 24,
+              "text": "Review",
+              "style": {
+                "weight": "bold"
+              }
+            }
+          ]
+        },
+        {
+          "id": "i646",
+          "type": "input",
+          "x": 16,
+          "y": 56,
+          "w": 1120,
+          "h": 120,
+          "text": "",
+          "props": {
+            "placeholder": "Write a comment (Markdown supported)",
+            "kind": "text",
+            "multiline": true
+          }
+        },
+        {
+          "id": "b647",
+          "type": "button",
+          "x": 16,
+          "y": 192,
+          "w": 96,
+          "h": 40,
+          "text": "Comment",
+          "variant": "outline"
+        },
+        {
+          "id": "b648",
+          "type": "button",
+          "x": 128,
+          "y": 192,
+          "w": 88,
+          "h": 40,
+          "text": "Approve",
+          "variant": "outline"
+        },
+        {
+          "id": "b649",
+          "type": "button",
+          "x": 232,
+          "y": 192,
+          "w": 144,
+          "h": 40,
+          "text": "Request changes",
+          "variant": "outline"
+        },
+        {
+          "id": "b650",
+          "type": "button",
+          "x": 392,
+          "y": 192,
+          "w": 136,
+          "h": 40,
+          "name": "Close PR (owner or author only)",
+          "text": "Close pull request",
+          "variant": "outline"
+        },
+        {
+          "id": "b651",
+          "type": "button",
+          "x": 960,
+          "y": 192,
+          "w": 176,
+          "h": 40,
+          "name": "Merge (shown only with write access)",
+          "text": "Squash and merge",
+          "variant": "filled"
+        },
+        {
+          "id": "t652",
+          "type": "text",
+          "x": 16,
+          "y": 248,
+          "w": 1120,
+          "h": 24,
+          "text": "Actions are performed as your GitHub account. Merging needs write access to the repository.",
+          "style": {
+            "color": "$muted",
+            "size": "sm"
+          }
+        }
+      ]
+    },
+    {
+      "id": "r658",
+      "type": "rect",
+      "x": 0,
+      "y": 1464,
+      "w": 1440,
+      "h": 56,
+      "name": "Footer",
+      "style": {
+        "radius": 0,
+        "border": "none",
+        "fill": "$bg"
+      },
+      "children": [
+        {
+          "id": "t656",
+          "type": "text",
+          "x": 144,
+          "y": 16,
+          "w": 400,
+          "h": 24,
+          "text": "APSlop — a campus community GitHub",
+          "style": {
+            "color": "$muted",
+            "size": "sm"
+          }
+        },
+        {
+          "id": "t657",
+          "type": "text",
+          "x": 816,
+          "y": 16,
+          "w": 480,
+          "h": 24,
+          "text": "F-Droid repository: https://apslop.example.com/fdroid/repo",
+          "style": {
+            "color": "$muted",
+            "size": "sm",
+            "align": "right"
+          }
+        }
+      ]
+    }
+  ]
+}

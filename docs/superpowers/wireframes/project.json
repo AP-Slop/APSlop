@@ -1,0 +1,66 @@
+{
+  "version": 1,
+  "name": "APSlop",
+  "theme": "clean",
+  "device": "desktop",
+  "proposals": [
+    {
+      "id": "a",
+      "name": "Design A",
+      "screens": [
+        "top",
+        "dashboard",
+        "new-input",
+        "new-review",
+        "app-detail",
+        "repos",
+        "repo-code",
+        "repo-tree",
+        "repo-blob",
+        "repo-issues",
+        "repo-pulls",
+        "pull-detail",
+        "repo-releases",
+        "repo-ai",
+        "error",
+        "not-found",
+        "store-list",
+        "store-detail",
+        "store-settings"
+      ]
+    },
+    {
+      "id": "b",
+      "name": "Design B",
+      "note": "訪問者用と開発者用を分離、英語に統一、AI の変更を差分で確認、不足操作を追加",
+      "base": "a",
+      "screens": [
+        "top",
+        "app-detail",
+        "sign-in-required",
+        "dashboard",
+        "new-input",
+        "new-review",
+        "repos",
+        "repo-code",
+        "repo-tree",
+        "repo-blob",
+        "repo-issues",
+        "issue-detail",
+        "repo-pulls",
+        "pull-detail",
+        "repo-ai",
+        "repo-ai-review",
+        "repo-releases",
+        "repo-settings",
+        "error",
+        "not-found",
+        "store-list",
+        "store-detail",
+        "store-settings"
+      ],
+      "theme": "github"
+    }
+  ],
+  "references": []
+}

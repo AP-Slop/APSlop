@@ -1,0 +1,390 @@
+{
+  "version": 1,
+  "id": "repos",
+  "title": "リポジトリ一覧",
+  "device": "desktop",
+  "elements": [
+    {
+      "id": "r208",
+      "type": "rect",
+      "x": 0,
+      "y": 0,
+      "w": 1440,
+      "h": 56,
+      "name": "Header",
+      "style": {
+        "fill": "#24292F",
+        "radius": 0
+      },
+      "children": [
+        {
+          "id": "i202",
+          "type": "icon",
+          "x": 144,
+          "y": 16,
+          "w": 24,
+          "h": 24,
+          "text": "AP ロゴ"
+        },
+        {
+          "id": "t203",
+          "type": "text",
+          "x": 176,
+          "y": 16,
+          "w": 80,
+          "h": 24,
+          "text": "APSlop",
+          "style": {
+            "weight": "bold",
+            "color": "#FFFFFF"
+          }
+        },
+        {
+          "id": "t204",
+          "type": "text",
+          "x": 280,
+          "y": 16,
+          "w": 56,
+          "h": 24,
+          "text": "アプリ",
+          "style": {
+            "color": "#FFFFFF"
+          }
+        },
+        {
+          "id": "t205",
+          "type": "text",
+          "x": 352,
+          "y": 16,
+          "w": 88,
+          "h": 24,
+          "text": "リポジトリ",
+          "style": {
+            "color": "#FFFFFF"
+          }
+        },
+        {
+          "id": "t206",
+          "type": "text",
+          "x": 456,
+          "y": 16,
+          "w": 80,
+          "h": 24,
+          "text": "AI で作る",
+          "style": {
+            "color": "#FFFFFF"
+          }
+        },
+        {
+          "id": "b207",
+          "type": "button",
+          "x": 1120,
+          "y": 8,
+          "w": 176,
+          "h": 40,
+          "text": "GitHub でログイン",
+          "variant": "outline"
+        }
+      ]
+    },
+    {
+      "id": "t209",
+      "type": "text",
+      "x": 144,
+      "y": 88,
+      "w": 400,
+      "h": 32,
+      "text": "リポジトリ",
+      "style": {
+        "size": "lg",
+        "weight": "bold"
+      }
+    },
+    {
+      "id": "i210",
+      "type": "input",
+      "x": 144,
+      "y": 136,
+      "w": 400,
+      "h": 40,
+      "text": "",
+      "props": {
+        "placeholder": "リポジトリを検索",
+        "kind": "search"
+      }
+    },
+    {
+      "id": "b211",
+      "type": "button",
+      "x": 552,
+      "y": 136,
+      "w": 72,
+      "h": 40,
+      "text": "検索",
+      "variant": "outline"
+    },
+    {
+      "id": "r229",
+      "type": "rect",
+      "x": 144,
+      "y": 200,
+      "w": 1152,
+      "h": 296,
+      "name": "Repo List",
+      "children": [
+        {
+          "id": "t212",
+          "type": "text",
+          "x": 16,
+          "y": 16,
+          "w": 300,
+          "h": 24,
+          "text": "attendance-counter",
+          "style": {
+            "weight": "bold",
+            "color": "$primary"
+          }
+        },
+        {
+          "id": "r214",
+          "type": "rect",
+          "x": 248,
+          "y": 16,
+          "w": 94,
+          "h": 24,
+          "name": "Badge",
+          "style": {
+            "radius": 12
+          },
+          "children": [
+            {
+              "id": "t213",
+              "type": "text",
+              "x": 8,
+              "y": 0,
+              "w": 78,
+              "h": 24,
+              "text": "Public",
+              "style": {
+                "size": "sm",
+                "color": "$muted"
+              }
+            }
+          ]
+        },
+        {
+          "id": "t215",
+          "type": "text",
+          "x": 16,
+          "y": 44,
+          "w": 1100,
+          "h": 24,
+          "text": "授業の出席回数を科目ごとに記録できる",
+          "style": {
+            "size": "sm"
+          }
+        },
+        {
+          "id": "t216",
+          "type": "text",
+          "x": 16,
+          "y": 68,
+          "w": 1100,
+          "h": 24,
+          "text": "Kotlin   ★ 2   Issues 2   3 日前 に更新",
+          "style": {
+            "color": "$muted",
+            "size": "sm"
+          }
+        },
+        {
+          "id": "d217",
+          "type": "divider",
+          "x": 0,
+          "y": 104,
+          "w": 1152,
+          "h": 1
+        },
+        {
+          "id": "t218",
+          "type": "text",
+          "x": 16,
+          "y": 112,
+          "w": 300,
+          "h": 24,
+          "text": "gakushoku-memo",
+          "style": {
+            "weight": "bold",
+            "color": "$primary"
+          }
+        },
+        {
+          "id": "r220",
+          "type": "rect",
+          "x": 200,
+          "y": 112,
+          "w": 94,
+          "h": 24,
+          "name": "Badge",
+          "style": {
+            "radius": 12
+          },
+          "children": [
+            {
+              "id": "t219",
+              "type": "text",
+              "x": 8,
+              "y": 0,
+              "w": 78,
+              "h": 24,
+              "text": "Public",
+              "style": {
+                "size": "sm",
+                "color": "$muted"
+              }
+            }
+          ]
+        },
+        {
+          "id": "t221",
+          "type": "text",
+          "x": 16,
+          "y": 140,
+          "w": 1100,
+          "h": 24,
+          "text": "学食のメニューをメモして星評価できる",
+          "style": {
+            "size": "sm"
+          }
+        },
+        {
+          "id": "t222",
+          "type": "text",
+          "x": 16,
+          "y": 164,
+          "w": 1100,
+          "h": 24,
+          "text": "Kotlin   ★ 0   Issues 0   5 日前 に更新",
+          "style": {
+            "color": "$muted",
+            "size": "sm"
+          }
+        },
+        {
+          "id": "d223",
+          "type": "divider",
+          "x": 0,
+          "y": 200,
+          "w": 1152,
+          "h": 1
+        },
+        {
+          "id": "t224",
+          "type": "text",
+          "x": 16,
+          "y": 208,
+          "w": 300,
+          "h": 24,
+          "text": "APSlop",
+          "style": {
+            "weight": "bold",
+            "color": "$primary"
+          }
+        },
+        {
+          "id": "r226",
+          "type": "rect",
+          "x": 104,
+          "y": 208,
+          "w": 94,
+          "h": 24,
+          "name": "Badge",
+          "style": {
+            "radius": 12
+          },
+          "children": [
+            {
+              "id": "t225",
+              "type": "text",
+              "x": 8,
+              "y": 0,
+              "w": 78,
+              "h": 24,
+              "text": "Public",
+              "style": {
+                "size": "sm",
+                "color": "$muted"
+              }
+            }
+          ]
+        },
+        {
+          "id": "t227",
+          "type": "text",
+          "x": 16,
+          "y": 236,
+          "w": 1100,
+          "h": 24,
+          "text": "大学コミュニティ版 GitHub",
+          "style": {
+            "size": "sm"
+          }
+        },
+        {
+          "id": "t228",
+          "type": "text",
+          "x": 16,
+          "y": 260,
+          "w": 1100,
+          "h": 24,
+          "text": "TypeScript   ★ 1   Issues 1   2 週間前 に更新",
+          "style": {
+            "color": "$muted",
+            "size": "sm"
+          }
+        }
+      ]
+    },
+    {
+      "id": "r232",
+      "type": "rect",
+      "x": 0,
+      "y": 844,
+      "w": 1440,
+      "h": 56,
+      "name": "Footer",
+      "style": {
+        "fill": "$bg",
+        "radius": 0
+      },
+      "children": [
+        {
+          "id": "t230",
+          "type": "text",
+          "x": 144,
+          "y": 16,
+          "w": 400,
+          "h": 24,
+          "text": "APSlop — 大学コミュニティ版 GitHub",
+          "style": {
+            "color": "$muted",
+            "size": "sm"
+          }
+        },
+        {
+          "id": "t231",
+          "type": "text",
+          "x": 816,
+          "y": 16,
+          "w": 480,
+          "h": 24,
+          "text": "F-Droid リポジトリ: https://apslop.example.com/fdroid/repo",
+          "style": {
+            "color": "$muted",
+            "size": "sm"
+          }
+        }
+      ]
+    }
+  ]
+}

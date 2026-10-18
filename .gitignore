@@ -7,6 +7,9 @@
 /web/data/
 /store-server/data/
 
+# wireframe tool scratch (screens live in docs/superpowers/wireframes/)
+.superpowers/
+
 # node
 node_modules/
 .next/

@@ -1,0 +1,193 @@
+{
+  "version": 1,
+  "id": "error",
+  "title": "エラー",
+  "device": "desktop",
+  "elements": [
+    {
+      "id": "r892",
+      "type": "rect",
+      "x": 0,
+      "y": 0,
+      "w": 1440,
+      "h": 56,
+      "name": "Visitor Header",
+      "style": {
+        "fill": "#24292F",
+        "radius": 0
+      },
+      "children": [
+        {
+          "id": "i886",
+          "type": "icon",
+          "x": 144,
+          "y": 16,
+          "w": 24,
+          "h": 24,
+          "text": "AP logo"
+        },
+        {
+          "id": "t887",
+          "type": "text",
+          "x": 176,
+          "y": 16,
+          "w": 80,
+          "h": 24,
+          "text": "APSlop",
+          "style": {
+            "weight": "bold",
+            "color": "#FFFFFF"
+          }
+        },
+        {
+          "id": "t888",
+          "type": "text",
+          "x": 280,
+          "y": 16,
+          "w": 48,
+          "h": 24,
+          "text": "Apps",
+          "style": {
+            "color": "#FFFFFF",
+            "weight": "bold"
+          }
+        },
+        {
+          "id": "t889",
+          "type": "text",
+          "x": 344,
+          "y": 16,
+          "w": 160,
+          "h": 24,
+          "text": "Install on your phone",
+          "style": {
+            "color": "#FFFFFF"
+          }
+        },
+        {
+          "id": "t890",
+          "type": "text",
+          "x": 952,
+          "y": 16,
+          "w": 136,
+          "h": 24,
+          "text": "For developers →",
+          "style": {
+            "color": "#FFFFFF",
+            "align": "right"
+          }
+        },
+        {
+          "id": "b891",
+          "type": "button",
+          "x": 1112,
+          "y": 8,
+          "w": 184,
+          "h": 40,
+          "name": "Sign In (goes straight to GitHub)",
+          "text": "Sign in with GitHub",
+          "style": {
+            "fill": "#24292F",
+            "color": "#FFFFFF",
+            "border": "#FFFFFF"
+          },
+          "variant": "outline"
+        }
+      ]
+    },
+    {
+      "id": "r895",
+      "type": "rect",
+      "x": 144,
+      "y": 88,
+      "w": 1152,
+      "h": 88,
+      "name": "Error Box",
+      "style": {
+        "fill": "#FFEBE9",
+        "border": "#CF222E"
+      },
+      "children": [
+        {
+          "id": "t893",
+          "type": "text",
+          "x": 16,
+          "y": 16,
+          "w": 1120,
+          "h": 24,
+          "text": "Something went wrong",
+          "style": {
+            "weight": "bold",
+            "color": "#CF222E"
+          }
+        },
+        {
+          "id": "t894",
+          "type": "text",
+          "x": 16,
+          "y": 44,
+          "w": 1120,
+          "h": 24,
+          "text": "Could not load the repository list.",
+          "style": {
+            "color": "#CF222E",
+            "size": "sm"
+          }
+        }
+      ]
+    },
+    {
+      "id": "b896",
+      "type": "button",
+      "x": 144,
+      "y": 192,
+      "w": 96,
+      "h": 40,
+      "text": "Try again",
+      "variant": "outline"
+    },
+    {
+      "id": "r899",
+      "type": "rect",
+      "x": 0,
+      "y": 844,
+      "w": 1440,
+      "h": 56,
+      "name": "Footer",
+      "style": {
+        "radius": 0,
+        "border": "none",
+        "fill": "$bg"
+      },
+      "children": [
+        {
+          "id": "t897",
+          "type": "text",
+          "x": 144,
+          "y": 16,
+          "w": 400,
+          "h": 24,
+          "text": "APSlop — a campus community GitHub",
+          "style": {
+            "color": "$muted",
+            "size": "sm"
+          }
+        },
+        {
+          "id": "t898",
+          "type": "text",
+          "x": 816,
+          "y": 16,
+          "w": 480,
+          "h": 24,
+          "text": "F-Droid repository: https://apslop.example.com/fdroid/repo",
+          "style": {
+            "color": "$muted",
+            "size": "sm",
+            "align": "right"
+          }
+        }
+      ]
+    }
+  ]
+}

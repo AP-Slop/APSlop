@@ -1,0 +1,242 @@
+{
+  "version": 1,
+  "id": "store-detail",
+  "title": "ストアアプリ(詳細)",
+  "device": "phone-android",
+  "elements": [
+    {
+      "id": "n697",
+      "type": "navbar",
+      "x": 0,
+      "y": 0,
+      "w": 412,
+      "h": 96,
+      "text": "出席カウンター",
+      "props": {
+        "left": "back",
+        "right": "none"
+      }
+    },
+    {
+      "id": "i698",
+      "type": "image",
+      "x": 24,
+      "y": 112,
+      "w": 72,
+      "h": 72,
+      "text": "アイコン"
+    },
+    {
+      "id": "t699",
+      "type": "text",
+      "x": 112,
+      "y": 116,
+      "w": 276,
+      "h": 32,
+      "text": "出席カウンター",
+      "style": {
+        "size": "lg",
+        "weight": "bold"
+      }
+    },
+    {
+      "id": "t700",
+      "type": "text",
+      "x": 112,
+      "y": 152,
+      "w": 276,
+      "h": 40,
+      "text": "授業の出席回数を科目ごとに記録できる",
+      "style": {
+        "size": "sm",
+        "color": "$muted"
+      }
+    },
+    {
+      "id": "b701",
+      "type": "button",
+      "x": 24,
+      "y": 208,
+      "w": 364,
+      "h": 48,
+      "text": "インストール",
+      "variant": "filled"
+    },
+    {
+      "id": "d702",
+      "type": "divider",
+      "x": 24,
+      "y": 272,
+      "w": 364,
+      "h": 1
+    },
+    {
+      "id": "t703",
+      "type": "text",
+      "x": 24,
+      "y": 288,
+      "w": 364,
+      "h": 168,
+      "name": "Description (README)",
+      "text": "出席カウンター\n\n科目ごとに出席回数を記録し、欠席可能回数を表示します。\n\n・科目の追加と削除\n・出席 / 欠席の記録"
+    },
+    {
+      "id": "d704",
+      "type": "divider",
+      "x": 24,
+      "y": 472,
+      "w": 364,
+      "h": 1
+    },
+    {
+      "id": "t705",
+      "type": "text",
+      "x": 24,
+      "y": 488,
+      "w": 140,
+      "h": 24,
+      "text": "バージョン",
+      "style": {
+        "color": "$muted",
+        "size": "sm"
+      }
+    },
+    {
+      "id": "t706",
+      "type": "text",
+      "x": 164,
+      "y": 488,
+      "w": 224,
+      "h": 24,
+      "text": "0.1.1 (101)",
+      "style": {
+        "size": "sm",
+        "align": "right"
+      }
+    },
+    {
+      "id": "t707",
+      "type": "text",
+      "x": 24,
+      "y": 520,
+      "w": 140,
+      "h": 24,
+      "text": "サイズ",
+      "style": {
+        "color": "$muted",
+        "size": "sm"
+      }
+    },
+    {
+      "id": "t708",
+      "type": "text",
+      "x": 164,
+      "y": 520,
+      "w": 224,
+      "h": 24,
+      "text": "1.8 MB",
+      "style": {
+        "size": "sm",
+        "align": "right"
+      }
+    },
+    {
+      "id": "t709",
+      "type": "text",
+      "x": 24,
+      "y": 552,
+      "w": 140,
+      "h": 24,
+      "text": "最小 Android API",
+      "style": {
+        "color": "$muted",
+        "size": "sm"
+      }
+    },
+    {
+      "id": "t710",
+      "type": "text",
+      "x": 164,
+      "y": 552,
+      "w": 224,
+      "h": 24,
+      "text": "26",
+      "style": {
+        "size": "sm",
+        "align": "right"
+      }
+    },
+    {
+      "id": "t711",
+      "type": "text",
+      "x": 24,
+      "y": 584,
+      "w": 140,
+      "h": 24,
+      "text": "更新日",
+      "style": {
+        "color": "$muted",
+        "size": "sm"
+      }
+    },
+    {
+      "id": "t712",
+      "type": "text",
+      "x": 164,
+      "y": 584,
+      "w": 224,
+      "h": 24,
+      "text": "2026/09/12",
+      "style": {
+        "size": "sm",
+        "align": "right"
+      }
+    },
+    {
+      "id": "t713",
+      "type": "text",
+      "x": 24,
+      "y": 616,
+      "w": 140,
+      "h": 24,
+      "text": "パッケージ名",
+      "style": {
+        "color": "$muted",
+        "size": "sm"
+      }
+    },
+    {
+      "id": "t714",
+      "type": "text",
+      "x": 164,
+      "y": 616,
+      "w": 224,
+      "h": 24,
+      "text": "dev.apslop.apps.attendance_counter",
+      "style": {
+        "size": "sm",
+        "align": "right"
+      }
+    },
+    {
+      "id": "b715",
+      "type": "button",
+      "x": 24,
+      "y": 664,
+      "w": 174,
+      "h": 44,
+      "text": "ソースコード",
+      "variant": "outline"
+    },
+    {
+      "id": "b716",
+      "type": "button",
+      "x": 214,
+      "y": 664,
+      "w": 174,
+      "h": 44,
+      "text": "Web サイト",
+      "variant": "outline"
+    }
+  ]
+}

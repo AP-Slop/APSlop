@@ -1,0 +1,428 @@
+{
+  "version": 1,
+  "id": "repo-ai",
+  "title": "開発者: Create PR with AI(入力)",
+  "device": "desktop",
+  "elements": [
+    {
+      "id": "r734",
+      "type": "rect",
+      "x": 0,
+      "y": 0,
+      "w": 1440,
+      "h": 56,
+      "name": "Developer Header",
+      "style": {
+        "fill": "#24292F",
+        "radius": 0
+      },
+      "children": [
+        {
+          "id": "i725",
+          "type": "icon",
+          "x": 144,
+          "y": 16,
+          "w": 24,
+          "h": 24,
+          "text": "AP logo"
+        },
+        {
+          "id": "t726",
+          "type": "text",
+          "x": 176,
+          "y": 16,
+          "w": 160,
+          "h": 24,
+          "text": "APSlop Developers",
+          "style": {
+            "weight": "bold",
+            "color": "#FFFFFF"
+          }
+        },
+        {
+          "id": "t727",
+          "type": "text",
+          "x": 360,
+          "y": 16,
+          "w": 88,
+          "h": 24,
+          "text": "Dashboard",
+          "style": {
+            "color": "#FFFFFF"
+          }
+        },
+        {
+          "id": "t728",
+          "type": "text",
+          "x": 464,
+          "y": 16,
+          "w": 104,
+          "h": 24,
+          "text": "Repositories",
+          "style": {
+            "color": "#FFFFFF"
+          }
+        },
+        {
+          "id": "t729",
+          "type": "text",
+          "x": 584,
+          "y": 16,
+          "w": 72,
+          "h": 24,
+          "text": "New app",
+          "style": {
+            "color": "#FFFFFF"
+          }
+        },
+        {
+          "id": "t730",
+          "type": "text",
+          "x": 880,
+          "y": 16,
+          "w": 136,
+          "h": 24,
+          "text": "← Store",
+          "style": {
+            "color": "#FFFFFF",
+            "align": "right"
+          }
+        },
+        {
+          "id": "i731",
+          "type": "icon",
+          "x": 1040,
+          "y": 16,
+          "w": 24,
+          "h": 24,
+          "text": "avatar"
+        },
+        {
+          "id": "t732",
+          "type": "text",
+          "x": 1072,
+          "y": 16,
+          "w": 112,
+          "h": 24,
+          "text": "taku1029-dev",
+          "style": {
+            "color": "#FFFFFF"
+          }
+        },
+        {
+          "id": "t733",
+          "type": "text",
+          "x": 1200,
+          "y": 16,
+          "w": 96,
+          "h": 24,
+          "text": "Sign out",
+          "style": {
+            "color": "#FFFFFF",
+            "align": "right"
+          }
+        }
+      ]
+    },
+    {
+      "id": "r749",
+      "type": "rect",
+      "x": 0,
+      "y": 56,
+      "w": 1440,
+      "h": 120,
+      "name": "Repo Header",
+      "style": {
+        "fill": "$surface",
+        "radius": 0
+      },
+      "children": [
+        {
+          "id": "t735",
+          "type": "text",
+          "x": 144,
+          "y": 16,
+          "w": 72,
+          "h": 24,
+          "text": "AP-Slop /",
+          "style": {
+            "color": "$muted",
+            "size": "sm"
+          }
+        },
+        {
+          "id": "t736",
+          "type": "text",
+          "x": 216,
+          "y": 16,
+          "w": 176,
+          "h": 24,
+          "text": "attendance-counter",
+          "style": {
+            "weight": "bold",
+            "color": "#0969DA"
+          }
+        },
+        {
+          "id": "r738",
+          "type": "rect",
+          "x": 400,
+          "y": 16,
+          "w": 68,
+          "h": 24,
+          "name": "Badge",
+          "style": {
+            "radius": 12,
+            "fill": "$bg"
+          },
+          "children": [
+            {
+              "id": "t737",
+              "type": "text",
+              "x": 8,
+              "y": 0,
+              "w": 52,
+              "h": 24,
+              "text": "Public",
+              "style": {
+                "size": "sm",
+                "color": "$muted",
+                "align": "center"
+              }
+            }
+          ]
+        },
+        {
+          "id": "r740",
+          "type": "rect",
+          "x": 480,
+          "y": 16,
+          "w": 148,
+          "h": 24,
+          "name": "Badge",
+          "style": {
+            "radius": 12,
+            "fill": "$bg"
+          },
+          "children": [
+            {
+              "id": "t739",
+              "type": "text",
+              "x": 8,
+              "y": 0,
+              "w": 132,
+              "h": 24,
+              "text": "Published v0.1.1",
+              "style": {
+                "size": "sm",
+                "color": "#1A7F37",
+                "align": "center"
+              }
+            }
+          ]
+        },
+        {
+          "id": "t741",
+          "type": "text",
+          "x": 928,
+          "y": 16,
+          "w": 120,
+          "h": 24,
+          "text": "Open on GitHub ↗",
+          "style": {
+            "color": "#0969DA",
+            "size": "sm"
+          }
+        },
+        {
+          "id": "b742",
+          "type": "button",
+          "x": 1104,
+          "y": 8,
+          "w": 192,
+          "h": 36,
+          "text": "Create PR with AI",
+          "variant": "filled"
+        },
+        {
+          "id": "t743",
+          "type": "text",
+          "x": 144,
+          "y": 48,
+          "w": 800,
+          "h": 24,
+          "text": "Count class attendance per course",
+          "style": {
+            "color": "$muted",
+            "size": "sm"
+          }
+        },
+        {
+          "id": "t744",
+          "type": "text",
+          "x": 144,
+          "y": 88,
+          "w": 48,
+          "h": 24,
+          "text": "Code",
+          "style": {
+            "weight": "normal"
+          }
+        },
+        {
+          "id": "t745",
+          "type": "text",
+          "x": 224,
+          "y": 88,
+          "w": 120,
+          "h": 24,
+          "text": "Pull requests 2",
+          "style": {
+            "weight": "normal"
+          }
+        },
+        {
+          "id": "t746",
+          "type": "text",
+          "x": 376,
+          "y": 88,
+          "w": 64,
+          "h": 24,
+          "text": "Issues 2",
+          "style": {
+            "weight": "normal"
+          }
+        },
+        {
+          "id": "t747",
+          "type": "text",
+          "x": 472,
+          "y": 88,
+          "w": 72,
+          "h": 24,
+          "text": "Releases",
+          "style": {
+            "weight": "normal"
+          }
+        },
+        {
+          "id": "t748",
+          "type": "text",
+          "x": 576,
+          "y": 88,
+          "w": 64,
+          "h": 24,
+          "text": "Settings",
+          "style": {
+            "weight": "normal"
+          }
+        }
+      ]
+    },
+    {
+      "id": "t750",
+      "type": "text",
+      "x": 144,
+      "y": 200,
+      "w": 600,
+      "h": 32,
+      "text": "Create PR with AI",
+      "style": {
+        "size": "lg",
+        "weight": "bold"
+      }
+    },
+    {
+      "id": "t751",
+      "type": "text",
+      "x": 144,
+      "y": 240,
+      "w": 1152,
+      "h": 48,
+      "text": "Describe the change you want. AI reads the whole repository and proposes the change. You review the diff before the pull request is created. Works on your own repositories and on other people's.",
+      "style": {
+        "color": "$muted"
+      }
+    },
+    {
+      "id": "i752",
+      "type": "input",
+      "x": 144,
+      "y": 304,
+      "w": 1152,
+      "h": 160,
+      "text": "",
+      "props": {
+        "placeholder": "e.g. Support dark mode / Add a button to sort the list by date",
+        "kind": "text",
+        "multiline": true
+      }
+    },
+    {
+      "id": "b753",
+      "type": "button",
+      "x": 144,
+      "y": 480,
+      "w": 168,
+      "h": 40,
+      "text": "Generate changes",
+      "variant": "filled"
+    },
+    {
+      "id": "t754",
+      "type": "text",
+      "x": 328,
+      "y": 488,
+      "w": 400,
+      "h": 24,
+      "text": "At least 5 characters. Takes 1–3 minutes.",
+      "style": {
+        "color": "$muted",
+        "size": "sm"
+      }
+    },
+    {
+      "id": "r757",
+      "type": "rect",
+      "x": 0,
+      "y": 844,
+      "w": 1440,
+      "h": 56,
+      "name": "Footer",
+      "style": {
+        "radius": 0,
+        "border": "none",
+        "fill": "$bg"
+      },
+      "children": [
+        {
+          "id": "t755",
+          "type": "text",
+          "x": 144,
+          "y": 16,
+          "w": 400,
+          "h": 24,
+          "text": "APSlop — a campus community GitHub",
+          "style": {
+            "color": "$muted",
+            "size": "sm"
+          }
+        },
+        {
+          "id": "t756",
+          "type": "text",
+          "x": 816,
+          "y": 16,
+          "w": 480,
+          "h": 24,
+          "text": "F-Droid repository: https://apslop.example.com/fdroid/repo",
+          "style": {
+            "color": "$muted",
+            "size": "sm",
+            "align": "right"
+          }
+        }
+      ]
+    }
+  ]
+}

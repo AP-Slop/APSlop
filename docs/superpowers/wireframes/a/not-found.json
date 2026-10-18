@@ -1,0 +1,156 @@
+{
+  "version": 1,
+  "id": "not-found",
+  "title": "ページが見つかりません",
+  "device": "desktop",
+  "elements": [
+    {
+      "id": "r661",
+      "type": "rect",
+      "x": 0,
+      "y": 0,
+      "w": 1440,
+      "h": 56,
+      "name": "Header",
+      "style": {
+        "fill": "#24292F",
+        "radius": 0
+      },
+      "children": [
+        {
+          "id": "i655",
+          "type": "icon",
+          "x": 144,
+          "y": 16,
+          "w": 24,
+          "h": 24,
+          "text": "AP ロゴ"
+        },
+        {
+          "id": "t656",
+          "type": "text",
+          "x": 176,
+          "y": 16,
+          "w": 80,
+          "h": 24,
+          "text": "APSlop",
+          "style": {
+            "weight": "bold",
+            "color": "#FFFFFF"
+          }
+        },
+        {
+          "id": "t657",
+          "type": "text",
+          "x": 280,
+          "y": 16,
+          "w": 56,
+          "h": 24,
+          "text": "アプリ",
+          "style": {
+            "color": "#FFFFFF"
+          }
+        },
+        {
+          "id": "t658",
+          "type": "text",
+          "x": 352,
+          "y": 16,
+          "w": 88,
+          "h": 24,
+          "text": "リポジトリ",
+          "style": {
+            "color": "#FFFFFF"
+          }
+        },
+        {
+          "id": "t659",
+          "type": "text",
+          "x": 456,
+          "y": 16,
+          "w": 80,
+          "h": 24,
+          "text": "AI で作る",
+          "style": {
+            "color": "#FFFFFF"
+          }
+        },
+        {
+          "id": "b660",
+          "type": "button",
+          "x": 1120,
+          "y": 8,
+          "w": 176,
+          "h": 40,
+          "text": "GitHub でログイン",
+          "variant": "outline"
+        }
+      ]
+    },
+    {
+      "id": "t662",
+      "type": "text",
+      "x": 420,
+      "y": 320,
+      "w": 600,
+      "h": 32,
+      "text": "ページが見つかりません",
+      "style": {
+        "size": "lg",
+        "weight": "bold",
+        "align": "center"
+      }
+    },
+    {
+      "id": "b663",
+      "type": "button",
+      "x": 640,
+      "y": 376,
+      "w": 160,
+      "h": 40,
+      "text": "トップへ戻る",
+      "variant": "outline"
+    },
+    {
+      "id": "r666",
+      "type": "rect",
+      "x": 0,
+      "y": 844,
+      "w": 1440,
+      "h": 56,
+      "name": "Footer",
+      "style": {
+        "fill": "$bg",
+        "radius": 0
+      },
+      "children": [
+        {
+          "id": "t664",
+          "type": "text",
+          "x": 144,
+          "y": 16,
+          "w": 400,
+          "h": 24,
+          "text": "APSlop — 大学コミュニティ版 GitHub",
+          "style": {
+            "color": "$muted",
+            "size": "sm"
+          }
+        },
+        {
+          "id": "t665",
+          "type": "text",
+          "x": 816,
+          "y": 16,
+          "w": 480,
+          "h": 24,
+          "text": "F-Droid リポジトリ: https://apslop.example.com/fdroid/repo",
+          "style": {
+            "color": "$muted",
+            "size": "sm"
+          }
+        }
+      ]
+    }
+  ]
+}

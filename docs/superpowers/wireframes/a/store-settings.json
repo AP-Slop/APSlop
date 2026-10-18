@@ -1,0 +1,67 @@
+{
+  "version": 1,
+  "id": "store-settings",
+  "title": "ストアアプリ(設定)",
+  "device": "phone-android",
+  "elements": [
+    {
+      "id": "n717",
+      "type": "navbar",
+      "x": 0,
+      "y": 0,
+      "w": 412,
+      "h": 96,
+      "text": "設定",
+      "props": {
+        "left": "back",
+        "right": "none"
+      }
+    },
+    {
+      "id": "i718",
+      "type": "input",
+      "x": 24,
+      "y": 120,
+      "w": 364,
+      "h": 56,
+      "text": "リポジトリ URL",
+      "props": {
+        "placeholder": "https://example.ac.jp/fdroid/repo",
+        "kind": "text"
+      }
+    },
+    {
+      "id": "t719",
+      "type": "text",
+      "x": 24,
+      "y": 188,
+      "w": 364,
+      "h": 48,
+      "text": "この URL を公式 F-Droid クライアントに追加しても同じアプリを利用できます。",
+      "style": {
+        "color": "$muted",
+        "size": "sm"
+      }
+    },
+    {
+      "id": "b720",
+      "type": "button",
+      "x": 24,
+      "y": 252,
+      "w": 174,
+      "h": 48,
+      "text": "保存して更新",
+      "variant": "filled"
+    },
+    {
+      "id": "b721",
+      "type": "button",
+      "x": 214,
+      "y": 252,
+      "w": 174,
+      "h": 48,
+      "text": "既定値に戻す",
+      "variant": "outline"
+    }
+  ]
+}

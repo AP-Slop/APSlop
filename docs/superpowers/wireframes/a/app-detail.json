@@ -1,0 +1,364 @@
+{
+  "version": 1,
+  "id": "app-detail",
+  "title": "アプリのページ",
+  "device": "desktop",
+  "elements": [
+    {
+      "id": "r181",
+      "type": "rect",
+      "x": 0,
+      "y": 0,
+      "w": 1440,
+      "h": 56,
+      "name": "Header",
+      "style": {
+        "fill": "#24292F",
+        "radius": 0
+      },
+      "children": [
+        {
+          "id": "i172",
+          "type": "icon",
+          "x": 144,
+          "y": 16,
+          "w": 24,
+          "h": 24,
+          "text": "AP ロゴ"
+        },
+        {
+          "id": "t173",
+          "type": "text",
+          "x": 176,
+          "y": 16,
+          "w": 80,
+          "h": 24,
+          "text": "APSlop",
+          "style": {
+            "weight": "bold",
+            "color": "#FFFFFF"
+          }
+        },
+        {
+          "id": "t174",
+          "type": "text",
+          "x": 280,
+          "y": 16,
+          "w": 56,
+          "h": 24,
+          "text": "アプリ",
+          "style": {
+            "color": "#FFFFFF"
+          }
+        },
+        {
+          "id": "t175",
+          "type": "text",
+          "x": 352,
+          "y": 16,
+          "w": 88,
+          "h": 24,
+          "text": "リポジトリ",
+          "style": {
+            "color": "#FFFFFF"
+          }
+        },
+        {
+          "id": "t176",
+          "type": "text",
+          "x": 456,
+          "y": 16,
+          "w": 80,
+          "h": 24,
+          "text": "AI で作る",
+          "style": {
+            "color": "#FFFFFF"
+          }
+        },
+        {
+          "id": "t177",
+          "type": "text",
+          "x": 552,
+          "y": 16,
+          "w": 120,
+          "h": 24,
+          "text": "ダッシュボード",
+          "style": {
+            "color": "#FFFFFF"
+          }
+        },
+        {
+          "id": "i178",
+          "type": "icon",
+          "x": 1076,
+          "y": 16,
+          "w": 24,
+          "h": 24,
+          "text": "アバター"
+        },
+        {
+          "id": "t179",
+          "type": "text",
+          "x": 1108,
+          "y": 16,
+          "w": 104,
+          "h": 24,
+          "text": "taku1029-dev",
+          "style": {
+            "color": "#FFFFFF"
+          }
+        },
+        {
+          "id": "t180",
+          "type": "text",
+          "x": 1216,
+          "y": 16,
+          "w": 80,
+          "h": 24,
+          "text": "ログアウト",
+          "style": {
+            "color": "#FFFFFF"
+          }
+        }
+      ]
+    },
+    {
+      "id": "i182",
+      "type": "image",
+      "x": 144,
+      "y": 88,
+      "w": 96,
+      "h": 96,
+      "text": "アイコン"
+    },
+    {
+      "id": "t183",
+      "type": "text",
+      "x": 264,
+      "y": 88,
+      "w": 240,
+      "h": 32,
+      "text": "出席カウンター",
+      "style": {
+        "size": "lg",
+        "weight": "bold"
+      }
+    },
+    {
+      "id": "r185",
+      "type": "rect",
+      "x": 512,
+      "y": 92,
+      "w": 55,
+      "h": 24,
+      "name": "Badge",
+      "style": {
+        "radius": 12
+      },
+      "children": [
+        {
+          "id": "t184",
+          "type": "text",
+          "x": 8,
+          "y": 0,
+          "w": 39,
+          "h": 24,
+          "text": "公開中",
+          "style": {
+            "size": "sm",
+            "color": "$primary"
+          }
+        }
+      ]
+    },
+    {
+      "id": "t186",
+      "type": "text",
+      "x": 264,
+      "y": 128,
+      "w": 800,
+      "h": 24,
+      "text": "授業の出席回数を科目ごとに記録できる",
+      "style": {
+        "color": "$muted"
+      }
+    },
+    {
+      "id": "t187",
+      "type": "text",
+      "x": 264,
+      "y": 160,
+      "w": 800,
+      "h": 24,
+      "text": "作者: taku1029-dev   dev.apslop.apps.attendance_counter   公開: 2026/09/12 15:02",
+      "style": {
+        "color": "$muted",
+        "size": "sm"
+      }
+    },
+    {
+      "id": "b188",
+      "type": "button",
+      "x": 144,
+      "y": 216,
+      "w": 232,
+      "h": 40,
+      "text": "APK をダウンロード (v0.1.1)",
+      "variant": "filled"
+    },
+    {
+      "id": "b189",
+      "type": "button",
+      "x": 392,
+      "y": 216,
+      "w": 128,
+      "h": 40,
+      "text": "ソースコード",
+      "variant": "outline"
+    },
+    {
+      "id": "b190",
+      "type": "button",
+      "x": 536,
+      "y": 216,
+      "w": 136,
+      "h": 40,
+      "text": "GitHub で開く",
+      "variant": "outline"
+    },
+    {
+      "id": "b191",
+      "type": "button",
+      "x": 688,
+      "y": 216,
+      "w": 152,
+      "h": 40,
+      "text": "AI に改良を依頼",
+      "variant": "outline"
+    },
+    {
+      "id": "b192",
+      "type": "button",
+      "x": 856,
+      "y": 216,
+      "w": 136,
+      "h": 40,
+      "text": "ストアに同期",
+      "variant": "outline"
+    },
+    {
+      "id": "r196",
+      "type": "rect",
+      "x": 144,
+      "y": 288,
+      "w": 1152,
+      "h": 320,
+      "name": "Description",
+      "children": [
+        {
+          "id": "r195",
+          "type": "rect",
+          "x": 0,
+          "y": 0,
+          "w": 1152,
+          "h": 40,
+          "name": "Card Header",
+          "style": {
+            "fill": "$surface",
+            "radius": 0
+          },
+          "children": [
+            {
+              "id": "t194",
+              "type": "text",
+              "x": 16,
+              "y": 8,
+              "w": 1120,
+              "h": 24,
+              "text": "説明",
+              "style": {
+                "weight": "bold"
+              }
+            }
+          ]
+        },
+        {
+          "id": "t193",
+          "type": "text",
+          "x": 16,
+          "y": 56,
+          "w": 1120,
+          "h": 200,
+          "text": "# 出席カウンター\n\n科目ごとに出席回数を記録し、欠席可能回数を表示します。\n\n- 科目の追加と削除\n- 出席 / 欠席の記録"
+        }
+      ]
+    },
+    {
+      "id": "r198",
+      "type": "rect",
+      "x": 144,
+      "y": 624,
+      "w": 1152,
+      "h": 72,
+      "name": "Not Published Notice (未公開のときだけ)",
+      "style": {
+        "fill": "$surface"
+      },
+      "children": [
+        {
+          "id": "t197",
+          "type": "text",
+          "x": 16,
+          "y": 12,
+          "w": 1120,
+          "h": 48,
+          "text": "このアプリはまだストアに配信されていません。リリースを作成すると、CI が APK をビルドしてストアに取り込まれます。",
+          "style": {
+            "color": "$muted"
+          }
+        }
+      ]
+    },
+    {
+      "id": "r201",
+      "type": "rect",
+      "x": 0,
+      "y": 844,
+      "w": 1440,
+      "h": 56,
+      "name": "Footer",
+      "style": {
+        "fill": "$bg",
+        "radius": 0
+      },
+      "children": [
+        {
+          "id": "t199",
+          "type": "text",
+          "x": 144,
+          "y": 16,
+          "w": 400,
+          "h": 24,
+          "text": "APSlop — 大学コミュニティ版 GitHub",
+          "style": {
+            "color": "$muted",
+            "size": "sm"
+          }
+        },
+        {
+          "id": "t200",
+          "type": "text",
+          "x": 816,
+          "y": 16,
+          "w": 480,
+          "h": 24,
+          "text": "F-Droid リポジトリ: https://apslop.example.com/fdroid/repo",
+          "style": {
+            "color": "$muted",
+            "size": "sm"
+          }
+        }
+      ]
+    }
+  ]
+}

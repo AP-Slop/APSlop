@@ -1,0 +1,675 @@
+{
+  "version": 1,
+  "id": "repo-code",
+  "title": "開発者: リポジトリ(Code)",
+  "device": "desktop",
+  "elements": [
+    {
+      "id": "r305",
+      "type": "rect",
+      "x": 0,
+      "y": 0,
+      "w": 1440,
+      "h": 56,
+      "name": "Developer Header",
+      "style": {
+        "fill": "#24292F",
+        "radius": 0
+      },
+      "children": [
+        {
+          "id": "i296",
+          "type": "icon",
+          "x": 144,
+          "y": 16,
+          "w": 24,
+          "h": 24,
+          "text": "AP logo"
+        },
+        {
+          "id": "t297",
+          "type": "text",
+          "x": 176,
+          "y": 16,
+          "w": 160,
+          "h": 24,
+          "text": "APSlop Developers",
+          "style": {
+            "weight": "bold",
+            "color": "#FFFFFF"
+          }
+        },
+        {
+          "id": "t298",
+          "type": "text",
+          "x": 360,
+          "y": 16,
+          "w": 88,
+          "h": 24,
+          "text": "Dashboard",
+          "style": {
+            "color": "#FFFFFF"
+          }
+        },
+        {
+          "id": "t299",
+          "type": "text",
+          "x": 464,
+          "y": 16,
+          "w": 104,
+          "h": 24,
+          "text": "Repositories",
+          "style": {
+            "color": "#FFFFFF"
+          }
+        },
+        {
+          "id": "t300",
+          "type": "text",
+          "x": 584,
+          "y": 16,
+          "w": 72,
+          "h": 24,
+          "text": "New app",
+          "style": {
+            "color": "#FFFFFF"
+          }
+        },
+        {
+          "id": "t301",
+          "type": "text",
+          "x": 880,
+          "y": 16,
+          "w": 136,
+          "h": 24,
+          "text": "← Store",
+          "style": {
+            "color": "#FFFFFF",
+            "align": "right"
+          }
+        },
+        {
+          "id": "i302",
+          "type": "icon",
+          "x": 1040,
+          "y": 16,
+          "w": 24,
+          "h": 24,
+          "text": "avatar"
+        },
+        {
+          "id": "t303",
+          "type": "text",
+          "x": 1072,
+          "y": 16,
+          "w": 112,
+          "h": 24,
+          "text": "taku1029-dev",
+          "style": {
+            "color": "#FFFFFF"
+          }
+        },
+        {
+          "id": "t304",
+          "type": "text",
+          "x": 1200,
+          "y": 16,
+          "w": 96,
+          "h": 24,
+          "text": "Sign out",
+          "style": {
+            "color": "#FFFFFF",
+            "align": "right"
+          }
+        }
+      ]
+    },
+    {
+      "id": "r321",
+      "type": "rect",
+      "x": 0,
+      "y": 56,
+      "w": 1440,
+      "h": 120,
+      "name": "Repo Header",
+      "style": {
+        "fill": "$surface",
+        "radius": 0
+      },
+      "children": [
+        {
+          "id": "t306",
+          "type": "text",
+          "x": 144,
+          "y": 16,
+          "w": 72,
+          "h": 24,
+          "text": "AP-Slop /",
+          "style": {
+            "color": "$muted",
+            "size": "sm"
+          }
+        },
+        {
+          "id": "t307",
+          "type": "text",
+          "x": 216,
+          "y": 16,
+          "w": 176,
+          "h": 24,
+          "text": "attendance-counter",
+          "style": {
+            "weight": "bold",
+            "color": "#0969DA"
+          }
+        },
+        {
+          "id": "r309",
+          "type": "rect",
+          "x": 400,
+          "y": 16,
+          "w": 68,
+          "h": 24,
+          "name": "Badge",
+          "style": {
+            "radius": 12,
+            "fill": "$bg"
+          },
+          "children": [
+            {
+              "id": "t308",
+              "type": "text",
+              "x": 8,
+              "y": 0,
+              "w": 52,
+              "h": 24,
+              "text": "Public",
+              "style": {
+                "size": "sm",
+                "color": "$muted",
+                "align": "center"
+              }
+            }
+          ]
+        },
+        {
+          "id": "r311",
+          "type": "rect",
+          "x": 480,
+          "y": 16,
+          "w": 148,
+          "h": 24,
+          "name": "Badge",
+          "style": {
+            "radius": 12,
+            "fill": "$bg"
+          },
+          "children": [
+            {
+              "id": "t310",
+              "type": "text",
+              "x": 8,
+              "y": 0,
+              "w": 132,
+              "h": 24,
+              "text": "Published v0.1.1",
+              "style": {
+                "size": "sm",
+                "color": "#1A7F37",
+                "align": "center"
+              }
+            }
+          ]
+        },
+        {
+          "id": "t312",
+          "type": "text",
+          "x": 928,
+          "y": 16,
+          "w": 120,
+          "h": 24,
+          "text": "Open on GitHub ↗",
+          "style": {
+            "color": "#0969DA",
+            "size": "sm"
+          }
+        },
+        {
+          "id": "b313",
+          "type": "button",
+          "x": 1104,
+          "y": 8,
+          "w": 192,
+          "h": 36,
+          "text": "Create PR with AI",
+          "variant": "filled"
+        },
+        {
+          "id": "t314",
+          "type": "text",
+          "x": 144,
+          "y": 48,
+          "w": 800,
+          "h": 24,
+          "text": "Count class attendance per course",
+          "style": {
+            "color": "$muted",
+            "size": "sm"
+          }
+        },
+        {
+          "id": "t315",
+          "type": "text",
+          "x": 144,
+          "y": 88,
+          "w": 48,
+          "h": 24,
+          "text": "Code",
+          "style": {
+            "weight": "bold"
+          }
+        },
+        {
+          "id": "r316",
+          "type": "rect",
+          "x": 144,
+          "y": 118,
+          "w": 48,
+          "h": 2,
+          "name": "Active Tab Underline",
+          "style": {
+            "fill": "#FD8C73",
+            "border": "none",
+            "radius": 0
+          }
+        },
+        {
+          "id": "t317",
+          "type": "text",
+          "x": 224,
+          "y": 88,
+          "w": 120,
+          "h": 24,
+          "text": "Pull requests 2",
+          "style": {
+            "weight": "normal"
+          }
+        },
+        {
+          "id": "t318",
+          "type": "text",
+          "x": 376,
+          "y": 88,
+          "w": 64,
+          "h": 24,
+          "text": "Issues 2",
+          "style": {
+            "weight": "normal"
+          }
+        },
+        {
+          "id": "t319",
+          "type": "text",
+          "x": 472,
+          "y": 88,
+          "w": 72,
+          "h": 24,
+          "text": "Releases",
+          "style": {
+            "weight": "normal"
+          }
+        },
+        {
+          "id": "t320",
+          "type": "text",
+          "x": 576,
+          "y": 88,
+          "w": 64,
+          "h": 24,
+          "text": "Settings",
+          "style": {
+            "weight": "normal"
+          }
+        }
+      ]
+    },
+    {
+      "id": "r295",
+      "type": "rect",
+      "x": 144,
+      "y": 200,
+      "w": 1152,
+      "h": 256,
+      "name": "File Tree",
+      "style": {
+        "fill": "$bg"
+      },
+      "children": [
+        {
+          "id": "r294",
+          "type": "rect",
+          "x": 0,
+          "y": 0,
+          "w": 1152,
+          "h": 40,
+          "name": "Card Header",
+          "style": {
+            "fill": "$surface",
+            "radius": 0
+          }
+        },
+        {
+          "id": "r277",
+          "type": "rect",
+          "x": 16,
+          "y": 8,
+          "w": 52,
+          "h": 24,
+          "name": "Badge",
+          "style": {
+            "radius": 12,
+            "fill": "$bg"
+          },
+          "children": [
+            {
+              "id": "t276",
+              "type": "text",
+              "x": 8,
+              "y": 0,
+              "w": 36,
+              "h": 24,
+              "text": "main",
+              "style": {
+                "size": "sm",
+                "color": "$muted",
+                "align": "center"
+              }
+            }
+          ]
+        },
+        {
+          "id": "t278",
+          "type": "text",
+          "x": 1040,
+          "y": 8,
+          "w": 96,
+          "h": 24,
+          "text": "5 items",
+          "style": {
+            "color": "$muted",
+            "size": "sm",
+            "align": "right"
+          }
+        },
+        {
+          "id": "i279",
+          "type": "icon",
+          "x": 16,
+          "y": 48,
+          "w": 24,
+          "h": 24,
+          "text": "folder"
+        },
+        {
+          "id": "t280",
+          "type": "text",
+          "x": 52,
+          "y": 48,
+          "w": 600,
+          "h": 24,
+          "text": ".github",
+          "style": {
+            "color": "#0969DA"
+          }
+        },
+        {
+          "id": "t281",
+          "type": "text",
+          "x": 1040,
+          "y": 48,
+          "w": 96,
+          "h": 24,
+          "text": "",
+          "style": {
+            "color": "$muted",
+            "size": "sm",
+            "align": "right"
+          }
+        },
+        {
+          "id": "i282",
+          "type": "icon",
+          "x": 16,
+          "y": 88,
+          "w": 24,
+          "h": 24,
+          "text": "folder"
+        },
+        {
+          "id": "t283",
+          "type": "text",
+          "x": 52,
+          "y": 88,
+          "w": 600,
+          "h": 24,
+          "text": "app",
+          "style": {
+            "color": "#0969DA"
+          }
+        },
+        {
+          "id": "t284",
+          "type": "text",
+          "x": 1040,
+          "y": 88,
+          "w": 96,
+          "h": 24,
+          "text": "",
+          "style": {
+            "color": "$muted",
+            "size": "sm",
+            "align": "right"
+          }
+        },
+        {
+          "id": "i285",
+          "type": "icon",
+          "x": 16,
+          "y": 128,
+          "w": 24,
+          "h": 24,
+          "text": "file"
+        },
+        {
+          "id": "t286",
+          "type": "text",
+          "x": 52,
+          "y": 128,
+          "w": 600,
+          "h": 24,
+          "text": "README.md",
+          "style": {
+            "color": "#0969DA"
+          }
+        },
+        {
+          "id": "t287",
+          "type": "text",
+          "x": 1040,
+          "y": 128,
+          "w": 96,
+          "h": 24,
+          "text": "812 B",
+          "style": {
+            "color": "$muted",
+            "size": "sm",
+            "align": "right"
+          }
+        },
+        {
+          "id": "i288",
+          "type": "icon",
+          "x": 16,
+          "y": 168,
+          "w": 24,
+          "h": 24,
+          "text": "file"
+        },
+        {
+          "id": "t289",
+          "type": "text",
+          "x": 52,
+          "y": 168,
+          "w": 600,
+          "h": 24,
+          "text": "build.gradle.kts",
+          "style": {
+            "color": "#0969DA"
+          }
+        },
+        {
+          "id": "t290",
+          "type": "text",
+          "x": 1040,
+          "y": 168,
+          "w": 96,
+          "h": 24,
+          "text": "240 B",
+          "style": {
+            "color": "$muted",
+            "size": "sm",
+            "align": "right"
+          }
+        },
+        {
+          "id": "i291",
+          "type": "icon",
+          "x": 16,
+          "y": 208,
+          "w": 24,
+          "h": 24,
+          "text": "file"
+        },
+        {
+          "id": "t292",
+          "type": "text",
+          "x": 52,
+          "y": 208,
+          "w": 600,
+          "h": 24,
+          "text": "settings.gradle.kts",
+          "style": {
+            "color": "#0969DA"
+          }
+        },
+        {
+          "id": "t293",
+          "type": "text",
+          "x": 1040,
+          "y": 208,
+          "w": 96,
+          "h": 24,
+          "text": "410 B",
+          "style": {
+            "color": "$muted",
+            "size": "sm",
+            "align": "right"
+          }
+        }
+      ]
+    },
+    {
+      "id": "r325",
+      "type": "rect",
+      "x": 144,
+      "y": 472,
+      "w": 1152,
+      "h": 240,
+      "name": "README",
+      "style": {
+        "fill": "$bg"
+      },
+      "children": [
+        {
+          "id": "r324",
+          "type": "rect",
+          "x": 0,
+          "y": 0,
+          "w": 1152,
+          "h": 40,
+          "name": "Card Header",
+          "style": {
+            "fill": "$surface",
+            "radius": 0
+          },
+          "children": [
+            {
+              "id": "t323",
+              "type": "text",
+              "x": 16,
+              "y": 8,
+              "w": 1120,
+              "h": 24,
+              "text": "README.md",
+              "style": {
+                "weight": "bold"
+              }
+            }
+          ]
+        },
+        {
+          "id": "t322",
+          "type": "text",
+          "x": 16,
+          "y": 56,
+          "w": 1120,
+          "h": 160,
+          "text": "Attendance Counter\n\nRecord attendance per course and see how many absences you have left.\n\n• Add and remove courses\n• Record present / absent"
+        }
+      ]
+    },
+    {
+      "id": "r328",
+      "type": "rect",
+      "x": 0,
+      "y": 844,
+      "w": 1440,
+      "h": 56,
+      "name": "Footer",
+      "style": {
+        "radius": 0,
+        "border": "none",
+        "fill": "$bg"
+      },
+      "children": [
+        {
+          "id": "t326",
+          "type": "text",
+          "x": 144,
+          "y": 16,
+          "w": 400,
+          "h": 24,
+          "text": "APSlop — a campus community GitHub",
+          "style": {
+            "color": "$muted",
+            "size": "sm"
+          }
+        },
+        {
+          "id": "t327",
+          "type": "text",
+          "x": 816,
+          "y": 16,
+          "w": 480,
+          "h": 24,
+          "text": "F-Droid repository: https://apslop.example.com/fdroid/repo",
+          "style": {
+            "color": "$muted",
+            "size": "sm",
+            "align": "right"
+          }
+        }
+      ]
+    }
+  ]
+}

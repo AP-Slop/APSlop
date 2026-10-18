@@ -1,0 +1,955 @@
+{
+  "version": 1,
+  "id": "pull-detail",
+  "title": "Pull Request の詳細",
+  "device": {
+    "w": 1440,
+    "h": 1480
+  },
+  "elements": [
+    {
+      "id": "r476",
+      "type": "rect",
+      "x": 0,
+      "y": 0,
+      "w": 1440,
+      "h": 56,
+      "name": "Header",
+      "style": {
+        "fill": "#24292F",
+        "radius": 0
+      },
+      "children": [
+        {
+          "id": "i467",
+          "type": "icon",
+          "x": 144,
+          "y": 16,
+          "w": 24,
+          "h": 24,
+          "text": "AP ロゴ"
+        },
+        {
+          "id": "t468",
+          "type": "text",
+          "x": 176,
+          "y": 16,
+          "w": 80,
+          "h": 24,
+          "text": "APSlop",
+          "style": {
+            "weight": "bold",
+            "color": "#FFFFFF"
+          }
+        },
+        {
+          "id": "t469",
+          "type": "text",
+          "x": 280,
+          "y": 16,
+          "w": 56,
+          "h": 24,
+          "text": "アプリ",
+          "style": {
+            "color": "#FFFFFF"
+          }
+        },
+        {
+          "id": "t470",
+          "type": "text",
+          "x": 352,
+          "y": 16,
+          "w": 88,
+          "h": 24,
+          "text": "リポジトリ",
+          "style": {
+            "color": "#FFFFFF"
+          }
+        },
+        {
+          "id": "t471",
+          "type": "text",
+          "x": 456,
+          "y": 16,
+          "w": 80,
+          "h": 24,
+          "text": "AI で作る",
+          "style": {
+            "color": "#FFFFFF"
+          }
+        },
+        {
+          "id": "t472",
+          "type": "text",
+          "x": 552,
+          "y": 16,
+          "w": 120,
+          "h": 24,
+          "text": "ダッシュボード",
+          "style": {
+            "color": "#FFFFFF"
+          }
+        },
+        {
+          "id": "i473",
+          "type": "icon",
+          "x": 1076,
+          "y": 16,
+          "w": 24,
+          "h": 24,
+          "text": "アバター"
+        },
+        {
+          "id": "t474",
+          "type": "text",
+          "x": 1108,
+          "y": 16,
+          "w": 104,
+          "h": 24,
+          "text": "taku1029-dev",
+          "style": {
+            "color": "#FFFFFF"
+          }
+        },
+        {
+          "id": "t475",
+          "type": "text",
+          "x": 1216,
+          "y": 16,
+          "w": 80,
+          "h": 24,
+          "text": "ログアウト",
+          "style": {
+            "color": "#FFFFFF"
+          }
+        }
+      ]
+    },
+    {
+      "id": "r491",
+      "type": "rect",
+      "x": 0,
+      "y": 56,
+      "w": 1440,
+      "h": 120,
+      "name": "Repo Header",
+      "style": {
+        "fill": "$surface",
+        "radius": 0
+      },
+      "children": [
+        {
+          "id": "t477",
+          "type": "text",
+          "x": 144,
+          "y": 16,
+          "w": 80,
+          "h": 24,
+          "text": "AP-Slop /",
+          "style": {
+            "color": "$muted",
+            "size": "sm"
+          }
+        },
+        {
+          "id": "t478",
+          "type": "text",
+          "x": 224,
+          "y": 16,
+          "w": 200,
+          "h": 24,
+          "text": "attendance-counter",
+          "style": {
+            "weight": "bold",
+            "color": "$primary"
+          }
+        },
+        {
+          "id": "r480",
+          "type": "rect",
+          "x": 432,
+          "y": 16,
+          "w": 94,
+          "h": 24,
+          "name": "Badge",
+          "style": {
+            "radius": 12
+          },
+          "children": [
+            {
+              "id": "t479",
+              "type": "text",
+              "x": 8,
+              "y": 0,
+              "w": 78,
+              "h": 24,
+              "text": "Public",
+              "style": {
+                "size": "sm",
+                "color": "$muted"
+              }
+            }
+          ]
+        },
+        {
+          "id": "r482",
+          "type": "rect",
+          "x": 512,
+          "y": 16,
+          "w": 185,
+          "h": 24,
+          "name": "Badge",
+          "style": {
+            "radius": 12
+          },
+          "children": [
+            {
+              "id": "t481",
+              "type": "text",
+              "x": 8,
+              "y": 0,
+              "w": 169,
+              "h": 24,
+              "text": "ストア公開中 v0.1.1",
+              "style": {
+                "size": "sm",
+                "color": "$primary"
+              }
+            }
+          ]
+        },
+        {
+          "id": "t483",
+          "type": "text",
+          "x": 1176,
+          "y": 16,
+          "w": 120,
+          "h": 24,
+          "text": "GitHub で開く ↗",
+          "style": {
+            "color": "$muted",
+            "size": "sm"
+          }
+        },
+        {
+          "id": "t484",
+          "type": "text",
+          "x": 144,
+          "y": 48,
+          "w": 800,
+          "h": 24,
+          "text": "授業の出席回数を科目ごとに記録できるカウンターアプリ",
+          "style": {
+            "color": "$muted",
+            "size": "sm"
+          }
+        },
+        {
+          "id": "t485",
+          "type": "text",
+          "x": 144,
+          "y": 88,
+          "w": 56,
+          "h": 24,
+          "text": "Code",
+          "style": {
+            "weight": "normal"
+          }
+        },
+        {
+          "id": "t486",
+          "type": "text",
+          "x": 232,
+          "y": 88,
+          "w": 112,
+          "h": 24,
+          "text": "Pull requests",
+          "style": {
+            "weight": "bold"
+          }
+        },
+        {
+          "id": "r487",
+          "type": "rect",
+          "x": 232,
+          "y": 118,
+          "w": 112,
+          "h": 2,
+          "name": "Active Tab Underline",
+          "style": {
+            "fill": "#FD8C73",
+            "border": "none",
+            "radius": 0
+          }
+        },
+        {
+          "id": "t488",
+          "type": "text",
+          "x": 376,
+          "y": 88,
+          "w": 80,
+          "h": 24,
+          "text": "Issues 2",
+          "style": {
+            "weight": "normal"
+          }
+        },
+        {
+          "id": "t489",
+          "type": "text",
+          "x": 488,
+          "y": 88,
+          "w": 80,
+          "h": 24,
+          "text": "AI に依頼",
+          "style": {
+            "weight": "normal"
+          }
+        },
+        {
+          "id": "t490",
+          "type": "text",
+          "x": 600,
+          "y": 88,
+          "w": 80,
+          "h": 24,
+          "text": "Releases",
+          "style": {
+            "weight": "normal"
+          }
+        }
+      ]
+    },
+    {
+      "id": "t492",
+      "type": "text",
+      "x": 144,
+      "y": 200,
+      "w": 800,
+      "h": 32,
+      "text": "ダークモードに対応  #3",
+      "style": {
+        "size": "lg",
+        "weight": "bold"
+      }
+    },
+    {
+      "id": "r494",
+      "type": "rect",
+      "x": 144,
+      "y": 244,
+      "w": 68,
+      "h": 24,
+      "name": "Badge",
+      "style": {
+        "radius": 12
+      },
+      "children": [
+        {
+          "id": "t493",
+          "type": "text",
+          "x": 8,
+          "y": 0,
+          "w": 52,
+          "h": 24,
+          "text": "Open",
+          "style": {
+            "size": "sm",
+            "color": "$primary"
+          }
+        }
+      ]
+    },
+    {
+      "id": "t495",
+      "type": "text",
+      "x": 216,
+      "y": 244,
+      "w": 600,
+      "h": 24,
+      "text": "student-a が ai/dark-mode から main へ 1 コミット",
+      "style": {
+        "size": "sm"
+      }
+    },
+    {
+      "id": "t496",
+      "type": "text",
+      "x": 832,
+      "y": 244,
+      "w": 96,
+      "h": 24,
+      "text": "+24  −3",
+      "style": {
+        "size": "sm"
+      }
+    },
+    {
+      "id": "t497",
+      "type": "text",
+      "x": 1176,
+      "y": 244,
+      "w": 120,
+      "h": 24,
+      "text": "GitHub で開く ↗",
+      "style": {
+        "color": "$muted",
+        "size": "sm"
+      }
+    },
+    {
+      "id": "r501",
+      "type": "rect",
+      "x": 144,
+      "y": 288,
+      "w": 1152,
+      "h": 112,
+      "name": "PR Body",
+      "children": [
+        {
+          "id": "r500",
+          "type": "rect",
+          "x": 0,
+          "y": 0,
+          "w": 1152,
+          "h": 40,
+          "name": "Card Header",
+          "style": {
+            "fill": "$surface",
+            "radius": 0
+          },
+          "children": [
+            {
+              "id": "t499",
+              "type": "text",
+              "x": 16,
+              "y": 8,
+              "w": 1120,
+              "h": 24,
+              "text": "student-a  2026/09/12 15:40",
+              "style": {
+                "weight": "bold"
+              }
+            }
+          ]
+        },
+        {
+          "id": "t498",
+          "type": "text",
+          "x": 16,
+          "y": 56,
+          "w": 1120,
+          "h": 24,
+          "text": "システムのテーマに合わせて配色を切り替えます。"
+        }
+      ]
+    },
+    {
+      "id": "r508",
+      "type": "rect",
+      "x": 144,
+      "y": 416,
+      "w": 1152,
+      "h": 96,
+      "name": "Review",
+      "children": [
+        {
+          "id": "r506",
+          "type": "rect",
+          "x": 0,
+          "y": 0,
+          "w": 1152,
+          "h": 40,
+          "name": "Card Header",
+          "style": {
+            "fill": "$surface",
+            "radius": 0
+          },
+          "children": [
+            {
+              "id": "t502",
+              "type": "text",
+              "x": 16,
+              "y": 8,
+              "w": 120,
+              "h": 24,
+              "text": "taku1029-dev",
+              "style": {
+                "weight": "bold"
+              }
+            },
+            {
+              "id": "r504",
+              "type": "rect",
+              "x": 144,
+              "y": 8,
+              "w": 42,
+              "h": 24,
+              "name": "Badge",
+              "style": {
+                "radius": 12
+              },
+              "children": [
+                {
+                  "id": "t503",
+                  "type": "text",
+                  "x": 8,
+                  "y": 0,
+                  "w": 26,
+                  "h": 24,
+                  "text": "承認",
+                  "style": {
+                    "size": "sm",
+                    "color": "$primary"
+                  }
+                }
+              ]
+            },
+            {
+              "id": "t505",
+              "type": "text",
+              "x": 216,
+              "y": 8,
+              "w": 200,
+              "h": 24,
+              "text": "2026/09/12 16:02",
+              "style": {
+                "color": "$muted",
+                "size": "sm"
+              }
+            }
+          ]
+        },
+        {
+          "id": "t507",
+          "type": "text",
+          "x": 16,
+          "y": 56,
+          "w": 1120,
+          "h": 24,
+          "text": "問題なさそうです。"
+        }
+      ]
+    },
+    {
+      "id": "r512",
+      "type": "rect",
+      "x": 144,
+      "y": 528,
+      "w": 1152,
+      "h": 96,
+      "name": "Comment",
+      "children": [
+        {
+          "id": "r511",
+          "type": "rect",
+          "x": 0,
+          "y": 0,
+          "w": 1152,
+          "h": 40,
+          "name": "Card Header",
+          "style": {
+            "fill": "$surface",
+            "radius": 0
+          },
+          "children": [
+            {
+              "id": "t510",
+              "type": "text",
+              "x": 16,
+              "y": 8,
+              "w": 1120,
+              "h": 24,
+              "text": "student-b  2026/09/12 16:10",
+              "style": {
+                "weight": "bold"
+              }
+            }
+          ]
+        },
+        {
+          "id": "t509",
+          "type": "text",
+          "x": 16,
+          "y": 56,
+          "w": 1120,
+          "h": 24,
+          "text": "文字色のコントラストも見てもらえると助かります。"
+        }
+      ]
+    },
+    {
+      "id": "t513",
+      "type": "text",
+      "x": 144,
+      "y": 656,
+      "w": 600,
+      "h": 32,
+      "text": "変更されたファイル (2)",
+      "style": {
+        "size": "lg",
+        "weight": "bold"
+      }
+    },
+    {
+      "id": "r523",
+      "type": "rect",
+      "x": 144,
+      "y": 704,
+      "w": 1152,
+      "h": 200,
+      "name": "Diff",
+      "children": [
+        {
+          "id": "r517",
+          "type": "rect",
+          "x": 0,
+          "y": 0,
+          "w": 1152,
+          "h": 40,
+          "name": "Card Header",
+          "style": {
+            "fill": "$surface",
+            "radius": 0
+          },
+          "children": [
+            {
+              "id": "t514",
+              "type": "text",
+              "x": 16,
+              "y": 8,
+              "w": 600,
+              "h": 24,
+              "text": "app/src/main/java/.../ui/Theme.kt",
+              "style": {
+                "weight": "bold",
+                "size": "sm"
+              }
+            },
+            {
+              "id": "t515",
+              "type": "text",
+              "x": 640,
+              "y": 8,
+              "w": 120,
+              "h": 24,
+              "text": "modified",
+              "style": {
+                "color": "$muted",
+                "size": "sm"
+              }
+            },
+            {
+              "id": "t516",
+              "type": "text",
+              "x": 1040,
+              "y": 8,
+              "w": 96,
+              "h": 24,
+              "text": "+20 −3",
+              "style": {
+                "color": "$muted",
+                "size": "sm"
+              }
+            }
+          ]
+        },
+        {
+          "id": "t518",
+          "type": "text",
+          "x": 16,
+          "y": 52,
+          "w": 1120,
+          "h": 24,
+          "text": "@@ -10,7 +10,24 @@",
+          "style": {
+            "size": "sm"
+          }
+        },
+        {
+          "id": "t519",
+          "type": "text",
+          "x": 16,
+          "y": 80,
+          "w": 1120,
+          "h": 24,
+          "text": "  10  10   private val LightColors = lightColorScheme(",
+          "style": {
+            "size": "sm"
+          }
+        },
+        {
+          "id": "t520",
+          "type": "text",
+          "x": 16,
+          "y": 108,
+          "w": 1120,
+          "h": 24,
+          "text": "      11 + private val DarkColors = darkColorScheme(",
+          "style": {
+            "size": "sm"
+          }
+        },
+        {
+          "id": "t521",
+          "type": "text",
+          "x": 16,
+          "y": 136,
+          "w": 1120,
+          "h": 24,
+          "text": "  14     - MaterialTheme(colorScheme = LightColors)",
+          "style": {
+            "size": "sm"
+          }
+        },
+        {
+          "id": "t522",
+          "type": "text",
+          "x": 16,
+          "y": 164,
+          "w": 1120,
+          "h": 24,
+          "text": "      28 + MaterialTheme(colorScheme = if (dark) DarkColors else LightColors)",
+          "style": {
+            "size": "sm"
+          }
+        }
+      ]
+    },
+    {
+      "id": "r530",
+      "type": "rect",
+      "x": 144,
+      "y": 920,
+      "w": 1152,
+      "h": 120,
+      "name": "Diff",
+      "children": [
+        {
+          "id": "r527",
+          "type": "rect",
+          "x": 0,
+          "y": 0,
+          "w": 1152,
+          "h": 40,
+          "name": "Card Header",
+          "style": {
+            "fill": "$surface",
+            "radius": 0
+          },
+          "children": [
+            {
+              "id": "t524",
+              "type": "text",
+              "x": 16,
+              "y": 8,
+              "w": 600,
+              "h": 24,
+              "text": "app/src/main/res/values/colors.xml",
+              "style": {
+                "weight": "bold",
+                "size": "sm"
+              }
+            },
+            {
+              "id": "t525",
+              "type": "text",
+              "x": 640,
+              "y": 8,
+              "w": 120,
+              "h": 24,
+              "text": "modified",
+              "style": {
+                "color": "$muted",
+                "size": "sm"
+              }
+            },
+            {
+              "id": "t526",
+              "type": "text",
+              "x": 1040,
+              "y": 8,
+              "w": 96,
+              "h": 24,
+              "text": "+4 −0",
+              "style": {
+                "color": "$muted",
+                "size": "sm"
+              }
+            }
+          ]
+        },
+        {
+          "id": "t528",
+          "type": "text",
+          "x": 16,
+          "y": 52,
+          "w": 1120,
+          "h": 24,
+          "text": "@@ -3,0 +4,4 @@",
+          "style": {
+            "size": "sm"
+          }
+        },
+        {
+          "id": "t529",
+          "type": "text",
+          "x": 16,
+          "y": 80,
+          "w": 1120,
+          "h": 24,
+          "text": "       4 + <color name=\"surface_dark\">#121212</color>",
+          "style": {
+            "size": "sm"
+          }
+        }
+      ]
+    },
+    {
+      "id": "r539",
+      "type": "rect",
+      "x": 144,
+      "y": 1064,
+      "w": 1152,
+      "h": 304,
+      "name": "Review Actions",
+      "children": [
+        {
+          "id": "r538",
+          "type": "rect",
+          "x": 0,
+          "y": 0,
+          "w": 1152,
+          "h": 40,
+          "name": "Card Header",
+          "style": {
+            "fill": "$surface",
+            "radius": 0
+          },
+          "children": [
+            {
+              "id": "t537",
+              "type": "text",
+              "x": 16,
+              "y": 8,
+              "w": 1120,
+              "h": 24,
+              "text": "レビュー",
+              "style": {
+                "weight": "bold"
+              }
+            }
+          ]
+        },
+        {
+          "id": "i531",
+          "type": "input",
+          "x": 16,
+          "y": 56,
+          "w": 1120,
+          "h": 120,
+          "text": "",
+          "props": {
+            "placeholder": "コメントを書く (Markdown 可)",
+            "kind": "text",
+            "multiline": true
+          }
+        },
+        {
+          "id": "b532",
+          "type": "button",
+          "x": 16,
+          "y": 192,
+          "w": 96,
+          "h": 40,
+          "text": "コメント",
+          "variant": "outline"
+        },
+        {
+          "id": "b533",
+          "type": "button",
+          "x": 128,
+          "y": 192,
+          "w": 72,
+          "h": 40,
+          "text": "承認",
+          "variant": "outline"
+        },
+        {
+          "id": "b534",
+          "type": "button",
+          "x": 216,
+          "y": 192,
+          "w": 112,
+          "h": 40,
+          "text": "変更を要求",
+          "variant": "outline"
+        },
+        {
+          "id": "b535",
+          "type": "button",
+          "x": 968,
+          "y": 192,
+          "w": 168,
+          "h": 40,
+          "text": "Squash してマージ",
+          "variant": "filled"
+        },
+        {
+          "id": "t536",
+          "type": "text",
+          "x": 16,
+          "y": 248,
+          "w": 1120,
+          "h": 24,
+          "text": "操作はあなたの GitHub アカウントとして実行されます。マージにはリポジトリへの書き込み権限が必要です。",
+          "style": {
+            "color": "$muted",
+            "size": "sm"
+          }
+        }
+      ]
+    },
+    {
+      "id": "r542",
+      "type": "rect",
+      "x": 0,
+      "y": 1424,
+      "w": 1440,
+      "h": 56,
+      "name": "Footer",
+      "style": {
+        "fill": "$bg",
+        "radius": 0
+      },
+      "children": [
+        {
+          "id": "t540",
+          "type": "text",
+          "x": 144,
+          "y": 16,
+          "w": 400,
+          "h": 24,
+          "text": "APSlop — 大学コミュニティ版 GitHub",
+          "style": {
+            "color": "$muted",
+            "size": "sm"
+          }
+        },
+        {
+          "id": "t541",
+          "type": "text",
+          "x": 816,
+          "y": 16,
+          "w": 480,
+          "h": 24,
+          "text": "F-Droid リポジトリ: https://apslop.example.com/fdroid/repo",
+          "style": {
+            "color": "$muted",
+            "size": "sm"
+          }
+        }
+      ]
+    }
+  ]
+}

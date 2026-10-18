@@ -1,0 +1,756 @@
+{
+  "version": 1,
+  "id": "top",
+  "title": "訪問者: トップ(アプリ一覧)",
+  "device": {
+    "w": 1440,
+    "h": 1100
+  },
+  "elements": [
+    {
+      "id": "r7",
+      "type": "rect",
+      "x": 0,
+      "y": 0,
+      "w": 1440,
+      "h": 56,
+      "name": "Visitor Header",
+      "style": {
+        "fill": "#24292F",
+        "radius": 0
+      },
+      "children": [
+        {
+          "id": "i1",
+          "type": "icon",
+          "x": 144,
+          "y": 16,
+          "w": 24,
+          "h": 24,
+          "text": "AP logo"
+        },
+        {
+          "id": "t2",
+          "type": "text",
+          "x": 176,
+          "y": 16,
+          "w": 80,
+          "h": 24,
+          "text": "APSlop",
+          "style": {
+            "weight": "bold",
+            "color": "#FFFFFF"
+          }
+        },
+        {
+          "id": "t3",
+          "type": "text",
+          "x": 280,
+          "y": 16,
+          "w": 48,
+          "h": 24,
+          "text": "Apps",
+          "style": {
+            "color": "#FFFFFF",
+            "weight": "bold"
+          }
+        },
+        {
+          "id": "t4",
+          "type": "text",
+          "x": 344,
+          "y": 16,
+          "w": 160,
+          "h": 24,
+          "text": "Install on your phone",
+          "style": {
+            "color": "#FFFFFF"
+          }
+        },
+        {
+          "id": "t5",
+          "type": "text",
+          "x": 952,
+          "y": 16,
+          "w": 136,
+          "h": 24,
+          "text": "For developers →",
+          "style": {
+            "color": "#FFFFFF",
+            "align": "right"
+          }
+        },
+        {
+          "id": "b6",
+          "type": "button",
+          "x": 1112,
+          "y": 8,
+          "w": 184,
+          "h": 40,
+          "name": "Sign In (goes straight to GitHub)",
+          "text": "Sign in with GitHub",
+          "style": {
+            "fill": "#24292F",
+            "color": "#FFFFFF",
+            "border": "#FFFFFF"
+          },
+          "variant": "outline"
+        }
+      ]
+    },
+    {
+      "id": "r12",
+      "type": "rect",
+      "x": 0,
+      "y": 56,
+      "w": 1440,
+      "h": 168,
+      "name": "Hero",
+      "style": {
+        "fill": "$surface",
+        "radius": 0
+      },
+      "children": [
+        {
+          "id": "t8",
+          "type": "text",
+          "x": 144,
+          "y": 32,
+          "w": 900,
+          "h": 32,
+          "text": "APSlop — apps made by everyone on campus",
+          "style": {
+            "size": "lg",
+            "weight": "bold"
+          }
+        },
+        {
+          "id": "t9",
+          "type": "text",
+          "x": 144,
+          "y": 76,
+          "w": 800,
+          "h": 48,
+          "text": "Browse apps built by students and install them on your phone. Want to build one? Describe it and AI writes the code.",
+          "style": {
+            "color": "$muted"
+          }
+        },
+        {
+          "id": "b10",
+          "type": "button",
+          "x": 144,
+          "y": 116,
+          "w": 216,
+          "h": 36,
+          "text": "Download the store app",
+          "variant": "filled"
+        },
+        {
+          "id": "t11",
+          "type": "text",
+          "x": 384,
+          "y": 122,
+          "w": 200,
+          "h": 24,
+          "text": "Build your own app →",
+          "style": {
+            "color": "#0969DA"
+          }
+        }
+      ]
+    },
+    {
+      "id": "t13",
+      "type": "text",
+      "x": 144,
+      "y": 256,
+      "w": 400,
+      "h": 32,
+      "text": "Published apps",
+      "style": {
+        "size": "lg",
+        "weight": "bold"
+      }
+    },
+    {
+      "id": "t14",
+      "type": "text",
+      "x": 1216,
+      "y": 260,
+      "w": 80,
+      "h": 24,
+      "text": "6 apps",
+      "style": {
+        "color": "$muted",
+        "size": "sm",
+        "align": "right"
+      }
+    },
+    {
+      "id": "r20",
+      "type": "rect",
+      "x": 144,
+      "y": 304,
+      "w": 368,
+      "h": 136,
+      "name": "App Card",
+      "style": {
+        "fill": "$bg"
+      },
+      "children": [
+        {
+          "id": "i15",
+          "type": "image",
+          "x": 16,
+          "y": 16,
+          "w": 48,
+          "h": 48,
+          "text": "icon"
+        },
+        {
+          "id": "t16",
+          "type": "text",
+          "x": 80,
+          "y": 16,
+          "w": 272,
+          "h": 24,
+          "text": "Attendance Counter",
+          "style": {
+            "weight": "bold",
+            "color": "#0969DA"
+          }
+        },
+        {
+          "id": "t17",
+          "type": "text",
+          "x": 80,
+          "y": 40,
+          "w": 272,
+          "h": 24,
+          "text": "taku1029-dev · v0.1.1",
+          "style": {
+            "color": "$muted",
+            "size": "sm"
+          }
+        },
+        {
+          "id": "t18",
+          "type": "text",
+          "x": 16,
+          "y": 72,
+          "w": 336,
+          "h": 24,
+          "text": "Count class attendance per course",
+          "style": {
+            "size": "sm"
+          }
+        },
+        {
+          "id": "t19",
+          "type": "text",
+          "x": 16,
+          "y": 104,
+          "w": 336,
+          "h": 24,
+          "text": "Updated 3 days ago",
+          "style": {
+            "color": "$muted",
+            "size": "sm"
+          }
+        }
+      ]
+    },
+    {
+      "id": "r26",
+      "type": "rect",
+      "x": 536,
+      "y": 304,
+      "w": 368,
+      "h": 136,
+      "name": "App Card",
+      "style": {
+        "fill": "$bg"
+      },
+      "children": [
+        {
+          "id": "i21",
+          "type": "image",
+          "x": 16,
+          "y": 16,
+          "w": 48,
+          "h": 48,
+          "text": "icon"
+        },
+        {
+          "id": "t22",
+          "type": "text",
+          "x": 80,
+          "y": 16,
+          "w": 272,
+          "h": 24,
+          "text": "Cafeteria Notes",
+          "style": {
+            "weight": "bold",
+            "color": "#0969DA"
+          }
+        },
+        {
+          "id": "t23",
+          "type": "text",
+          "x": 80,
+          "y": 40,
+          "w": 272,
+          "h": 24,
+          "text": "student-a · v0.2.0",
+          "style": {
+            "color": "$muted",
+            "size": "sm"
+          }
+        },
+        {
+          "id": "t24",
+          "type": "text",
+          "x": 16,
+          "y": 72,
+          "w": 336,
+          "h": 24,
+          "text": "Rate cafeteria menus with stars",
+          "style": {
+            "size": "sm"
+          }
+        },
+        {
+          "id": "t25",
+          "type": "text",
+          "x": 16,
+          "y": 104,
+          "w": 336,
+          "h": 24,
+          "text": "Updated 5 days ago",
+          "style": {
+            "color": "$muted",
+            "size": "sm"
+          }
+        }
+      ]
+    },
+    {
+      "id": "r32",
+      "type": "rect",
+      "x": 928,
+      "y": 304,
+      "w": 368,
+      "h": 136,
+      "name": "App Card",
+      "style": {
+        "fill": "$bg"
+      },
+      "children": [
+        {
+          "id": "i27",
+          "type": "image",
+          "x": 16,
+          "y": 16,
+          "w": 48,
+          "h": 48,
+          "text": "icon"
+        },
+        {
+          "id": "t28",
+          "type": "text",
+          "x": 80,
+          "y": 16,
+          "w": 272,
+          "h": 24,
+          "text": "Pomodoro",
+          "style": {
+            "weight": "bold",
+            "color": "#0969DA"
+          }
+        },
+        {
+          "id": "t29",
+          "type": "text",
+          "x": 80,
+          "y": 40,
+          "w": 272,
+          "h": 24,
+          "text": "student-b · v1.0.0",
+          "style": {
+            "color": "$muted",
+            "size": "sm"
+          }
+        },
+        {
+          "id": "t30",
+          "type": "text",
+          "x": 16,
+          "y": 72,
+          "w": 336,
+          "h": 24,
+          "text": "25 min work / 5 min break timer",
+          "style": {
+            "size": "sm"
+          }
+        },
+        {
+          "id": "t31",
+          "type": "text",
+          "x": 16,
+          "y": 104,
+          "w": 336,
+          "h": 24,
+          "text": "Updated 2 hours ago",
+          "style": {
+            "color": "$muted",
+            "size": "sm"
+          }
+        }
+      ]
+    },
+    {
+      "id": "r38",
+      "type": "rect",
+      "x": 144,
+      "y": 464,
+      "w": 368,
+      "h": 136,
+      "name": "App Card",
+      "style": {
+        "fill": "$bg"
+      },
+      "children": [
+        {
+          "id": "i33",
+          "type": "image",
+          "x": 16,
+          "y": 16,
+          "w": 48,
+          "h": 48,
+          "text": "icon"
+        },
+        {
+          "id": "t34",
+          "type": "text",
+          "x": 80,
+          "y": 16,
+          "w": 272,
+          "h": 24,
+          "text": "Club Dues",
+          "style": {
+            "weight": "bold",
+            "color": "#0969DA"
+          }
+        },
+        {
+          "id": "t35",
+          "type": "text",
+          "x": 80,
+          "y": 40,
+          "w": 272,
+          "h": 24,
+          "text": "student-c · v0.1.0",
+          "style": {
+            "color": "$muted",
+            "size": "sm"
+          }
+        },
+        {
+          "id": "t36",
+          "type": "text",
+          "x": 16,
+          "y": 72,
+          "w": 336,
+          "h": 24,
+          "text": "Track club dues and who has paid",
+          "style": {
+            "size": "sm"
+          }
+        },
+        {
+          "id": "t37",
+          "type": "text",
+          "x": 16,
+          "y": 104,
+          "w": 336,
+          "h": 24,
+          "text": "Updated 1 day ago",
+          "style": {
+            "color": "$muted",
+            "size": "sm"
+          }
+        }
+      ]
+    },
+    {
+      "id": "r44",
+      "type": "rect",
+      "x": 536,
+      "y": 464,
+      "w": 368,
+      "h": 136,
+      "name": "App Card",
+      "style": {
+        "fill": "$bg"
+      },
+      "children": [
+        {
+          "id": "i39",
+          "type": "image",
+          "x": 16,
+          "y": 16,
+          "w": 48,
+          "h": 48,
+          "text": "icon"
+        },
+        {
+          "id": "t40",
+          "type": "text",
+          "x": 80,
+          "y": 16,
+          "w": 272,
+          "h": 24,
+          "text": "Timetable",
+          "style": {
+            "weight": "bold",
+            "color": "#0969DA"
+          }
+        },
+        {
+          "id": "t41",
+          "type": "text",
+          "x": 80,
+          "y": 40,
+          "w": 272,
+          "h": 24,
+          "text": "student-d · v0.3.1",
+          "style": {
+            "color": "$muted",
+            "size": "sm"
+          }
+        },
+        {
+          "id": "t42",
+          "type": "text",
+          "x": 16,
+          "y": 72,
+          "w": 336,
+          "h": 24,
+          "text": "Register classes and see the next one",
+          "style": {
+            "size": "sm"
+          }
+        },
+        {
+          "id": "t43",
+          "type": "text",
+          "x": 16,
+          "y": 104,
+          "w": 336,
+          "h": 24,
+          "text": "Updated just now",
+          "style": {
+            "color": "$muted",
+            "size": "sm"
+          }
+        }
+      ]
+    },
+    {
+      "id": "r50",
+      "type": "rect",
+      "x": 928,
+      "y": 464,
+      "w": 368,
+      "h": 136,
+      "name": "App Card",
+      "style": {
+        "fill": "$bg"
+      },
+      "children": [
+        {
+          "id": "i45",
+          "type": "image",
+          "x": 16,
+          "y": 16,
+          "w": 48,
+          "h": 48,
+          "text": "icon"
+        },
+        {
+          "id": "t46",
+          "type": "text",
+          "x": 80,
+          "y": 16,
+          "w": 272,
+          "h": 24,
+          "text": "Flashcards",
+          "style": {
+            "weight": "bold",
+            "color": "#0969DA"
+          }
+        },
+        {
+          "id": "t47",
+          "type": "text",
+          "x": 80,
+          "y": 40,
+          "w": 272,
+          "h": 24,
+          "text": "student-e · v0.1.2",
+          "style": {
+            "color": "$muted",
+            "size": "sm"
+          }
+        },
+        {
+          "id": "t48",
+          "type": "text",
+          "x": 16,
+          "y": 72,
+          "w": 336,
+          "h": 24,
+          "text": "Make your own word cards",
+          "style": {
+            "size": "sm"
+          }
+        },
+        {
+          "id": "t49",
+          "type": "text",
+          "x": 16,
+          "y": 104,
+          "w": 336,
+          "h": 24,
+          "text": "Updated 12 days ago",
+          "style": {
+            "color": "$muted",
+            "size": "sm"
+          }
+        }
+      ]
+    },
+    {
+      "id": "r57",
+      "type": "rect",
+      "x": 144,
+      "y": 640,
+      "w": 1152,
+      "h": 216,
+      "name": "Install Guide",
+      "style": {
+        "fill": "$bg"
+      },
+      "children": [
+        {
+          "id": "r56",
+          "type": "rect",
+          "x": 0,
+          "y": 0,
+          "w": 1152,
+          "h": 40,
+          "name": "Card Header",
+          "style": {
+            "fill": "$surface",
+            "radius": 0
+          },
+          "children": [
+            {
+              "id": "t55",
+              "type": "text",
+              "x": 16,
+              "y": 8,
+              "w": 1120,
+              "h": 24,
+              "text": "Install on your phone",
+              "style": {
+                "weight": "bold"
+              }
+            }
+          ]
+        },
+        {
+          "id": "t51",
+          "type": "text",
+          "x": 16,
+          "y": 56,
+          "w": 820,
+          "h": 24,
+          "text": "1. Install the APSlop store app (or any F-Droid client)"
+        },
+        {
+          "id": "b52",
+          "type": "button",
+          "x": 856,
+          "y": 48,
+          "w": 216,
+          "h": 36,
+          "text": "Download the store app",
+          "variant": "outline"
+        },
+        {
+          "id": "t53",
+          "type": "text",
+          "x": 16,
+          "y": 104,
+          "w": 1100,
+          "h": 24,
+          "text": "2. Add the repository https://apslop.example.com/fdroid/repo  (already set in the APSlop store app)"
+        },
+        {
+          "id": "t54",
+          "type": "text",
+          "x": 16,
+          "y": 152,
+          "w": 1100,
+          "h": 24,
+          "text": "3. Pick an app from the list and install it"
+        }
+      ]
+    },
+    {
+      "id": "r60",
+      "type": "rect",
+      "x": 0,
+      "y": 1044,
+      "w": 1440,
+      "h": 56,
+      "name": "Footer",
+      "style": {
+        "radius": 0,
+        "border": "none",
+        "fill": "$bg"
+      },
+      "children": [
+        {
+          "id": "t58",
+          "type": "text",
+          "x": 144,
+          "y": 16,
+          "w": 400,
+          "h": 24,
+          "text": "APSlop — a campus community GitHub",
+          "style": {
+            "color": "$muted",
+            "size": "sm"
+          }
+        },
+        {
+          "id": "t59",
+          "type": "text",
+          "x": 816,
+          "y": 16,
+          "w": 480,
+          "h": 24,
+          "text": "F-Droid repository: https://apslop.example.com/fdroid/repo",
+          "style": {
+            "color": "$muted",
+            "size": "sm",
+            "align": "right"
+          }
+        }
+      ]
+    }
+  ]
+}

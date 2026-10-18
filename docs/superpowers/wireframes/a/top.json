@@ -1,0 +1,712 @@
+{
+  "version": 1,
+  "id": "top",
+  "title": "トップ",
+  "device": {
+    "w": 1440,
+    "h": 1100
+  },
+  "elements": [
+    {
+      "id": "r7",
+      "type": "rect",
+      "x": 0,
+      "y": 0,
+      "w": 1440,
+      "h": 56,
+      "name": "Header",
+      "style": {
+        "fill": "#24292F",
+        "radius": 0
+      },
+      "children": [
+        {
+          "id": "i1",
+          "type": "icon",
+          "x": 144,
+          "y": 16,
+          "w": 24,
+          "h": 24,
+          "text": "AP ロゴ"
+        },
+        {
+          "id": "t2",
+          "type": "text",
+          "x": 176,
+          "y": 16,
+          "w": 80,
+          "h": 24,
+          "text": "APSlop",
+          "style": {
+            "weight": "bold",
+            "color": "#FFFFFF"
+          }
+        },
+        {
+          "id": "t3",
+          "type": "text",
+          "x": 280,
+          "y": 16,
+          "w": 56,
+          "h": 24,
+          "text": "アプリ",
+          "style": {
+            "color": "#FFFFFF"
+          }
+        },
+        {
+          "id": "t4",
+          "type": "text",
+          "x": 352,
+          "y": 16,
+          "w": 88,
+          "h": 24,
+          "text": "リポジトリ",
+          "style": {
+            "color": "#FFFFFF"
+          }
+        },
+        {
+          "id": "t5",
+          "type": "text",
+          "x": 456,
+          "y": 16,
+          "w": 80,
+          "h": 24,
+          "text": "AI で作る",
+          "style": {
+            "color": "#FFFFFF"
+          }
+        },
+        {
+          "id": "b6",
+          "type": "button",
+          "x": 1120,
+          "y": 8,
+          "w": 176,
+          "h": 40,
+          "text": "GitHub でログイン",
+          "variant": "outline"
+        }
+      ]
+    },
+    {
+      "id": "r12",
+      "type": "rect",
+      "x": 0,
+      "y": 56,
+      "w": 1440,
+      "h": 232,
+      "name": "Hero",
+      "style": {
+        "fill": "$surface",
+        "radius": 0
+      },
+      "children": [
+        {
+          "id": "t8",
+          "type": "text",
+          "x": 144,
+          "y": 32,
+          "w": 900,
+          "h": 32,
+          "text": "APSlop — 大学のみんなでアプリを作る",
+          "style": {
+            "size": "lg",
+            "weight": "bold"
+          }
+        },
+        {
+          "id": "t9",
+          "type": "text",
+          "x": 144,
+          "y": 80,
+          "w": 800,
+          "h": 72,
+          "text": "作りたいアプリを日本語で説明するだけで、AI がコードを書いてリポジトリを用意します。リリースすると自動でビルドされ、学内アプリストアに並びます。誰かのアプリに Pull Request を送って改良することもできます。",
+          "style": {
+            "color": "$muted"
+          }
+        },
+        {
+          "id": "b10",
+          "type": "button",
+          "x": 144,
+          "y": 168,
+          "w": 184,
+          "h": 40,
+          "text": "AI でアプリを作る",
+          "variant": "filled"
+        },
+        {
+          "id": "b11",
+          "type": "button",
+          "x": 344,
+          "y": 168,
+          "w": 168,
+          "h": 40,
+          "text": "リポジトリを見る",
+          "variant": "outline"
+        }
+      ]
+    },
+    {
+      "id": "t13",
+      "type": "text",
+      "x": 144,
+      "y": 320,
+      "w": 400,
+      "h": 32,
+      "text": "公開中のアプリ",
+      "style": {
+        "size": "lg",
+        "weight": "bold"
+      }
+    },
+    {
+      "id": "t14",
+      "type": "text",
+      "x": 1216,
+      "y": 324,
+      "w": 80,
+      "h": 24,
+      "text": "6 件",
+      "style": {
+        "color": "$muted",
+        "size": "sm"
+      }
+    },
+    {
+      "id": "r20",
+      "type": "rect",
+      "x": 144,
+      "y": 368,
+      "w": 368,
+      "h": 136,
+      "name": "App Card",
+      "children": [
+        {
+          "id": "i15",
+          "type": "image",
+          "x": 16,
+          "y": 16,
+          "w": 48,
+          "h": 48,
+          "text": "アイコン"
+        },
+        {
+          "id": "t16",
+          "type": "text",
+          "x": 80,
+          "y": 16,
+          "w": 272,
+          "h": 24,
+          "text": "出席カウンター",
+          "style": {
+            "weight": "bold",
+            "color": "$primary"
+          }
+        },
+        {
+          "id": "t17",
+          "type": "text",
+          "x": 80,
+          "y": 40,
+          "w": 272,
+          "h": 24,
+          "text": "taku1029-dev · v0.1.1",
+          "style": {
+            "color": "$muted",
+            "size": "sm"
+          }
+        },
+        {
+          "id": "t18",
+          "type": "text",
+          "x": 16,
+          "y": 72,
+          "w": 336,
+          "h": 24,
+          "text": "授業の出席回数を科目ごとに記録できる",
+          "style": {
+            "size": "sm"
+          }
+        },
+        {
+          "id": "t19",
+          "type": "text",
+          "x": 16,
+          "y": 104,
+          "w": 336,
+          "h": 24,
+          "text": "3 日前 に更新",
+          "style": {
+            "color": "$muted",
+            "size": "sm"
+          }
+        }
+      ]
+    },
+    {
+      "id": "r26",
+      "type": "rect",
+      "x": 536,
+      "y": 368,
+      "w": 368,
+      "h": 136,
+      "name": "App Card",
+      "children": [
+        {
+          "id": "i21",
+          "type": "image",
+          "x": 16,
+          "y": 16,
+          "w": 48,
+          "h": 48,
+          "text": "アイコン"
+        },
+        {
+          "id": "t22",
+          "type": "text",
+          "x": 80,
+          "y": 16,
+          "w": 272,
+          "h": 24,
+          "text": "学食メモ",
+          "style": {
+            "weight": "bold",
+            "color": "$primary"
+          }
+        },
+        {
+          "id": "t23",
+          "type": "text",
+          "x": 80,
+          "y": 40,
+          "w": 272,
+          "h": 24,
+          "text": "student-a · v0.2.0",
+          "style": {
+            "color": "$muted",
+            "size": "sm"
+          }
+        },
+        {
+          "id": "t24",
+          "type": "text",
+          "x": 16,
+          "y": 72,
+          "w": 336,
+          "h": 24,
+          "text": "学食のメニューをメモして星評価できる",
+          "style": {
+            "size": "sm"
+          }
+        },
+        {
+          "id": "t25",
+          "type": "text",
+          "x": 16,
+          "y": 104,
+          "w": 336,
+          "h": 24,
+          "text": "5 日前 に更新",
+          "style": {
+            "color": "$muted",
+            "size": "sm"
+          }
+        }
+      ]
+    },
+    {
+      "id": "r32",
+      "type": "rect",
+      "x": 928,
+      "y": 368,
+      "w": 368,
+      "h": 136,
+      "name": "App Card",
+      "children": [
+        {
+          "id": "i27",
+          "type": "image",
+          "x": 16,
+          "y": 16,
+          "w": 48,
+          "h": 48,
+          "text": "アイコン"
+        },
+        {
+          "id": "t28",
+          "type": "text",
+          "x": 80,
+          "y": 16,
+          "w": 272,
+          "h": 24,
+          "text": "ポモドーロ",
+          "style": {
+            "weight": "bold",
+            "color": "$primary"
+          }
+        },
+        {
+          "id": "t29",
+          "type": "text",
+          "x": 80,
+          "y": 40,
+          "w": 272,
+          "h": 24,
+          "text": "student-b · v1.0.0",
+          "style": {
+            "color": "$muted",
+            "size": "sm"
+          }
+        },
+        {
+          "id": "t30",
+          "type": "text",
+          "x": 16,
+          "y": 72,
+          "w": 336,
+          "h": 24,
+          "text": "25分作業・5分休憩を繰り返すタイマー",
+          "style": {
+            "size": "sm"
+          }
+        },
+        {
+          "id": "t31",
+          "type": "text",
+          "x": 16,
+          "y": 104,
+          "w": 336,
+          "h": 24,
+          "text": "2 時間前 に更新",
+          "style": {
+            "color": "$muted",
+            "size": "sm"
+          }
+        }
+      ]
+    },
+    {
+      "id": "r38",
+      "type": "rect",
+      "x": 144,
+      "y": 528,
+      "w": 368,
+      "h": 136,
+      "name": "App Card",
+      "children": [
+        {
+          "id": "i33",
+          "type": "image",
+          "x": 16,
+          "y": 16,
+          "w": 48,
+          "h": 48,
+          "text": "アイコン"
+        },
+        {
+          "id": "t34",
+          "type": "text",
+          "x": 80,
+          "y": 16,
+          "w": 272,
+          "h": 24,
+          "text": "会費管理",
+          "style": {
+            "weight": "bold",
+            "color": "$primary"
+          }
+        },
+        {
+          "id": "t35",
+          "type": "text",
+          "x": 80,
+          "y": 40,
+          "w": 272,
+          "h": 24,
+          "text": "student-c · v0.1.0",
+          "style": {
+            "color": "$muted",
+            "size": "sm"
+          }
+        },
+        {
+          "id": "t36",
+          "type": "text",
+          "x": 16,
+          "y": 72,
+          "w": 336,
+          "h": 24,
+          "text": "サークルの会費と支払い状況を記録する",
+          "style": {
+            "size": "sm"
+          }
+        },
+        {
+          "id": "t37",
+          "type": "text",
+          "x": 16,
+          "y": 104,
+          "w": 336,
+          "h": 24,
+          "text": "1 日前 に更新",
+          "style": {
+            "color": "$muted",
+            "size": "sm"
+          }
+        }
+      ]
+    },
+    {
+      "id": "r44",
+      "type": "rect",
+      "x": 536,
+      "y": 528,
+      "w": 368,
+      "h": 136,
+      "name": "App Card",
+      "children": [
+        {
+          "id": "i39",
+          "type": "image",
+          "x": 16,
+          "y": 16,
+          "w": 48,
+          "h": 48,
+          "text": "アイコン"
+        },
+        {
+          "id": "t40",
+          "type": "text",
+          "x": 80,
+          "y": 16,
+          "w": 272,
+          "h": 24,
+          "text": "時間割",
+          "style": {
+            "weight": "bold",
+            "color": "$primary"
+          }
+        },
+        {
+          "id": "t41",
+          "type": "text",
+          "x": 80,
+          "y": 40,
+          "w": 272,
+          "h": 24,
+          "text": "student-d · v0.3.1",
+          "style": {
+            "color": "$muted",
+            "size": "sm"
+          }
+        },
+        {
+          "id": "t42",
+          "type": "text",
+          "x": 16,
+          "y": 72,
+          "w": 336,
+          "h": 24,
+          "text": "時間割を登録して次の授業を表示する",
+          "style": {
+            "size": "sm"
+          }
+        },
+        {
+          "id": "t43",
+          "type": "text",
+          "x": 16,
+          "y": 104,
+          "w": 336,
+          "h": 24,
+          "text": "たった今 に更新",
+          "style": {
+            "color": "$muted",
+            "size": "sm"
+          }
+        }
+      ]
+    },
+    {
+      "id": "r50",
+      "type": "rect",
+      "x": 928,
+      "y": 528,
+      "w": 368,
+      "h": 136,
+      "name": "App Card",
+      "children": [
+        {
+          "id": "i45",
+          "type": "image",
+          "x": 16,
+          "y": 16,
+          "w": 48,
+          "h": 48,
+          "text": "アイコン"
+        },
+        {
+          "id": "t46",
+          "type": "text",
+          "x": 80,
+          "y": 16,
+          "w": 272,
+          "h": 24,
+          "text": "単語帳",
+          "style": {
+            "weight": "bold",
+            "color": "$primary"
+          }
+        },
+        {
+          "id": "t47",
+          "type": "text",
+          "x": 80,
+          "y": 40,
+          "w": 272,
+          "h": 24,
+          "text": "student-e · v0.1.2",
+          "style": {
+            "color": "$muted",
+            "size": "sm"
+          }
+        },
+        {
+          "id": "t48",
+          "type": "text",
+          "x": 16,
+          "y": 72,
+          "w": 336,
+          "h": 24,
+          "text": "自分で作る単語カード",
+          "style": {
+            "size": "sm"
+          }
+        },
+        {
+          "id": "t49",
+          "type": "text",
+          "x": 16,
+          "y": 104,
+          "w": 336,
+          "h": 24,
+          "text": "12 日前 に更新",
+          "style": {
+            "color": "$muted",
+            "size": "sm"
+          }
+        }
+      ]
+    },
+    {
+      "id": "r56",
+      "type": "rect",
+      "x": 144,
+      "y": 704,
+      "w": 1152,
+      "h": 200,
+      "name": "Install Guide",
+      "children": [
+        {
+          "id": "r55",
+          "type": "rect",
+          "x": 0,
+          "y": 0,
+          "w": 1152,
+          "h": 40,
+          "name": "Card Header",
+          "style": {
+            "fill": "$surface",
+            "radius": 0
+          },
+          "children": [
+            {
+              "id": "t54",
+              "type": "text",
+              "x": 16,
+              "y": 8,
+              "w": 1120,
+              "h": 24,
+              "text": "スマホでインストールするには",
+              "style": {
+                "weight": "bold"
+              }
+            }
+          ]
+        },
+        {
+          "id": "t51",
+          "type": "text",
+          "x": 16,
+          "y": 56,
+          "w": 1100,
+          "h": 24,
+          "text": "1. APSlop ストアアプリ、または F-Droid クライアントをインストールする"
+        },
+        {
+          "id": "t52",
+          "type": "text",
+          "x": 16,
+          "y": 96,
+          "w": 1100,
+          "h": 24,
+          "text": "2. リポジトリに https://apslop.example.com/fdroid/repo を追加する"
+        },
+        {
+          "id": "t53",
+          "type": "text",
+          "x": 16,
+          "y": 136,
+          "w": 1100,
+          "h": 24,
+          "text": "3. アプリ一覧から好きなアプリをインストールする。更新も自動で通知されます"
+        }
+      ]
+    },
+    {
+      "id": "r59",
+      "type": "rect",
+      "x": 0,
+      "y": 1044,
+      "w": 1440,
+      "h": 56,
+      "name": "Footer",
+      "style": {
+        "fill": "$bg",
+        "radius": 0
+      },
+      "children": [
+        {
+          "id": "t57",
+          "type": "text",
+          "x": 144,
+          "y": 16,
+          "w": 400,
+          "h": 24,
+          "text": "APSlop — 大学コミュニティ版 GitHub",
+          "style": {
+            "color": "$muted",
+            "size": "sm"
+          }
+        },
+        {
+          "id": "t58",
+          "type": "text",
+          "x": 816,
+          "y": 16,
+          "w": 480,
+          "h": 24,
+          "text": "F-Droid リポジトリ: https://apslop.example.com/fdroid/repo",
+          "style": {
+            "color": "$muted",
+            "size": "sm"
+          }
+        }
+      ]
+    }
+  ]
+}
