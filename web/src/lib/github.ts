@@ -14,8 +14,23 @@ export function adminOctokit(): Octokit {
   return new Octokit({ auth: env().GITHUB_ADMIN_TOKEN });
 }
 
+export const GITHUB_SIGNIN_EXPIRED =
+  "Your GitHub sign-in is no longer valid. Sign out, sign in with GitHub again, then try once more.";
+
+/**
+ * Octokit acting as the signed-in user. GitHub answers 401 "Bad credentials" when the token kept in the
+ * session cookie has been revoked (e.g. the user signed in many times or removed the app's access);
+ * that is turned into a message the user can act on, with status 401.
+ */
 export function userOctokit(token: string): Octokit {
-  return new Octokit({ auth: token });
+  const gh = new Octokit({ auth: token });
+  gh.hook.error("request", (error) => {
+    if ((error as { status?: number }).status === 401) {
+      throw Object.assign(new Error(GITHUB_SIGNIN_EXPIRED), { status: 401 });
+    }
+    throw error;
+  });
+  return gh;
 }
 
 export function org(): string {
