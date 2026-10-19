@@ -23,7 +23,7 @@ export default async function IssuesPage({
           <Link href={`/repos/${name}/issues?state=closed`} className={s === "closed" ? "" : "text-fg-muted font-normal"}>Closed</Link>
         </CardHeader>
         {issues.length === 0 ? (
-          <Empty>Issue はありません。</Empty>
+          <Empty>{s === "open" ? "No open issues." : "No closed issues."}</Empty>
         ) : (
           <ul className="divide-y divide-border">
             {issues.map((i) => (
@@ -32,7 +32,7 @@ export default async function IssuesPage({
                 <div>
                   <a href={i.html_url} target="_blank" rel="noreferrer" className="font-semibold hover:text-accent">{i.title}</a>
                   <div className="text-xs text-fg-muted mt-0.5">
-                    #{i.number} · {i.user?.login} が {timeAgo(i.created_at)} に作成 · コメント {i.comments}
+                    #{i.number} · opened {timeAgo(i.created_at)} by {i.user?.login} · {i.comments} {i.comments === 1 ? "comment" : "comments"}
                   </div>
                 </div>
               </li>
@@ -40,7 +40,7 @@ export default async function IssuesPage({
           </ul>
         )}
       </Card>
-      {session ? <IssueForm name={name} /> : <p className="text-sm text-fg-muted">Issue を作成するにはログインしてください。</p>}
+      {session ? <IssueForm name={name} /> : <p className="text-sm text-fg-muted">Sign in with GitHub to create an issue.</p>}
     </div>
   );
 }

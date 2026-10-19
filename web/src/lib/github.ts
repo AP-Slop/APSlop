@@ -179,32 +179,84 @@ export type RepoSummary = {
   updatedAt: string | null;
   stars: number;
   openIssues: number;
+  openPulls: number;
   defaultBranch: string;
   language: string | null;
 };
 
+type RepoNode = {
+  name: string;
+  nameWithOwner: string;
+  description: string | null;
+  url: string;
+  updatedAt: string | null;
+  stargazerCount: number;
+  defaultBranchRef: { name: string } | null;
+  primaryLanguage: { name: string } | null;
+  issues: { totalCount: number };
+  pullRequests: { totalCount: number };
+};
+
+/** Public repos of the org, most recently updated first, with open issue and pull request counts kept apart. */
 export async function listOrgRepos(query?: string): Promise<RepoSummary[]> {
   const gh = adminOctokit();
-  const repos = await gh.paginate(gh.rest.repos.listForOrg, {
-    org: org(),
-    per_page: 100,
-    sort: "updated",
-    type: "public",
-  });
+  const nodes: RepoNode[] = [];
+  let cursor: string | null = null;
+  do {
+    const page: {
+      organization: { repositories: { nodes: RepoNode[]; pageInfo: { hasNextPage: boolean; endCursor: string | null } } };
+    } = await gh.graphql(
+      `query($org: String!, $cursor: String) {
+        organization(login: $org) {
+          repositories(first: 100, after: $cursor, privacy: PUBLIC, orderBy: { field: UPDATED_AT, direction: DESC }) {
+            nodes {
+              name nameWithOwner description url updatedAt stargazerCount
+              defaultBranchRef { name }
+              primaryLanguage { name }
+              issues(states: OPEN) { totalCount }
+              pullRequests(states: OPEN) { totalCount }
+            }
+            pageInfo { hasNextPage endCursor }
+          }
+        }
+      }`,
+      { org: org(), cursor },
+    );
+    const repos = page.organization.repositories;
+    nodes.push(...repos.nodes);
+    cursor = repos.pageInfo.hasNextPage ? repos.pageInfo.endCursor : null;
+  } while (cursor);
+
   const q = query?.trim().toLowerCase();
-  return repos
+  return nodes
     .filter((r) => !q || r.name.toLowerCase().includes(q) || (r.description ?? "").toLowerCase().includes(q))
     .map((r) => ({
       name: r.name,
-      fullName: r.full_name,
+      fullName: r.nameWithOwner,
       description: r.description ?? null,
-      htmlUrl: r.html_url,
-      updatedAt: r.updated_at ?? null,
-      stars: r.stargazers_count ?? 0,
-      openIssues: r.open_issues_count ?? 0,
-      defaultBranch: r.default_branch ?? "main",
-      language: r.language ?? null,
+      htmlUrl: r.url,
+      updatedAt: r.updatedAt ?? null,
+      stars: r.stargazerCount,
+      openIssues: r.issues.totalCount,
+      openPulls: r.pullRequests.totalCount,
+      defaultBranch: r.defaultBranchRef?.name ?? "main",
+      language: r.primaryLanguage?.name ?? null,
     }));
+}
+
+/** Open issue and pull request counts of one repo (GitHub's open_issues_count mixes the two). */
+export async function getRepoCounts(name: string): Promise<{ openIssues: number; openPulls: number }> {
+  const gh = adminOctokit();
+  const data: { repository: { issues: { totalCount: number }; pullRequests: { totalCount: number } } } = await gh.graphql(
+    `query($owner: String!, $name: String!) {
+      repository(owner: $owner, name: $name) {
+        issues(states: OPEN) { totalCount }
+        pullRequests(states: OPEN) { totalCount }
+      }
+    }`,
+    { owner: org(), name },
+  );
+  return { openIssues: data.repository.issues.totalCount, openPulls: data.repository.pullRequests.totalCount };
 }
 
 export async function getRepo(name: string) {

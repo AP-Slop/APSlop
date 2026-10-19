@@ -1,11 +1,11 @@
 {
   "version": 1,
-  "id": "repo-code",
-  "title": "開発者: リポジトリ(Code)",
+  "id": "repo-settings",
+  "title": "開発者: アプリの設定(新規・持ち主のみ)",
   "device": "desktop",
   "elements": [
     {
-      "id": "r305",
+      "id": "r846",
       "type": "rect",
       "x": 0,
       "y": 0,
@@ -18,7 +18,7 @@
       },
       "children": [
         {
-          "id": "i296",
+          "id": "i837",
           "type": "icon",
           "x": 144,
           "y": 16,
@@ -27,7 +27,7 @@
           "text": "AP logo"
         },
         {
-          "id": "t297",
+          "id": "t838",
           "type": "text",
           "x": 176,
           "y": 16,
@@ -40,7 +40,7 @@
           }
         },
         {
-          "id": "t298",
+          "id": "t839",
           "type": "text",
           "x": 360,
           "y": 16,
@@ -48,11 +48,12 @@
           "h": 24,
           "text": "Dashboard",
           "style": {
-            "color": "#FFFFFF"
+            "color": "#FFFFFF",
+            "weight": "normal"
           }
         },
         {
-          "id": "t299",
+          "id": "t840",
           "type": "text",
           "x": 464,
           "y": 16,
@@ -60,11 +61,26 @@
           "h": 24,
           "text": "Repositories",
           "style": {
-            "color": "#FFFFFF"
+            "color": "#FFFFFF",
+            "weight": "bold"
           }
         },
         {
-          "id": "t300",
+          "id": "hu1",
+          "type": "rect",
+          "x": 460,
+          "y": 52,
+          "w": 112,
+          "h": 4,
+          "name": "Current Place",
+          "style": {
+            "fill": "#FD8C73",
+            "border": "none",
+            "radius": 2
+          }
+        },
+        {
+          "id": "t841",
           "type": "text",
           "x": 584,
           "y": 16,
@@ -72,24 +88,12 @@
           "h": 24,
           "text": "New app",
           "style": {
-            "color": "#FFFFFF"
-          }
-        },
-        {
-          "id": "t301",
-          "type": "text",
-          "x": 880,
-          "y": 16,
-          "w": 136,
-          "h": 24,
-          "text": "← Store",
-          "style": {
             "color": "#FFFFFF",
-            "align": "right"
+            "weight": "normal"
           }
         },
         {
-          "id": "i302",
+          "id": "i843",
           "type": "icon",
           "x": 1040,
           "y": 16,
@@ -98,7 +102,7 @@
           "text": "avatar"
         },
         {
-          "id": "t303",
+          "id": "t844",
           "type": "text",
           "x": 1072,
           "y": 16,
@@ -110,7 +114,7 @@
           }
         },
         {
-          "id": "t304",
+          "id": "t845",
           "type": "text",
           "x": 1200,
           "y": 16,
@@ -121,11 +125,27 @@
             "color": "#FFFFFF",
             "align": "right"
           }
+        },
+        {
+          "id": "hm1",
+          "type": "toggle",
+          "x": 832,
+          "y": 12,
+          "w": 184,
+          "h": 32,
+          "name": "Mode Switch",
+          "text": "Developer Mode",
+          "props": {
+            "checked": true
+          },
+          "style": {
+            "color": "#FFFFFF"
+          }
         }
       ]
     },
     {
-      "id": "r321",
+      "id": "r862",
       "type": "rect",
       "x": 0,
       "y": 56,
@@ -138,7 +158,7 @@
       },
       "children": [
         {
-          "id": "t306",
+          "id": "t847",
           "type": "text",
           "x": 144,
           "y": 16,
@@ -151,7 +171,7 @@
           }
         },
         {
-          "id": "t307",
+          "id": "t848",
           "type": "text",
           "x": 216,
           "y": 16,
@@ -164,7 +184,7 @@
           }
         },
         {
-          "id": "r309",
+          "id": "r850",
           "type": "rect",
           "x": 400,
           "y": 16,
@@ -177,7 +197,7 @@
           },
           "children": [
             {
-              "id": "t308",
+              "id": "t849",
               "type": "text",
               "x": 8,
               "y": 0,
@@ -193,7 +213,7 @@
           ]
         },
         {
-          "id": "r311",
+          "id": "r852",
           "type": "rect",
           "x": 480,
           "y": 16,
@@ -206,7 +226,7 @@
           },
           "children": [
             {
-              "id": "t310",
+              "id": "t851",
               "type": "text",
               "x": 8,
               "y": 0,
@@ -222,7 +242,7 @@
           ]
         },
         {
-          "id": "t312",
+          "id": "t853",
           "type": "text",
           "x": 928,
           "y": 16,
@@ -235,7 +255,7 @@
           }
         },
         {
-          "id": "b313",
+          "id": "b854",
           "type": "button",
           "x": 1104,
           "y": 8,
@@ -245,7 +265,7 @@
           "variant": "filled"
         },
         {
-          "id": "t314",
+          "id": "t855",
           "type": "text",
           "x": 144,
           "y": 48,
@@ -258,7 +278,7 @@
           }
         },
         {
-          "id": "t315",
+          "id": "t856",
           "type": "text",
           "x": 144,
           "y": 88,
@@ -266,25 +286,11 @@
           "h": 24,
           "text": "Code",
           "style": {
-            "weight": "bold"
+            "weight": "normal"
           }
         },
         {
-          "id": "r316",
-          "type": "rect",
-          "x": 144,
-          "y": 118,
-          "w": 48,
-          "h": 2,
-          "name": "Active Tab Underline",
-          "style": {
-            "fill": "#FD8C73",
-            "border": "none",
-            "radius": 0
-          }
-        },
-        {
-          "id": "t317",
+          "id": "t857",
           "type": "text",
           "x": 224,
           "y": 88,
@@ -296,7 +302,7 @@
           }
         },
         {
-          "id": "t318",
+          "id": "t858",
           "type": "text",
           "x": 376,
           "y": 88,
@@ -308,7 +314,7 @@
           }
         },
         {
-          "id": "t319",
+          "id": "t859",
           "type": "text",
           "x": 472,
           "y": 88,
@@ -320,7 +326,7 @@
           }
         },
         {
-          "id": "t320",
+          "id": "t860",
           "type": "text",
           "x": 576,
           "y": 88,
@@ -328,270 +334,39 @@
           "h": 24,
           "text": "Settings",
           "style": {
-            "weight": "normal"
+            "weight": "bold"
+          }
+        },
+        {
+          "id": "r861",
+          "type": "rect",
+          "x": 576,
+          "y": 118,
+          "w": 64,
+          "h": 2,
+          "name": "Active Tab Underline",
+          "style": {
+            "fill": "#FD8C73",
+            "border": "none",
+            "radius": 0
           }
         }
       ]
     },
     {
-      "id": "r295",
+      "id": "r876",
       "type": "rect",
       "x": 144,
       "y": 200,
       "w": 1152,
-      "h": 256,
-      "name": "File Tree",
+      "h": 264,
+      "name": "Store Listing",
       "style": {
         "fill": "$bg"
       },
       "children": [
         {
-          "id": "r294",
-          "type": "rect",
-          "x": 0,
-          "y": 0,
-          "w": 1152,
-          "h": 40,
-          "name": "Card Header",
-          "style": {
-            "fill": "$surface",
-            "radius": 0
-          }
-        },
-        {
-          "id": "r277",
-          "type": "rect",
-          "x": 16,
-          "y": 8,
-          "w": 52,
-          "h": 24,
-          "name": "Badge",
-          "style": {
-            "radius": 12,
-            "fill": "$bg"
-          },
-          "children": [
-            {
-              "id": "t276",
-              "type": "text",
-              "x": 8,
-              "y": 0,
-              "w": 36,
-              "h": 24,
-              "text": "main",
-              "style": {
-                "size": "sm",
-                "color": "$muted",
-                "align": "center"
-              }
-            }
-          ]
-        },
-        {
-          "id": "t278",
-          "type": "text",
-          "x": 1040,
-          "y": 8,
-          "w": 96,
-          "h": 24,
-          "text": "5 items",
-          "style": {
-            "color": "$muted",
-            "size": "sm",
-            "align": "right"
-          }
-        },
-        {
-          "id": "i279",
-          "type": "icon",
-          "x": 16,
-          "y": 48,
-          "w": 24,
-          "h": 24,
-          "text": "folder"
-        },
-        {
-          "id": "t280",
-          "type": "text",
-          "x": 52,
-          "y": 48,
-          "w": 600,
-          "h": 24,
-          "text": ".github",
-          "style": {
-            "color": "#0969DA"
-          }
-        },
-        {
-          "id": "t281",
-          "type": "text",
-          "x": 1040,
-          "y": 48,
-          "w": 96,
-          "h": 24,
-          "text": "",
-          "style": {
-            "color": "$muted",
-            "size": "sm",
-            "align": "right"
-          }
-        },
-        {
-          "id": "i282",
-          "type": "icon",
-          "x": 16,
-          "y": 88,
-          "w": 24,
-          "h": 24,
-          "text": "folder"
-        },
-        {
-          "id": "t283",
-          "type": "text",
-          "x": 52,
-          "y": 88,
-          "w": 600,
-          "h": 24,
-          "text": "app",
-          "style": {
-            "color": "#0969DA"
-          }
-        },
-        {
-          "id": "t284",
-          "type": "text",
-          "x": 1040,
-          "y": 88,
-          "w": 96,
-          "h": 24,
-          "text": "",
-          "style": {
-            "color": "$muted",
-            "size": "sm",
-            "align": "right"
-          }
-        },
-        {
-          "id": "i285",
-          "type": "icon",
-          "x": 16,
-          "y": 128,
-          "w": 24,
-          "h": 24,
-          "text": "file"
-        },
-        {
-          "id": "t286",
-          "type": "text",
-          "x": 52,
-          "y": 128,
-          "w": 600,
-          "h": 24,
-          "text": "README.md",
-          "style": {
-            "color": "#0969DA"
-          }
-        },
-        {
-          "id": "t287",
-          "type": "text",
-          "x": 1040,
-          "y": 128,
-          "w": 96,
-          "h": 24,
-          "text": "812 B",
-          "style": {
-            "color": "$muted",
-            "size": "sm",
-            "align": "right"
-          }
-        },
-        {
-          "id": "i288",
-          "type": "icon",
-          "x": 16,
-          "y": 168,
-          "w": 24,
-          "h": 24,
-          "text": "file"
-        },
-        {
-          "id": "t289",
-          "type": "text",
-          "x": 52,
-          "y": 168,
-          "w": 600,
-          "h": 24,
-          "text": "build.gradle.kts",
-          "style": {
-            "color": "#0969DA"
-          }
-        },
-        {
-          "id": "t290",
-          "type": "text",
-          "x": 1040,
-          "y": 168,
-          "w": 96,
-          "h": 24,
-          "text": "240 B",
-          "style": {
-            "color": "$muted",
-            "size": "sm",
-            "align": "right"
-          }
-        },
-        {
-          "id": "i291",
-          "type": "icon",
-          "x": 16,
-          "y": 208,
-          "w": 24,
-          "h": 24,
-          "text": "file"
-        },
-        {
-          "id": "t292",
-          "type": "text",
-          "x": 52,
-          "y": 208,
-          "w": 600,
-          "h": 24,
-          "text": "settings.gradle.kts",
-          "style": {
-            "color": "#0969DA"
-          }
-        },
-        {
-          "id": "t293",
-          "type": "text",
-          "x": 1040,
-          "y": 208,
-          "w": 96,
-          "h": 24,
-          "text": "410 B",
-          "style": {
-            "color": "$muted",
-            "size": "sm",
-            "align": "right"
-          }
-        }
-      ]
-    },
-    {
-      "id": "r325",
-      "type": "rect",
-      "x": 144,
-      "y": 472,
-      "w": 1152,
-      "h": 240,
-      "name": "README",
-      "style": {
-        "fill": "$bg"
-      },
-      "children": [
-        {
-          "id": "r324",
+          "id": "r875",
           "type": "rect",
           "x": 0,
           "y": 0,
@@ -604,13 +379,13 @@
           },
           "children": [
             {
-              "id": "t323",
+              "id": "t874",
               "type": "text",
               "x": 16,
               "y": 8,
               "w": 1120,
               "h": 24,
-              "text": "README.md",
+              "text": "Store listing",
               "style": {
                 "weight": "bold"
               }
@@ -618,18 +393,210 @@
           ]
         },
         {
-          "id": "t322",
-          "type": "text",
+          "id": "i863",
+          "type": "input",
           "x": 16,
           "y": 56,
-          "w": 1120,
-          "h": 160,
-          "text": "Attendance Counter\n\nRecord attendance per course and see how many absences you have left.\n\n• Add and remove courses\n• Record present / absent"
+          "w": 560,
+          "h": 56,
+          "text": "Summary (one line, shown in the store)",
+          "props": {
+            "placeholder": "Count class attendance per course",
+            "kind": "text"
+          }
+        },
+        {
+          "id": "b864",
+          "type": "button",
+          "x": 592,
+          "y": 64,
+          "w": 88,
+          "h": 40,
+          "text": "Save",
+          "variant": "filled"
+        },
+        {
+          "id": "d865",
+          "type": "divider",
+          "x": 0,
+          "y": 128,
+          "w": 1152,
+          "h": 1
+        },
+        {
+          "id": "t866",
+          "type": "text",
+          "x": 16,
+          "y": 144,
+          "w": 160,
+          "h": 24,
+          "text": "App name",
+          "style": {
+            "color": "$muted",
+            "size": "sm"
+          }
+        },
+        {
+          "id": "t867",
+          "type": "text",
+          "x": 176,
+          "y": 144,
+          "w": 400,
+          "h": 24,
+          "text": "Attendance Counter"
+        },
+        {
+          "id": "t868",
+          "type": "text",
+          "x": 16,
+          "y": 176,
+          "w": 160,
+          "h": 24,
+          "text": "Icon",
+          "style": {
+            "color": "$muted",
+            "size": "sm"
+          }
+        },
+        {
+          "id": "i869",
+          "type": "image",
+          "x": 176,
+          "y": 176,
+          "w": 32,
+          "h": 32,
+          "text": "icon"
+        },
+        {
+          "id": "t870",
+          "type": "text",
+          "x": 16,
+          "y": 216,
+          "w": 160,
+          "h": 24,
+          "text": "Description",
+          "style": {
+            "color": "$muted",
+            "size": "sm"
+          }
+        },
+        {
+          "id": "t871",
+          "type": "text",
+          "x": 176,
+          "y": 216,
+          "w": 400,
+          "h": 24,
+          "text": "README.md"
+        },
+        {
+          "id": "t872",
+          "type": "text",
+          "x": 600,
+          "y": 144,
+          "w": 360,
+          "h": 72,
+          "text": "These come from the app itself, so the web and the store app always show the same thing. Change them with a pull request.",
+          "style": {
+            "color": "$muted",
+            "size": "sm"
+          }
+        },
+        {
+          "id": "b873",
+          "type": "button",
+          "x": 976,
+          "y": 160,
+          "w": 160,
+          "h": 36,
+          "text": "Create PR with AI",
+          "variant": "outline"
         }
       ]
     },
     {
-      "id": "r328",
+      "id": "r882",
+      "type": "rect",
+      "x": 144,
+      "y": 480,
+      "w": 1152,
+      "h": 160,
+      "name": "Danger Zone",
+      "style": {
+        "fill": "$bg"
+      },
+      "children": [
+        {
+          "id": "r881",
+          "type": "rect",
+          "x": 0,
+          "y": 0,
+          "w": 1152,
+          "h": 40,
+          "name": "Card Header",
+          "style": {
+            "fill": "$surface",
+            "radius": 0
+          },
+          "children": [
+            {
+              "id": "t880",
+              "type": "text",
+              "x": 16,
+              "y": 8,
+              "w": 1120,
+              "h": 24,
+              "text": "Danger zone",
+              "style": {
+                "weight": "bold"
+              }
+            }
+          ]
+        },
+        {
+          "id": "t877",
+          "type": "text",
+          "x": 16,
+          "y": 56,
+          "w": 800,
+          "h": 24,
+          "text": "Delete this app",
+          "style": {
+            "weight": "bold"
+          }
+        },
+        {
+          "id": "t878",
+          "type": "text",
+          "x": 16,
+          "y": 80,
+          "w": 800,
+          "h": 24,
+          "text": "Removes it from the store and deletes the repository on GitHub. This cannot be undone.",
+          "style": {
+            "color": "$muted",
+            "size": "sm"
+          }
+        },
+        {
+          "id": "b879",
+          "type": "button",
+          "x": 976,
+          "y": 60,
+          "w": 160,
+          "h": 40,
+          "name": "Delete (asks to type the repo name)",
+          "text": "Delete app…",
+          "style": {
+            "color": "#CF222E",
+            "border": "#CF222E"
+          },
+          "variant": "outline"
+        }
+      ]
+    },
+    {
+      "id": "r885",
       "type": "rect",
       "x": 0,
       "y": 844,
@@ -643,7 +610,7 @@
       },
       "children": [
         {
-          "id": "t326",
+          "id": "t883",
           "type": "text",
           "x": 144,
           "y": 16,
@@ -656,7 +623,7 @@
           }
         },
         {
-          "id": "t327",
+          "id": "t884",
           "type": "text",
           "x": 816,
           "y": 16,

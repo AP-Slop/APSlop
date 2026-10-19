@@ -1,8 +1,9 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { getRepo } from "@/lib/github";
+import { auth } from "@/lib/auth";
+import { getRepo, getRepoCounts } from "@/lib/github";
 import { prisma } from "@/lib/db";
-import { Badge, Container } from "@/components/ui";
+import { AppStatusBadge, Badge, Container, LinkButton } from "@/components/ui";
 import { RepoTabs } from "@/components/RepoTabs";
 
 export const dynamic = "force-dynamic";
@@ -21,7 +22,12 @@ export default async function RepoLayout({
   } catch {
     notFound();
   }
-  const app = await prisma.app.findUnique({ where: { repoFullName: repo.full_name } });
+  const [app, counts, session] = await Promise.all([
+    prisma.app.findUnique({ where: { repoFullName: repo.full_name } }),
+    getRepoCounts(name).catch(() => ({ openIssues: 0, openPulls: 0 })),
+    auth(),
+  ]);
+  const isOwner = !!app && !!session?.user?.id && app.ownerId === session.user.id;
 
   return (
     <>
@@ -35,17 +41,18 @@ export default async function RepoLayout({
             <Badge>Public</Badge>
             {app && (
               <Link href={`/apps/${app.slug}`}>
-                <Badge tone={app.status === "PUBLISHED" ? "success" : "attention"}>
-                  {app.status === "PUBLISHED" ? `ストア公開中 v${app.latestVersion}` : "ストア未公開"}
-                </Badge>
+                <AppStatusBadge status={app.status} version={app.latestVersion} />
               </Link>
             )}
-            <a href={repo.html_url} target="_blank" rel="noreferrer" className="ml-auto text-xs text-fg-muted hover:text-accent">
-              GitHub で開く ↗
-            </a>
+            <div className="ml-auto flex items-center gap-4">
+              <a href={repo.html_url} target="_blank" rel="noreferrer" className="text-sm text-accent hover:underline">
+                Open on GitHub ↗
+              </a>
+              <LinkButton href={`/repos/${name}/ai`} variant="primary">Create PR with AI</LinkButton>
+            </div>
           </div>
           {repo.description && <p className="text-sm text-fg-muted mt-1">{repo.description}</p>}
-          <RepoTabs name={name} openIssues={repo.open_issues_count} />
+          <RepoTabs name={name} openIssues={counts.openIssues} openPulls={counts.openPulls} showSettings={isOwner} />
         </Container>
       </div>
       <Container>{children}</Container>

@@ -48,7 +48,8 @@
           "h": 24,
           "text": "Dashboard",
           "style": {
-            "color": "#FFFFFF"
+            "color": "#FFFFFF",
+            "weight": "normal"
           }
         },
         {
@@ -60,7 +61,22 @@
           "h": 24,
           "text": "Repositories",
           "style": {
-            "color": "#FFFFFF"
+            "color": "#FFFFFF",
+            "weight": "bold"
+          }
+        },
+        {
+          "id": "hu1",
+          "type": "rect",
+          "x": 460,
+          "y": 52,
+          "w": 112,
+          "h": 4,
+          "name": "Current Place",
+          "style": {
+            "fill": "#FD8C73",
+            "border": "none",
+            "radius": 2
           }
         },
         {
@@ -72,20 +88,8 @@
           "h": 24,
           "text": "New app",
           "style": {
-            "color": "#FFFFFF"
-          }
-        },
-        {
-          "id": "t245",
-          "type": "text",
-          "x": 952,
-          "y": 16,
-          "w": 136,
-          "h": 24,
-          "text": "← Store",
-          "style": {
             "color": "#FFFFFF",
-            "align": "right"
+            "weight": "normal"
           }
         },
         {
@@ -103,6 +107,22 @@
             "border": "#FFFFFF"
           },
           "variant": "outline"
+        },
+        {
+          "id": "hm1",
+          "type": "toggle",
+          "x": 904,
+          "y": 12,
+          "w": 184,
+          "h": 32,
+          "name": "Mode Switch",
+          "text": "Developer Mode",
+          "props": {
+            "checked": true
+          },
+          "style": {
+            "color": "#FFFFFF"
+          }
         }
       ]
     },

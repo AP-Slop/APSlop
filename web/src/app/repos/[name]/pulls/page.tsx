@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { listPulls } from "@/lib/github";
-import { Badge, Card, CardHeader, Empty, LinkButton, timeAgo } from "@/components/ui";
+import { Badge, Card, CardHeader, Empty, timeAgo } from "@/components/ui";
 
 export default async function PullsPage({
   params,
@@ -14,34 +14,34 @@ export default async function PullsPage({
   const s = state === "closed" ? "closed" : "open";
   const pulls = await listPulls(name, s);
   return (
-    <Card>
-      <CardHeader>
-        <Link href={`/repos/${name}/pulls`} className={s === "open" ? "" : "text-fg-muted font-normal"}>Open</Link>
-        <Link href={`/repos/${name}/pulls?state=closed`} className={s === "closed" ? "" : "text-fg-muted font-normal"}>Closed</Link>
-        <span className="ml-auto">
-          <LinkButton href={`/repos/${name}/ai`} variant="primary">AI で Pull Request を作る</LinkButton>
-        </span>
-      </CardHeader>
-      {pulls.length === 0 ? (
-        <Empty>{s === "open" ? "オープンな Pull Request はありません。" : "クローズされた Pull Request はありません。"}</Empty>
-      ) : (
-        <ul className="divide-y divide-border">
-          {pulls.map((pr) => (
-            <li key={pr.number} className="px-4 py-3 flex gap-3">
-              <span className={pr.merged_at ? "text-[#8250df]" : pr.state === "open" ? "text-success" : "text-danger"}>⎇</span>
-              <div className="min-w-0 flex-1">
-                <Link href={`/repos/${name}/pulls/${pr.number}`} className="font-semibold hover:text-accent">
-                  {pr.title}
-                </Link>
-                {pr.draft && <Badge>Draft</Badge>}
-                <div className="text-xs text-fg-muted mt-0.5">
-                  #{pr.number} · {pr.user?.login} が {timeAgo(pr.created_at)} に作成 · {pr.head.ref} → {pr.base.ref}
+    <>
+      <Card>
+        <CardHeader>
+          <Link href={`/repos/${name}/pulls`} className={s === "open" ? "" : "text-fg-muted font-normal"}>Open</Link>
+          <Link href={`/repos/${name}/pulls?state=closed`} className={s === "closed" ? "" : "text-fg-muted font-normal"}>Closed</Link>
+        </CardHeader>
+        {pulls.length === 0 ? (
+          <Empty>{s === "open" ? "No open pull requests." : "No closed pull requests."}</Empty>
+        ) : (
+          <ul className="divide-y divide-border">
+            {pulls.map((pr) => (
+              <li key={pr.number} className="px-4 py-3 flex gap-3">
+                <span className={pr.merged_at ? "text-[#8250df]" : pr.state === "open" ? "text-success" : "text-danger"}>⎇</span>
+                <div className="min-w-0 flex-1">
+                  <Link href={`/repos/${name}/pulls/${pr.number}`} className="font-semibold hover:text-accent">
+                    {pr.title}
+                  </Link>
+                  {pr.draft && <Badge>Draft</Badge>}
+                  <div className="text-xs text-fg-muted mt-0.5">
+                    #{pr.number} · opened {timeAgo(pr.created_at)} by {pr.user?.login} · {pr.head.ref} → {pr.base.ref}
+                  </div>
                 </div>
-              </div>
-            </li>
-          ))}
-        </ul>
-      )}
-    </Card>
+              </li>
+            ))}
+          </ul>
+        )}
+      </Card>
+      <p className="mt-3 text-sm text-fg-muted">New pull requests are made with “Create PR with AI” (top right).</p>
+    </>
   );
 }

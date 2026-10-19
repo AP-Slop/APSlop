@@ -1,11 +1,11 @@
 {
   "version": 1,
-  "id": "repo-issues",
-  "title": "開発者: リポジトリ(Issues)",
+  "id": "repo-code",
+  "title": "開発者: リポジトリ(Code)",
   "device": "desktop",
   "elements": [
     {
-      "id": "r444",
+      "id": "r305",
       "type": "rect",
       "x": 0,
       "y": 0,
@@ -18,7 +18,7 @@
       },
       "children": [
         {
-          "id": "i435",
+          "id": "i296",
           "type": "icon",
           "x": 144,
           "y": 16,
@@ -27,7 +27,7 @@
           "text": "AP logo"
         },
         {
-          "id": "t436",
+          "id": "t297",
           "type": "text",
           "x": 176,
           "y": 16,
@@ -40,7 +40,7 @@
           }
         },
         {
-          "id": "t437",
+          "id": "t298",
           "type": "text",
           "x": 360,
           "y": 16,
@@ -48,11 +48,12 @@
           "h": 24,
           "text": "Dashboard",
           "style": {
-            "color": "#FFFFFF"
+            "color": "#FFFFFF",
+            "weight": "normal"
           }
         },
         {
-          "id": "t438",
+          "id": "t299",
           "type": "text",
           "x": 464,
           "y": 16,
@@ -60,11 +61,26 @@
           "h": 24,
           "text": "Repositories",
           "style": {
-            "color": "#FFFFFF"
+            "color": "#FFFFFF",
+            "weight": "bold"
           }
         },
         {
-          "id": "t439",
+          "id": "hu1",
+          "type": "rect",
+          "x": 460,
+          "y": 52,
+          "w": 112,
+          "h": 4,
+          "name": "Current Place",
+          "style": {
+            "fill": "#FD8C73",
+            "border": "none",
+            "radius": 2
+          }
+        },
+        {
+          "id": "t300",
           "type": "text",
           "x": 584,
           "y": 16,
@@ -72,24 +88,12 @@
           "h": 24,
           "text": "New app",
           "style": {
-            "color": "#FFFFFF"
-          }
-        },
-        {
-          "id": "t440",
-          "type": "text",
-          "x": 880,
-          "y": 16,
-          "w": 136,
-          "h": 24,
-          "text": "← Store",
-          "style": {
             "color": "#FFFFFF",
-            "align": "right"
+            "weight": "normal"
           }
         },
         {
-          "id": "i441",
+          "id": "i302",
           "type": "icon",
           "x": 1040,
           "y": 16,
@@ -98,7 +102,7 @@
           "text": "avatar"
         },
         {
-          "id": "t442",
+          "id": "t303",
           "type": "text",
           "x": 1072,
           "y": 16,
@@ -110,7 +114,7 @@
           }
         },
         {
-          "id": "t443",
+          "id": "t304",
           "type": "text",
           "x": 1200,
           "y": 16,
@@ -121,11 +125,27 @@
             "color": "#FFFFFF",
             "align": "right"
           }
+        },
+        {
+          "id": "hm1",
+          "type": "toggle",
+          "x": 832,
+          "y": 12,
+          "w": 184,
+          "h": 32,
+          "name": "Mode Switch",
+          "text": "Developer Mode",
+          "props": {
+            "checked": true
+          },
+          "style": {
+            "color": "#FFFFFF"
+          }
         }
       ]
     },
     {
-      "id": "r460",
+      "id": "r321",
       "type": "rect",
       "x": 0,
       "y": 56,
@@ -138,7 +158,7 @@
       },
       "children": [
         {
-          "id": "t445",
+          "id": "t306",
           "type": "text",
           "x": 144,
           "y": 16,
@@ -151,7 +171,7 @@
           }
         },
         {
-          "id": "t446",
+          "id": "t307",
           "type": "text",
           "x": 216,
           "y": 16,
@@ -164,7 +184,7 @@
           }
         },
         {
-          "id": "r448",
+          "id": "r309",
           "type": "rect",
           "x": 400,
           "y": 16,
@@ -177,7 +197,7 @@
           },
           "children": [
             {
-              "id": "t447",
+              "id": "t308",
               "type": "text",
               "x": 8,
               "y": 0,
@@ -193,7 +213,7 @@
           ]
         },
         {
-          "id": "r450",
+          "id": "r311",
           "type": "rect",
           "x": 480,
           "y": 16,
@@ -206,7 +226,7 @@
           },
           "children": [
             {
-              "id": "t449",
+              "id": "t310",
               "type": "text",
               "x": 8,
               "y": 0,
@@ -222,7 +242,7 @@
           ]
         },
         {
-          "id": "t451",
+          "id": "t312",
           "type": "text",
           "x": 928,
           "y": 16,
@@ -235,7 +255,7 @@
           }
         },
         {
-          "id": "b452",
+          "id": "b313",
           "type": "button",
           "x": 1104,
           "y": 8,
@@ -245,7 +265,7 @@
           "variant": "filled"
         },
         {
-          "id": "t453",
+          "id": "t314",
           "type": "text",
           "x": 144,
           "y": 48,
@@ -258,7 +278,7 @@
           }
         },
         {
-          "id": "t454",
+          "id": "t315",
           "type": "text",
           "x": 144,
           "y": 88,
@@ -266,11 +286,25 @@
           "h": 24,
           "text": "Code",
           "style": {
-            "weight": "normal"
+            "weight": "bold"
           }
         },
         {
-          "id": "t455",
+          "id": "r316",
+          "type": "rect",
+          "x": 144,
+          "y": 118,
+          "w": 48,
+          "h": 2,
+          "name": "Active Tab Underline",
+          "style": {
+            "fill": "#FD8C73",
+            "border": "none",
+            "radius": 0
+          }
+        },
+        {
+          "id": "t317",
           "type": "text",
           "x": 224,
           "y": 88,
@@ -282,7 +316,7 @@
           }
         },
         {
-          "id": "t456",
+          "id": "t318",
           "type": "text",
           "x": 376,
           "y": 88,
@@ -290,25 +324,11 @@
           "h": 24,
           "text": "Issues 2",
           "style": {
-            "weight": "bold"
+            "weight": "normal"
           }
         },
         {
-          "id": "r457",
-          "type": "rect",
-          "x": 376,
-          "y": 118,
-          "w": 64,
-          "h": 2,
-          "name": "Active Tab Underline",
-          "style": {
-            "fill": "#FD8C73",
-            "border": "none",
-            "radius": 0
-          }
-        },
-        {
-          "id": "t458",
+          "id": "t319",
           "type": "text",
           "x": 472,
           "y": 88,
@@ -320,7 +340,7 @@
           }
         },
         {
-          "id": "t459",
+          "id": "t320",
           "type": "text",
           "x": 576,
           "y": 88,
@@ -334,19 +354,19 @@
       ]
     },
     {
-      "id": "r471",
+      "id": "r295",
       "type": "rect",
       "x": 144,
       "y": 200,
       "w": 1152,
-      "h": 200,
-      "name": "Issue List",
+      "h": 256,
+      "name": "File Tree",
       "style": {
         "fill": "$bg"
       },
       "children": [
         {
-          "id": "r463",
+          "id": "r294",
           "type": "rect",
           "x": 0,
           "y": 0,
@@ -356,129 +376,242 @@
           "style": {
             "fill": "$surface",
             "radius": 0
+          }
+        },
+        {
+          "id": "r277",
+          "type": "rect",
+          "x": 16,
+          "y": 8,
+          "w": 52,
+          "h": 24,
+          "name": "Badge",
+          "style": {
+            "radius": 12,
+            "fill": "$bg"
           },
           "children": [
             {
-              "id": "t461",
+              "id": "t276",
               "type": "text",
-              "x": 16,
-              "y": 8,
-              "w": 56,
+              "x": 8,
+              "y": 0,
+              "w": 36,
               "h": 24,
-              "text": "Open",
+              "text": "main",
               "style": {
-                "weight": "bold"
-              }
-            },
-            {
-              "id": "t462",
-              "type": "text",
-              "x": 88,
-              "y": 8,
-              "w": 64,
-              "h": 24,
-              "text": "Closed",
-              "style": {
+                "size": "sm",
                 "color": "$muted",
-                "size": "sm"
+                "align": "center"
               }
             }
           ]
         },
         {
-          "id": "i464",
-          "type": "icon",
-          "x": 16,
-          "y": 60,
-          "w": 24,
-          "h": 24,
-          "text": "open state"
-        },
-        {
-          "id": "t465",
+          "id": "t278",
           "type": "text",
-          "x": 52,
-          "y": 56,
-          "w": 900,
+          "x": 1040,
+          "y": 8,
+          "w": 96,
           "h": 24,
-          "text": "Layout breaks when absences left is 0",
-          "style": {
-            "color": "#0969DA",
-            "weight": "bold"
-          }
-        },
-        {
-          "id": "t466",
-          "type": "text",
-          "x": 52,
-          "y": 82,
-          "w": 900,
-          "h": 24,
-          "text": "#2 · opened 2 days ago by student-a · 1 comment",
+          "text": "5 items",
           "style": {
             "color": "$muted",
-            "size": "sm"
+            "size": "sm",
+            "align": "right"
           }
         },
         {
-          "id": "d467",
-          "type": "divider",
-          "x": 0,
-          "y": 120,
-          "w": 1152,
-          "h": 1
-        },
-        {
-          "id": "i468",
+          "id": "i279",
           "type": "icon",
           "x": 16,
-          "y": 140,
+          "y": 48,
           "w": 24,
           "h": 24,
-          "text": "open state"
+          "text": "folder"
         },
         {
-          "id": "t469",
+          "id": "t280",
           "type": "text",
           "x": 52,
-          "y": 136,
-          "w": 900,
+          "y": 48,
+          "w": 600,
           "h": 24,
-          "text": "Let me reorder courses",
+          "text": ".github",
           "style": {
-            "color": "#0969DA",
-            "weight": "bold"
+            "color": "#0969DA"
           }
         },
         {
-          "id": "t470",
+          "id": "t281",
           "type": "text",
-          "x": 52,
-          "y": 162,
-          "w": 900,
+          "x": 1040,
+          "y": 48,
+          "w": 96,
           "h": 24,
-          "text": "#1 · opened 5 days ago by student-b · 0 comments",
+          "text": "",
           "style": {
             "color": "$muted",
-            "size": "sm"
+            "size": "sm",
+            "align": "right"
+          }
+        },
+        {
+          "id": "i282",
+          "type": "icon",
+          "x": 16,
+          "y": 88,
+          "w": 24,
+          "h": 24,
+          "text": "folder"
+        },
+        {
+          "id": "t283",
+          "type": "text",
+          "x": 52,
+          "y": 88,
+          "w": 600,
+          "h": 24,
+          "text": "app",
+          "style": {
+            "color": "#0969DA"
+          }
+        },
+        {
+          "id": "t284",
+          "type": "text",
+          "x": 1040,
+          "y": 88,
+          "w": 96,
+          "h": 24,
+          "text": "",
+          "style": {
+            "color": "$muted",
+            "size": "sm",
+            "align": "right"
+          }
+        },
+        {
+          "id": "i285",
+          "type": "icon",
+          "x": 16,
+          "y": 128,
+          "w": 24,
+          "h": 24,
+          "text": "file"
+        },
+        {
+          "id": "t286",
+          "type": "text",
+          "x": 52,
+          "y": 128,
+          "w": 600,
+          "h": 24,
+          "text": "README.md",
+          "style": {
+            "color": "#0969DA"
+          }
+        },
+        {
+          "id": "t287",
+          "type": "text",
+          "x": 1040,
+          "y": 128,
+          "w": 96,
+          "h": 24,
+          "text": "812 B",
+          "style": {
+            "color": "$muted",
+            "size": "sm",
+            "align": "right"
+          }
+        },
+        {
+          "id": "i288",
+          "type": "icon",
+          "x": 16,
+          "y": 168,
+          "w": 24,
+          "h": 24,
+          "text": "file"
+        },
+        {
+          "id": "t289",
+          "type": "text",
+          "x": 52,
+          "y": 168,
+          "w": 600,
+          "h": 24,
+          "text": "build.gradle.kts",
+          "style": {
+            "color": "#0969DA"
+          }
+        },
+        {
+          "id": "t290",
+          "type": "text",
+          "x": 1040,
+          "y": 168,
+          "w": 96,
+          "h": 24,
+          "text": "240 B",
+          "style": {
+            "color": "$muted",
+            "size": "sm",
+            "align": "right"
+          }
+        },
+        {
+          "id": "i291",
+          "type": "icon",
+          "x": 16,
+          "y": 208,
+          "w": 24,
+          "h": 24,
+          "text": "file"
+        },
+        {
+          "id": "t292",
+          "type": "text",
+          "x": 52,
+          "y": 208,
+          "w": 600,
+          "h": 24,
+          "text": "settings.gradle.kts",
+          "style": {
+            "color": "#0969DA"
+          }
+        },
+        {
+          "id": "t293",
+          "type": "text",
+          "x": 1040,
+          "y": 208,
+          "w": 96,
+          "h": 24,
+          "text": "410 B",
+          "style": {
+            "color": "$muted",
+            "size": "sm",
+            "align": "right"
           }
         }
       ]
     },
     {
-      "id": "r477",
+      "id": "r325",
       "type": "rect",
       "x": 144,
-      "y": 416,
+      "y": 472,
       "w": 1152,
-      "h": 320,
-      "name": "New Issue Form",
+      "h": 240,
+      "name": "README",
       "style": {
         "fill": "$bg"
       },
       "children": [
         {
-          "id": "r476",
+          "id": "r324",
           "type": "rect",
           "x": 0,
           "y": 0,
@@ -491,13 +624,13 @@
           },
           "children": [
             {
-              "id": "t475",
+              "id": "t323",
               "type": "text",
               "x": 16,
               "y": 8,
               "w": 1120,
               "h": 24,
-              "text": "New issue",
+              "text": "README.md",
               "style": {
                 "weight": "bold"
               }
@@ -505,46 +638,18 @@
           ]
         },
         {
-          "id": "i472",
-          "type": "input",
+          "id": "t322",
+          "type": "text",
           "x": 16,
           "y": 56,
           "w": 1120,
-          "h": 40,
-          "text": "",
-          "props": {
-            "placeholder": "Title",
-            "kind": "text"
-          }
-        },
-        {
-          "id": "i473",
-          "type": "input",
-          "x": 16,
-          "y": 112,
-          "w": 1120,
-          "h": 136,
-          "text": "",
-          "props": {
-            "placeholder": "Description (Markdown supported)",
-            "kind": "text",
-            "multiline": true
-          }
-        },
-        {
-          "id": "b474",
-          "type": "button",
-          "x": 16,
-          "y": 264,
-          "w": 128,
-          "h": 40,
-          "text": "Create issue",
-          "variant": "filled"
+          "h": 160,
+          "text": "Attendance Counter\n\nRecord attendance per course and see how many absences you have left.\n\n• Add and remove courses\n• Record present / absent"
         }
       ]
     },
     {
-      "id": "r480",
+      "id": "r328",
       "type": "rect",
       "x": 0,
       "y": 844,
@@ -558,7 +663,7 @@
       },
       "children": [
         {
-          "id": "t478",
+          "id": "t326",
           "type": "text",
           "x": 144,
           "y": 16,
@@ -571,7 +676,7 @@
           }
         },
         {
-          "id": "t479",
+          "id": "t327",
           "type": "text",
           "x": 816,
           "y": 16,

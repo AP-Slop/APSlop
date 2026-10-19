@@ -22,7 +22,7 @@ export function IssueForm({ name }: { name: string }) {
         body: JSON.stringify({ title, body }),
       });
       const json = await res.json();
-      if (!res.ok) throw new Error(json.error ?? "作成に失敗しました");
+      if (!res.ok) throw new Error(json.error ?? "Could not create the issue");
       setTitle("");
       setBody("");
       router.refresh();
@@ -35,12 +35,12 @@ export function IssueForm({ name }: { name: string }) {
 
   return (
     <Card>
-      <CardHeader>新しい Issue</CardHeader>
+      <CardHeader>New issue</CardHeader>
       <form onSubmit={submit} className="p-4 space-y-3">
         {error && <ErrorBox>{error}</ErrorBox>}
-        <input value={title} onChange={(e) => setTitle(e.target.value)} placeholder="タイトル" required className="w-full rounded-md border border-border px-3 py-1.5 text-sm" />
-        <textarea value={body} onChange={(e) => setBody(e.target.value)} rows={5} placeholder="内容 (Markdown 可)" className="w-full rounded-md border border-border p-2 text-sm" />
-        <button disabled={busy || !title.trim()} className={buttonClass("primary")}>{busy ? "作成中…" : "Issue を作成"}</button>
+        <input value={title} onChange={(e) => setTitle(e.target.value)} placeholder="Title" required className="w-full rounded-md border border-border px-3 py-1.5 text-sm" />
+        <textarea value={body} onChange={(e) => setBody(e.target.value)} rows={5} placeholder="Description (Markdown)" className="w-full rounded-md border border-border p-2 text-sm" />
+        <button disabled={busy || !title.trim()} className={buttonClass("primary")}>{busy ? "Creating…" : "Create issue"}</button>
       </form>
     </Card>
   );

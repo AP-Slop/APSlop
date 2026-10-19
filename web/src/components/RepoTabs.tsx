@@ -3,15 +3,25 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-export function RepoTabs({ name, openIssues }: { name: string; openIssues: number }) {
+export function RepoTabs({
+  name,
+  openIssues,
+  openPulls,
+  showSettings,
+}: {
+  name: string;
+  openIssues: number;
+  openPulls: number;
+  showSettings: boolean;
+}) {
   const pathname = usePathname();
   const base = `/repos/${name}`;
   const tabs = [
     { href: base, label: "Code", match: (p: string) => p === base || p.startsWith(`${base}/tree`) || p.startsWith(`${base}/blob`) },
-    { href: `${base}/pulls`, label: "Pull requests", match: (p: string) => p.startsWith(`${base}/pulls`) },
+    { href: `${base}/pulls`, label: "Pull requests", match: (p: string) => p.startsWith(`${base}/pulls`), count: openPulls },
     { href: `${base}/issues`, label: "Issues", match: (p: string) => p.startsWith(`${base}/issues`), count: openIssues },
-    { href: `${base}/ai`, label: "AI に依頼", match: (p: string) => p.startsWith(`${base}/ai`) },
     { href: `${base}/releases`, label: "Releases", match: (p: string) => p.startsWith(`${base}/releases`) },
+    ...(showSettings ? [{ href: `${base}/settings`, label: "Settings", match: (p: string) => p.startsWith(`${base}/settings`) }] : []),
   ];
   return (
     <nav className="flex gap-1 mt-4 -mb-px overflow-x-auto">
