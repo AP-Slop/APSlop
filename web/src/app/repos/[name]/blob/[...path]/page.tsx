@@ -1,7 +1,7 @@
 import { getFileContent, getRepo } from "@/lib/github";
 import { Breadcrumbs } from "@/components/FileTree";
 import { Markdown } from "@/components/Markdown";
-import { Card, CardHeader } from "@/components/ui";
+import { Card, CardHeader, formatSize } from "@/components/ui";
 
 export default async function BlobPage({ params }: { params: Promise<{ name: string; path: string[] }> }) {
   const { name, path } = await params;
@@ -16,15 +16,15 @@ export default async function BlobPage({ params }: { params: Promise<{ name: str
       <Card>
         <CardHeader>
           <span>{p.split("/").pop()}</span>
-          <span className="text-fg-muted font-normal">{lines.length} 行 · {file.size} B</span>
+          <span className="text-fg-muted font-normal">{lines.length} {lines.length === 1 ? "line" : "lines"} · {formatSize(file.size)}</span>
           {file.htmlUrl && (
             <a href={file.htmlUrl} target="_blank" rel="noreferrer" className="ml-auto text-xs font-normal text-accent hover:underline">
-              GitHub で編集 ↗
+              Edit on GitHub ↗
             </a>
           )}
         </CardHeader>
         {file.binary ? (
-          <div className="p-6 text-fg-muted text-sm">バイナリファイルは表示できません。</div>
+          <div className="p-6 text-fg-muted text-sm">Binary files can’t be shown here.</div>
         ) : isMd ? (
           <div className="p-6">
             <Markdown>{file.content}</Markdown>

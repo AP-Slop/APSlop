@@ -2,16 +2,32 @@ import Link from "next/link";
 import { redirect } from "next/navigation";
 import { auth } from "@/lib/auth";
 import { prisma } from "@/lib/db";
-import { Badge, Card, CardHeader, Container, Empty, LinkButton, formatDate } from "@/components/ui";
+import { repoName } from "@/lib/github";
+import { AppStatusBadge, Badge, Card, CardHeader, Container, Empty, LinkButton, formatDate } from "@/components/ui";
 
 export const dynamic = "force-dynamic";
 
 /** Where an AI history row leads: the PR, the review screen of a pending proposal, or the repo. */
 function generationHref(g: { id: string; repoFullName: string | null; prNumber: number | null; status: string; kind: string }) {
-  const repo = `/repos/${g.repoFullName!.split("/")[1]}`;
+  const repo = `/repos/${repoName(g.repoFullName!)}`;
   if (g.prNumber) return `${repo}/pulls/${g.prNumber}`;
   if (g.kind === "MODIFY" && g.status === "READY") return `${repo}/ai/${g.id}`;
   return repo;
+}
+
+function generationState(status: string): { label: string; tone: "muted" | "success" | "danger" | "attention" } {
+  switch (status) {
+    case "DONE":
+      return { label: "Done", tone: "success" };
+    case "FAILED":
+      return { label: "Failed", tone: "danger" };
+    case "READY":
+      return { label: "Ready to review", tone: "attention" };
+    case "DISCARDED":
+      return { label: "Discarded", tone: "muted" };
+    default:
+      return { label: "Running", tone: "muted" };
+  }
 }
 
 export default async function Dashboard() {
@@ -25,55 +41,54 @@ export default async function Dashboard() {
   return (
     <Container>
       <div className="flex items-center justify-between mb-4">
-        <h1 className="text-xl font-semibold">ダッシュボード</h1>
-        <LinkButton href="/new" variant="primary">AI でアプリを作る</LinkButton>
+        <h1 className="text-xl font-semibold">Dashboard</h1>
+        <LinkButton href="/new" variant="primary">New app</LinkButton>
       </div>
       <div className="grid gap-6 lg:grid-cols-2">
         <Card>
-          <CardHeader>自分のアプリ ({apps.length})</CardHeader>
+          <CardHeader>My apps ({apps.length})</CardHeader>
           {apps.length === 0 ? (
-            <Empty>まだアプリがありません。</Empty>
+            <Empty>You have no apps yet.</Empty>
           ) : (
             <ul className="divide-y divide-border text-sm">
               {apps.map((a) => (
                 <li key={a.id} className="px-4 py-3 flex items-center gap-3">
                   <div className="min-w-0 flex-1">
-                    <Link href={`/apps/${a.slug}`} className="font-semibold hover:text-accent">{a.name}</Link>
+                    <Link href={`/repos/${repoName(a.repoFullName)}`} className="font-semibold text-accent hover:underline">{a.name}</Link>
                     <div className="text-xs text-fg-muted truncate">{a.repoFullName}</div>
                   </div>
-                  <Badge tone={a.status === "PUBLISHED" ? "success" : a.status === "FAILED" ? "danger" : "attention"}>
-                    {a.status === "PUBLISHED" ? `v${a.latestVersion}` : a.status === "FAILED" ? "失敗" : "下書き"}
-                  </Badge>
-                  <Link href={`/repos/${a.repoFullName.split("/")[1]}`} className="text-xs text-accent hover:underline">リポジトリ</Link>
+                  <AppStatusBadge status={a.status} version={a.latestVersion} />
+                  <Link href={`/repos/${repoName(a.repoFullName)}/settings`} className="text-xs text-accent hover:underline">Settings</Link>
                 </li>
               ))}
             </ul>
           )}
         </Card>
         <Card>
-          <CardHeader>AI 生成の履歴</CardHeader>
+          <CardHeader>AI history</CardHeader>
           {generations.length === 0 ? (
-            <Empty>まだ履歴がありません。</Empty>
+            <Empty>Nothing yet.</Empty>
           ) : (
             <ul className="divide-y divide-border text-sm">
-              {generations.map((g) => (
-                <li key={g.id} className="px-4 py-3">
-                  <div className="flex items-center gap-2">
-                    <Badge tone={g.status === "DONE" ? "success" : g.status === "FAILED" ? "danger" : "muted"}>
-                      {g.kind === "CREATE" ? "新規作成" : "変更提案"}
-                    </Badge>
-                    <span className="text-xs text-fg-muted">{formatDate(g.createdAt)}</span>
-                    {g.status === "READY" && <Badge tone="attention">確認待ち</Badge>}
-                    {g.repoFullName && (
-                      <Link href={generationHref(g)} className="text-xs text-accent hover:underline ml-auto">
-                        {g.repoFullName.split("/")[1]}{g.prNumber ? ` #${g.prNumber}` : ""}
-                      </Link>
-                    )}
-                  </div>
-                  <p className="mt-1 text-fg-muted line-clamp-2">{g.prompt}</p>
-                  {g.error && <p className="mt-1 text-xs text-danger">{g.error}</p>}
-                </li>
-              ))}
+              {generations.map((g) => {
+                const state = generationState(g.status);
+                return (
+                  <li key={g.id} className="px-4 py-3">
+                    <div className="flex items-center gap-2">
+                      <Badge>{g.kind === "CREATE" ? "New app" : "PR"}</Badge>
+                      <Badge tone={state.tone}>{state.label}</Badge>
+                      <span className="text-xs text-fg-muted">{formatDate(g.createdAt)}</span>
+                      {g.repoFullName && (
+                        <Link href={generationHref(g)} className="text-xs text-accent hover:underline ml-auto">
+                          {repoName(g.repoFullName)}{g.prNumber ? ` #${g.prNumber}` : ""}
+                        </Link>
+                      )}
+                    </div>
+                    <p className="mt-1 line-clamp-2">{g.prompt}</p>
+                    {g.error && <p className="mt-1 text-xs text-danger">{g.error}</p>}
+                  </li>
+                );
+              })}
             </ul>
           )}
         </Card>

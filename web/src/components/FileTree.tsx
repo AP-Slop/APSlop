@@ -1,6 +1,6 @@
 import Link from "next/link";
 import type { TreeEntry } from "@/lib/github";
-import { Card, CardHeader } from "@/components/ui";
+import { Card, CardHeader, formatSize } from "@/components/ui";
 
 export function Breadcrumbs({ name, path }: { name: string; path: string }) {
   const parts = path ? path.split("/") : [];
@@ -27,7 +27,7 @@ export function FileTree({ name, path, entries, branch }: { name: string; path: 
     <Card>
       <CardHeader>
         <span className="font-mono text-xs rounded border border-border px-1.5 py-0.5 bg-canvas">{branch}</span>
-        <span className="text-fg-muted font-normal">{entries.length} 項目</span>
+        <span className="text-fg-muted font-normal ml-auto">{entries.length} {entries.length === 1 ? "item" : "items"}</span>
       </CardHeader>
       <ul className="divide-y divide-border text-sm">
         {path && (
@@ -41,7 +41,7 @@ export function FileTree({ name, path, entries, branch }: { name: string; path: 
             <Link href={`/repos/${name}/${e.type === "dir" ? "tree" : "blob"}/${e.path}`} className="hover:text-accent hover:underline">
               {e.name}
             </Link>
-            {e.type === "file" && <span className="ml-auto text-xs text-fg-muted">{e.size} B</span>}
+            {e.type === "file" && <span className="ml-auto text-xs text-fg-muted">{formatSize(e.size ?? 0)}</span>}
           </li>
         ))}
       </ul>

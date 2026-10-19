@@ -5,8 +5,8 @@ export function Container({ children, className = "" }: { children: ReactNode; c
   return <div className={`max-w-6xl mx-auto px-4 py-6 ${className}`}>{children}</div>;
 }
 
-export function Card({ children, className = "" }: { children: ReactNode; className?: string }) {
-  return <div className={`rounded-md border border-border bg-canvas ${className}`}>{children}</div>;
+export function Card({ children, className = "", id }: { children: ReactNode; className?: string; id?: string }) {
+  return <div id={id} className={`rounded-md border border-border bg-canvas ${className}`}>{children}</div>;
 }
 
 export function CardHeader({ children }: { children: ReactNode }) {
@@ -80,16 +80,35 @@ export function ErrorBox({ children }: { children: ReactNode }) {
 export function formatDate(value: string | Date | null | undefined): string {
   if (!value) return "";
   const d = typeof value === "string" ? new Date(value) : value;
-  return d.toLocaleString("ja-JP", { dateStyle: "medium", timeStyle: "short" });
+  // "Sep 12, 14:02"
+  return `${d.toLocaleDateString("en-US", { month: "short", day: "numeric" })}, ${d.toLocaleTimeString("en-GB", { hour: "2-digit", minute: "2-digit" })}`;
+}
+
+/** "812 B", "1.0 KB", "2.4 MB" */
+export function formatSize(bytes: number): string {
+  if (bytes < 1024) return `${bytes} B`;
+  if (bytes < 1024 * 1024) return `${(bytes / 1024).toFixed(1)} KB`;
+  return `${(bytes / 1024 / 1024).toFixed(1)} MB`;
+}
+
+function ago(n: number, unit: string): string {
+  return `${n} ${unit}${n === 1 ? "" : "s"} ago`;
 }
 
 export function timeAgo(value: string | Date | null | undefined): string {
   if (!value) return "";
   const d = typeof value === "string" ? new Date(value) : value;
   const diff = (Date.now() - d.getTime()) / 1000;
-  if (diff < 60) return "たった今";
-  if (diff < 3600) return `${Math.floor(diff / 60)} 分前`;
-  if (diff < 86400) return `${Math.floor(diff / 3600)} 時間前`;
-  if (diff < 86400 * 30) return `${Math.floor(diff / 86400)} 日前`;
-  return d.toLocaleDateString("ja-JP");
+  if (diff < 60) return "just now";
+  if (diff < 3600) return ago(Math.floor(diff / 60), "minute");
+  if (diff < 86400) return ago(Math.floor(diff / 3600), "hour");
+  if (diff < 86400 * 30) return ago(Math.floor(diff / 86400), "day");
+  return `on ${d.toLocaleDateString("en-US", { dateStyle: "medium" })}`;
+}
+
+/** Store state of an app as shown next to its name: "Published v0.1.1", "Draft" or "Failed". */
+export function AppStatusBadge({ status, version }: { status: string; version: string | null }) {
+  if (status === "PUBLISHED") return <Badge tone="success">Published v{version ?? "-"}</Badge>;
+  if (status === "FAILED") return <Badge tone="danger">Failed</Badge>;
+  return <Badge tone="attention">Draft</Badge>;
 }
