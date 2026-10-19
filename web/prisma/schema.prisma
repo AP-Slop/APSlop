@@ -48,9 +48,11 @@ model Generation {
   kind         String // CREATE | MODIFY
   prompt       String
   model        String
-  status       String    @default("PENDING") // PENDING | DONE | FAILED
+  status       String    @default("PENDING") // PENDING | READY (MODIFY: awaiting review) | CREATING (PR being opened) | DONE | DISCARDED | FAILED
   repoFullName String?
   prNumber     Int?
+  /// MODIFY: JSON of the proposal awaiting review (see src/lib/proposal.ts StoredProposal)
+  result       String?
   error        String?
   createdAt    DateTime  @default(now())
   finishedAt   DateTime?

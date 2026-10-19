@@ -9,6 +9,10 @@ const schema = z.object({
   AUTH_SECRET: z.string().min(1),
   ANTHROPIC_API_KEY: z.string().optional(),
   ANTHROPIC_MODEL: z.string().default("claude-opus-5"),
+  // Optional second AI for "Create PR with AI": DeepSeek through its Anthropic-compatible endpoint.
+  DEEPSEEK_API_KEY: z.string().optional(),
+  DEEPSEEK_MODEL: z.string().default("deepseek-flash"),
+  DEEPSEEK_BASE_URL: z.string().default("https://api.deepseek.com/anthropic"),
   DATABASE_URL: z.string().default("file:./data/apslop.db"),
   STORE_SERVER_URL: z.string().default("http://store-server:8080"),
   STORE_TOKEN: z.string().default(""),

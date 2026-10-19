@@ -1,0 +1,425 @@
+{
+  "version": 1,
+  "id": "store-list",
+  "title": "ストアアプリ: 一覧",
+  "device": "phone-android",
+  "elements": [
+    {
+      "id": "n912",
+      "type": "navbar",
+      "x": 0,
+      "y": 0,
+      "w": 412,
+      "h": 96,
+      "text": "APSlop Store",
+      "props": {
+        "left": "none",
+        "right": "none"
+      },
+      "style": {
+        "fill": "#24292F",
+        "color": "#FFFFFF"
+      }
+    },
+    {
+      "id": "i913",
+      "type": "icon",
+      "x": 364,
+      "y": 52,
+      "w": 24,
+      "h": 24,
+      "text": "Settings"
+    },
+    {
+      "id": "i914",
+      "type": "input",
+      "x": 24,
+      "y": 112,
+      "w": 364,
+      "h": 56,
+      "text": "",
+      "props": {
+        "placeholder": "Search apps",
+        "kind": "search"
+      }
+    },
+    {
+      "id": "t915",
+      "type": "text",
+      "x": 24,
+      "y": 176,
+      "w": 200,
+      "h": 24,
+      "text": "6 apps",
+      "style": {
+        "color": "$muted",
+        "size": "sm"
+      }
+    },
+    {
+      "id": "r921",
+      "type": "rect",
+      "x": 24,
+      "y": 204,
+      "w": 364,
+      "h": 112,
+      "name": "App Card",
+      "style": {
+        "fill": "$bg"
+      },
+      "children": [
+        {
+          "id": "i916",
+          "type": "image",
+          "x": 12,
+          "y": 28,
+          "w": 56,
+          "h": 56,
+          "text": "icon"
+        },
+        {
+          "id": "t917",
+          "type": "text",
+          "x": 84,
+          "y": 12,
+          "w": 268,
+          "h": 24,
+          "text": "Attendance Counter",
+          "style": {
+            "weight": "bold"
+          }
+        },
+        {
+          "id": "t918",
+          "type": "text",
+          "x": 84,
+          "y": 34,
+          "w": 268,
+          "h": 24,
+          "text": "taku1029-dev · v0.1.1",
+          "style": {
+            "color": "$muted",
+            "size": "sm"
+          }
+        },
+        {
+          "id": "t919",
+          "type": "text",
+          "x": 84,
+          "y": 56,
+          "w": 268,
+          "h": 24,
+          "text": "Count class attendance per course",
+          "style": {
+            "size": "sm"
+          }
+        },
+        {
+          "id": "t920",
+          "type": "text",
+          "x": 84,
+          "y": 82,
+          "w": 268,
+          "h": 24,
+          "text": "Updated Sep 12, 2026",
+          "style": {
+            "color": "$muted",
+            "size": "sm"
+          }
+        }
+      ]
+    },
+    {
+      "id": "r927",
+      "type": "rect",
+      "x": 24,
+      "y": 328,
+      "w": 364,
+      "h": 112,
+      "name": "App Card",
+      "style": {
+        "fill": "$bg"
+      },
+      "children": [
+        {
+          "id": "i922",
+          "type": "image",
+          "x": 12,
+          "y": 28,
+          "w": 56,
+          "h": 56,
+          "text": "icon"
+        },
+        {
+          "id": "t923",
+          "type": "text",
+          "x": 84,
+          "y": 12,
+          "w": 268,
+          "h": 24,
+          "text": "Cafeteria Notes",
+          "style": {
+            "weight": "bold"
+          }
+        },
+        {
+          "id": "t924",
+          "type": "text",
+          "x": 84,
+          "y": 34,
+          "w": 268,
+          "h": 24,
+          "text": "student-a · v0.2.0",
+          "style": {
+            "color": "$muted",
+            "size": "sm"
+          }
+        },
+        {
+          "id": "t925",
+          "type": "text",
+          "x": 84,
+          "y": 56,
+          "w": 268,
+          "h": 24,
+          "text": "Rate cafeteria menus with stars",
+          "style": {
+            "size": "sm"
+          }
+        },
+        {
+          "id": "t926",
+          "type": "text",
+          "x": 84,
+          "y": 82,
+          "w": 268,
+          "h": 24,
+          "text": "Updated Sep 10, 2026",
+          "style": {
+            "color": "$muted",
+            "size": "sm"
+          }
+        }
+      ]
+    },
+    {
+      "id": "r933",
+      "type": "rect",
+      "x": 24,
+      "y": 452,
+      "w": 364,
+      "h": 112,
+      "name": "App Card",
+      "style": {
+        "fill": "$bg"
+      },
+      "children": [
+        {
+          "id": "i928",
+          "type": "image",
+          "x": 12,
+          "y": 28,
+          "w": 56,
+          "h": 56,
+          "text": "icon"
+        },
+        {
+          "id": "t929",
+          "type": "text",
+          "x": 84,
+          "y": 12,
+          "w": 268,
+          "h": 24,
+          "text": "Pomodoro",
+          "style": {
+            "weight": "bold"
+          }
+        },
+        {
+          "id": "t930",
+          "type": "text",
+          "x": 84,
+          "y": 34,
+          "w": 268,
+          "h": 24,
+          "text": "student-b · v1.0.0",
+          "style": {
+            "color": "$muted",
+            "size": "sm"
+          }
+        },
+        {
+          "id": "t931",
+          "type": "text",
+          "x": 84,
+          "y": 56,
+          "w": 268,
+          "h": 24,
+          "text": "25 min work / 5 min break timer",
+          "style": {
+            "size": "sm"
+          }
+        },
+        {
+          "id": "t932",
+          "type": "text",
+          "x": 84,
+          "y": 82,
+          "w": 268,
+          "h": 24,
+          "text": "Updated Sep 9, 2026",
+          "style": {
+            "color": "$muted",
+            "size": "sm"
+          }
+        }
+      ]
+    },
+    {
+      "id": "r939",
+      "type": "rect",
+      "x": 24,
+      "y": 576,
+      "w": 364,
+      "h": 112,
+      "name": "App Card",
+      "style": {
+        "fill": "$bg"
+      },
+      "children": [
+        {
+          "id": "i934",
+          "type": "image",
+          "x": 12,
+          "y": 28,
+          "w": 56,
+          "h": 56,
+          "text": "icon"
+        },
+        {
+          "id": "t935",
+          "type": "text",
+          "x": 84,
+          "y": 12,
+          "w": 268,
+          "h": 24,
+          "text": "Club Dues",
+          "style": {
+            "weight": "bold"
+          }
+        },
+        {
+          "id": "t936",
+          "type": "text",
+          "x": 84,
+          "y": 34,
+          "w": 268,
+          "h": 24,
+          "text": "student-c · v0.1.0",
+          "style": {
+            "color": "$muted",
+            "size": "sm"
+          }
+        },
+        {
+          "id": "t937",
+          "type": "text",
+          "x": 84,
+          "y": 56,
+          "w": 268,
+          "h": 24,
+          "text": "Track club dues and who has paid",
+          "style": {
+            "size": "sm"
+          }
+        },
+        {
+          "id": "t938",
+          "type": "text",
+          "x": 84,
+          "y": 82,
+          "w": 268,
+          "h": 24,
+          "text": "Updated Sep 8, 2026",
+          "style": {
+            "color": "$muted",
+            "size": "sm"
+          }
+        }
+      ]
+    },
+    {
+      "id": "r945",
+      "type": "rect",
+      "x": 24,
+      "y": 700,
+      "w": 364,
+      "h": 112,
+      "name": "App Card",
+      "style": {
+        "fill": "$bg"
+      },
+      "children": [
+        {
+          "id": "i940",
+          "type": "image",
+          "x": 12,
+          "y": 28,
+          "w": 56,
+          "h": 56,
+          "text": "icon"
+        },
+        {
+          "id": "t941",
+          "type": "text",
+          "x": 84,
+          "y": 12,
+          "w": 268,
+          "h": 24,
+          "text": "Timetable",
+          "style": {
+            "weight": "bold"
+          }
+        },
+        {
+          "id": "t942",
+          "type": "text",
+          "x": 84,
+          "y": 34,
+          "w": 268,
+          "h": 24,
+          "text": "student-d · v0.3.1",
+          "style": {
+            "color": "$muted",
+            "size": "sm"
+          }
+        },
+        {
+          "id": "t943",
+          "type": "text",
+          "x": 84,
+          "y": 56,
+          "w": 268,
+          "h": 24,
+          "text": "Register classes and see the next one",
+          "style": {
+            "size": "sm"
+          }
+        },
+        {
+          "id": "t944",
+          "type": "text",
+          "x": 84,
+          "y": 82,
+          "w": 268,
+          "h": 24,
+          "text": "Updated Sep 7, 2026",
+          "style": {
+            "color": "$muted",
+            "size": "sm"
+          }
+        }
+      ]
+    }
+  ]
+}

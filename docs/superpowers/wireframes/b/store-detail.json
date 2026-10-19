@@ -1,0 +1,275 @@
+{
+  "version": 1,
+  "id": "store-detail",
+  "title": "ストアアプリ: 詳細",
+  "device": "phone-android",
+  "elements": [
+    {
+      "id": "n946",
+      "type": "navbar",
+      "x": 0,
+      "y": 0,
+      "w": 412,
+      "h": 96,
+      "text": "Attendance Counter",
+      "props": {
+        "left": "back",
+        "right": "none"
+      },
+      "style": {
+        "fill": "#24292F",
+        "color": "#FFFFFF"
+      }
+    },
+    {
+      "id": "i947",
+      "type": "image",
+      "x": 24,
+      "y": 112,
+      "w": 72,
+      "h": 72,
+      "text": "icon"
+    },
+    {
+      "id": "t948",
+      "type": "text",
+      "x": 112,
+      "y": 112,
+      "w": 276,
+      "h": 32,
+      "text": "Attendance Counter",
+      "style": {
+        "size": "lg",
+        "weight": "bold"
+      }
+    },
+    {
+      "id": "t949",
+      "type": "text",
+      "x": 112,
+      "y": 146,
+      "w": 276,
+      "h": 24,
+      "text": "Count class attendance per course",
+      "style": {
+        "size": "sm",
+        "color": "$muted"
+      }
+    },
+    {
+      "id": "t950",
+      "type": "text",
+      "x": 112,
+      "y": 170,
+      "w": 276,
+      "h": 24,
+      "text": "by taku1029-dev",
+      "style": {
+        "color": "$muted",
+        "size": "sm"
+      }
+    },
+    {
+      "id": "b951",
+      "type": "button",
+      "x": 24,
+      "y": 208,
+      "w": 364,
+      "h": 48,
+      "text": "Install",
+      "variant": "filled"
+    },
+    {
+      "id": "d952",
+      "type": "divider",
+      "x": 24,
+      "y": 272,
+      "w": 364,
+      "h": 1
+    },
+    {
+      "id": "t953",
+      "type": "text",
+      "x": 24,
+      "y": 288,
+      "w": 364,
+      "h": 168,
+      "name": "Description (README)",
+      "text": "Attendance Counter\n\nRecord attendance per course and see how many absences you have left.\n\n• Add and remove courses\n• Record present / absent"
+    },
+    {
+      "id": "d954",
+      "type": "divider",
+      "x": 24,
+      "y": 472,
+      "w": 364,
+      "h": 1
+    },
+    {
+      "id": "t955",
+      "type": "text",
+      "x": 24,
+      "y": 488,
+      "w": 140,
+      "h": 24,
+      "text": "Author",
+      "style": {
+        "color": "$muted",
+        "size": "sm"
+      }
+    },
+    {
+      "id": "t956",
+      "type": "text",
+      "x": 164,
+      "y": 488,
+      "w": 224,
+      "h": 24,
+      "text": "taku1029-dev",
+      "style": {
+        "size": "sm",
+        "align": "right"
+      }
+    },
+    {
+      "id": "t957",
+      "type": "text",
+      "x": 24,
+      "y": 520,
+      "w": 140,
+      "h": 24,
+      "text": "Version",
+      "style": {
+        "color": "$muted",
+        "size": "sm"
+      }
+    },
+    {
+      "id": "t958",
+      "type": "text",
+      "x": 164,
+      "y": 520,
+      "w": 224,
+      "h": 24,
+      "text": "0.1.1 (101)",
+      "style": {
+        "size": "sm",
+        "align": "right"
+      }
+    },
+    {
+      "id": "t959",
+      "type": "text",
+      "x": 24,
+      "y": 552,
+      "w": 140,
+      "h": 24,
+      "text": "Size",
+      "style": {
+        "color": "$muted",
+        "size": "sm"
+      }
+    },
+    {
+      "id": "t960",
+      "type": "text",
+      "x": 164,
+      "y": 552,
+      "w": 224,
+      "h": 24,
+      "text": "1.8 MB",
+      "style": {
+        "size": "sm",
+        "align": "right"
+      }
+    },
+    {
+      "id": "t961",
+      "type": "text",
+      "x": 24,
+      "y": 584,
+      "w": 140,
+      "h": 24,
+      "text": "Min Android API",
+      "style": {
+        "color": "$muted",
+        "size": "sm"
+      }
+    },
+    {
+      "id": "t962",
+      "type": "text",
+      "x": 164,
+      "y": 584,
+      "w": 224,
+      "h": 24,
+      "text": "26",
+      "style": {
+        "size": "sm",
+        "align": "right"
+      }
+    },
+    {
+      "id": "t963",
+      "type": "text",
+      "x": 24,
+      "y": 616,
+      "w": 140,
+      "h": 24,
+      "text": "Updated",
+      "style": {
+        "color": "$muted",
+        "size": "sm"
+      }
+    },
+    {
+      "id": "t964",
+      "type": "text",
+      "x": 164,
+      "y": 616,
+      "w": 224,
+      "h": 24,
+      "text": "Sep 12, 2026",
+      "style": {
+        "size": "sm",
+        "align": "right"
+      }
+    },
+    {
+      "id": "t965",
+      "type": "text",
+      "x": 24,
+      "y": 648,
+      "w": 140,
+      "h": 24,
+      "text": "Package",
+      "style": {
+        "color": "$muted",
+        "size": "sm"
+      }
+    },
+    {
+      "id": "t966",
+      "type": "text",
+      "x": 164,
+      "y": 648,
+      "w": 224,
+      "h": 24,
+      "text": "dev.apslop.apps.attendance_counter",
+      "style": {
+        "size": "sm",
+        "align": "right"
+      }
+    },
+    {
+      "id": "b967",
+      "type": "button",
+      "x": 24,
+      "y": 696,
+      "w": 364,
+      "h": 44,
+      "text": "Source code on GitHub ↗",
+      "variant": "outline"
+    }
+  ]
+}

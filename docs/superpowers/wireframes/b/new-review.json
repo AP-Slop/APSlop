@@ -1,0 +1,525 @@
+{
+  "version": 1,
+  "id": "new-review",
+  "title": "開発者: 新しいアプリ(生成結果の確認)",
+  "device": {
+    "w": 1440,
+    "h": 1240
+  },
+  "elements": [
+    {
+      "id": "r209",
+      "type": "rect",
+      "x": 0,
+      "y": 0,
+      "w": 1440,
+      "h": 56,
+      "name": "Developer Header",
+      "style": {
+        "fill": "#24292F",
+        "radius": 0
+      },
+      "children": [
+        {
+          "id": "i200",
+          "type": "icon",
+          "x": 144,
+          "y": 16,
+          "w": 24,
+          "h": 24,
+          "text": "AP logo"
+        },
+        {
+          "id": "t201",
+          "type": "text",
+          "x": 176,
+          "y": 16,
+          "w": 160,
+          "h": 24,
+          "text": "APSlop Developers",
+          "style": {
+            "weight": "bold",
+            "color": "#FFFFFF"
+          }
+        },
+        {
+          "id": "t202",
+          "type": "text",
+          "x": 360,
+          "y": 16,
+          "w": 88,
+          "h": 24,
+          "text": "Dashboard",
+          "style": {
+            "color": "#FFFFFF"
+          }
+        },
+        {
+          "id": "t203",
+          "type": "text",
+          "x": 464,
+          "y": 16,
+          "w": 104,
+          "h": 24,
+          "text": "Repositories",
+          "style": {
+            "color": "#FFFFFF"
+          }
+        },
+        {
+          "id": "t204",
+          "type": "text",
+          "x": 584,
+          "y": 16,
+          "w": 72,
+          "h": 24,
+          "text": "New app",
+          "style": {
+            "color": "#FFFFFF"
+          }
+        },
+        {
+          "id": "t205",
+          "type": "text",
+          "x": 880,
+          "y": 16,
+          "w": 136,
+          "h": 24,
+          "text": "← Store",
+          "style": {
+            "color": "#FFFFFF",
+            "align": "right"
+          }
+        },
+        {
+          "id": "i206",
+          "type": "icon",
+          "x": 1040,
+          "y": 16,
+          "w": 24,
+          "h": 24,
+          "text": "avatar"
+        },
+        {
+          "id": "t207",
+          "type": "text",
+          "x": 1072,
+          "y": 16,
+          "w": 112,
+          "h": 24,
+          "text": "taku1029-dev",
+          "style": {
+            "color": "#FFFFFF"
+          }
+        },
+        {
+          "id": "t208",
+          "type": "text",
+          "x": 1200,
+          "y": 16,
+          "w": 96,
+          "h": 24,
+          "text": "Sign out",
+          "style": {
+            "color": "#FFFFFF",
+            "align": "right"
+          }
+        }
+      ]
+    },
+    {
+      "id": "t210",
+      "type": "text",
+      "x": 144,
+      "y": 88,
+      "w": 600,
+      "h": 32,
+      "text": "New app — review",
+      "style": {
+        "size": "lg",
+        "weight": "bold"
+      }
+    },
+    {
+      "id": "r217",
+      "type": "rect",
+      "x": 144,
+      "y": 136,
+      "w": 1152,
+      "h": 256,
+      "name": "Generated Result",
+      "style": {
+        "fill": "$bg"
+      },
+      "children": [
+        {
+          "id": "r216",
+          "type": "rect",
+          "x": 0,
+          "y": 0,
+          "w": 1152,
+          "h": 40,
+          "name": "Card Header",
+          "style": {
+            "fill": "$surface",
+            "radius": 0
+          },
+          "children": [
+            {
+              "id": "t215",
+              "type": "text",
+              "x": 16,
+              "y": 8,
+              "w": 1120,
+              "h": 24,
+              "text": "Generated app",
+              "style": {
+                "weight": "bold"
+              }
+            }
+          ]
+        },
+        {
+          "id": "i211",
+          "type": "input",
+          "x": 16,
+          "y": 56,
+          "w": 360,
+          "h": 56,
+          "text": "App name",
+          "props": {
+            "placeholder": "Attendance Counter",
+            "kind": "text"
+          }
+        },
+        {
+          "id": "i212",
+          "type": "input",
+          "x": 392,
+          "y": 56,
+          "w": 360,
+          "h": 56,
+          "text": "Repository name",
+          "props": {
+            "placeholder": "attendance-counter",
+            "kind": "text"
+          }
+        },
+        {
+          "id": "i213",
+          "type": "input",
+          "x": 16,
+          "y": 128,
+          "w": 1120,
+          "h": 56,
+          "text": "Summary",
+          "props": {
+            "placeholder": "Count class attendance per course",
+            "kind": "text"
+          }
+        },
+        {
+          "id": "t214",
+          "type": "text",
+          "x": 16,
+          "y": 208,
+          "w": 800,
+          "h": 24,
+          "text": "Package: dev.apslop.apps.attendance_counter",
+          "style": {
+            "color": "$muted",
+            "size": "sm"
+          }
+        }
+      ]
+    },
+    {
+      "id": "r221",
+      "type": "rect",
+      "x": 144,
+      "y": 408,
+      "w": 1152,
+      "h": 200,
+      "name": "README Preview",
+      "style": {
+        "fill": "$bg"
+      },
+      "children": [
+        {
+          "id": "r220",
+          "type": "rect",
+          "x": 0,
+          "y": 0,
+          "w": 1152,
+          "h": 40,
+          "name": "Card Header",
+          "style": {
+            "fill": "$surface",
+            "radius": 0
+          },
+          "children": [
+            {
+              "id": "t219",
+              "type": "text",
+              "x": 16,
+              "y": 8,
+              "w": 1120,
+              "h": 24,
+              "text": "Description (README.md) — shown on the store page",
+              "style": {
+                "weight": "bold"
+              }
+            }
+          ]
+        },
+        {
+          "id": "t218",
+          "type": "text",
+          "x": 16,
+          "y": 56,
+          "w": 1120,
+          "h": 128,
+          "text": "Attendance Counter\n\nRecord attendance per course and see how many absences you have left.\n\n• Add and remove courses\n• Record present / absent"
+        }
+      ]
+    },
+    {
+      "id": "r233",
+      "type": "rect",
+      "x": 144,
+      "y": 624,
+      "w": 1152,
+      "h": 440,
+      "name": "Files",
+      "style": {
+        "fill": "$bg"
+      },
+      "children": [
+        {
+          "id": "r232",
+          "type": "rect",
+          "x": 0,
+          "y": 0,
+          "w": 1152,
+          "h": 40,
+          "name": "Card Header",
+          "style": {
+            "fill": "$surface",
+            "radius": 0
+          },
+          "children": [
+            {
+              "id": "t231",
+              "type": "text",
+              "x": 16,
+              "y": 8,
+              "w": 1120,
+              "h": 24,
+              "text": "Files (6)",
+              "style": {
+                "weight": "bold"
+              }
+            }
+          ]
+        },
+        {
+          "id": "r228",
+          "type": "rect",
+          "x": 0,
+          "y": 40,
+          "w": 320,
+          "h": 400,
+          "name": "File List",
+          "style": {
+            "radius": 0,
+            "fill": "$bg"
+          },
+          "children": [
+            {
+              "id": "t222",
+              "type": "text",
+              "x": 16,
+              "y": 12,
+              "w": 288,
+              "h": 24,
+              "text": "app/build.gradle.kts",
+              "style": {
+                "size": "sm",
+                "weight": "normal"
+              }
+            },
+            {
+              "id": "t223",
+              "type": "text",
+              "x": 16,
+              "y": 44,
+              "w": 288,
+              "h": 24,
+              "text": "app/src/main/AndroidManifest.xml",
+              "style": {
+                "size": "sm",
+                "weight": "normal"
+              }
+            },
+            {
+              "id": "t224",
+              "type": "text",
+              "x": 16,
+              "y": 76,
+              "w": 288,
+              "h": 24,
+              "text": "app/src/main/java/.../MainActivity.kt",
+              "style": {
+                "size": "sm",
+                "weight": "bold"
+              }
+            },
+            {
+              "id": "t225",
+              "type": "text",
+              "x": 16,
+              "y": 108,
+              "w": 288,
+              "h": 24,
+              "text": "app/src/main/java/.../ui/Theme.kt",
+              "style": {
+                "size": "sm",
+                "weight": "normal"
+              }
+            },
+            {
+              "id": "t226",
+              "type": "text",
+              "x": 16,
+              "y": 140,
+              "w": 288,
+              "h": 24,
+              "text": "app/src/main/res/values/strings.xml",
+              "style": {
+                "size": "sm",
+                "weight": "normal"
+              }
+            },
+            {
+              "id": "t227",
+              "type": "text",
+              "x": 16,
+              "y": 172,
+              "w": 288,
+              "h": 24,
+              "text": "README.md",
+              "style": {
+                "size": "sm",
+                "weight": "normal"
+              }
+            }
+          ]
+        },
+        {
+          "id": "r230",
+          "type": "rect",
+          "x": 320,
+          "y": 40,
+          "w": 832,
+          "h": 400,
+          "name": "File Content",
+          "style": {
+            "fill": "$surface",
+            "radius": 0
+          },
+          "children": [
+            {
+              "id": "t229",
+              "type": "text",
+              "x": 16,
+              "y": 16,
+              "w": 800,
+              "h": 96,
+              "text": "package dev.apslop.apps.attendance_counter\n\nclass MainActivity : ComponentActivity() { … }",
+              "style": {
+                "size": "sm",
+                "color": "$muted"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "b234",
+      "type": "button",
+      "x": 144,
+      "y": 1080,
+      "w": 168,
+      "h": 40,
+      "text": "Create repository",
+      "variant": "filled"
+    },
+    {
+      "id": "b235",
+      "type": "button",
+      "x": 328,
+      "y": 1080,
+      "w": 104,
+      "h": 40,
+      "text": "Start over",
+      "variant": "outline"
+    },
+    {
+      "id": "t236",
+      "type": "text",
+      "x": 144,
+      "y": 1136,
+      "w": 1152,
+      "h": 24,
+      "text": "The repository is created in the GitHub organization with the template (build settings, CI) and the generated code. Create a release to build and publish the app.",
+      "style": {
+        "color": "$muted",
+        "size": "sm"
+      }
+    },
+    {
+      "id": "r239",
+      "type": "rect",
+      "x": 0,
+      "y": 1184,
+      "w": 1440,
+      "h": 56,
+      "name": "Footer",
+      "style": {
+        "radius": 0,
+        "border": "none",
+        "fill": "$bg"
+      },
+      "children": [
+        {
+          "id": "t237",
+          "type": "text",
+          "x": 144,
+          "y": 16,
+          "w": 400,
+          "h": 24,
+          "text": "APSlop — a campus community GitHub",
+          "style": {
+            "color": "$muted",
+            "size": "sm"
+          }
+        },
+        {
+          "id": "t238",
+          "type": "text",
+          "x": 816,
+          "y": 16,
+          "w": 480,
+          "h": 24,
+          "text": "F-Droid repository: https://apslop.example.com/fdroid/repo",
+          "style": {
+            "color": "$muted",
+            "size": "sm",
+            "align": "right"
+          }
+        }
+      ]
+    }
+  ]
+}

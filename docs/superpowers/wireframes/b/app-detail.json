@@ -1,0 +1,537 @@
+{
+  "version": 1,
+  "id": "app-detail",
+  "title": "訪問者: アプリのページ",
+  "device": "desktop",
+  "elements": [
+    {
+      "id": "r67",
+      "type": "rect",
+      "x": 0,
+      "y": 0,
+      "w": 1440,
+      "h": 56,
+      "name": "Visitor Header",
+      "style": {
+        "fill": "#24292F",
+        "radius": 0
+      },
+      "children": [
+        {
+          "id": "i61",
+          "type": "icon",
+          "x": 144,
+          "y": 16,
+          "w": 24,
+          "h": 24,
+          "text": "AP logo"
+        },
+        {
+          "id": "t62",
+          "type": "text",
+          "x": 176,
+          "y": 16,
+          "w": 80,
+          "h": 24,
+          "text": "APSlop",
+          "style": {
+            "weight": "bold",
+            "color": "#FFFFFF"
+          }
+        },
+        {
+          "id": "t63",
+          "type": "text",
+          "x": 280,
+          "y": 16,
+          "w": 48,
+          "h": 24,
+          "text": "Apps",
+          "style": {
+            "color": "#FFFFFF",
+            "weight": "bold"
+          }
+        },
+        {
+          "id": "t64",
+          "type": "text",
+          "x": 344,
+          "y": 16,
+          "w": 160,
+          "h": 24,
+          "text": "Install on your phone",
+          "style": {
+            "color": "#FFFFFF"
+          }
+        },
+        {
+          "id": "t65",
+          "type": "text",
+          "x": 952,
+          "y": 16,
+          "w": 136,
+          "h": 24,
+          "text": "For developers →",
+          "style": {
+            "color": "#FFFFFF",
+            "align": "right"
+          }
+        },
+        {
+          "id": "b66",
+          "type": "button",
+          "x": 1112,
+          "y": 8,
+          "w": 184,
+          "h": 40,
+          "name": "Sign In (goes straight to GitHub)",
+          "text": "Sign in with GitHub",
+          "style": {
+            "fill": "#24292F",
+            "color": "#FFFFFF",
+            "border": "#FFFFFF"
+          },
+          "variant": "outline"
+        }
+      ]
+    },
+    {
+      "id": "i68",
+      "type": "image",
+      "x": 144,
+      "y": 88,
+      "w": 96,
+      "h": 96,
+      "text": "icon"
+    },
+    {
+      "id": "t69",
+      "type": "text",
+      "x": 264,
+      "y": 88,
+      "w": 400,
+      "h": 32,
+      "text": "Attendance Counter",
+      "style": {
+        "size": "lg",
+        "weight": "bold"
+      }
+    },
+    {
+      "id": "t70",
+      "type": "text",
+      "x": 264,
+      "y": 128,
+      "w": 800,
+      "h": 24,
+      "text": "Count class attendance per course",
+      "style": {
+        "color": "$muted"
+      }
+    },
+    {
+      "id": "t71",
+      "type": "text",
+      "x": 264,
+      "y": 160,
+      "w": 400,
+      "h": 24,
+      "text": "by taku1029-dev",
+      "style": {
+        "color": "$muted",
+        "size": "sm"
+      }
+    },
+    {
+      "id": "b72",
+      "type": "button",
+      "x": 144,
+      "y": 216,
+      "w": 224,
+      "h": 40,
+      "text": "Download APK (v0.1.1)",
+      "variant": "filled"
+    },
+    {
+      "id": "t73",
+      "type": "text",
+      "x": 384,
+      "y": 224,
+      "w": 500,
+      "h": 24,
+      "text": "or install from the APSlop store app on your phone",
+      "style": {
+        "color": "$muted",
+        "size": "sm"
+      }
+    },
+    {
+      "id": "r77",
+      "type": "rect",
+      "x": 144,
+      "y": 288,
+      "w": 760,
+      "h": 360,
+      "name": "Description",
+      "style": {
+        "fill": "$bg"
+      },
+      "children": [
+        {
+          "id": "r76",
+          "type": "rect",
+          "x": 0,
+          "y": 0,
+          "w": 760,
+          "h": 40,
+          "name": "Card Header",
+          "style": {
+            "fill": "$surface",
+            "radius": 0
+          },
+          "children": [
+            {
+              "id": "t75",
+              "type": "text",
+              "x": 16,
+              "y": 8,
+              "w": 728,
+              "h": 24,
+              "text": "Description (README)",
+              "style": {
+                "weight": "bold"
+              }
+            }
+          ]
+        },
+        {
+          "id": "t74",
+          "type": "text",
+          "x": 16,
+          "y": 56,
+          "w": 728,
+          "h": 200,
+          "text": "Attendance Counter\n\nRecord attendance per course and see how many absences you have left.\n\n• Add and remove courses\n• Record present / absent"
+        }
+      ]
+    },
+    {
+      "id": "r92",
+      "type": "rect",
+      "x": 936,
+      "y": 288,
+      "w": 360,
+      "h": 256,
+      "name": "Information",
+      "style": {
+        "fill": "$bg"
+      },
+      "children": [
+        {
+          "id": "r91",
+          "type": "rect",
+          "x": 0,
+          "y": 0,
+          "w": 360,
+          "h": 40,
+          "name": "Card Header",
+          "style": {
+            "fill": "$surface",
+            "radius": 0
+          },
+          "children": [
+            {
+              "id": "t90",
+              "type": "text",
+              "x": 16,
+              "y": 8,
+              "w": 328,
+              "h": 24,
+              "text": "Information",
+              "style": {
+                "weight": "bold"
+              }
+            }
+          ]
+        },
+        {
+          "id": "t78",
+          "type": "text",
+          "x": 16,
+          "y": 56,
+          "w": 140,
+          "h": 24,
+          "text": "Author",
+          "style": {
+            "color": "$muted",
+            "size": "sm"
+          }
+        },
+        {
+          "id": "t79",
+          "type": "text",
+          "x": 156,
+          "y": 56,
+          "w": 188,
+          "h": 24,
+          "text": "taku1029-dev",
+          "style": {
+            "size": "sm",
+            "align": "right"
+          }
+        },
+        {
+          "id": "t80",
+          "type": "text",
+          "x": 16,
+          "y": 88,
+          "w": 140,
+          "h": 24,
+          "text": "Version",
+          "style": {
+            "color": "$muted",
+            "size": "sm"
+          }
+        },
+        {
+          "id": "t81",
+          "type": "text",
+          "x": 156,
+          "y": 88,
+          "w": 188,
+          "h": 24,
+          "text": "0.1.1 (101)",
+          "style": {
+            "size": "sm",
+            "align": "right"
+          }
+        },
+        {
+          "id": "t82",
+          "type": "text",
+          "x": 16,
+          "y": 120,
+          "w": 140,
+          "h": 24,
+          "text": "Size",
+          "style": {
+            "color": "$muted",
+            "size": "sm"
+          }
+        },
+        {
+          "id": "t83",
+          "type": "text",
+          "x": 156,
+          "y": 120,
+          "w": 188,
+          "h": 24,
+          "text": "1.8 MB",
+          "style": {
+            "size": "sm",
+            "align": "right"
+          }
+        },
+        {
+          "id": "t84",
+          "type": "text",
+          "x": 16,
+          "y": 152,
+          "w": 140,
+          "h": 24,
+          "text": "Min Android API",
+          "style": {
+            "color": "$muted",
+            "size": "sm"
+          }
+        },
+        {
+          "id": "t85",
+          "type": "text",
+          "x": 156,
+          "y": 152,
+          "w": 188,
+          "h": 24,
+          "text": "26",
+          "style": {
+            "size": "sm",
+            "align": "right"
+          }
+        },
+        {
+          "id": "t86",
+          "type": "text",
+          "x": 16,
+          "y": 184,
+          "w": 140,
+          "h": 24,
+          "text": "Updated",
+          "style": {
+            "color": "$muted",
+            "size": "sm"
+          }
+        },
+        {
+          "id": "t87",
+          "type": "text",
+          "x": 156,
+          "y": 184,
+          "w": 188,
+          "h": 24,
+          "text": "Sep 12, 2026",
+          "style": {
+            "size": "sm",
+            "align": "right"
+          }
+        },
+        {
+          "id": "t88",
+          "type": "text",
+          "x": 16,
+          "y": 216,
+          "w": 140,
+          "h": 24,
+          "text": "Package",
+          "style": {
+            "color": "$muted",
+            "size": "sm"
+          }
+        },
+        {
+          "id": "t89",
+          "type": "text",
+          "x": 156,
+          "y": 216,
+          "w": 188,
+          "h": 24,
+          "text": "dev.apslop.apps.attendance_counter",
+          "style": {
+            "size": "sm",
+            "align": "right"
+          }
+        }
+      ]
+    },
+    {
+      "id": "r98",
+      "type": "rect",
+      "x": 936,
+      "y": 560,
+      "w": 360,
+      "h": 152,
+      "name": "Developer Links",
+      "style": {
+        "fill": "$bg"
+      },
+      "children": [
+        {
+          "id": "r97",
+          "type": "rect",
+          "x": 0,
+          "y": 0,
+          "w": 360,
+          "h": 40,
+          "name": "Card Header",
+          "style": {
+            "fill": "$surface",
+            "radius": 0
+          },
+          "children": [
+            {
+              "id": "t96",
+              "type": "text",
+              "x": 16,
+              "y": 8,
+              "w": 328,
+              "h": 24,
+              "text": "For developers",
+              "style": {
+                "weight": "bold"
+              }
+            }
+          ]
+        },
+        {
+          "id": "t93",
+          "type": "text",
+          "x": 16,
+          "y": 56,
+          "w": 328,
+          "h": 24,
+          "text": "Source code on GitHub ↗",
+          "style": {
+            "color": "#0969DA"
+          }
+        },
+        {
+          "id": "t94",
+          "type": "text",
+          "x": 16,
+          "y": 88,
+          "w": 328,
+          "h": 24,
+          "text": "Open in APSlop Developers →",
+          "style": {
+            "color": "#0969DA"
+          }
+        },
+        {
+          "id": "t95",
+          "type": "text",
+          "x": 16,
+          "y": 116,
+          "w": 328,
+          "h": 24,
+          "text": "Suggest an improvement with “Create PR with AI”.",
+          "style": {
+            "color": "$muted",
+            "size": "sm"
+          }
+        }
+      ]
+    },
+    {
+      "id": "r101",
+      "type": "rect",
+      "x": 0,
+      "y": 844,
+      "w": 1440,
+      "h": 56,
+      "name": "Footer",
+      "style": {
+        "radius": 0,
+        "border": "none",
+        "fill": "$bg"
+      },
+      "children": [
+        {
+          "id": "t99",
+          "type": "text",
+          "x": 144,
+          "y": 16,
+          "w": 400,
+          "h": 24,
+          "text": "APSlop — a campus community GitHub",
+          "style": {
+            "color": "$muted",
+            "size": "sm"
+          }
+        },
+        {
+          "id": "t100",
+          "type": "text",
+          "x": 816,
+          "y": 16,
+          "w": 480,
+          "h": 24,
+          "text": "F-Droid repository: https://apslop.example.com/fdroid/repo",
+          "style": {
+            "color": "$muted",
+            "size": "sm",
+            "align": "right"
+          }
+        }
+      ]
+    }
+  ]
+}

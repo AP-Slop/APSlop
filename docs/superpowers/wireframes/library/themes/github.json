@@ -1,0 +1,27 @@
+{
+  "id": "github",
+  "name": "GitHub",
+  "colors": {
+    "bg": "#FFFFFF",
+    "surface": "#F6F8FA",
+    "primary": "#1F883D",
+    "onPrimary": "#FFFFFF",
+    "text": "#1F2328",
+    "muted": "#59636E",
+    "border": "#D0D7DE"
+  },
+  "radius": {
+    "sm": 6,
+    "md": 6,
+    "lg": 12
+  },
+  "spacing": 8,
+  "font": {
+    "family": "system-ui, sans-serif",
+    "size": {
+      "sm": 12,
+      "md": 14,
+      "lg": 20
+    }
+  }
+}

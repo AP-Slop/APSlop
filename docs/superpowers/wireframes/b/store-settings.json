@@ -1,0 +1,92 @@
+{
+  "version": 1,
+  "id": "store-settings",
+  "title": "ストアアプリ: 設定",
+  "device": "phone-android",
+  "elements": [
+    {
+      "id": "n968",
+      "type": "navbar",
+      "x": 0,
+      "y": 0,
+      "w": 412,
+      "h": 96,
+      "text": "Settings",
+      "props": {
+        "left": "back",
+        "right": "none"
+      },
+      "style": {
+        "fill": "#24292F",
+        "color": "#FFFFFF"
+      }
+    },
+    {
+      "id": "i969",
+      "type": "input",
+      "x": 24,
+      "y": 120,
+      "w": 364,
+      "h": 56,
+      "text": "Repository URL",
+      "props": {
+        "placeholder": "https://example.ac.jp/fdroid/repo",
+        "kind": "text"
+      }
+    },
+    {
+      "id": "t970",
+      "type": "text",
+      "x": 24,
+      "y": 188,
+      "w": 364,
+      "h": 48,
+      "text": "You can add this URL to the official F-Droid client to get the same apps.",
+      "style": {
+        "color": "$muted",
+        "size": "sm"
+      }
+    },
+    {
+      "id": "b971",
+      "type": "button",
+      "x": 24,
+      "y": 252,
+      "w": 174,
+      "h": 48,
+      "text": "Save and refresh",
+      "variant": "filled"
+    },
+    {
+      "id": "b972",
+      "type": "button",
+      "x": 214,
+      "y": 252,
+      "w": 174,
+      "h": 48,
+      "text": "Reset to default",
+      "variant": "outline"
+    },
+    {
+      "id": "d973",
+      "type": "divider",
+      "x": 24,
+      "y": 324,
+      "w": 364,
+      "h": 1
+    },
+    {
+      "id": "t974",
+      "type": "text",
+      "x": 24,
+      "y": 340,
+      "w": 364,
+      "h": 24,
+      "text": "APSlop Store 0.1.0",
+      "style": {
+        "color": "$muted",
+        "size": "sm"
+      }
+    }
+  ]
+}

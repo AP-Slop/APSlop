@@ -1,0 +1,554 @@
+{
+  "version": 1,
+  "id": "repo-pulls",
+  "title": "開発者: リポジトリ(Pull requests)",
+  "device": "desktop",
+  "elements": [
+    {
+      "id": "r540",
+      "type": "rect",
+      "x": 0,
+      "y": 0,
+      "w": 1440,
+      "h": 56,
+      "name": "Developer Header",
+      "style": {
+        "fill": "#24292F",
+        "radius": 0
+      },
+      "children": [
+        {
+          "id": "i531",
+          "type": "icon",
+          "x": 144,
+          "y": 16,
+          "w": 24,
+          "h": 24,
+          "text": "AP logo"
+        },
+        {
+          "id": "t532",
+          "type": "text",
+          "x": 176,
+          "y": 16,
+          "w": 160,
+          "h": 24,
+          "text": "APSlop Developers",
+          "style": {
+            "weight": "bold",
+            "color": "#FFFFFF"
+          }
+        },
+        {
+          "id": "t533",
+          "type": "text",
+          "x": 360,
+          "y": 16,
+          "w": 88,
+          "h": 24,
+          "text": "Dashboard",
+          "style": {
+            "color": "#FFFFFF"
+          }
+        },
+        {
+          "id": "t534",
+          "type": "text",
+          "x": 464,
+          "y": 16,
+          "w": 104,
+          "h": 24,
+          "text": "Repositories",
+          "style": {
+            "color": "#FFFFFF"
+          }
+        },
+        {
+          "id": "t535",
+          "type": "text",
+          "x": 584,
+          "y": 16,
+          "w": 72,
+          "h": 24,
+          "text": "New app",
+          "style": {
+            "color": "#FFFFFF"
+          }
+        },
+        {
+          "id": "t536",
+          "type": "text",
+          "x": 880,
+          "y": 16,
+          "w": 136,
+          "h": 24,
+          "text": "← Store",
+          "style": {
+            "color": "#FFFFFF",
+            "align": "right"
+          }
+        },
+        {
+          "id": "i537",
+          "type": "icon",
+          "x": 1040,
+          "y": 16,
+          "w": 24,
+          "h": 24,
+          "text": "avatar"
+        },
+        {
+          "id": "t538",
+          "type": "text",
+          "x": 1072,
+          "y": 16,
+          "w": 112,
+          "h": 24,
+          "text": "taku1029-dev",
+          "style": {
+            "color": "#FFFFFF"
+          }
+        },
+        {
+          "id": "t539",
+          "type": "text",
+          "x": 1200,
+          "y": 16,
+          "w": 96,
+          "h": 24,
+          "text": "Sign out",
+          "style": {
+            "color": "#FFFFFF",
+            "align": "right"
+          }
+        }
+      ]
+    },
+    {
+      "id": "r556",
+      "type": "rect",
+      "x": 0,
+      "y": 56,
+      "w": 1440,
+      "h": 120,
+      "name": "Repo Header",
+      "style": {
+        "fill": "$surface",
+        "radius": 0
+      },
+      "children": [
+        {
+          "id": "t541",
+          "type": "text",
+          "x": 144,
+          "y": 16,
+          "w": 72,
+          "h": 24,
+          "text": "AP-Slop /",
+          "style": {
+            "color": "$muted",
+            "size": "sm"
+          }
+        },
+        {
+          "id": "t542",
+          "type": "text",
+          "x": 216,
+          "y": 16,
+          "w": 176,
+          "h": 24,
+          "text": "attendance-counter",
+          "style": {
+            "weight": "bold",
+            "color": "#0969DA"
+          }
+        },
+        {
+          "id": "r544",
+          "type": "rect",
+          "x": 400,
+          "y": 16,
+          "w": 68,
+          "h": 24,
+          "name": "Badge",
+          "style": {
+            "radius": 12,
+            "fill": "$bg"
+          },
+          "children": [
+            {
+              "id": "t543",
+              "type": "text",
+              "x": 8,
+              "y": 0,
+              "w": 52,
+              "h": 24,
+              "text": "Public",
+              "style": {
+                "size": "sm",
+                "color": "$muted",
+                "align": "center"
+              }
+            }
+          ]
+        },
+        {
+          "id": "r546",
+          "type": "rect",
+          "x": 480,
+          "y": 16,
+          "w": 148,
+          "h": 24,
+          "name": "Badge",
+          "style": {
+            "radius": 12,
+            "fill": "$bg"
+          },
+          "children": [
+            {
+              "id": "t545",
+              "type": "text",
+              "x": 8,
+              "y": 0,
+              "w": 132,
+              "h": 24,
+              "text": "Published v0.1.1",
+              "style": {
+                "size": "sm",
+                "color": "#1A7F37",
+                "align": "center"
+              }
+            }
+          ]
+        },
+        {
+          "id": "t547",
+          "type": "text",
+          "x": 928,
+          "y": 16,
+          "w": 120,
+          "h": 24,
+          "text": "Open on GitHub ↗",
+          "style": {
+            "color": "#0969DA",
+            "size": "sm"
+          }
+        },
+        {
+          "id": "b548",
+          "type": "button",
+          "x": 1104,
+          "y": 8,
+          "w": 192,
+          "h": 36,
+          "text": "Create PR with AI",
+          "variant": "filled"
+        },
+        {
+          "id": "t549",
+          "type": "text",
+          "x": 144,
+          "y": 48,
+          "w": 800,
+          "h": 24,
+          "text": "Count class attendance per course",
+          "style": {
+            "color": "$muted",
+            "size": "sm"
+          }
+        },
+        {
+          "id": "t550",
+          "type": "text",
+          "x": 144,
+          "y": 88,
+          "w": 48,
+          "h": 24,
+          "text": "Code",
+          "style": {
+            "weight": "normal"
+          }
+        },
+        {
+          "id": "t551",
+          "type": "text",
+          "x": 224,
+          "y": 88,
+          "w": 120,
+          "h": 24,
+          "text": "Pull requests 2",
+          "style": {
+            "weight": "bold"
+          }
+        },
+        {
+          "id": "r552",
+          "type": "rect",
+          "x": 224,
+          "y": 118,
+          "w": 120,
+          "h": 2,
+          "name": "Active Tab Underline",
+          "style": {
+            "fill": "#FD8C73",
+            "border": "none",
+            "radius": 0
+          }
+        },
+        {
+          "id": "t553",
+          "type": "text",
+          "x": 376,
+          "y": 88,
+          "w": 64,
+          "h": 24,
+          "text": "Issues 2",
+          "style": {
+            "weight": "normal"
+          }
+        },
+        {
+          "id": "t554",
+          "type": "text",
+          "x": 472,
+          "y": 88,
+          "w": 72,
+          "h": 24,
+          "text": "Releases",
+          "style": {
+            "weight": "normal"
+          }
+        },
+        {
+          "id": "t555",
+          "type": "text",
+          "x": 576,
+          "y": 88,
+          "w": 64,
+          "h": 24,
+          "text": "Settings",
+          "style": {
+            "weight": "normal"
+          }
+        }
+      ]
+    },
+    {
+      "id": "r569",
+      "type": "rect",
+      "x": 144,
+      "y": 200,
+      "w": 1152,
+      "h": 200,
+      "name": "Pull Request List",
+      "style": {
+        "fill": "$bg"
+      },
+      "children": [
+        {
+          "id": "r559",
+          "type": "rect",
+          "x": 0,
+          "y": 0,
+          "w": 1152,
+          "h": 40,
+          "name": "Card Header",
+          "style": {
+            "fill": "$surface",
+            "radius": 0
+          },
+          "children": [
+            {
+              "id": "t557",
+              "type": "text",
+              "x": 16,
+              "y": 8,
+              "w": 56,
+              "h": 24,
+              "text": "Open",
+              "style": {
+                "weight": "bold"
+              }
+            },
+            {
+              "id": "t558",
+              "type": "text",
+              "x": 88,
+              "y": 8,
+              "w": 64,
+              "h": 24,
+              "text": "Closed",
+              "style": {
+                "color": "$muted",
+                "size": "sm"
+              }
+            }
+          ]
+        },
+        {
+          "id": "i560",
+          "type": "icon",
+          "x": 16,
+          "y": 60,
+          "w": 24,
+          "h": 24,
+          "text": "PR state"
+        },
+        {
+          "id": "t561",
+          "type": "text",
+          "x": 52,
+          "y": 56,
+          "w": 600,
+          "h": 24,
+          "text": "Support dark mode",
+          "style": {
+            "color": "#0969DA",
+            "weight": "bold"
+          }
+        },
+        {
+          "id": "t562",
+          "type": "text",
+          "x": 52,
+          "y": 82,
+          "w": 900,
+          "h": 24,
+          "text": "#3 · opened 3 hours ago by student-a · ai/dark-mode → main",
+          "style": {
+            "color": "$muted",
+            "size": "sm"
+          }
+        },
+        {
+          "id": "d563",
+          "type": "divider",
+          "x": 0,
+          "y": 120,
+          "w": 1152,
+          "h": 1
+        },
+        {
+          "id": "i564",
+          "type": "icon",
+          "x": 16,
+          "y": 140,
+          "w": 24,
+          "h": 24,
+          "text": "PR state"
+        },
+        {
+          "id": "t565",
+          "type": "text",
+          "x": 52,
+          "y": 136,
+          "w": 600,
+          "h": 24,
+          "text": "Add a button to sort the list by date",
+          "style": {
+            "color": "#0969DA",
+            "weight": "bold"
+          }
+        },
+        {
+          "id": "t566",
+          "type": "text",
+          "x": 52,
+          "y": 162,
+          "w": 900,
+          "h": 24,
+          "text": "#4 · opened 1 day ago by student-b · ai/sort-button → main",
+          "style": {
+            "color": "$muted",
+            "size": "sm"
+          }
+        },
+        {
+          "id": "r568",
+          "type": "rect",
+          "x": 680,
+          "y": 136,
+          "w": 60,
+          "h": 24,
+          "name": "Badge",
+          "style": {
+            "radius": 12,
+            "fill": "$bg"
+          },
+          "children": [
+            {
+              "id": "t567",
+              "type": "text",
+              "x": 8,
+              "y": 0,
+              "w": 44,
+              "h": 24,
+              "text": "Draft",
+              "style": {
+                "size": "sm",
+                "color": "$muted",
+                "align": "center"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "t570",
+      "type": "text",
+      "x": 144,
+      "y": 416,
+      "w": 1152,
+      "h": 24,
+      "text": "New pull requests are made with “Create PR with AI” (top right).",
+      "style": {
+        "color": "$muted",
+        "size": "sm"
+      }
+    },
+    {
+      "id": "r573",
+      "type": "rect",
+      "x": 0,
+      "y": 844,
+      "w": 1440,
+      "h": 56,
+      "name": "Footer",
+      "style": {
+        "radius": 0,
+        "border": "none",
+        "fill": "$bg"
+      },
+      "children": [
+        {
+          "id": "t571",
+          "type": "text",
+          "x": 144,
+          "y": 16,
+          "w": 400,
+          "h": 24,
+          "text": "APSlop — a campus community GitHub",
+          "style": {
+            "color": "$muted",
+            "size": "sm"
+          }
+        },
+        {
+          "id": "t572",
+          "type": "text",
+          "x": 816,
+          "y": 16,
+          "w": 480,
+          "h": 24,
+          "text": "F-Droid repository: https://apslop.example.com/fdroid/repo",
+          "style": {
+            "color": "$muted",
+            "size": "sm",
+            "align": "right"
+          }
+        }
+      ]
+    }
+  ]
+}

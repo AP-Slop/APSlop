@@ -1,0 +1,862 @@
+{
+  "version": 1,
+  "id": "repo-releases",
+  "title": "開発者: リポジトリ(Releases)",
+  "device": {
+    "w": 1440,
+    "h": 1000
+  },
+  "elements": [
+    {
+      "id": "r668",
+      "type": "rect",
+      "x": 0,
+      "y": 0,
+      "w": 1440,
+      "h": 56,
+      "name": "Developer Header",
+      "style": {
+        "fill": "#24292F",
+        "radius": 0
+      },
+      "children": [
+        {
+          "id": "i659",
+          "type": "icon",
+          "x": 144,
+          "y": 16,
+          "w": 24,
+          "h": 24,
+          "text": "AP logo"
+        },
+        {
+          "id": "t660",
+          "type": "text",
+          "x": 176,
+          "y": 16,
+          "w": 160,
+          "h": 24,
+          "text": "APSlop Developers",
+          "style": {
+            "weight": "bold",
+            "color": "#FFFFFF"
+          }
+        },
+        {
+          "id": "t661",
+          "type": "text",
+          "x": 360,
+          "y": 16,
+          "w": 88,
+          "h": 24,
+          "text": "Dashboard",
+          "style": {
+            "color": "#FFFFFF"
+          }
+        },
+        {
+          "id": "t662",
+          "type": "text",
+          "x": 464,
+          "y": 16,
+          "w": 104,
+          "h": 24,
+          "text": "Repositories",
+          "style": {
+            "color": "#FFFFFF"
+          }
+        },
+        {
+          "id": "t663",
+          "type": "text",
+          "x": 584,
+          "y": 16,
+          "w": 72,
+          "h": 24,
+          "text": "New app",
+          "style": {
+            "color": "#FFFFFF"
+          }
+        },
+        {
+          "id": "t664",
+          "type": "text",
+          "x": 880,
+          "y": 16,
+          "w": 136,
+          "h": 24,
+          "text": "← Store",
+          "style": {
+            "color": "#FFFFFF",
+            "align": "right"
+          }
+        },
+        {
+          "id": "i665",
+          "type": "icon",
+          "x": 1040,
+          "y": 16,
+          "w": 24,
+          "h": 24,
+          "text": "avatar"
+        },
+        {
+          "id": "t666",
+          "type": "text",
+          "x": 1072,
+          "y": 16,
+          "w": 112,
+          "h": 24,
+          "text": "taku1029-dev",
+          "style": {
+            "color": "#FFFFFF"
+          }
+        },
+        {
+          "id": "t667",
+          "type": "text",
+          "x": 1200,
+          "y": 16,
+          "w": 96,
+          "h": 24,
+          "text": "Sign out",
+          "style": {
+            "color": "#FFFFFF",
+            "align": "right"
+          }
+        }
+      ]
+    },
+    {
+      "id": "r684",
+      "type": "rect",
+      "x": 0,
+      "y": 56,
+      "w": 1440,
+      "h": 120,
+      "name": "Repo Header",
+      "style": {
+        "fill": "$surface",
+        "radius": 0
+      },
+      "children": [
+        {
+          "id": "t669",
+          "type": "text",
+          "x": 144,
+          "y": 16,
+          "w": 72,
+          "h": 24,
+          "text": "AP-Slop /",
+          "style": {
+            "color": "$muted",
+            "size": "sm"
+          }
+        },
+        {
+          "id": "t670",
+          "type": "text",
+          "x": 216,
+          "y": 16,
+          "w": 176,
+          "h": 24,
+          "text": "attendance-counter",
+          "style": {
+            "weight": "bold",
+            "color": "#0969DA"
+          }
+        },
+        {
+          "id": "r672",
+          "type": "rect",
+          "x": 400,
+          "y": 16,
+          "w": 68,
+          "h": 24,
+          "name": "Badge",
+          "style": {
+            "radius": 12,
+            "fill": "$bg"
+          },
+          "children": [
+            {
+              "id": "t671",
+              "type": "text",
+              "x": 8,
+              "y": 0,
+              "w": 52,
+              "h": 24,
+              "text": "Public",
+              "style": {
+                "size": "sm",
+                "color": "$muted",
+                "align": "center"
+              }
+            }
+          ]
+        },
+        {
+          "id": "r674",
+          "type": "rect",
+          "x": 480,
+          "y": 16,
+          "w": 148,
+          "h": 24,
+          "name": "Badge",
+          "style": {
+            "radius": 12,
+            "fill": "$bg"
+          },
+          "children": [
+            {
+              "id": "t673",
+              "type": "text",
+              "x": 8,
+              "y": 0,
+              "w": 132,
+              "h": 24,
+              "text": "Published v0.1.1",
+              "style": {
+                "size": "sm",
+                "color": "#1A7F37",
+                "align": "center"
+              }
+            }
+          ]
+        },
+        {
+          "id": "t675",
+          "type": "text",
+          "x": 928,
+          "y": 16,
+          "w": 120,
+          "h": 24,
+          "text": "Open on GitHub ↗",
+          "style": {
+            "color": "#0969DA",
+            "size": "sm"
+          }
+        },
+        {
+          "id": "b676",
+          "type": "button",
+          "x": 1104,
+          "y": 8,
+          "w": 192,
+          "h": 36,
+          "text": "Create PR with AI",
+          "variant": "filled"
+        },
+        {
+          "id": "t677",
+          "type": "text",
+          "x": 144,
+          "y": 48,
+          "w": 800,
+          "h": 24,
+          "text": "Count class attendance per course",
+          "style": {
+            "color": "$muted",
+            "size": "sm"
+          }
+        },
+        {
+          "id": "t678",
+          "type": "text",
+          "x": 144,
+          "y": 88,
+          "w": 48,
+          "h": 24,
+          "text": "Code",
+          "style": {
+            "weight": "normal"
+          }
+        },
+        {
+          "id": "t679",
+          "type": "text",
+          "x": 224,
+          "y": 88,
+          "w": 120,
+          "h": 24,
+          "text": "Pull requests 2",
+          "style": {
+            "weight": "normal"
+          }
+        },
+        {
+          "id": "t680",
+          "type": "text",
+          "x": 376,
+          "y": 88,
+          "w": 64,
+          "h": 24,
+          "text": "Issues 2",
+          "style": {
+            "weight": "normal"
+          }
+        },
+        {
+          "id": "t681",
+          "type": "text",
+          "x": 472,
+          "y": 88,
+          "w": 72,
+          "h": 24,
+          "text": "Releases",
+          "style": {
+            "weight": "bold"
+          }
+        },
+        {
+          "id": "r682",
+          "type": "rect",
+          "x": 472,
+          "y": 118,
+          "w": 72,
+          "h": 2,
+          "name": "Active Tab Underline",
+          "style": {
+            "fill": "#FD8C73",
+            "border": "none",
+            "radius": 0
+          }
+        },
+        {
+          "id": "t683",
+          "type": "text",
+          "x": 576,
+          "y": 88,
+          "w": 64,
+          "h": 24,
+          "text": "Settings",
+          "style": {
+            "weight": "normal"
+          }
+        }
+      ]
+    },
+    {
+      "id": "r693",
+      "type": "rect",
+      "x": 144,
+      "y": 200,
+      "w": 760,
+      "h": 128,
+      "name": "Release Card",
+      "style": {
+        "fill": "$bg"
+      },
+      "children": [
+        {
+          "id": "r687",
+          "type": "rect",
+          "x": 0,
+          "y": 0,
+          "w": 760,
+          "h": 40,
+          "name": "Card Header",
+          "style": {
+            "fill": "$surface",
+            "radius": 0
+          },
+          "children": [
+            {
+              "id": "t685",
+              "type": "text",
+              "x": 16,
+              "y": 8,
+              "w": 80,
+              "h": 24,
+              "text": "v0.1.1",
+              "style": {
+                "weight": "bold"
+              }
+            },
+            {
+              "id": "t686",
+              "type": "text",
+              "x": 560,
+              "y": 8,
+              "w": 184,
+              "h": 24,
+              "text": "Sep 12, 2026 15:00",
+              "style": {
+                "color": "$muted",
+                "size": "sm",
+                "align": "right"
+              }
+            }
+          ]
+        },
+        {
+          "id": "t688",
+          "type": "text",
+          "x": 16,
+          "y": 52,
+          "w": 728,
+          "h": 24,
+          "text": "Fix a layout bug",
+          "style": {
+            "size": "sm"
+          }
+        },
+        {
+          "id": "t689",
+          "type": "text",
+          "x": 16,
+          "y": 88,
+          "w": 400,
+          "h": 24,
+          "text": "app-release-unsigned.apk (1.8 MB)",
+          "style": {
+            "size": "sm"
+          }
+        },
+        {
+          "id": "b690",
+          "type": "button",
+          "x": 432,
+          "y": 80,
+          "w": 144,
+          "h": 32,
+          "name": "Sync (owner only)",
+          "text": "Sync to store",
+          "variant": "outline"
+        },
+        {
+          "id": "r692",
+          "type": "rect",
+          "x": 592,
+          "y": 84,
+          "w": 92,
+          "h": 24,
+          "name": "Badge",
+          "style": {
+            "radius": 12,
+            "fill": "$bg"
+          },
+          "children": [
+            {
+              "id": "t691",
+              "type": "text",
+              "x": 8,
+              "y": 0,
+              "w": 76,
+              "h": 24,
+              "text": "Published",
+              "style": {
+                "size": "sm",
+                "color": "#1A7F37",
+                "align": "center"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "r700",
+      "type": "rect",
+      "x": 144,
+      "y": 344,
+      "w": 760,
+      "h": 128,
+      "name": "Release Card",
+      "style": {
+        "fill": "$bg"
+      },
+      "children": [
+        {
+          "id": "r696",
+          "type": "rect",
+          "x": 0,
+          "y": 0,
+          "w": 760,
+          "h": 40,
+          "name": "Card Header",
+          "style": {
+            "fill": "$surface",
+            "radius": 0
+          },
+          "children": [
+            {
+              "id": "t694",
+              "type": "text",
+              "x": 16,
+              "y": 8,
+              "w": 80,
+              "h": 24,
+              "text": "v0.1.0",
+              "style": {
+                "weight": "bold"
+              }
+            },
+            {
+              "id": "t695",
+              "type": "text",
+              "x": 560,
+              "y": 8,
+              "w": 184,
+              "h": 24,
+              "text": "Sep 12, 2026 14:10",
+              "style": {
+                "color": "$muted",
+                "size": "sm",
+                "align": "right"
+              }
+            }
+          ]
+        },
+        {
+          "id": "t697",
+          "type": "text",
+          "x": 16,
+          "y": 52,
+          "w": 728,
+          "h": 24,
+          "text": "First release",
+          "style": {
+            "size": "sm"
+          }
+        },
+        {
+          "id": "t698",
+          "type": "text",
+          "x": 16,
+          "y": 88,
+          "w": 400,
+          "h": 24,
+          "text": "app-release-unsigned.apk (1.8 MB)",
+          "style": {
+            "size": "sm"
+          }
+        },
+        {
+          "id": "b699",
+          "type": "button",
+          "x": 432,
+          "y": 80,
+          "w": 144,
+          "h": 32,
+          "name": "Sync (owner only)",
+          "text": "Sync to store",
+          "variant": "outline"
+        }
+      ]
+    },
+    {
+      "id": "r707",
+      "type": "rect",
+      "x": 144,
+      "y": 488,
+      "w": 760,
+      "h": 200,
+      "name": "Recent CI Runs",
+      "style": {
+        "fill": "$bg"
+      },
+      "children": [
+        {
+          "id": "r706",
+          "type": "rect",
+          "x": 0,
+          "y": 0,
+          "w": 760,
+          "h": 40,
+          "name": "Card Header",
+          "style": {
+            "fill": "$surface",
+            "radius": 0
+          },
+          "children": [
+            {
+              "id": "t705",
+              "type": "text",
+              "x": 16,
+              "y": 8,
+              "w": 728,
+              "h": 24,
+              "text": "Recent CI runs",
+              "style": {
+                "weight": "bold"
+              }
+            }
+          ]
+        },
+        {
+          "id": "t701",
+          "type": "text",
+          "x": 16,
+          "y": 56,
+          "w": 728,
+          "h": 24,
+          "text": "✓  Release   v0.1.1   Sep 12, 2026 15:00",
+          "style": {
+            "size": "sm"
+          }
+        },
+        {
+          "id": "t702",
+          "type": "text",
+          "x": 16,
+          "y": 88,
+          "w": 728,
+          "h": 24,
+          "text": "✓  CI   main   Sep 12, 2026 14:58",
+          "style": {
+            "size": "sm"
+          }
+        },
+        {
+          "id": "t703",
+          "type": "text",
+          "x": 16,
+          "y": 120,
+          "w": 728,
+          "h": 24,
+          "text": "✗  CI   ai/dark-mode   Sep 12, 2026 14:30",
+          "style": {
+            "size": "sm"
+          }
+        },
+        {
+          "id": "t704",
+          "type": "text",
+          "x": 16,
+          "y": 152,
+          "w": 728,
+          "h": 24,
+          "text": "…  CI   ai/sort-button   Sep 12, 2026 14:20",
+          "style": {
+            "size": "sm"
+          }
+        }
+      ]
+    },
+    {
+      "id": "r714",
+      "type": "rect",
+      "x": 936,
+      "y": 200,
+      "w": 360,
+      "h": 352,
+      "name": "New Release Form",
+      "style": {
+        "fill": "$bg"
+      },
+      "children": [
+        {
+          "id": "r713",
+          "type": "rect",
+          "x": 0,
+          "y": 0,
+          "w": 360,
+          "h": 40,
+          "name": "Card Header",
+          "style": {
+            "fill": "$surface",
+            "radius": 0
+          },
+          "children": [
+            {
+              "id": "t712",
+              "type": "text",
+              "x": 16,
+              "y": 8,
+              "w": 328,
+              "h": 24,
+              "text": "New release (owner only)",
+              "style": {
+                "weight": "bold"
+              }
+            }
+          ]
+        },
+        {
+          "id": "i708",
+          "type": "input",
+          "x": 16,
+          "y": 56,
+          "w": 328,
+          "h": 56,
+          "text": "Tag (vX.Y.Z)",
+          "props": {
+            "placeholder": "v0.1.2",
+            "kind": "text"
+          }
+        },
+        {
+          "id": "i709",
+          "type": "input",
+          "x": 16,
+          "y": 128,
+          "w": 328,
+          "h": 56,
+          "text": "Title (optional)",
+          "props": {
+            "placeholder": "",
+            "kind": "text"
+          }
+        },
+        {
+          "id": "i710",
+          "type": "input",
+          "x": 16,
+          "y": 200,
+          "w": 328,
+          "h": 80,
+          "text": "Release notes (optional)",
+          "props": {
+            "placeholder": "",
+            "kind": "text",
+            "multiline": true
+          }
+        },
+        {
+          "id": "b711",
+          "type": "button",
+          "x": 16,
+          "y": 296,
+          "w": 328,
+          "h": 40,
+          "text": "Create release",
+          "variant": "filled"
+        }
+      ]
+    },
+    {
+      "id": "r721",
+      "type": "rect",
+      "x": 936,
+      "y": 568,
+      "w": 360,
+      "h": 264,
+      "name": "Release Help",
+      "style": {
+        "fill": "$bg"
+      },
+      "children": [
+        {
+          "id": "r720",
+          "type": "rect",
+          "x": 0,
+          "y": 0,
+          "w": 360,
+          "h": 40,
+          "name": "Card Header",
+          "style": {
+            "fill": "$surface",
+            "radius": 0
+          },
+          "children": [
+            {
+              "id": "t719",
+              "type": "text",
+              "x": 16,
+              "y": 8,
+              "w": 328,
+              "h": 24,
+              "text": "How releases work",
+              "style": {
+                "weight": "bold"
+              }
+            }
+          ]
+        },
+        {
+          "id": "t715",
+          "type": "text",
+          "x": 16,
+          "y": 56,
+          "w": 328,
+          "h": 40,
+          "text": "1. Create a release with a tag (e.g. v0.1.0)",
+          "style": {
+            "size": "sm"
+          }
+        },
+        {
+          "id": "t716",
+          "type": "text",
+          "x": 16,
+          "y": 96,
+          "w": 328,
+          "h": 40,
+          "text": "2. GitHub Actions builds the APK and attaches it (a few minutes)",
+          "style": {
+            "size": "sm"
+          }
+        },
+        {
+          "id": "t717",
+          "type": "text",
+          "x": 16,
+          "y": 136,
+          "w": 328,
+          "h": 48,
+          "text": "3. The store picks it up automatically. If it does not, press “Sync to store”.",
+          "style": {
+            "size": "sm"
+          }
+        },
+        {
+          "id": "t718",
+          "type": "text",
+          "x": 16,
+          "y": 192,
+          "w": 328,
+          "h": 56,
+          "text": "When you bump the version, also update versionCode / versionName in app/build.gradle.kts.",
+          "style": {
+            "color": "$muted",
+            "size": "sm"
+          }
+        }
+      ]
+    },
+    {
+      "id": "r724",
+      "type": "rect",
+      "x": 0,
+      "y": 944,
+      "w": 1440,
+      "h": 56,
+      "name": "Footer",
+      "style": {
+        "radius": 0,
+        "border": "none",
+        "fill": "$bg"
+      },
+      "children": [
+        {
+          "id": "t722",
+          "type": "text",
+          "x": 144,
+          "y": 16,
+          "w": 400,
+          "h": 24,
+          "text": "APSlop — a campus community GitHub",
+          "style": {
+            "color": "$muted",
+            "size": "sm"
+          }
+        },
+        {
+          "id": "t723",
+          "type": "text",
+          "x": 816,
+          "y": 16,
+          "w": 480,
+          "h": 24,
+          "text": "F-Droid repository: https://apslop.example.com/fdroid/repo",
+          "style": {
+            "color": "$muted",
+            "size": "sm",
+            "align": "right"
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -14,8 +14,23 @@ export function adminOctokit(): Octokit {
   return new Octokit({ auth: env().GITHUB_ADMIN_TOKEN });
 }
 
+export const GITHUB_SIGNIN_EXPIRED =
+  "Your GitHub sign-in is no longer valid. Sign out, sign in with GitHub again, then try once more.";
+
+/**
+ * Octokit acting as the signed-in user. GitHub answers 401 "Bad credentials" when the token kept in the
+ * session cookie has been revoked (e.g. the user signed in many times or removed the app's access);
+ * that is turned into a message the user can act on, with status 401.
+ */
 export function userOctokit(token: string): Octokit {
-  return new Octokit({ auth: token });
+  const gh = new Octokit({ auth: token });
+  gh.hook.error("request", (error) => {
+    if ((error as { status?: number }).status === 401) {
+      throw Object.assign(new Error(GITHUB_SIGNIN_EXPIRED), { status: 401 });
+    }
+    throw error;
+  });
+  return gh;
 }
 
 export function org(): string {
@@ -144,12 +159,14 @@ export async function createBranchCommitAndPr(
   files: RepoFile[],
   title: string,
   body: string,
+  /** Commit to branch from; defaults to the current head of `base`. */
+  baseSha?: string,
 ): Promise<{ number: number; htmlUrl: string }> {
   const gh = userOctokit(userToken);
   const owner = org();
-  const { data: baseRef } = await gh.rest.git.getRef({ owner, repo, ref: `heads/${base}` });
-  await gh.rest.git.createRef({ owner, repo, ref: `refs/heads/${branch}`, sha: baseRef.object.sha });
-  await pushTree(gh, owner, repo, branch, files, title, baseRef.object.sha);
+  const from = baseSha ?? (await gh.rest.git.getRef({ owner, repo, ref: `heads/${base}` })).data.object.sha;
+  await gh.rest.git.createRef({ owner, repo, ref: `refs/heads/${branch}`, sha: from });
+  await pushTree(gh, owner, repo, branch, files, title, from);
   const { data: pr } = await gh.rest.pulls.create({ owner, repo, title, body, head: branch, base });
   return { number: pr.number, htmlUrl: pr.html_url };
 }
@@ -226,13 +243,24 @@ export async function getFileContent(
   return { content: binary ? "" : buf.toString("utf-8"), size: data.size, binary, htmlUrl: data.html_url };
 }
 
+/** Commit SHA at the head of a branch (default branch when omitted). */
+export async function getBranchSha(name: string, branch?: string): Promise<string> {
+  const gh = adminOctokit();
+  const ref = branch ?? (await getRepo(name)).default_branch;
+  const { data } = await gh.rest.git.getRef({ owner: org(), repo: name, ref: `heads/${ref}` });
+  return data.object.sha;
+}
+
 /** Recursively fetch every text file in the repo (used for AI modification). */
 export async function getAllTextFiles(name: string, ref?: string, maxBytes = 400_000): Promise<RepoFile[]> {
+  return getTextFilesAt(name, await getBranchSha(name, ref), maxBytes);
+}
+
+/** All small text files of the tree at a commit (binaries, large files and overflow beyond maxBytes skipped). */
+export async function getTextFilesAt(name: string, commitSha: string, maxBytes = 400_000): Promise<RepoFile[]> {
   const gh = adminOctokit();
   const owner = org();
-  const branch = ref ?? (await getRepo(name)).default_branch;
-  const { data: refData } = await gh.rest.git.getRef({ owner, repo: name, ref: `heads/${branch}` });
-  const { data: tree } = await gh.rest.git.getTree({ owner, repo: name, tree_sha: refData.object.sha, recursive: "1" });
+  const { data: tree } = await gh.rest.git.getTree({ owner, repo: name, tree_sha: commitSha, recursive: "1" });
   const out: RepoFile[] = [];
   let total = 0;
   for (const item of tree.tree) {
@@ -241,12 +269,24 @@ export async function getAllTextFiles(name: string, ref?: string, maxBytes = 400
     if ((item.size ?? 0) > 60_000) continue;
     const { data: blob } = await gh.rest.git.getBlob({ owner, repo: name, file_sha: item.sha });
     const text = Buffer.from(blob.content, "base64").toString("utf-8");
-    if (text.includes(" ")) continue;
+    if (text.includes("\u0000")) continue;
     total += text.length;
     if (total > maxBytes) break;
     out.push({ path: item.path, content: text });
   }
   return out;
+}
+
+/** UTF-8 content of one file at a commit, or null when it does not exist there. */
+export async function getTextFileAt(name: string, path: string, commitSha: string): Promise<string | null> {
+  try {
+    const { data } = await adminOctokit().rest.repos.getContent({ owner: org(), repo: name, path, ref: commitSha });
+    if (Array.isArray(data) || data.type !== "file") return null;
+    return Buffer.from(data.content, "base64").toString("utf-8");
+  } catch (e) {
+    if ((e as { status?: number }).status === 404) return null;
+    throw e;
+  }
 }
 
 export async function getReadme(name: string): Promise<string | null> {

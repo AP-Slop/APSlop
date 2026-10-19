@@ -6,6 +6,14 @@ import { Badge, Card, CardHeader, Container, Empty, LinkButton, formatDate } fro
 
 export const dynamic = "force-dynamic";
 
+/** Where an AI history row leads: the PR, the review screen of a pending proposal, or the repo. */
+function generationHref(g: { id: string; repoFullName: string | null; prNumber: number | null; status: string; kind: string }) {
+  const repo = `/repos/${g.repoFullName!.split("/")[1]}`;
+  if (g.prNumber) return `${repo}/pulls/${g.prNumber}`;
+  if (g.kind === "MODIFY" && g.status === "READY") return `${repo}/ai/${g.id}`;
+  return repo;
+}
+
 export default async function Dashboard() {
   const session = await auth();
   if (!session) redirect("/api/auth/signin?callbackUrl=/dashboard");
@@ -55,8 +63,9 @@ export default async function Dashboard() {
                       {g.kind === "CREATE" ? "新規作成" : "変更提案"}
                     </Badge>
                     <span className="text-xs text-fg-muted">{formatDate(g.createdAt)}</span>
+                    {g.status === "READY" && <Badge tone="attention">確認待ち</Badge>}
                     {g.repoFullName && (
-                      <Link href={`/repos/${g.repoFullName.split("/")[1]}${g.prNumber ? `/pulls/${g.prNumber}` : ""}`} className="text-xs text-accent hover:underline ml-auto">
+                      <Link href={generationHref(g)} className="text-xs text-accent hover:underline ml-auto">
                         {g.repoFullName.split("/")[1]}{g.prNumber ? ` #${g.prNumber}` : ""}
                       </Link>
                     )}

@@ -10,13 +10,15 @@
     "typecheck": "tsc --noEmit",
     "postinstall": "prisma generate",
     "db:push": "prisma db push",
-    "sync-template": "node scripts/sync-template.mjs"
+    "sync-template": "node scripts/sync-template.mjs",
+    "test": "vitest run"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.124.0",
     "@libsql/client": "^0.18.0",
     "@prisma/adapter-libsql": "^7.10.0",
     "@prisma/client": "^7.10.0",
+    "diff": "^8.0.4",
     "dotenv": "^17.4.2",
     "next": "16.3.4",
     "next-auth": "^5.0.0-beta.32",
@@ -36,6 +38,7 @@
     "eslint-config-next": "16.3.4",
     "prisma": "^7.10.0",
     "tailwindcss": "^4",
-    "typescript": "^5"
+    "typescript": "^5",
+    "vitest": "^3.2.7"
   }
 }

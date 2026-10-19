@@ -1,0 +1,205 @@
+{
+  "version": 1,
+  "id": "sign-in-required",
+  "title": "開発者: ログインが必要なとき",
+  "device": "desktop",
+  "elements": [
+    {
+      "id": "r109",
+      "type": "rect",
+      "x": 0,
+      "y": 0,
+      "w": 1440,
+      "h": 56,
+      "name": "Developer Header",
+      "style": {
+        "fill": "#24292F",
+        "radius": 0
+      },
+      "children": [
+        {
+          "id": "i102",
+          "type": "icon",
+          "x": 144,
+          "y": 16,
+          "w": 24,
+          "h": 24,
+          "text": "AP logo"
+        },
+        {
+          "id": "t103",
+          "type": "text",
+          "x": 176,
+          "y": 16,
+          "w": 160,
+          "h": 24,
+          "text": "APSlop Developers",
+          "style": {
+            "weight": "bold",
+            "color": "#FFFFFF"
+          }
+        },
+        {
+          "id": "t104",
+          "type": "text",
+          "x": 360,
+          "y": 16,
+          "w": 88,
+          "h": 24,
+          "text": "Dashboard",
+          "style": {
+            "color": "#FFFFFF"
+          }
+        },
+        {
+          "id": "t105",
+          "type": "text",
+          "x": 464,
+          "y": 16,
+          "w": 104,
+          "h": 24,
+          "text": "Repositories",
+          "style": {
+            "color": "#FFFFFF"
+          }
+        },
+        {
+          "id": "t106",
+          "type": "text",
+          "x": 584,
+          "y": 16,
+          "w": 72,
+          "h": 24,
+          "text": "New app",
+          "style": {
+            "color": "#FFFFFF"
+          }
+        },
+        {
+          "id": "t107",
+          "type": "text",
+          "x": 952,
+          "y": 16,
+          "w": 136,
+          "h": 24,
+          "text": "← Store",
+          "style": {
+            "color": "#FFFFFF",
+            "align": "right"
+          }
+        },
+        {
+          "id": "b108",
+          "type": "button",
+          "x": 1112,
+          "y": 8,
+          "w": 184,
+          "h": 40,
+          "name": "Sign In (goes straight to GitHub)",
+          "text": "Sign in with GitHub",
+          "style": {
+            "fill": "#24292F",
+            "color": "#FFFFFF",
+            "border": "#FFFFFF"
+          },
+          "variant": "outline"
+        }
+      ]
+    },
+    {
+      "id": "r113",
+      "type": "rect",
+      "x": 420,
+      "y": 240,
+      "w": 600,
+      "h": 216,
+      "name": "Sign In Card",
+      "style": {
+        "fill": "$bg"
+      },
+      "children": [
+        {
+          "id": "t110",
+          "type": "text",
+          "x": 32,
+          "y": 32,
+          "w": 536,
+          "h": 32,
+          "text": "Sign in to continue",
+          "style": {
+            "size": "lg",
+            "weight": "bold",
+            "align": "center"
+          }
+        },
+        {
+          "id": "t111",
+          "type": "text",
+          "x": 32,
+          "y": 80,
+          "w": 536,
+          "h": 48,
+          "text": "APSlop Developers uses your GitHub account. Your commits, pull requests and reviews are made as you.",
+          "style": {
+            "color": "$muted",
+            "align": "center"
+          }
+        },
+        {
+          "id": "b112",
+          "type": "button",
+          "x": 208,
+          "y": 144,
+          "w": 184,
+          "h": 40,
+          "name": "Sign In (goes straight to GitHub)",
+          "text": "Sign in with GitHub",
+          "variant": "filled"
+        }
+      ]
+    },
+    {
+      "id": "r116",
+      "type": "rect",
+      "x": 0,
+      "y": 844,
+      "w": 1440,
+      "h": 56,
+      "name": "Footer",
+      "style": {
+        "radius": 0,
+        "border": "none",
+        "fill": "$bg"
+      },
+      "children": [
+        {
+          "id": "t114",
+          "type": "text",
+          "x": 144,
+          "y": 16,
+          "w": 400,
+          "h": 24,
+          "text": "APSlop — a campus community GitHub",
+          "style": {
+            "color": "$muted",
+            "size": "sm"
+          }
+        },
+        {
+          "id": "t115",
+          "type": "text",
+          "x": 816,
+          "y": 16,
+          "w": 480,
+          "h": 24,
+          "text": "F-Droid repository: https://apslop.example.com/fdroid/repo",
+          "style": {
+            "color": "$muted",
+            "size": "sm",
+            "align": "right"
+          }
+        }
+      ]
+    }
+  ]
+}

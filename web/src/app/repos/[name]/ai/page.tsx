@@ -1,17 +1,39 @@
 import { auth } from "@/lib/auth";
+import { findOwnProposal } from "@/lib/proposal-store";
 import { ProposeForm } from "@/components/ProposeForm";
+import { choiceForModel, modelOptions } from "@/lib/models";
 
-export default async function AiPage({ params }: { params: Promise<{ name: string }> }) {
+export default async function AiPage({
+  params,
+  searchParams,
+}: {
+  params: Promise<{ name: string }>;
+  searchParams: Promise<{ from?: string }>;
+}) {
   const { name } = await params;
+  const { from } = await searchParams;
   const session = await auth();
+  // "Edit request" on the review screen comes back here with the earlier request filled in.
+  const previous = session?.user?.id && from ? await findOwnProposal(session.user.id, name, from) : null;
+  const models = modelOptions().map(({ id, label, available }) => ({ id, label, available }));
+  const initialModel = previous ? choiceForModel(previous.generation.model) : models.find((m) => m.available)?.id ?? "claude";
   return (
-    <div className="max-w-3xl">
-      <h2 className="text-lg font-semibold">AI に変更を依頼する</h2>
+    <div>
+      <h2 className="text-lg font-semibold">Create PR with AI</h2>
       <p className="text-sm text-fg-muted mt-1">
-        やりたい変更を日本語で書くと、AI がリポジトリ全体を読んで変更を提案し、あなたの名前で Pull Request を作成します。
-        自分のリポジトリでも、他の人のリポジトリでも使えます。
+        Describe the change you want. AI reads the whole repository and proposes the change. You review the diff before
+        the pull request is created. Works on your own repositories and on other people&apos;s.
       </p>
-      {session ? <ProposeForm name={name} /> : <p className="mt-4 text-sm text-fg-muted">この機能を使うにはログインしてください。</p>}
+      {session ? (
+        <ProposeForm
+          name={name}
+          initialPrompt={previous?.generation.prompt ?? ""}
+          models={models}
+          initialModel={initialModel}
+        />
+      ) : (
+        <p className="mt-4 text-sm text-fg-muted">Sign in with GitHub to use this.</p>
+      )}
     </div>
   );
 }

@@ -1,0 +1,166 @@
+{
+  "version": 1,
+  "id": "not-found",
+  "title": "ページが見つかりません",
+  "device": "desktop",
+  "elements": [
+    {
+      "id": "r906",
+      "type": "rect",
+      "x": 0,
+      "y": 0,
+      "w": 1440,
+      "h": 56,
+      "name": "Visitor Header",
+      "style": {
+        "fill": "#24292F",
+        "radius": 0
+      },
+      "children": [
+        {
+          "id": "i900",
+          "type": "icon",
+          "x": 144,
+          "y": 16,
+          "w": 24,
+          "h": 24,
+          "text": "AP logo"
+        },
+        {
+          "id": "t901",
+          "type": "text",
+          "x": 176,
+          "y": 16,
+          "w": 80,
+          "h": 24,
+          "text": "APSlop",
+          "style": {
+            "weight": "bold",
+            "color": "#FFFFFF"
+          }
+        },
+        {
+          "id": "t902",
+          "type": "text",
+          "x": 280,
+          "y": 16,
+          "w": 48,
+          "h": 24,
+          "text": "Apps",
+          "style": {
+            "color": "#FFFFFF",
+            "weight": "bold"
+          }
+        },
+        {
+          "id": "t903",
+          "type": "text",
+          "x": 344,
+          "y": 16,
+          "w": 160,
+          "h": 24,
+          "text": "Install on your phone",
+          "style": {
+            "color": "#FFFFFF"
+          }
+        },
+        {
+          "id": "t904",
+          "type": "text",
+          "x": 952,
+          "y": 16,
+          "w": 136,
+          "h": 24,
+          "text": "For developers →",
+          "style": {
+            "color": "#FFFFFF",
+            "align": "right"
+          }
+        },
+        {
+          "id": "b905",
+          "type": "button",
+          "x": 1112,
+          "y": 8,
+          "w": 184,
+          "h": 40,
+          "name": "Sign In (goes straight to GitHub)",
+          "text": "Sign in with GitHub",
+          "style": {
+            "fill": "#24292F",
+            "color": "#FFFFFF",
+            "border": "#FFFFFF"
+          },
+          "variant": "outline"
+        }
+      ]
+    },
+    {
+      "id": "t907",
+      "type": "text",
+      "x": 420,
+      "y": 320,
+      "w": 600,
+      "h": 32,
+      "text": "Page not found",
+      "style": {
+        "size": "lg",
+        "weight": "bold",
+        "align": "center"
+      }
+    },
+    {
+      "id": "b908",
+      "type": "button",
+      "x": 640,
+      "y": 376,
+      "w": 160,
+      "h": 40,
+      "text": "Back to apps",
+      "variant": "outline"
+    },
+    {
+      "id": "r911",
+      "type": "rect",
+      "x": 0,
+      "y": 844,
+      "w": 1440,
+      "h": 56,
+      "name": "Footer",
+      "style": {
+        "radius": 0,
+        "border": "none",
+        "fill": "$bg"
+      },
+      "children": [
+        {
+          "id": "t909",
+          "type": "text",
+          "x": 144,
+          "y": 16,
+          "w": 400,
+          "h": 24,
+          "text": "APSlop — a campus community GitHub",
+          "style": {
+            "color": "$muted",
+            "size": "sm"
+          }
+        },
+        {
+          "id": "t910",
+          "type": "text",
+          "x": 816,
+          "y": 16,
+          "w": 480,
+          "h": 24,
+          "text": "F-Droid repository: https://apslop.example.com/fdroid/repo",
+          "style": {
+            "color": "$muted",
+            "size": "sm",
+            "align": "right"
+          }
+        }
+      ]
+    }
+  ]
+}
