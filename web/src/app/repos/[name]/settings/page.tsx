@@ -5,6 +5,7 @@ import { auth } from "@/lib/auth";
 import { prisma } from "@/lib/db";
 import { org } from "@/lib/github";
 import { Card, CardHeader, LinkButton } from "@/components/ui";
+import { SignInRequired } from "@/components/SignInRequired";
 
 /** Store listing of the app built from this repo. Only its owner sees it. */
 export default async function SettingsPage({ params }: { params: Promise<{ name: string }> }) {
@@ -13,7 +14,9 @@ export default async function SettingsPage({ params }: { params: Promise<{ name:
     auth(),
     prisma.app.findUnique({ where: { repoFullName: `${org()}/${name}` } }),
   ]);
-  if (!app || !session?.user?.id || app.ownerId !== session.user.id) notFound();
+  if (!app) notFound();
+  if (!session?.user?.id) return <SignInRequired returnTo={`/repos/${name}/settings`} />;
+  if (app.ownerId !== session.user.id) notFound();
 
   return (
     <Card className="max-w-3xl">

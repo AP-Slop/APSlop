@@ -5,6 +5,7 @@ import { Markdown } from "@/components/Markdown";
 import { Badge, Card, CardHeader, Empty, formatDate } from "@/components/ui";
 import { ReleaseForm } from "@/components/ReleaseForm";
 import { SyncButton } from "@/components/SyncButton";
+import { SignInRequired } from "@/components/SignInRequired";
 
 export default async function ReleasesPage({ params }: { params: Promise<{ name: string }> }) {
   const { name } = await params;
@@ -76,7 +77,7 @@ export default async function ReleasesPage({ params }: { params: Promise<{ name:
         {session ? (
           <ReleaseForm name={name} suggestedTag={nextTag} />
         ) : (
-          <p className="text-sm text-fg-muted">リリースを作成するにはログインしてください。</p>
+          <SignInRequired returnTo={`/repos/${name}/releases`} compact />
         )}
         <Card className="mt-4 p-4 text-xs text-fg-muted space-y-2">
           <p className="font-semibold text-fg">リリースの流れ</p>

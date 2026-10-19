@@ -47,10 +47,11 @@ function Logo({ href, label }: { href: string; label: string }) {
   );
 }
 
-function Account({ user }: { user: User | null }) {
+function Account({ user, pathname }: { user: User | null; pathname: string }) {
   if (!user) {
     return (
       <form action={signInWithGitHub}>
+        <input type="hidden" name="redirectTo" value={pathname} />
         <button className="rounded-md border border-white/40 px-3 py-1 hover:bg-white/10 whitespace-nowrap">Sign in with GitHub</button>
       </form>
     );
@@ -86,7 +87,7 @@ export function HeaderBar({ user, siteName }: { user: User | null; siteName: str
             </nav>
             <div className="ml-auto flex items-center gap-3 py-2">
               <ModeSwitch developer href="/" />
-              <Account user={user} />
+              <Account user={user} pathname={pathname} />
             </div>
           </>
         ) : (
@@ -98,7 +99,7 @@ export function HeaderBar({ user, siteName }: { user: User | null; siteName: str
             </nav>
             <div className="ml-auto flex items-center gap-3 py-2">
               <ModeSwitch developer={false} href={user ? "/dashboard" : "/repos"} />
-              <Account user={user} />
+              <Account user={user} pathname={pathname} />
             </div>
           </>
         )}

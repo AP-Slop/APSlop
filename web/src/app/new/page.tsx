@@ -1,13 +1,19 @@
-import { redirect } from "next/navigation";
 import { auth } from "@/lib/auth";
 import { Container } from "@/components/ui";
 import { NewAppWizard } from "@/components/NewAppWizard";
+import { SignInRequired } from "@/components/SignInRequired";
 
 export const dynamic = "force-dynamic";
 
 export default async function NewPage() {
   const session = await auth();
-  if (!session) redirect("/api/auth/signin?callbackUrl=/new");
+  if (!session) {
+    return (
+      <Container>
+        <SignInRequired returnTo="/new" />
+      </Container>
+    );
+  }
   return (
     <Container className="max-w-3xl">
       <h1 className="text-2xl font-semibold">AI でアプリを作る</h1>

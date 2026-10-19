@@ -411,6 +411,24 @@ export async function listIssues(name: string, state: "open" | "closed" | "all" 
   return data.filter((i) => !i.pull_request);
 }
 
+export async function getIssue(name: string, number: number) {
+  const gh = adminOctokit();
+  const { data } = await gh.rest.issues.get({ owner: org(), repo: name, issue_number: number });
+  return data;
+}
+
+export async function createIssueComment(userToken: string, name: string, number: number, body: string) {
+  const gh = userOctokit(userToken);
+  const { data } = await gh.rest.issues.createComment({ owner: org(), repo: name, issue_number: number, body });
+  return data;
+}
+
+export async function setIssueState(userToken: string, name: string, number: number, state: "open" | "closed") {
+  const gh = userOctokit(userToken);
+  const { data } = await gh.rest.issues.update({ owner: org(), repo: name, issue_number: number, state });
+  return data;
+}
+
 export async function createIssue(userToken: string, name: string, title: string, body: string) {
   const gh = userOctokit(userToken);
   const { data } = await gh.rest.issues.create({ owner: org(), repo: name, title, body });
