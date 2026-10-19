@@ -1,14 +1,11 @@
 {
   "version": 1,
-  "id": "issue-detail",
-  "title": "開発者: Issue の詳細(新規)",
-  "device": {
-    "w": 1440,
-    "h": 1000
-  },
+  "id": "repo-pulls",
+  "title": "開発者: リポジトリ(Pull requests)",
+  "device": "desktop",
   "elements": [
     {
-      "id": "r490",
+      "id": "r540",
       "type": "rect",
       "x": 0,
       "y": 0,
@@ -21,7 +18,7 @@
       },
       "children": [
         {
-          "id": "i481",
+          "id": "i531",
           "type": "icon",
           "x": 144,
           "y": 16,
@@ -30,7 +27,7 @@
           "text": "AP logo"
         },
         {
-          "id": "t482",
+          "id": "t532",
           "type": "text",
           "x": 176,
           "y": 16,
@@ -43,7 +40,7 @@
           }
         },
         {
-          "id": "t483",
+          "id": "t533",
           "type": "text",
           "x": 360,
           "y": 16,
@@ -51,11 +48,12 @@
           "h": 24,
           "text": "Dashboard",
           "style": {
-            "color": "#FFFFFF"
+            "color": "#FFFFFF",
+            "weight": "normal"
           }
         },
         {
-          "id": "t484",
+          "id": "t534",
           "type": "text",
           "x": 464,
           "y": 16,
@@ -63,11 +61,26 @@
           "h": 24,
           "text": "Repositories",
           "style": {
-            "color": "#FFFFFF"
+            "color": "#FFFFFF",
+            "weight": "bold"
           }
         },
         {
-          "id": "t485",
+          "id": "hu1",
+          "type": "rect",
+          "x": 460,
+          "y": 52,
+          "w": 112,
+          "h": 4,
+          "name": "Current Place",
+          "style": {
+            "fill": "#FD8C73",
+            "border": "none",
+            "radius": 2
+          }
+        },
+        {
+          "id": "t535",
           "type": "text",
           "x": 584,
           "y": 16,
@@ -75,24 +88,12 @@
           "h": 24,
           "text": "New app",
           "style": {
-            "color": "#FFFFFF"
-          }
-        },
-        {
-          "id": "t486",
-          "type": "text",
-          "x": 880,
-          "y": 16,
-          "w": 136,
-          "h": 24,
-          "text": "← Store",
-          "style": {
             "color": "#FFFFFF",
-            "align": "right"
+            "weight": "normal"
           }
         },
         {
-          "id": "i487",
+          "id": "i537",
           "type": "icon",
           "x": 1040,
           "y": 16,
@@ -101,7 +102,7 @@
           "text": "avatar"
         },
         {
-          "id": "t488",
+          "id": "t538",
           "type": "text",
           "x": 1072,
           "y": 16,
@@ -113,7 +114,7 @@
           }
         },
         {
-          "id": "t489",
+          "id": "t539",
           "type": "text",
           "x": 1200,
           "y": 16,
@@ -124,11 +125,27 @@
             "color": "#FFFFFF",
             "align": "right"
           }
+        },
+        {
+          "id": "hm1",
+          "type": "toggle",
+          "x": 832,
+          "y": 12,
+          "w": 184,
+          "h": 32,
+          "name": "Mode Switch",
+          "text": "Developer Mode",
+          "props": {
+            "checked": true
+          },
+          "style": {
+            "color": "#FFFFFF"
+          }
         }
       ]
     },
     {
-      "id": "r506",
+      "id": "r556",
       "type": "rect",
       "x": 0,
       "y": 56,
@@ -141,7 +158,7 @@
       },
       "children": [
         {
-          "id": "t491",
+          "id": "t541",
           "type": "text",
           "x": 144,
           "y": 16,
@@ -154,7 +171,7 @@
           }
         },
         {
-          "id": "t492",
+          "id": "t542",
           "type": "text",
           "x": 216,
           "y": 16,
@@ -167,7 +184,7 @@
           }
         },
         {
-          "id": "r494",
+          "id": "r544",
           "type": "rect",
           "x": 400,
           "y": 16,
@@ -180,7 +197,7 @@
           },
           "children": [
             {
-              "id": "t493",
+              "id": "t543",
               "type": "text",
               "x": 8,
               "y": 0,
@@ -196,7 +213,7 @@
           ]
         },
         {
-          "id": "r496",
+          "id": "r546",
           "type": "rect",
           "x": 480,
           "y": 16,
@@ -209,7 +226,7 @@
           },
           "children": [
             {
-              "id": "t495",
+              "id": "t545",
               "type": "text",
               "x": 8,
               "y": 0,
@@ -225,7 +242,7 @@
           ]
         },
         {
-          "id": "t497",
+          "id": "t547",
           "type": "text",
           "x": 928,
           "y": 16,
@@ -238,7 +255,7 @@
           }
         },
         {
-          "id": "b498",
+          "id": "b548",
           "type": "button",
           "x": 1104,
           "y": 8,
@@ -248,7 +265,7 @@
           "variant": "filled"
         },
         {
-          "id": "t499",
+          "id": "t549",
           "type": "text",
           "x": 144,
           "y": 48,
@@ -261,7 +278,7 @@
           }
         },
         {
-          "id": "t500",
+          "id": "t550",
           "type": "text",
           "x": 144,
           "y": 88,
@@ -273,7 +290,7 @@
           }
         },
         {
-          "id": "t501",
+          "id": "t551",
           "type": "text",
           "x": 224,
           "y": 88,
@@ -281,27 +298,15 @@
           "h": 24,
           "text": "Pull requests 2",
           "style": {
-            "weight": "normal"
-          }
-        },
-        {
-          "id": "t502",
-          "type": "text",
-          "x": 376,
-          "y": 88,
-          "w": 64,
-          "h": 24,
-          "text": "Issues 2",
-          "style": {
             "weight": "bold"
           }
         },
         {
-          "id": "r503",
+          "id": "r552",
           "type": "rect",
-          "x": 376,
+          "x": 224,
           "y": 118,
-          "w": 64,
+          "w": 120,
           "h": 2,
           "name": "Active Tab Underline",
           "style": {
@@ -311,7 +316,19 @@
           }
         },
         {
-          "id": "t504",
+          "id": "t553",
+          "type": "text",
+          "x": 376,
+          "y": 88,
+          "w": 64,
+          "h": 24,
+          "text": "Issues 2",
+          "style": {
+            "weight": "normal"
+          }
+        },
+        {
+          "id": "t554",
           "type": "text",
           "x": 472,
           "y": 88,
@@ -323,7 +340,7 @@
           }
         },
         {
-          "id": "t505",
+          "id": "t555",
           "type": "text",
           "x": 576,
           "y": 88,
@@ -337,277 +354,184 @@
       ]
     },
     {
-      "id": "t507",
-      "type": "text",
+      "id": "r569",
+      "type": "rect",
       "x": 144,
       "y": 200,
-      "w": 900,
-      "h": 32,
-      "text": "Layout breaks when absences left is 0  #2",
+      "w": 1152,
+      "h": 200,
+      "name": "Pull Request List",
       "style": {
-        "size": "lg",
-        "weight": "bold"
-      }
-    },
-    {
-      "id": "r509",
-      "type": "rect",
-      "x": 144,
-      "y": 244,
-      "w": 52,
-      "h": 24,
-      "name": "Badge",
-      "style": {
-        "radius": 12,
         "fill": "$bg"
       },
       "children": [
         {
-          "id": "t508",
-          "type": "text",
-          "x": 8,
+          "id": "r559",
+          "type": "rect",
+          "x": 0,
           "y": 0,
-          "w": 36,
+          "w": 1152,
+          "h": 40,
+          "name": "Card Header",
+          "style": {
+            "fill": "$surface",
+            "radius": 0
+          },
+          "children": [
+            {
+              "id": "t557",
+              "type": "text",
+              "x": 16,
+              "y": 8,
+              "w": 56,
+              "h": 24,
+              "text": "Open",
+              "style": {
+                "weight": "bold"
+              }
+            },
+            {
+              "id": "t558",
+              "type": "text",
+              "x": 88,
+              "y": 8,
+              "w": 64,
+              "h": 24,
+              "text": "Closed",
+              "style": {
+                "color": "$muted",
+                "size": "sm"
+              }
+            }
+          ]
+        },
+        {
+          "id": "i560",
+          "type": "icon",
+          "x": 16,
+          "y": 60,
+          "w": 24,
           "h": 24,
-          "text": "Open",
-          "style": {
-            "size": "sm",
-            "color": "#1A7F37",
-            "align": "center"
-          }
-        }
-      ]
-    },
-    {
-      "id": "t510",
-      "type": "text",
-      "x": 216,
-      "y": 244,
-      "w": 600,
-      "h": 24,
-      "text": "student-a opened this issue 2 days ago · 1 comment",
-      "style": {
-        "size": "sm"
-      }
-    },
-    {
-      "id": "t511",
-      "type": "text",
-      "x": 1176,
-      "y": 244,
-      "w": 120,
-      "h": 24,
-      "text": "Open on GitHub ↗",
-      "style": {
-        "color": "#0969DA",
-        "size": "sm",
-        "align": "right"
-      }
-    },
-    {
-      "id": "r515",
-      "type": "rect",
-      "x": 144,
-      "y": 288,
-      "w": 1152,
-      "h": 128,
-      "name": "Issue Body",
-      "style": {
-        "fill": "$bg"
-      },
-      "children": [
-        {
-          "id": "r514",
-          "type": "rect",
-          "x": 0,
-          "y": 0,
-          "w": 1152,
-          "h": 40,
-          "name": "Card Header",
-          "style": {
-            "fill": "$surface",
-            "radius": 0
-          },
-          "children": [
-            {
-              "id": "t513",
-              "type": "text",
-              "x": 16,
-              "y": 8,
-              "w": 1120,
-              "h": 24,
-              "text": "student-a  Sep 10, 2026 10:12",
-              "style": {
-                "weight": "bold"
-              }
-            }
-          ]
+          "text": "PR state"
         },
         {
-          "id": "t512",
+          "id": "t561",
           "type": "text",
-          "x": 16,
+          "x": 52,
           "y": 56,
-          "w": 1120,
-          "h": 48,
-          "text": "When a course has 0 absences left, the number overlaps the course name on small screens."
-        }
-      ]
-    },
-    {
-      "id": "r519",
-      "type": "rect",
-      "x": 144,
-      "y": 432,
-      "w": 1152,
-      "h": 96,
-      "name": "Comment",
-      "style": {
-        "fill": "$bg"
-      },
-      "children": [
-        {
-          "id": "r518",
-          "type": "rect",
-          "x": 0,
-          "y": 0,
-          "w": 1152,
-          "h": 40,
-          "name": "Card Header",
-          "style": {
-            "fill": "$surface",
-            "radius": 0
-          },
-          "children": [
-            {
-              "id": "t517",
-              "type": "text",
-              "x": 16,
-              "y": 8,
-              "w": 1120,
-              "h": 24,
-              "text": "taku1029-dev  Sep 10, 2026 11:30",
-              "style": {
-                "weight": "bold"
-              }
-            }
-          ]
-        },
-        {
-          "id": "t516",
-          "type": "text",
-          "x": 16,
-          "y": 56,
-          "w": 1120,
+          "w": 600,
           "h": 24,
-          "text": "Thanks, I can reproduce it."
-        }
-      ]
-    },
-    {
-      "id": "r527",
-      "type": "rect",
-      "x": 144,
-      "y": 544,
-      "w": 1152,
-      "h": 272,
-      "name": "Comment Form",
-      "style": {
-        "fill": "$bg"
-      },
-      "children": [
-        {
-          "id": "r526",
-          "type": "rect",
-          "x": 0,
-          "y": 0,
-          "w": 1152,
-          "h": 40,
-          "name": "Card Header",
+          "text": "Support dark mode",
           "style": {
-            "fill": "$surface",
-            "radius": 0
-          },
-          "children": [
-            {
-              "id": "t525",
-              "type": "text",
-              "x": 16,
-              "y": 8,
-              "w": 1120,
-              "h": 24,
-              "text": "Add a comment",
-              "style": {
-                "weight": "bold"
-              }
-            }
-          ]
-        },
-        {
-          "id": "i520",
-          "type": "input",
-          "x": 16,
-          "y": 56,
-          "w": 1120,
-          "h": 120,
-          "text": "",
-          "props": {
-            "placeholder": "Write a comment (Markdown supported)",
-            "kind": "text",
-            "multiline": true
+            "color": "#0969DA",
+            "weight": "bold"
           }
         },
         {
-          "id": "b521",
-          "type": "button",
-          "x": 16,
-          "y": 192,
-          "w": 104,
-          "h": 40,
-          "text": "Comment",
-          "variant": "filled"
-        },
-        {
-          "id": "b522",
-          "type": "button",
-          "x": 136,
-          "y": 192,
-          "w": 120,
-          "h": 40,
-          "text": "Close issue",
-          "variant": "outline"
-        },
-        {
-          "id": "b523",
-          "type": "button",
-          "x": 944,
-          "y": 192,
-          "w": 192,
-          "h": 40,
-          "name": "Create PR with AI (from this issue)",
-          "text": "Create PR with AI",
-          "variant": "outline"
-        },
-        {
-          "id": "t524",
+          "id": "t562",
           "type": "text",
-          "x": 16,
-          "y": 240,
-          "w": 1120,
+          "x": 52,
+          "y": 82,
+          "w": 900,
           "h": 24,
-          "text": "Actions are performed as your GitHub account.",
+          "text": "#3 · opened 3 hours ago by student-a · ai/dark-mode → main",
           "style": {
             "color": "$muted",
             "size": "sm"
           }
+        },
+        {
+          "id": "d563",
+          "type": "divider",
+          "x": 0,
+          "y": 120,
+          "w": 1152,
+          "h": 1
+        },
+        {
+          "id": "i564",
+          "type": "icon",
+          "x": 16,
+          "y": 140,
+          "w": 24,
+          "h": 24,
+          "text": "PR state"
+        },
+        {
+          "id": "t565",
+          "type": "text",
+          "x": 52,
+          "y": 136,
+          "w": 600,
+          "h": 24,
+          "text": "Add a button to sort the list by date",
+          "style": {
+            "color": "#0969DA",
+            "weight": "bold"
+          }
+        },
+        {
+          "id": "t566",
+          "type": "text",
+          "x": 52,
+          "y": 162,
+          "w": 900,
+          "h": 24,
+          "text": "#4 · opened 1 day ago by student-b · ai/sort-button → main",
+          "style": {
+            "color": "$muted",
+            "size": "sm"
+          }
+        },
+        {
+          "id": "r568",
+          "type": "rect",
+          "x": 680,
+          "y": 136,
+          "w": 60,
+          "h": 24,
+          "name": "Badge",
+          "style": {
+            "radius": 12,
+            "fill": "$bg"
+          },
+          "children": [
+            {
+              "id": "t567",
+              "type": "text",
+              "x": 8,
+              "y": 0,
+              "w": 44,
+              "h": 24,
+              "text": "Draft",
+              "style": {
+                "size": "sm",
+                "color": "$muted",
+                "align": "center"
+              }
+            }
+          ]
         }
       ]
     },
     {
-      "id": "r530",
+      "id": "t570",
+      "type": "text",
+      "x": 144,
+      "y": 416,
+      "w": 1152,
+      "h": 24,
+      "text": "New pull requests are made with “Create PR with AI” (top right).",
+      "style": {
+        "color": "$muted",
+        "size": "sm"
+      }
+    },
+    {
+      "id": "r573",
       "type": "rect",
       "x": 0,
-      "y": 944,
+      "y": 844,
       "w": 1440,
       "h": 56,
       "name": "Footer",
@@ -618,7 +542,7 @@
       },
       "children": [
         {
-          "id": "t528",
+          "id": "t571",
           "type": "text",
           "x": 144,
           "y": 16,
@@ -631,7 +555,7 @@
           }
         },
         {
-          "id": "t529",
+          "id": "t572",
           "type": "text",
           "x": 816,
           "y": 16,

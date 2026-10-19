@@ -53,6 +53,20 @@
           }
         },
         {
+          "id": "hu1",
+          "type": "rect",
+          "x": 276,
+          "y": 52,
+          "w": 56,
+          "h": 4,
+          "name": "Current Place",
+          "style": {
+            "fill": "#FD8C73",
+            "border": "none",
+            "radius": 2
+          }
+        },
+        {
           "id": "t64",
           "type": "text",
           "x": 344,
@@ -61,20 +75,8 @@
           "h": 24,
           "text": "Install on your phone",
           "style": {
-            "color": "#FFFFFF"
-          }
-        },
-        {
-          "id": "t65",
-          "type": "text",
-          "x": 952,
-          "y": 16,
-          "w": 136,
-          "h": 24,
-          "text": "For developers →",
-          "style": {
             "color": "#FFFFFF",
-            "align": "right"
+            "weight": "normal"
           }
         },
         {
@@ -92,6 +94,22 @@
             "border": "#FFFFFF"
           },
           "variant": "outline"
+        },
+        {
+          "id": "hm1",
+          "type": "toggle",
+          "x": 904,
+          "y": 12,
+          "w": 184,
+          "h": 32,
+          "name": "Mode Switch",
+          "text": "Developer Mode",
+          "props": {
+            "checked": false
+          },
+          "style": {
+            "color": "#FFFFFF"
+          }
         }
       ]
     },

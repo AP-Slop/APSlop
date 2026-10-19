@@ -1,24 +1,24 @@
 {
   "version": 1,
-  "id": "error",
-  "title": "エラー",
+  "id": "sign-in-required",
+  "title": "開発者: ログインが必要なとき",
   "device": "desktop",
   "elements": [
     {
-      "id": "r892",
+      "id": "r109",
       "type": "rect",
       "x": 0,
       "y": 0,
       "w": 1440,
       "h": 56,
-      "name": "Visitor Header",
+      "name": "Developer Header",
       "style": {
         "fill": "#24292F",
         "radius": 0
       },
       "children": [
         {
-          "id": "i886",
+          "id": "i102",
           "type": "icon",
           "x": 144,
           "y": 16,
@@ -27,58 +27,59 @@
           "text": "AP logo"
         },
         {
-          "id": "t887",
+          "id": "t103",
           "type": "text",
           "x": 176,
           "y": 16,
-          "w": 80,
+          "w": 160,
           "h": 24,
-          "text": "APSlop",
+          "text": "APSlop Developers",
           "style": {
             "weight": "bold",
             "color": "#FFFFFF"
           }
         },
         {
-          "id": "t888",
+          "id": "t104",
           "type": "text",
-          "x": 280,
+          "x": 360,
           "y": 16,
-          "w": 48,
+          "w": 88,
           "h": 24,
-          "text": "Apps",
+          "text": "Dashboard",
           "style": {
             "color": "#FFFFFF",
-            "weight": "bold"
+            "weight": "normal"
           }
         },
         {
-          "id": "t889",
+          "id": "t105",
           "type": "text",
-          "x": 344,
+          "x": 464,
           "y": 16,
-          "w": 160,
+          "w": 104,
           "h": 24,
-          "text": "Install on your phone",
-          "style": {
-            "color": "#FFFFFF"
-          }
-        },
-        {
-          "id": "t890",
-          "type": "text",
-          "x": 952,
-          "y": 16,
-          "w": 136,
-          "h": 24,
-          "text": "For developers →",
+          "text": "Repositories",
           "style": {
             "color": "#FFFFFF",
-            "align": "right"
+            "weight": "normal"
           }
         },
         {
-          "id": "b891",
+          "id": "t106",
+          "type": "text",
+          "x": 584,
+          "y": 16,
+          "w": 72,
+          "h": 24,
+          "text": "New app",
+          "style": {
+            "color": "#FFFFFF",
+            "weight": "normal"
+          }
+        },
+        {
+          "id": "b108",
           "type": "button",
           "x": 1112,
           "y": 8,
@@ -92,62 +93,79 @@
             "border": "#FFFFFF"
           },
           "variant": "outline"
+        },
+        {
+          "id": "hm2",
+          "type": "toggle",
+          "x": 904,
+          "y": 12,
+          "w": 184,
+          "h": 32,
+          "name": "Mode Switch",
+          "text": "Developer Mode",
+          "props": {
+            "checked": true
+          },
+          "style": {
+            "color": "#FFFFFF"
+          }
         }
       ]
     },
     {
-      "id": "r895",
+      "id": "r113",
       "type": "rect",
-      "x": 144,
-      "y": 88,
-      "w": 1152,
-      "h": 88,
-      "name": "Error Box",
+      "x": 420,
+      "y": 240,
+      "w": 600,
+      "h": 216,
+      "name": "Sign In Card",
       "style": {
-        "fill": "#FFEBE9",
-        "border": "#CF222E"
+        "fill": "$bg"
       },
       "children": [
         {
-          "id": "t893",
+          "id": "t110",
           "type": "text",
-          "x": 16,
-          "y": 16,
-          "w": 1120,
-          "h": 24,
-          "text": "Something went wrong",
+          "x": 32,
+          "y": 32,
+          "w": 536,
+          "h": 32,
+          "text": "Sign in to continue",
           "style": {
+            "size": "lg",
             "weight": "bold",
-            "color": "#CF222E"
+            "align": "center"
           }
         },
         {
-          "id": "t894",
+          "id": "t111",
           "type": "text",
-          "x": 16,
-          "y": 44,
-          "w": 1120,
-          "h": 24,
-          "text": "Could not load the repository list.",
+          "x": 32,
+          "y": 80,
+          "w": 536,
+          "h": 48,
+          "text": "APSlop Developers uses your GitHub account. Your commits, pull requests and reviews are made as you.",
           "style": {
-            "color": "#CF222E",
-            "size": "sm"
+            "color": "$muted",
+            "align": "center"
           }
+        },
+        {
+          "id": "b112",
+          "type": "button",
+          "x": 208,
+          "y": 144,
+          "w": 184,
+          "h": 40,
+          "name": "Sign In (goes straight to GitHub)",
+          "text": "Sign in with GitHub",
+          "variant": "filled"
         }
       ]
     },
     {
-      "id": "b896",
-      "type": "button",
-      "x": 144,
-      "y": 192,
-      "w": 96,
-      "h": 40,
-      "text": "Try again",
-      "variant": "outline"
-    },
-    {
-      "id": "r899",
+      "id": "r116",
       "type": "rect",
       "x": 0,
       "y": 844,
@@ -161,7 +179,7 @@
       },
       "children": [
         {
-          "id": "t897",
+          "id": "t114",
           "type": "text",
           "x": 144,
           "y": 16,
@@ -174,7 +192,7 @@
           }
         },
         {
-          "id": "t898",
+          "id": "t115",
           "type": "text",
           "x": 816,
           "y": 16,

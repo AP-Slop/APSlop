@@ -1,11 +1,14 @@
 {
   "version": 1,
-  "id": "repo-settings",
-  "title": "開発者: アプリの設定(新規・持ち主のみ)",
-  "device": "desktop",
+  "id": "repo-ai",
+  "title": "開発者: Create PR with AI(入力)",
+  "device": {
+    "w": 1440,
+    "h": 980
+  },
   "elements": [
     {
-      "id": "r846",
+      "id": "r734",
       "type": "rect",
       "x": 0,
       "y": 0,
@@ -18,7 +21,7 @@
       },
       "children": [
         {
-          "id": "i837",
+          "id": "i725",
           "type": "icon",
           "x": 144,
           "y": 16,
@@ -27,7 +30,7 @@
           "text": "AP logo"
         },
         {
-          "id": "t838",
+          "id": "t726",
           "type": "text",
           "x": 176,
           "y": 16,
@@ -40,7 +43,7 @@
           }
         },
         {
-          "id": "t839",
+          "id": "t727",
           "type": "text",
           "x": 360,
           "y": 16,
@@ -48,11 +51,12 @@
           "h": 24,
           "text": "Dashboard",
           "style": {
-            "color": "#FFFFFF"
+            "color": "#FFFFFF",
+            "weight": "normal"
           }
         },
         {
-          "id": "t840",
+          "id": "t728",
           "type": "text",
           "x": 464,
           "y": 16,
@@ -60,11 +64,26 @@
           "h": 24,
           "text": "Repositories",
           "style": {
-            "color": "#FFFFFF"
+            "color": "#FFFFFF",
+            "weight": "bold"
           }
         },
         {
-          "id": "t841",
+          "id": "hu1",
+          "type": "rect",
+          "x": 460,
+          "y": 52,
+          "w": 112,
+          "h": 4,
+          "name": "Current Place",
+          "style": {
+            "fill": "#FD8C73",
+            "border": "none",
+            "radius": 2
+          }
+        },
+        {
+          "id": "t729",
           "type": "text",
           "x": 584,
           "y": 16,
@@ -72,24 +91,12 @@
           "h": 24,
           "text": "New app",
           "style": {
-            "color": "#FFFFFF"
-          }
-        },
-        {
-          "id": "t842",
-          "type": "text",
-          "x": 880,
-          "y": 16,
-          "w": 136,
-          "h": 24,
-          "text": "← Store",
-          "style": {
             "color": "#FFFFFF",
-            "align": "right"
+            "weight": "normal"
           }
         },
         {
-          "id": "i843",
+          "id": "i731",
           "type": "icon",
           "x": 1040,
           "y": 16,
@@ -98,7 +105,7 @@
           "text": "avatar"
         },
         {
-          "id": "t844",
+          "id": "t732",
           "type": "text",
           "x": 1072,
           "y": 16,
@@ -110,7 +117,7 @@
           }
         },
         {
-          "id": "t845",
+          "id": "t733",
           "type": "text",
           "x": 1200,
           "y": 16,
@@ -121,11 +128,27 @@
             "color": "#FFFFFF",
             "align": "right"
           }
+        },
+        {
+          "id": "hm1",
+          "type": "toggle",
+          "x": 832,
+          "y": 12,
+          "w": 184,
+          "h": 32,
+          "name": "Mode Switch",
+          "text": "Developer Mode",
+          "props": {
+            "checked": true
+          },
+          "style": {
+            "color": "#FFFFFF"
+          }
         }
       ]
     },
     {
-      "id": "r862",
+      "id": "r749",
       "type": "rect",
       "x": 0,
       "y": 56,
@@ -138,7 +161,7 @@
       },
       "children": [
         {
-          "id": "t847",
+          "id": "t735",
           "type": "text",
           "x": 144,
           "y": 16,
@@ -151,7 +174,7 @@
           }
         },
         {
-          "id": "t848",
+          "id": "t736",
           "type": "text",
           "x": 216,
           "y": 16,
@@ -164,7 +187,7 @@
           }
         },
         {
-          "id": "r850",
+          "id": "r738",
           "type": "rect",
           "x": 400,
           "y": 16,
@@ -177,7 +200,7 @@
           },
           "children": [
             {
-              "id": "t849",
+              "id": "t737",
               "type": "text",
               "x": 8,
               "y": 0,
@@ -193,7 +216,7 @@
           ]
         },
         {
-          "id": "r852",
+          "id": "r740",
           "type": "rect",
           "x": 480,
           "y": 16,
@@ -206,7 +229,7 @@
           },
           "children": [
             {
-              "id": "t851",
+              "id": "t739",
               "type": "text",
               "x": 8,
               "y": 0,
@@ -222,7 +245,7 @@
           ]
         },
         {
-          "id": "t853",
+          "id": "t741",
           "type": "text",
           "x": 928,
           "y": 16,
@@ -235,7 +258,7 @@
           }
         },
         {
-          "id": "b854",
+          "id": "b742",
           "type": "button",
           "x": 1104,
           "y": 8,
@@ -245,7 +268,7 @@
           "variant": "filled"
         },
         {
-          "id": "t855",
+          "id": "t743",
           "type": "text",
           "x": 144,
           "y": 48,
@@ -258,7 +281,7 @@
           }
         },
         {
-          "id": "t856",
+          "id": "t744",
           "type": "text",
           "x": 144,
           "y": 88,
@@ -270,7 +293,7 @@
           }
         },
         {
-          "id": "t857",
+          "id": "t745",
           "type": "text",
           "x": 224,
           "y": 88,
@@ -282,7 +305,7 @@
           }
         },
         {
-          "id": "t858",
+          "id": "t746",
           "type": "text",
           "x": 376,
           "y": 88,
@@ -294,7 +317,7 @@
           }
         },
         {
-          "id": "t859",
+          "id": "t747",
           "type": "text",
           "x": 472,
           "y": 88,
@@ -306,7 +329,7 @@
           }
         },
         {
-          "id": "t860",
+          "id": "t748",
           "type": "text",
           "x": 576,
           "y": 88,
@@ -314,272 +337,92 @@
           "h": 24,
           "text": "Settings",
           "style": {
-            "weight": "bold"
-          }
-        },
-        {
-          "id": "r861",
-          "type": "rect",
-          "x": 576,
-          "y": 118,
-          "w": 64,
-          "h": 2,
-          "name": "Active Tab Underline",
-          "style": {
-            "fill": "#FD8C73",
-            "border": "none",
-            "radius": 0
+            "weight": "normal"
           }
         }
       ]
     },
     {
-      "id": "r876",
-      "type": "rect",
+      "id": "t750",
+      "type": "text",
       "x": 144,
       "y": 200,
-      "w": 1152,
-      "h": 264,
-      "name": "Store Listing",
+      "w": 600,
+      "h": 32,
+      "text": "Create PR with AI",
       "style": {
-        "fill": "$bg"
-      },
-      "children": [
-        {
-          "id": "r875",
-          "type": "rect",
-          "x": 0,
-          "y": 0,
-          "w": 1152,
-          "h": 40,
-          "name": "Card Header",
-          "style": {
-            "fill": "$surface",
-            "radius": 0
-          },
-          "children": [
-            {
-              "id": "t874",
-              "type": "text",
-              "x": 16,
-              "y": 8,
-              "w": 1120,
-              "h": 24,
-              "text": "Store listing",
-              "style": {
-                "weight": "bold"
-              }
-            }
-          ]
-        },
-        {
-          "id": "i863",
-          "type": "input",
-          "x": 16,
-          "y": 56,
-          "w": 560,
-          "h": 56,
-          "text": "Summary (one line, shown in the store)",
-          "props": {
-            "placeholder": "Count class attendance per course",
-            "kind": "text"
-          }
-        },
-        {
-          "id": "b864",
-          "type": "button",
-          "x": 592,
-          "y": 64,
-          "w": 88,
-          "h": 40,
-          "text": "Save",
-          "variant": "filled"
-        },
-        {
-          "id": "d865",
-          "type": "divider",
-          "x": 0,
-          "y": 128,
-          "w": 1152,
-          "h": 1
-        },
-        {
-          "id": "t866",
-          "type": "text",
-          "x": 16,
-          "y": 144,
-          "w": 160,
-          "h": 24,
-          "text": "App name",
-          "style": {
-            "color": "$muted",
-            "size": "sm"
-          }
-        },
-        {
-          "id": "t867",
-          "type": "text",
-          "x": 176,
-          "y": 144,
-          "w": 400,
-          "h": 24,
-          "text": "Attendance Counter"
-        },
-        {
-          "id": "t868",
-          "type": "text",
-          "x": 16,
-          "y": 176,
-          "w": 160,
-          "h": 24,
-          "text": "Icon",
-          "style": {
-            "color": "$muted",
-            "size": "sm"
-          }
-        },
-        {
-          "id": "i869",
-          "type": "image",
-          "x": 176,
-          "y": 176,
-          "w": 32,
-          "h": 32,
-          "text": "icon"
-        },
-        {
-          "id": "t870",
-          "type": "text",
-          "x": 16,
-          "y": 216,
-          "w": 160,
-          "h": 24,
-          "text": "Description",
-          "style": {
-            "color": "$muted",
-            "size": "sm"
-          }
-        },
-        {
-          "id": "t871",
-          "type": "text",
-          "x": 176,
-          "y": 216,
-          "w": 400,
-          "h": 24,
-          "text": "README.md"
-        },
-        {
-          "id": "t872",
-          "type": "text",
-          "x": 600,
-          "y": 144,
-          "w": 360,
-          "h": 72,
-          "text": "These come from the app itself, so the web and the store app always show the same thing. Change them with a pull request.",
-          "style": {
-            "color": "$muted",
-            "size": "sm"
-          }
-        },
-        {
-          "id": "b873",
-          "type": "button",
-          "x": 976,
-          "y": 160,
-          "w": 160,
-          "h": 36,
-          "text": "Create PR with AI",
-          "variant": "outline"
-        }
-      ]
+        "size": "lg",
+        "weight": "bold"
+      }
     },
     {
-      "id": "r882",
-      "type": "rect",
+      "id": "t751",
+      "type": "text",
       "x": 144,
-      "y": 480,
+      "y": 240,
+      "w": 1152,
+      "h": 48,
+      "text": "Describe the change you want. AI reads the whole repository and proposes the change. You review the diff before the pull request is created. Works on your own repositories and on other people's.",
+      "style": {
+        "color": "$muted"
+      }
+    },
+    {
+      "id": "i752",
+      "type": "input",
+      "x": 144,
+      "y": 304,
       "w": 1152,
       "h": 160,
-      "name": "Danger Zone",
-      "style": {
-        "fill": "$bg"
-      },
-      "children": [
-        {
-          "id": "r881",
-          "type": "rect",
-          "x": 0,
-          "y": 0,
-          "w": 1152,
-          "h": 40,
-          "name": "Card Header",
-          "style": {
-            "fill": "$surface",
-            "radius": 0
-          },
-          "children": [
-            {
-              "id": "t880",
-              "type": "text",
-              "x": 16,
-              "y": 8,
-              "w": 1120,
-              "h": 24,
-              "text": "Danger zone",
-              "style": {
-                "weight": "bold"
-              }
-            }
-          ]
-        },
-        {
-          "id": "t877",
-          "type": "text",
-          "x": 16,
-          "y": 56,
-          "w": 800,
-          "h": 24,
-          "text": "Delete this app",
-          "style": {
-            "weight": "bold"
-          }
-        },
-        {
-          "id": "t878",
-          "type": "text",
-          "x": 16,
-          "y": 80,
-          "w": 800,
-          "h": 24,
-          "text": "Removes it from the store and deletes the repository on GitHub. This cannot be undone.",
-          "style": {
-            "color": "$muted",
-            "size": "sm"
-          }
-        },
-        {
-          "id": "b879",
-          "type": "button",
-          "x": 976,
-          "y": 60,
-          "w": 160,
-          "h": 40,
-          "name": "Delete (asks to type the repo name)",
-          "text": "Delete app…",
-          "style": {
-            "color": "#CF222E",
-            "border": "#CF222E"
-          },
-          "variant": "outline"
-        }
-      ]
+      "text": "",
+      "props": {
+        "placeholder": "e.g. Support dark mode / Add a button to sort the list by date",
+        "kind": "text",
+        "multiline": true
+      }
     },
     {
-      "id": "r885",
+      "id": "i758",
+      "type": "input",
+      "name": "Model",
+      "x": 144,
+      "y": 480,
+      "w": 320,
+      "h": 56,
+      "text": "Model",
+      "props": {
+        "kind": "select",
+        "placeholder": "DeepSeek V4.1 Flash"
+      }
+    },
+    {
+      "id": "b753",
+      "type": "button",
+      "x": 144,
+      "y": 560,
+      "w": 168,
+      "h": 40,
+      "text": "Generate changes",
+      "variant": "filled"
+    },
+    {
+      "id": "t754",
+      "type": "text",
+      "x": 328,
+      "y": 568,
+      "w": 400,
+      "h": 24,
+      "text": "At least 5 characters. Takes 1–3 minutes.",
+      "style": {
+        "color": "$muted",
+        "size": "sm"
+      }
+    },
+    {
+      "id": "r757",
       "type": "rect",
       "x": 0,
-      "y": 844,
+      "y": 924,
       "w": 1440,
       "h": 56,
       "name": "Footer",
@@ -590,7 +433,7 @@
       },
       "children": [
         {
-          "id": "t883",
+          "id": "t755",
           "type": "text",
           "x": 144,
           "y": 16,
@@ -603,7 +446,7 @@
           }
         },
         {
-          "id": "t884",
+          "id": "t756",
           "type": "text",
           "x": 816,
           "y": 16,

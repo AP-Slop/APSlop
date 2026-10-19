@@ -1,11 +1,11 @@
 {
   "version": 1,
-  "id": "not-found",
-  "title": "ページが見つかりません",
+  "id": "error",
+  "title": "エラー",
   "device": "desktop",
   "elements": [
     {
-      "id": "r906",
+      "id": "r892",
       "type": "rect",
       "x": 0,
       "y": 0,
@@ -18,7 +18,7 @@
       },
       "children": [
         {
-          "id": "i900",
+          "id": "i886",
           "type": "icon",
           "x": 144,
           "y": 16,
@@ -27,7 +27,7 @@
           "text": "AP logo"
         },
         {
-          "id": "t901",
+          "id": "t887",
           "type": "text",
           "x": 176,
           "y": 16,
@@ -40,7 +40,7 @@
           }
         },
         {
-          "id": "t902",
+          "id": "t888",
           "type": "text",
           "x": 280,
           "y": 16,
@@ -49,11 +49,11 @@
           "text": "Apps",
           "style": {
             "color": "#FFFFFF",
-            "weight": "bold"
+            "weight": "normal"
           }
         },
         {
-          "id": "t903",
+          "id": "t889",
           "type": "text",
           "x": 344,
           "y": 16,
@@ -61,24 +61,12 @@
           "h": 24,
           "text": "Install on your phone",
           "style": {
-            "color": "#FFFFFF"
-          }
-        },
-        {
-          "id": "t904",
-          "type": "text",
-          "x": 952,
-          "y": 16,
-          "w": 136,
-          "h": 24,
-          "text": "For developers →",
-          "style": {
             "color": "#FFFFFF",
-            "align": "right"
+            "weight": "normal"
           }
         },
         {
-          "id": "b905",
+          "id": "b891",
           "type": "button",
           "x": 1112,
           "y": 8,
@@ -92,35 +80,78 @@
             "border": "#FFFFFF"
           },
           "variant": "outline"
+        },
+        {
+          "id": "hm2",
+          "type": "toggle",
+          "x": 904,
+          "y": 12,
+          "w": 184,
+          "h": 32,
+          "name": "Mode Switch",
+          "text": "Developer Mode",
+          "props": {
+            "checked": false
+          },
+          "style": {
+            "color": "#FFFFFF"
+          }
         }
       ]
     },
     {
-      "id": "t907",
-      "type": "text",
-      "x": 420,
-      "y": 320,
-      "w": 600,
-      "h": 32,
-      "text": "Page not found",
+      "id": "r895",
+      "type": "rect",
+      "x": 144,
+      "y": 88,
+      "w": 1152,
+      "h": 88,
+      "name": "Error Box",
       "style": {
-        "size": "lg",
-        "weight": "bold",
-        "align": "center"
-      }
+        "fill": "#FFEBE9",
+        "border": "#CF222E"
+      },
+      "children": [
+        {
+          "id": "t893",
+          "type": "text",
+          "x": 16,
+          "y": 16,
+          "w": 1120,
+          "h": 24,
+          "text": "Something went wrong",
+          "style": {
+            "weight": "bold",
+            "color": "#CF222E"
+          }
+        },
+        {
+          "id": "t894",
+          "type": "text",
+          "x": 16,
+          "y": 44,
+          "w": 1120,
+          "h": 24,
+          "text": "Could not load the repository list.",
+          "style": {
+            "color": "#CF222E",
+            "size": "sm"
+          }
+        }
+      ]
     },
     {
-      "id": "b908",
+      "id": "b896",
       "type": "button",
-      "x": 640,
-      "y": 376,
-      "w": 160,
+      "x": 144,
+      "y": 192,
+      "w": 96,
       "h": 40,
-      "text": "Back to apps",
+      "text": "Try again",
       "variant": "outline"
     },
     {
-      "id": "r911",
+      "id": "r899",
       "type": "rect",
       "x": 0,
       "y": 844,
@@ -134,7 +165,7 @@
       },
       "children": [
         {
-          "id": "t909",
+          "id": "t897",
           "type": "text",
           "x": 144,
           "y": 16,
@@ -147,7 +178,7 @@
           }
         },
         {
-          "id": "t910",
+          "id": "t898",
           "type": "text",
           "x": 816,
           "y": 16,

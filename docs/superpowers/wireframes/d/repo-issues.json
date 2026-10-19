@@ -1,14 +1,11 @@
 {
   "version": 1,
-  "id": "repo-ai",
-  "title": "開発者: Create PR with AI(入力)",
-  "device": {
-    "w": 1440,
-    "h": 980
-  },
+  "id": "repo-issues",
+  "title": "開発者: リポジトリ(Issues)",
+  "device": "desktop",
   "elements": [
     {
-      "id": "r734",
+      "id": "r444",
       "type": "rect",
       "x": 0,
       "y": 0,
@@ -21,7 +18,7 @@
       },
       "children": [
         {
-          "id": "i725",
+          "id": "i435",
           "type": "icon",
           "x": 144,
           "y": 16,
@@ -30,7 +27,7 @@
           "text": "AP logo"
         },
         {
-          "id": "t726",
+          "id": "t436",
           "type": "text",
           "x": 176,
           "y": 16,
@@ -43,7 +40,7 @@
           }
         },
         {
-          "id": "t727",
+          "id": "t437",
           "type": "text",
           "x": 360,
           "y": 16,
@@ -51,11 +48,12 @@
           "h": 24,
           "text": "Dashboard",
           "style": {
-            "color": "#FFFFFF"
+            "color": "#FFFFFF",
+            "weight": "normal"
           }
         },
         {
-          "id": "t728",
+          "id": "t438",
           "type": "text",
           "x": 464,
           "y": 16,
@@ -63,11 +61,26 @@
           "h": 24,
           "text": "Repositories",
           "style": {
-            "color": "#FFFFFF"
+            "color": "#FFFFFF",
+            "weight": "bold"
           }
         },
         {
-          "id": "t729",
+          "id": "hu1",
+          "type": "rect",
+          "x": 460,
+          "y": 52,
+          "w": 112,
+          "h": 4,
+          "name": "Current Place",
+          "style": {
+            "fill": "#FD8C73",
+            "border": "none",
+            "radius": 2
+          }
+        },
+        {
+          "id": "t439",
           "type": "text",
           "x": 584,
           "y": 16,
@@ -75,24 +88,12 @@
           "h": 24,
           "text": "New app",
           "style": {
-            "color": "#FFFFFF"
-          }
-        },
-        {
-          "id": "t730",
-          "type": "text",
-          "x": 880,
-          "y": 16,
-          "w": 136,
-          "h": 24,
-          "text": "← Store",
-          "style": {
             "color": "#FFFFFF",
-            "align": "right"
+            "weight": "normal"
           }
         },
         {
-          "id": "i731",
+          "id": "i441",
           "type": "icon",
           "x": 1040,
           "y": 16,
@@ -101,7 +102,7 @@
           "text": "avatar"
         },
         {
-          "id": "t732",
+          "id": "t442",
           "type": "text",
           "x": 1072,
           "y": 16,
@@ -113,7 +114,7 @@
           }
         },
         {
-          "id": "t733",
+          "id": "t443",
           "type": "text",
           "x": 1200,
           "y": 16,
@@ -124,11 +125,27 @@
             "color": "#FFFFFF",
             "align": "right"
           }
+        },
+        {
+          "id": "hm1",
+          "type": "toggle",
+          "x": 832,
+          "y": 12,
+          "w": 184,
+          "h": 32,
+          "name": "Mode Switch",
+          "text": "Developer Mode",
+          "props": {
+            "checked": true
+          },
+          "style": {
+            "color": "#FFFFFF"
+          }
         }
       ]
     },
     {
-      "id": "r749",
+      "id": "r460",
       "type": "rect",
       "x": 0,
       "y": 56,
@@ -141,7 +158,7 @@
       },
       "children": [
         {
-          "id": "t735",
+          "id": "t445",
           "type": "text",
           "x": 144,
           "y": 16,
@@ -154,7 +171,7 @@
           }
         },
         {
-          "id": "t736",
+          "id": "t446",
           "type": "text",
           "x": 216,
           "y": 16,
@@ -167,7 +184,7 @@
           }
         },
         {
-          "id": "r738",
+          "id": "r448",
           "type": "rect",
           "x": 400,
           "y": 16,
@@ -180,7 +197,7 @@
           },
           "children": [
             {
-              "id": "t737",
+              "id": "t447",
               "type": "text",
               "x": 8,
               "y": 0,
@@ -196,7 +213,7 @@
           ]
         },
         {
-          "id": "r740",
+          "id": "r450",
           "type": "rect",
           "x": 480,
           "y": 16,
@@ -209,7 +226,7 @@
           },
           "children": [
             {
-              "id": "t739",
+              "id": "t449",
               "type": "text",
               "x": 8,
               "y": 0,
@@ -225,7 +242,7 @@
           ]
         },
         {
-          "id": "t741",
+          "id": "t451",
           "type": "text",
           "x": 928,
           "y": 16,
@@ -238,7 +255,7 @@
           }
         },
         {
-          "id": "b742",
+          "id": "b452",
           "type": "button",
           "x": 1104,
           "y": 8,
@@ -248,7 +265,7 @@
           "variant": "filled"
         },
         {
-          "id": "t743",
+          "id": "t453",
           "type": "text",
           "x": 144,
           "y": 48,
@@ -261,7 +278,7 @@
           }
         },
         {
-          "id": "t744",
+          "id": "t454",
           "type": "text",
           "x": 144,
           "y": 88,
@@ -273,7 +290,7 @@
           }
         },
         {
-          "id": "t745",
+          "id": "t455",
           "type": "text",
           "x": 224,
           "y": 88,
@@ -285,7 +302,7 @@
           }
         },
         {
-          "id": "t746",
+          "id": "t456",
           "type": "text",
           "x": 376,
           "y": 88,
@@ -293,11 +310,25 @@
           "h": 24,
           "text": "Issues 2",
           "style": {
-            "weight": "normal"
+            "weight": "bold"
           }
         },
         {
-          "id": "t747",
+          "id": "r457",
+          "type": "rect",
+          "x": 376,
+          "y": 118,
+          "w": 64,
+          "h": 2,
+          "name": "Active Tab Underline",
+          "style": {
+            "fill": "#FD8C73",
+            "border": "none",
+            "radius": 0
+          }
+        },
+        {
+          "id": "t458",
           "type": "text",
           "x": 472,
           "y": 88,
@@ -309,7 +340,7 @@
           }
         },
         {
-          "id": "t748",
+          "id": "t459",
           "type": "text",
           "x": 576,
           "y": 88,
@@ -323,86 +354,220 @@
       ]
     },
     {
-      "id": "t750",
-      "type": "text",
+      "id": "r471",
+      "type": "rect",
       "x": 144,
       "y": 200,
-      "w": 600,
-      "h": 32,
-      "text": "Create PR with AI",
-      "style": {
-        "size": "lg",
-        "weight": "bold"
-      }
-    },
-    {
-      "id": "t751",
-      "type": "text",
-      "x": 144,
-      "y": 240,
       "w": 1152,
-      "h": 48,
-      "text": "Describe the change you want. AI reads the whole repository and proposes the change. You review the diff before the pull request is created. Works on your own repositories and on other people's.",
+      "h": 200,
+      "name": "Issue List",
       "style": {
-        "color": "$muted"
-      }
+        "fill": "$bg"
+      },
+      "children": [
+        {
+          "id": "r463",
+          "type": "rect",
+          "x": 0,
+          "y": 0,
+          "w": 1152,
+          "h": 40,
+          "name": "Card Header",
+          "style": {
+            "fill": "$surface",
+            "radius": 0
+          },
+          "children": [
+            {
+              "id": "t461",
+              "type": "text",
+              "x": 16,
+              "y": 8,
+              "w": 56,
+              "h": 24,
+              "text": "Open",
+              "style": {
+                "weight": "bold"
+              }
+            },
+            {
+              "id": "t462",
+              "type": "text",
+              "x": 88,
+              "y": 8,
+              "w": 64,
+              "h": 24,
+              "text": "Closed",
+              "style": {
+                "color": "$muted",
+                "size": "sm"
+              }
+            }
+          ]
+        },
+        {
+          "id": "i464",
+          "type": "icon",
+          "x": 16,
+          "y": 60,
+          "w": 24,
+          "h": 24,
+          "text": "open state"
+        },
+        {
+          "id": "t465",
+          "type": "text",
+          "x": 52,
+          "y": 56,
+          "w": 900,
+          "h": 24,
+          "text": "Layout breaks when absences left is 0",
+          "style": {
+            "color": "#0969DA",
+            "weight": "bold"
+          }
+        },
+        {
+          "id": "t466",
+          "type": "text",
+          "x": 52,
+          "y": 82,
+          "w": 900,
+          "h": 24,
+          "text": "#2 · opened 2 days ago by student-a · 1 comment",
+          "style": {
+            "color": "$muted",
+            "size": "sm"
+          }
+        },
+        {
+          "id": "d467",
+          "type": "divider",
+          "x": 0,
+          "y": 120,
+          "w": 1152,
+          "h": 1
+        },
+        {
+          "id": "i468",
+          "type": "icon",
+          "x": 16,
+          "y": 140,
+          "w": 24,
+          "h": 24,
+          "text": "open state"
+        },
+        {
+          "id": "t469",
+          "type": "text",
+          "x": 52,
+          "y": 136,
+          "w": 900,
+          "h": 24,
+          "text": "Let me reorder courses",
+          "style": {
+            "color": "#0969DA",
+            "weight": "bold"
+          }
+        },
+        {
+          "id": "t470",
+          "type": "text",
+          "x": 52,
+          "y": 162,
+          "w": 900,
+          "h": 24,
+          "text": "#1 · opened 5 days ago by student-b · 0 comments",
+          "style": {
+            "color": "$muted",
+            "size": "sm"
+          }
+        }
+      ]
     },
     {
-      "id": "i752",
-      "type": "input",
+      "id": "r477",
+      "type": "rect",
       "x": 144,
-      "y": 304,
+      "y": 416,
       "w": 1152,
-      "h": 160,
-      "text": "",
-      "props": {
-        "placeholder": "e.g. Support dark mode / Add a button to sort the list by date",
-        "kind": "text",
-        "multiline": true
-      }
-    },
-    {
-      "id": "i758",
-      "type": "input",
-      "name": "Model",
-      "x": 144,
-      "y": 480,
-      "w": 320,
-      "h": 56,
-      "text": "Model",
-      "props": {
-        "kind": "select",
-        "placeholder": "DeepSeek V4.1 Flash"
-      }
-    },
-    {
-      "id": "b753",
-      "type": "button",
-      "x": 144,
-      "y": 560,
-      "w": 168,
-      "h": 40,
-      "text": "Generate changes",
-      "variant": "filled"
-    },
-    {
-      "id": "t754",
-      "type": "text",
-      "x": 328,
-      "y": 568,
-      "w": 400,
-      "h": 24,
-      "text": "At least 5 characters. Takes 1–3 minutes.",
+      "h": 320,
+      "name": "New Issue Form",
       "style": {
-        "color": "$muted",
-        "size": "sm"
-      }
+        "fill": "$bg"
+      },
+      "children": [
+        {
+          "id": "r476",
+          "type": "rect",
+          "x": 0,
+          "y": 0,
+          "w": 1152,
+          "h": 40,
+          "name": "Card Header",
+          "style": {
+            "fill": "$surface",
+            "radius": 0
+          },
+          "children": [
+            {
+              "id": "t475",
+              "type": "text",
+              "x": 16,
+              "y": 8,
+              "w": 1120,
+              "h": 24,
+              "text": "New issue",
+              "style": {
+                "weight": "bold"
+              }
+            }
+          ]
+        },
+        {
+          "id": "i472",
+          "type": "input",
+          "x": 16,
+          "y": 56,
+          "w": 1120,
+          "h": 40,
+          "text": "",
+          "props": {
+            "placeholder": "Title",
+            "kind": "text"
+          }
+        },
+        {
+          "id": "i473",
+          "type": "input",
+          "x": 16,
+          "y": 112,
+          "w": 1120,
+          "h": 136,
+          "text": "",
+          "props": {
+            "placeholder": "Description (Markdown supported)",
+            "kind": "text",
+            "multiline": true
+          }
+        },
+        {
+          "id": "b474",
+          "type": "button",
+          "x": 16,
+          "y": 264,
+          "w": 128,
+          "h": 40,
+          "text": "Create issue",
+          "variant": "filled"
+        }
+      ]
     },
     {
-      "id": "r757",
+      "id": "r480",
       "type": "rect",
       "x": 0,
-      "y": 924,
+      "y": 844,
       "w": 1440,
       "h": 56,
       "name": "Footer",
@@ -413,7 +578,7 @@
       },
       "children": [
         {
-          "id": "t755",
+          "id": "t478",
           "type": "text",
           "x": 144,
           "y": 16,
@@ -426,7 +591,7 @@
           }
         },
         {
-          "id": "t756",
+          "id": "t479",
           "type": "text",
           "x": 816,
           "y": 16,
