@@ -23,7 +23,7 @@ export const PATCH = handle(async (req: Request, ctx: Ctx) => {
   const parsed = PatchBody.safeParse(await readJson(req));
   if (!parsed.success) return jsonError(parsed.error.issues[0].message);
   const updated = await updateSummary(app, parsed.data.summary);
-  return NextResponse.json({ summary: updated.summary });
+  return NextResponse.json({ summary: updated.summary, published: updated.status === "PUBLISHED" });
 });
 
 const DeleteBody = z.object({ confirm: z.string() });

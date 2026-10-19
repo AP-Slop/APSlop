@@ -19,19 +19,19 @@ export function SummaryForm({ slug, summary }: { slug: string; summary: string }
   const [saved, setSaved] = useState(summary);
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [done, setDone] = useState(false);
+  const [done, setDone] = useState<string | null>(null);
   const trimmed = value.trim();
 
   async function save(e: React.FormEvent) {
     e.preventDefault();
     setError(null);
-    setDone(false);
+    setDone(null);
     setBusy(true);
     try {
       const json = await send(`/api/apps/${slug}`, "PATCH", { summary: trimmed });
       setSaved(json.summary);
       setValue(json.summary);
-      setDone(true);
+      setDone(json.published ? "Saved. The store now shows this summary." : "Saved. The store will show this summary once the app is published.");
       router.refresh();
     } catch (e) {
       setError((e as Error).message);
@@ -50,7 +50,7 @@ export function SummaryForm({ slug, summary }: { slug: string; summary: string }
           value={value}
           onChange={(e) => {
             setValue(e.target.value.replace(/[\r\n]/g, " "));
-            setDone(false);
+            setDone(null);
           }}
           maxLength={SUMMARY_MAX}
           className="flex-1 min-w-0 rounded-md border border-border px-3 py-1.5"
@@ -61,7 +61,7 @@ export function SummaryForm({ slug, summary }: { slug: string; summary: string }
       </div>
       <div className="flex gap-3 text-xs text-fg-muted">
         <span className="flex-1">
-          {done ? <span className="text-success">Saved. The store and the repository now show this summary.</span> : null}
+          {done && <span className="text-success">{done}</span>}
         </span>
         <span>{value.length} / {SUMMARY_MAX}</span>
       </div>
