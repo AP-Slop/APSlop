@@ -3,6 +3,7 @@ from __future__ import annotations
 
 import json
 import logging
+import re
 import subprocess
 import threading
 from pathlib import Path
@@ -100,6 +101,34 @@ def write_metadata(package_name: str, *, name: str, summary: str, description: s
     ]
     path.write_text("\n".join(lines), encoding="utf-8")
     return path
+
+
+PACKAGE_NAME = re.compile(r"^[A-Za-z][A-Za-z0-9_]*(\.[A-Za-z][A-Za-z0-9_]*)+$")
+
+
+def set_summary(package_name: str, summary: str, cfg: Settings = settings) -> bool:
+    """Replace the Summary line of metadata/<pkg>.yml (written by write_metadata). False if there is none."""
+    path = cfg.metadata_dir / f"{package_name}.yml"
+    if not path.exists():
+        return False
+    line = f"Summary: {_yaml_str(summary[:80])}"
+    lines = [line if ln.startswith("Summary: ") else ln for ln in path.read_text(encoding="utf-8").split("\n")]
+    path.write_text("\n".join(lines), encoding="utf-8")
+    return True
+
+
+def remove_package(package_name: str, cfg: Settings = settings) -> int:
+    """Delete the metadata and every APK of a package from repo/ and archive/. Returns the number of files removed.
+    The per-package signing key is kept, so a later app with the same package name can still update installs."""
+    removed = 0
+    candidates = [cfg.metadata_dir / f"{package_name}.yml"]
+    for d in (cfg.repo_dir, cfg.archive_dir):
+        candidates += d.glob(f"{package_name}_*.apk")
+    for path in candidates:
+        if path.is_file():
+            path.unlink()
+            removed += 1
+    return removed
 
 
 def fdroid_update(cfg: Settings = settings) -> str:

@@ -265,6 +265,22 @@ export async function getRepo(name: string) {
   return data;
 }
 
+/** Set the repo description, which the store uses as the app's one-line summary. */
+export async function updateRepoDescription(name: string, description: string) {
+  const gh = adminOctokit();
+  await gh.rest.repos.update({ owner: org(), repo: name, description });
+}
+
+/** Delete a repo in the org. A repo that is already gone counts as deleted. */
+export async function deleteRepo(name: string): Promise<void> {
+  const gh = adminOctokit();
+  try {
+    await gh.rest.repos.delete({ owner: org(), repo: name });
+  } catch (e) {
+    if ((e as { status?: number }).status !== 404) throw e;
+  }
+}
+
 export type TreeEntry = { name: string; path: string; type: "dir" | "file"; size?: number };
 
 /** List a directory (path "" = root). */
