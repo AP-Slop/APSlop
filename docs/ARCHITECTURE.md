@@ -58,7 +58,8 @@ Git の実体は github.com 上の Organization に置き、自前サーバー�
 ```
 POST {STORE_SERVER_URL}/sync
 Headers: X-Store-Token: {STORE_TOKEN}
-Body: { "repo": "org/name", "tag": "v1.2.3" }   // tag 省略時は latest release
+Body: { "repo": "org/name", "tag": "v1.2.3", "author": "login" }   // tag 省略時は latest release
+                                                                  // author はストアに出す作者 (アプリの持ち主)。省略時は Release の作成者
 200: {
   "packageName": "dev.apslop.apps.foo",
   "versionName": "1.2.3",
@@ -88,7 +89,8 @@ store-server は GitHub の Release アセットを `GITHUB_ADMIN_TOKEN` で取�
 アセット名は `*.apk` を対象とし、`*-unsigned.apk` / 未署名 APK は `apksigner` で署名する。
 署名鍵は `/data/keys/<packageName>.jks` に無ければ `keytool` で生成する(パスワードは `STORE_KEY_PASSWORD`)。
 ストアに表示する名前は APK の `android:label`(`app_name`)、概要は GitHub リポジトリの description、
-説明はタグ時点の `README.md`(Markdown。無ければ description)。Release のリリースノートは使わない。
+説明はタグ時点の `README.md`(Markdown。無ければ description)、作者 (`AuthorName`) は `/sync` の `author`。
+Release のリリースノートは使わない。
 
 ### store-server が配信するもの
 

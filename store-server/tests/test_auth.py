@@ -30,20 +30,20 @@ def test_sync_requires_token(client):
 def test_sync_calls_sync_release(client, monkeypatch):
     calls = []
 
-    def fake(repo, tag):
-        calls.append((repo, tag))
+    def fake(repo, tag, author):
+        calls.append((repo, tag, author))
         return {"packageName": "dev.apslop.apps.todo", "versionName": "1.0", "versionCode": 1,
                 "apkName": "dev.apslop.apps.todo_1.apk", "sha256": "x", "signer": "y"}
 
     monkeypatch.setattr(main, "sync_release", fake)
-    r = client.post("/sync", json={"repo": "org/app", "tag": "v1.0"}, headers={"X-Store-Token": "test-token"})
+    r = client.post("/sync", json={"repo": "org/app", "tag": "v1.0", "author": "alice"}, headers={"X-Store-Token": "test-token"})
     assert r.status_code == 200
     assert r.json()["packageName"] == "dev.apslop.apps.todo"
-    assert calls == [("org/app", "v1.0")]
+    assert calls == [("org/app", "v1.0", "alice")]
 
 
 def test_sync_error_maps_to_status(client, monkeypatch):
-    def fake(repo, tag):
+    def fake(repo, tag, author):
         raise SyncError(422, "release v1 has no .apk asset")
 
     monkeypatch.setattr(main, "sync_release", fake)

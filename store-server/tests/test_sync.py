@@ -37,6 +37,7 @@ def stubbed(monkeypatch):
     })
     monkeypatch.setattr(github, "get_release", lambda name, tag: {
         "tag_name": "v1.0.0",
+        "author": {"login": "release-bot"},
         "body": "**Full Changelog**: https://github.com/org/campus-timetable/commits/v1.0.0",
         "assets": [{"name": "app-1.0.0-unsigned.apk", "url": "https://api.github.com/assets/1"}],
     })
@@ -59,6 +60,13 @@ def test_sync_names_app_by_apk_label_and_describes_it_with_readme(stubbed):
     assert meta["summary"] == "Timetable for campus"
     assert meta["description"] == readme["text"]  # not the release notes
     assert readme["refs"] == ["v1.0.0"]  # README as of the released tag
+    assert meta["author"] == "release-bot"
+
+
+def test_sync_names_the_author_given_by_the_caller(stubbed):
+    written, _ = stubbed
+    sync.sync_release("org/campus-timetable", "v1.0.0", author="alice")
+    assert written[PKG]["author"] == "alice"
 
 
 def test_sync_falls_back_to_repo_name_and_description(stubbed, monkeypatch):
@@ -77,3 +85,10 @@ def test_metadata_keeps_markdown_readme_verbatim(tmp_path):
         source_code="https://github.com/org/app", website="", cfg=Settings(data_dir=tmp_path),
     )
     assert yaml.safe_load(path.read_text(encoding="utf-8"))["Description"] == readme + "\n"
+
+
+def test_metadata_names_the_author_only_when_known(tmp_path):
+    cfg = Settings(data_dir=tmp_path)
+    kw = dict(name="App", summary="s", description="d", source_code="https://github.com/org/app", website="", cfg=cfg)
+    assert yaml.safe_load(fdroid.write_metadata(PKG, author="alice", **kw).read_text(encoding="utf-8"))["AuthorName"] == "alice"
+    assert "AuthorName" not in yaml.safe_load(fdroid.write_metadata(PKG, **kw).read_text(encoding="utf-8"))

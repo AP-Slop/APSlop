@@ -46,6 +46,7 @@ def require_token(x_store_token: str | None = Header(default=None)) -> None:
 class SyncRequest(BaseModel):
     repo: str = Field(..., description="GitHub repo as owner/name")
     tag: str | None = Field(default=None, description="release tag; latest release if omitted")
+    author: str | None = Field(default=None, max_length=100, description="shown as the app's author; release author if omitted")
 
 
 @app.exception_handler(HTTPException)
@@ -61,7 +62,7 @@ def healthz() -> dict[str, bool]:
 @app.post("/sync", dependencies=[Depends(require_token)])
 async def sync(req: SyncRequest) -> dict[str, Any]:
     try:
-        return await run_in_threadpool(sync_release, req.repo, req.tag)
+        return await run_in_threadpool(sync_release, req.repo, req.tag, req.author)
     except SyncError as e:
         raise HTTPException(status_code=e.status, detail=e.message) from e
 

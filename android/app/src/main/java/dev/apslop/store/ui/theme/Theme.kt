@@ -1,35 +1,39 @@
 package dev.apslop.store.ui.theme
 
-import android.os.Build
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.darkColorScheme
-import androidx.compose.material3.dynamicDarkColorScheme
-import androidx.compose.material3.dynamicLightColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.LocalContext
 
-private val Blue = Color(0xFF1E5EFF)
-private val BlueDark = Color(0xFF9DB8FF)
+/* The same colors as the APSlop website, so the store app and the site look like one product. */
 
-private val LightColors = lightColorScheme(primary = Blue)
-private val DarkColors = darkColorScheme(primary = BlueDark)
+/** The dark top bar, like the site's header. */
+val HeaderBackground = Color(0xFF24292F)
+val HeaderContent = Color.White
+
+private val Green = Color(0xFF1F883D)
+private val GreenDark = Color(0xFF3FB950)
+
+private val LightColors = lightColorScheme(
+    primary = Green,
+    onPrimary = Color.White,
+    background = Color.White,
+    surface = Color.White,
+    surfaceVariant = Color(0xFFF6F8FA),
+    surfaceContainerLow = Color(0xFFF6F8FA),
+    surfaceContainerHigh = Color.White,
+    onSurfaceVariant = Color(0xFF59636E),
+    outline = Color(0xFFD1D9E0),
+    outlineVariant = Color(0xFFD1D9E0),
+)
+private val DarkColors = darkColorScheme(primary = GreenDark)
 
 @Composable
 fun APSlopStoreTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
-    dynamicColor: Boolean = true,
     content: @Composable () -> Unit,
 ) {
-    val colorScheme = when {
-        dynamicColor && Build.VERSION.SDK_INT >= Build.VERSION_CODES.S -> {
-            val context = LocalContext.current
-            if (darkTheme) dynamicDarkColorScheme(context) else dynamicLightColorScheme(context)
-        }
-        darkTheme -> DarkColors
-        else -> LightColors
-    }
-    MaterialTheme(colorScheme = colorScheme, content = content)
+    MaterialTheme(colorScheme = if (darkTheme) DarkColors else LightColors, content = content)
 }

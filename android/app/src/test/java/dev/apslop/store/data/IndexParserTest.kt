@@ -33,6 +33,7 @@ class IndexParserTest {
         val app = IndexParser.parse(fixture, repoUrl).apps.first { it.packageName == "dev.apslop.apps.timetable" }
         assertEquals("Timetable", app.name)
         assertEquals("Campus timetable viewer", app.summary)
+        assertEquals("alice", app.author)
         assertEquals("https://github.com/my-univ-apps/timetable", app.sourceCode)
         assertNull("blank webSite becomes null", app.webSite)
         assertEquals("http://localhost:8080/fdroid/repo/icons/dev.apslop.apps.timetable.10002.png", app.iconUrl)
@@ -51,6 +52,7 @@ class IndexParserTest {
         val app = IndexParser.parse(fixture, repoUrl).apps.first { it.packageName == "dev.apslop.apps.notes" }
         assertEquals("メモ", app.name)
         assertEquals("", app.summary)
+        assertNull(app.author)
         assertNull(app.iconUrl)
         assertNull(app.latest.minSdk)
         assertNotNull(app.latest.apkUrl)

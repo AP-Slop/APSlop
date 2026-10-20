@@ -35,11 +35,11 @@ async function storeFetch(path: string, init?: RequestInit): Promise<Response> {
   });
 }
 
-/** Ask the store server to ingest the APK from a GitHub release. */
-export async function syncRelease(repoFullName: string, tag?: string): Promise<SyncResult> {
+/** Ask the store server to ingest the APK from a GitHub release. `author` is shown as the app's author in the store. */
+export async function syncRelease(repoFullName: string, tag?: string, author?: string): Promise<SyncResult> {
   const res = await storeFetch("/sync", {
     method: "POST",
-    body: JSON.stringify({ repo: repoFullName, tag }),
+    body: JSON.stringify({ repo: repoFullName, tag, author }),
   });
   const json = (await res.json().catch(() => ({}))) as Partial<SyncResult> & { error?: string };
   if (!res.ok) throw new Error(json.error ?? `The store server answered ${res.status}`);
@@ -90,10 +90,10 @@ export function apkDownloadUrl(apkName: string): string {
 
 /** Sync a release and persist the result on the App row. */
 export async function syncAppBySlug(slug: string, tag?: string) {
-  const app = await prisma.app.findUnique({ where: { slug } });
+  const app = await prisma.app.findUnique({ where: { slug }, include: { owner: { select: { login: true } } } });
   if (!app) throw Object.assign(new Error("App not found."), { status: 404 });
   try {
-    const result = await syncRelease(app.repoFullName, tag);
+    const result = await syncRelease(app.repoFullName, tag, app.owner.login);
     const storeApps = await listStoreApps();
     const storeApp = storeApps.find((a) => a.packageName === result.packageName);
     return await prisma.app.update({
