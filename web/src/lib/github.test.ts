@@ -1,5 +1,5 @@
 import { afterEach, describe, expect, it, vi } from "vitest";
-import { GITHUB_SIGNIN_EXPIRED, WORKFLOWS_NOT_ALLOWED, createRepoWithFiles, listOrgRepos, userOctokit } from "./github";
+import { GITHUB_SIGNIN_EXPIRED, WORKFLOWS_NOT_ALLOWED, canWriteRepo, createRepoWithFiles, listOrgRepos, userOctokit } from "./github";
 
 afterEach(() => {
   vi.unstubAllGlobals();
@@ -119,5 +119,33 @@ describe("createRepoWithFiles", { timeout: 20_000 }, () => {
     const repo = await createRepoWithFiles("counter", "Count", files, "someone");
     expect(repo.fullName).toBe("AP-Slop/counter");
     expect(calls).not.toContain("DELETE /repos/AP-Slop/counter");
+  });
+});
+
+describe("canWriteRepo", () => {
+  it("is true for write, maintain and admin, and false for read or an unknown user", async () => {
+    vi.stubEnv("GITHUB_ORG", "AP-Slop");
+    vi.stubEnv("GITHUB_ADMIN_TOKEN", "t");
+    vi.stubEnv("GITHUB_CLIENT_ID", "c");
+    vi.stubEnv("GITHUB_CLIENT_SECRET", "s");
+    vi.stubEnv("AUTH_SECRET", "a");
+    const roles: Record<string, { permission: string; role_name: string } | null> = {
+      writer: { permission: "write", role_name: "write" },
+      maintainer: { permission: "write", role_name: "maintain" },
+      owner: { permission: "admin", role_name: "admin" },
+      reader: { permission: "read", role_name: "read" },
+      triager: { permission: "read", role_name: "triage" },
+      stranger: null,
+    };
+    vi.stubGlobal(
+      "fetch",
+      vi.fn(async (url: string) => {
+        const login = new URL(url).pathname.split("/")[5];
+        const role = roles[login];
+        return role ? reply(200, role) : reply(404, { message: "Not Found" });
+      }),
+    );
+    const result = Object.fromEntries(await Promise.all(Object.keys(roles).map(async (l) => [l, await canWriteRepo("counter", l)])));
+    expect(result).toEqual({ writer: true, maintainer: true, owner: true, reader: false, triager: false, stranger: false });
   });
 });

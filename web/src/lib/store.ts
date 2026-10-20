@@ -14,10 +14,14 @@ export type StoreApp = {
   packageName: string;
   name: string;
   summary: string;
+  /** The README as of the released tag. */
+  description: string;
   versionName: string;
   versionCode: number;
   iconUrl: string | null;
   apkUrl: string;
+  apkSize: number | null;
+  minSdk: number | null;
   added: number;
   lastUpdated: number;
 };
@@ -38,7 +42,7 @@ export async function syncRelease(repoFullName: string, tag?: string): Promise<S
     body: JSON.stringify({ repo: repoFullName, tag }),
   });
   const json = (await res.json().catch(() => ({}))) as Partial<SyncResult> & { error?: string };
-  if (!res.ok) throw new Error(json.error ?? `ストアサーバーがエラーを返しました (${res.status})`);
+  if (!res.ok) throw new Error(json.error ?? `The store server answered ${res.status}`);
   return json as SyncResult;
 }
 
@@ -74,6 +78,12 @@ export async function removeFromStore(packageName: string): Promise<void> {
   if (!res.ok) throw await storeError(res);
 }
 
+/** The store's entry for one package, or null when it is not in the store (or the store cannot be reached). */
+export async function findStoreApp(packageName: string | null): Promise<StoreApp | null> {
+  if (!packageName) return null;
+  return (await listStoreApps()).find((a) => a.packageName === packageName) ?? null;
+}
+
 export function apkDownloadUrl(apkName: string): string {
   return `${fdroidRepoUrl()}/${apkName}`;
 }
@@ -81,7 +91,7 @@ export function apkDownloadUrl(apkName: string): string {
 /** Sync a release and persist the result on the App row. */
 export async function syncAppBySlug(slug: string, tag?: string) {
   const app = await prisma.app.findUnique({ where: { slug } });
-  if (!app) throw new Error("アプリが見つかりません");
+  if (!app) throw Object.assign(new Error("App not found."), { status: 404 });
   try {
     const result = await syncRelease(app.repoFullName, tag);
     const storeApps = await listStoreApps();

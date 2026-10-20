@@ -14,7 +14,7 @@ export const POST = handle(async (req: Request, ctx: { params: Promise<{ name: s
   const { name, number } = await ctx.params;
   const { event, body } = Body.parse(await readJson(req));
   if (event !== "APPROVE" && !body.trim()) {
-    return NextResponse.json({ error: "コメントを入力してください" }, { status: 400 });
+    return NextResponse.json({ error: "Write a comment." }, { status: 400 });
   }
   const review = await createReview(session.accessToken, name, Number(number), event, body);
   return NextResponse.json({ id: review.id, state: review.state });

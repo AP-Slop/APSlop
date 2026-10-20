@@ -44,7 +44,7 @@ async function syncForRepo(fullName: string, tag: string) {
 export async function POST(req: Request) {
   const raw = await req.text();
   if (!verify(raw, req.headers.get("x-hub-signature-256"))) {
-    return NextResponse.json({ error: "署名が一致しません" }, { status: 401 });
+    return NextResponse.json({ error: "Signature does not match." }, { status: 401 });
   }
   const event = req.headers.get("x-github-event");
   if (event === "ping") return NextResponse.json({ ok: true });

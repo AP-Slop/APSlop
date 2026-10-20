@@ -19,8 +19,8 @@ export function SyncButton({ slug, tag }: { slug: string; tag?: string }) {
         body: JSON.stringify({ tag }),
       });
       const json = await res.json();
-      if (!res.ok) throw new Error(json.error ?? "同期に失敗しました");
-      setMsg(`v${json.latestVersion} を取り込みました`);
+      if (!res.ok) throw new Error(json.error ?? "Could not sync to the store. Try again.");
+      setMsg(`The store now has v${json.latestVersion}.`);
       router.refresh();
     } catch (e) {
       setMsg((e as Error).message);
@@ -32,7 +32,7 @@ export function SyncButton({ slug, tag }: { slug: string; tag?: string }) {
   return (
     <span className="inline-flex items-center gap-2">
       <button onClick={sync} disabled={busy} className={buttonClass()}>
-        {busy ? "同期中…" : "ストアに同期"}
+        {busy ? "Syncing…" : "Sync to store"}
       </button>
       {msg && <span className="text-xs text-fg-muted">{msg}</span>}
     </span>

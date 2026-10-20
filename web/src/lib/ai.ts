@@ -162,10 +162,10 @@ async function runStructured<T>(
     throw friendlyApiError(e, choice === "deepseek" ? "DeepSeek" : "Claude");
   }
   if (message.stop_reason === "refusal") {
-    throw new Error("AI がこのリクエストの生成を拒否しました。内容を見直してください。");
+    throw new Error("AI declined this request. Change what you asked for and try again.");
   }
   if (message.stop_reason === "max_tokens") {
-    throw new Error("生成結果が長すぎて途中で切れました。アプリの規模を小さくして再試行してください。");
+    throw new Error("AI's answer was too long and got cut off. Ask for a smaller app or change, and try again.");
   }
   let raw: unknown;
   if (p.structured === "output_config") {

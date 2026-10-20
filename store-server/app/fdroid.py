@@ -204,7 +204,8 @@ def parse_index_v2(index: dict[str, Any], repo_url: str) -> list[dict[str, Any]]
             if latest is None or int(manifest.get("versionCode", 0)) > int(latest["manifest"].get("versionCode", 0)):
                 latest = v
         manifest = (latest or {}).get("manifest", {}) or {}
-        apk_name = ((latest or {}).get("file") or {}).get("name")
+        apk_file = (latest or {}).get("file") or {}
+        apk_name = apk_file.get("name")
         apps.append(
             {
                 "packageName": pkg,
@@ -216,6 +217,8 @@ def parse_index_v2(index: dict[str, Any], repo_url: str) -> list[dict[str, Any]]
                 "iconUrl": _localized_file(meta.get("icon"), repo_url),
                 "apkUrl": (repo_url + apk_name) if apk_name else None,
                 "apkName": apk_name.lstrip("/") if apk_name else None,
+                "apkSize": apk_file.get("size"),
+                "minSdk": (manifest.get("usesSdk") or {}).get("minSdkVersion"),
                 "sourceCode": meta.get("sourceCode"),
                 "webSite": meta.get("webSite"),
                 "added": meta.get("added"),

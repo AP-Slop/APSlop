@@ -24,7 +24,7 @@ export function ReleaseForm({ name, suggestedTag }: { name: string; suggestedTag
         body: JSON.stringify({ tag, name: title || undefined, body: body || undefined }),
       });
       const json = await res.json();
-      if (!res.ok) throw new Error(json.error ?? "作成に失敗しました");
+      if (!res.ok) throw new Error(json.error ?? "Could not create the release. Try again.");
       setDone(json.tag);
       router.refresh();
     } catch (err) {
@@ -36,23 +36,23 @@ export function ReleaseForm({ name, suggestedTag }: { name: string; suggestedTag
 
   return (
     <Card>
-      <CardHeader>新しいリリース</CardHeader>
+      <CardHeader>New release</CardHeader>
       <form onSubmit={submit} className="p-4 space-y-3 text-sm">
         {error && <ErrorBox>{error}</ErrorBox>}
-        {done && <p className="text-success">{done} を作成しました。CI のビルド完了後に APK が添付されます。</p>}
+        {done && <p className="text-success">Created {done}. The APK is attached when the CI build finishes (a few minutes).</p>}
         <label className="block">
-          <span className="text-xs text-fg-muted">タグ (vX.Y.Z)</span>
+          <span className="text-xs text-fg-muted">Tag (vX.Y.Z)</span>
           <input value={tag} onChange={(e) => setTag(e.target.value)} pattern="^v\d+\.\d+\.\d+$" required className="mt-1 w-full rounded-md border border-border px-2 py-1 font-mono" />
         </label>
         <label className="block">
-          <span className="text-xs text-fg-muted">タイトル (任意)</span>
+          <span className="text-xs text-fg-muted">Title (optional)</span>
           <input value={title} onChange={(e) => setTitle(e.target.value)} className="mt-1 w-full rounded-md border border-border px-2 py-1" />
         </label>
         <label className="block">
-          <span className="text-xs text-fg-muted">リリースノート (任意)</span>
+          <span className="text-xs text-fg-muted">Release notes (optional)</span>
           <textarea value={body} onChange={(e) => setBody(e.target.value)} rows={4} className="mt-1 w-full rounded-md border border-border p-2" />
         </label>
-        <button disabled={busy} className={`${buttonClass("primary")} w-full justify-center`}>{busy ? "作成中…" : "リリースを作成"}</button>
+        <button disabled={busy} className={`${buttonClass("primary")} w-full justify-center`}>{busy ? "Creating…" : "Create release"}</button>
       </form>
     </Card>
   );
