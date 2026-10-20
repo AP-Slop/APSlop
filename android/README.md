@@ -31,6 +31,15 @@ android/publish-store-app.sh http://10.0.2.2:8081/fdroid/repo  # ローカルの
 すでに入っている端末に更新を届けるには `app/build.gradle.kts` の `versionCode` を上げてから実行する。
 debug ビルドとは署名が違うので、debug ビルドが入った端末では一度アンインストールが必要。
 
+### USB でつないだ実機で試す
+
+```sh
+adb reverse tcp:3000 tcp:3000 && adb reverse tcp:8081 tcp:8081   # スマホの localhost をこの PC に向ける
+android/publish-store-app.sh                                      # .env の STORE_PUBLIC_URL (localhost) 向け
+```
+
+スマホのブラウザで `http://localhost:3000` を開けば、Web サイトからストアアプリを落として試せる。抜き差しすると reverse は消える。
+
 ## ストアの向き先
 
 既定のリポジトリ URL はビルド時に埋め込まれる (`BuildConfig.DEFAULT_REPO_URL`)。

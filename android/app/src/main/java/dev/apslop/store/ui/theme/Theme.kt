@@ -28,7 +28,19 @@ private val LightColors = lightColorScheme(
     outline = Color(0xFFD1D9E0),
     outlineVariant = Color(0xFFD1D9E0),
 )
-private val DarkColors = darkColorScheme(primary = GreenDark)
+// GitHub's dark colors, for phones in dark mode (the website itself is light only).
+private val DarkColors = darkColorScheme(
+    primary = GreenDark,
+    onPrimary = Color(0xFF0D1117),
+    background = Color(0xFF0D1117),
+    surface = Color(0xFF0D1117),
+    surfaceVariant = Color(0xFF151B23),
+    surfaceContainerLow = Color(0xFF151B23),
+    surfaceContainerHigh = Color(0xFF151B23),
+    onSurfaceVariant = Color(0xFF9198A1),
+    outline = Color(0xFF3D444D),
+    outlineVariant = Color(0xFF3D444D),
+)
 
 @Composable
 fun APSlopStoreTheme(

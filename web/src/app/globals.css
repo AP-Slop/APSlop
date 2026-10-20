@@ -27,7 +27,10 @@ body {
   line-height: 1.5;
 }
 
-a { color: inherit; }
+/* In the base layer so utilities such as text-white on a link button win over it. */
+@layer base {
+  a { color: inherit; }
+}
 
 .markdown-body { line-height: 1.6; }
 .markdown-body h1 { font-size: 1.6em; font-weight: 600; margin: 1em 0 0.5em; padding-bottom: 0.3em; border-bottom: 1px solid var(--color-border); }

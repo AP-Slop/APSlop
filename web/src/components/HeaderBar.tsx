@@ -52,7 +52,9 @@ function Account({ user, pathname }: { user: User | null; pathname: string }) {
     return (
       <form action={signInWithGitHub}>
         <input type="hidden" name="redirectTo" value={pathname} />
-        <button className="rounded-md border border-white/40 px-3 py-1 hover:bg-white/10 whitespace-nowrap">Sign in with GitHub</button>
+        <button className="rounded-md border border-white/40 px-3 py-1 hover:bg-white/10 whitespace-nowrap">
+          Sign in<span className="hidden sm:inline"> with GitHub</span>
+        </button>
       </form>
     );
   }
