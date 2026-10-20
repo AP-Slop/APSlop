@@ -49,7 +49,7 @@ export const publicEnv = {
   appUrl: runtimeEnv("NEXT_PUBLIC_APP_URL", "http://localhost:3000"),
   storeUrl: runtimeEnv("NEXT_PUBLIC_STORE_URL", "http://localhost:8080"),
   siteName: runtimeEnv("NEXT_PUBLIC_SITE_NAME", "APSlop"),
-  /** Where visitors download the APSlop store app (APK). The download buttons are hidden when unset. */
+  /** Where visitors download the APSlop store app (APK). When unset, the store's own copy is offered (see storeAppDownloadUrl). */
   storeAppUrl: runtimeEnv("NEXT_PUBLIC_STORE_APP_URL", ""),
 };
 

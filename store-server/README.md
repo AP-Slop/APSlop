@@ -23,9 +23,16 @@ GET  /healthz
 
 `fdroid update` と `/sync`・`/apps/<pkg>` の書き換えは `threading.Lock` で直列化される。
 
+## ストアアプリ自身の掲載
+
+`PUT /store-app`(本文は APK そのもの)で、ストアアプリ `dev.apslop.store` を他のアプリと同じくパッケージごとの鍵で署名して
+載せる。名前・一言・説明は固定(`app/store_app.py`)。他のパッケージ名の APK は 400。web のトップの
+"Download the store app" はこの APK を指し、ストアアプリは自分自身もストアから更新できる。
+ビルドと送信は `android/publish-store-app.sh` が行う。
+
 ## エンドポイント認証
 
-`POST /sync`、`PUT /apps/<pkg>/summary`、`DELETE /apps/<pkg>` は `X-Store-Token` ヘッダが `STORE_TOKEN` と一致する必要がある。それ以外は公開。
+`POST /sync`、`PUT /apps/<pkg>/summary`、`DELETE /apps/<pkg>`、`PUT /store-app` は `X-Store-Token` ヘッダが `STORE_TOKEN` と一致する必要がある。それ以外は公開。
 
 ## データ (`/data` ボリューム)
 

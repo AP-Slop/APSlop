@@ -2,6 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { prisma } from "@/lib/db";
 import { fdroidRepoUrl, publicEnv } from "@/lib/env";
+import { storeAppDownloadUrl } from "@/lib/store";
 import { buttonClass, Card, CardHeader, Container, Empty, timeAgo } from "@/components/ui";
 
 export const dynamic = "force-dynamic";
@@ -15,7 +16,7 @@ export default async function Home() {
   });
   const repoUrl = fdroidRepoUrl();
 
-  const storeAppUrl = publicEnv.storeAppUrl;
+  const storeAppUrl = await storeAppDownloadUrl();
 
   return (
     <>

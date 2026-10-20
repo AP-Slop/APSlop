@@ -56,7 +56,10 @@ export default async function AppPage({ params }: { params: Promise<{ slug: stri
             >
               Download APK (v{app.latestVersion})
             </a>
-            <span className="text-fg-muted">or install from the APSlop store app on your phone</span>
+            <span className="text-fg-muted">
+              or install from the{" "}
+              <Link href="/#install" className="text-accent hover:underline">APSlop store app</Link> on your phone
+            </span>
           </>
         ) : (
           <span className="text-fg-muted">This app is not in the store yet. It appears here once its first release is built.</span>
