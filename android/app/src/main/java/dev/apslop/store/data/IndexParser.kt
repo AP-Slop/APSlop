@@ -66,6 +66,15 @@ object IndexParser {
 
     fun LocalizedFile.localizedFile(): FileV2? = this[DEFAULT_LOCALE] ?: values.firstOrNull()
 
+    /**
+     * index-v2 names the 160 dpi icon under /icons/, which is blurry on phones; fdroidserver also
+     * renders it under /icons-640/. Null when [url] is not in an icons folder.
+     */
+    fun hiResIconUrl(url: String): String? {
+        val i = url.lastIndexOf("/icons/")
+        return if (i < 0) null else url.substring(0, i) + "/icons-640/" + url.substring(i + "/icons/".length)
+    }
+
     /** index-v2 file names are repo-relative and start with "/". */
     fun join(base: String, name: String): String =
         if (name.startsWith("http://") || name.startsWith("https://")) name

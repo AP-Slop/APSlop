@@ -3,14 +3,26 @@
     android:height="108dp"
     android:viewportWidth="108"
     android:viewportHeight="108">
-    <!-- simple "open box" store glyph -->
+    <!-- a phone with "AP" on its screen; source: android/art/ic_launcher.svg -->
     <path
-        android:fillColor="#FFFFFF"
-        android:pathData="M54,26 L78,38 L78,66 L54,78 L30,66 L30,38 Z" />
+        android:pathData="M42,30 H66 A6,6 0 0 1 72,36 V72 A6,6 0 0 1 66,78 H42 A6,6 0 0 1 36,72 V36 A6,6 0 0 1 42,30 Z"
+        android:strokeColor="#FFFFFF"
+        android:strokeWidth="4" />
     <path
-        android:fillColor="#1E5EFF"
-        android:pathData="M54,32 L72,41 L54,50 L36,41 Z" />
+        android:pathData="M44,61 L48.5,47 L53,61 M45.6,56.2 H51.4"
+        android:strokeColor="#3FB950"
+        android:strokeWidth="3.5"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round" />
     <path
-        android:fillColor="#C7D7FF"
-        android:pathData="M36,45 L54,54 L54,72 L36,63 Z" />
+        android:pathData="M57,61 V47 H60.5 a3.75,3.75 0 0 1 0,7.5 H57"
+        android:strokeColor="#3FB950"
+        android:strokeWidth="3.5"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round" />
+    <path
+        android:pathData="M50,72 H58"
+        android:strokeColor="#FFFFFF"
+        android:strokeWidth="2.5"
+        android:strokeLineCap="round" />
 </vector>

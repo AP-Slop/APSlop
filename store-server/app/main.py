@@ -132,7 +132,7 @@ async def put_store_app(request: Request) -> dict[str, Any]:
 
 @app.get("/apps")
 def apps() -> list[dict[str, Any]]:
-    return fdroid.parse_index_v2(fdroid.load_index_v2(), settings.repo_url)
+    return fdroid.parse_index_v2(fdroid.load_index_v2(), settings.repo_url, settings.repo_dir)
 
 
 @app.get("/")

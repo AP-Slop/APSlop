@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 108 108" width="108" height="108">
+  <!-- Adaptive icon canvas (108dp); launchers show the inner 72dp (18..90). -->
+  <rect width="108" height="108" fill="#24292F"/>
+  <path d="M42 30 H66 A6 6 0 0 1 72 36 V72 A6 6 0 0 1 66 78 H42 A6 6 0 0 1 36 72 V36 A6 6 0 0 1 42 30 Z" fill="none" stroke="#FFFFFF" stroke-width="4"/>
+  <path d="M44 61 L48.5 47 L53 61 M45.6 56.2 H51.4" fill="none" stroke="#3FB950" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M57 61 V47 H60.5 a3.75 3.75 0 0 1 0 7.5 H57" fill="none" stroke="#3FB950" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M50 72 H58" fill="none" stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round"/>
+</svg>

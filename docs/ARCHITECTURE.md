@@ -72,6 +72,7 @@ Body: { "repo": "org/name", "tag": "v1.2.3", "author": "login" }   // tag 省略
 
 GET {STORE_SERVER_URL}/apps
 200: [{ "packageName", "name", "summary", "description", "versionName", "versionCode", "iconUrl", "apkUrl", "apkName", "apkSize", "minSdk", "sourceCode", "webSite", "added", "lastUpdated" }]
+// iconUrl は fdroid が作った 640dpi の icons-640/ があればそれ、無ければ index-v2 の icons/(160dpi)
 
 PUT {STORE_SERVER_URL}/apps/{packageName}/summary   // Settings で一言を保存したとき
 Headers: X-Store-Token: {STORE_TOKEN}

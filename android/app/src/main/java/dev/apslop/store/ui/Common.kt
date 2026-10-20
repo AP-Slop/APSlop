@@ -14,6 +14,10 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.res.stringResource
@@ -21,6 +25,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.Dp
 import coil.compose.SubcomposeAsyncImage
 import dev.apslop.store.R
+import dev.apslop.store.data.IndexParser
 import dev.apslop.store.ui.theme.HeaderBackground
 import dev.apslop.store.ui.theme.HeaderContent
 import java.text.SimpleDateFormat
@@ -66,16 +71,21 @@ fun AppIcon(url: String?, size: Dp, modifier: Modifier = Modifier) {
         )
         return
     }
+    // Try the sharp 640 dpi icon first; repos without it fall back to the one the index names.
+    var model by remember(url) { mutableStateOf(IndexParser.hiResIconUrl(url) ?: url) }
     SubcomposeAsyncImage(
-        model = url,
+        model = model,
         contentDescription = null,
         modifier = modifier.size(size).clip(shape),
+        onError = { if (model != url) model = url },
         error = {
-            Icon(
-                imageVector = Icons.Outlined.Android,
-                contentDescription = null,
-                tint = MaterialTheme.colorScheme.primary,
-            )
+            if (model == url) {
+                Icon(
+                    imageVector = Icons.Outlined.Android,
+                    contentDescription = null,
+                    tint = MaterialTheme.colorScheme.primary,
+                )
+            }
         },
     )
 }
