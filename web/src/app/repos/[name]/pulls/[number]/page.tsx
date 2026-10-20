@@ -5,6 +5,7 @@ import { Markdown } from "@/components/Markdown";
 import { Badge, Card, CardHeader, formatDate } from "@/components/ui";
 import { Diff } from "@/components/Diff";
 import { PrActions } from "@/components/PrActions";
+import { SignInRequired } from "@/components/SignInRequired";
 
 export default async function PullPage({ params }: { params: Promise<{ name: string; number: string }> }) {
   const { name, number } = await params;
@@ -92,9 +93,12 @@ export default async function PullPage({ params }: { params: Promise<{ name: str
         </div>
       </div>
 
-      {session && pr.state === "open" && (
-        <PrActions name={name} number={n} mergeable={pr.mergeable} isAuthor={session.user.login === pr.user?.login} />
-      )}
+      {pr.state === "open" &&
+        (session ? (
+          <PrActions name={name} number={n} mergeable={pr.mergeable} isAuthor={session.user.login === pr.user?.login} />
+        ) : (
+          <SignInRequired returnTo={`/repos/${name}/pulls/${n}`} compact />
+        ))}
     </div>
   );
 }

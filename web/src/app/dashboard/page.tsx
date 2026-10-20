@@ -1,8 +1,8 @@
 import Link from "next/link";
-import { redirect } from "next/navigation";
 import { auth } from "@/lib/auth";
 import { prisma } from "@/lib/db";
 import { repoName } from "@/lib/github";
+import { SignInRequired } from "@/components/SignInRequired";
 import { AppStatusBadge, Badge, Card, CardHeader, Container, Empty, LinkButton, formatDate } from "@/components/ui";
 
 export const dynamic = "force-dynamic";
@@ -32,7 +32,13 @@ function generationState(status: string): { label: string; tone: "muted" | "succ
 
 export default async function Dashboard() {
   const session = await auth();
-  if (!session) redirect("/api/auth/signin?callbackUrl=/dashboard");
+  if (!session) {
+    return (
+      <Container>
+        <SignInRequired returnTo="/dashboard" />
+      </Container>
+    );
+  }
   const [apps, generations] = await Promise.all([
     prisma.app.findMany({ where: { ownerId: session.user.id }, orderBy: { updatedAt: "desc" } }),
     prisma.generation.findMany({ where: { userId: session.user.id }, orderBy: { createdAt: "desc" }, take: 30 }),

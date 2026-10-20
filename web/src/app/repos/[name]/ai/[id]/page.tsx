@@ -7,6 +7,7 @@ import { choiceForModel, labelForModel } from "@/lib/models";
 import { Card, CardHeader, LinkButton } from "@/components/ui";
 import { Diff } from "@/components/Diff";
 import { ReviewActions } from "@/components/ReviewActions";
+import { SignInRequired } from "@/components/SignInRequired";
 
 export const dynamic = "force-dynamic";
 
@@ -23,7 +24,7 @@ function Notice({ name, children }: { name: string; children: React.ReactNode })
 export default async function ReviewPage({ params }: { params: Promise<{ name: string; id: string }> }) {
   const { name, id } = await params;
   const session = await auth();
-  if (!session?.user?.id) redirect(`/api/auth/signin?callbackUrl=/repos/${name}/ai/${id}`);
+  if (!session?.user?.id) return <SignInRequired returnTo={`/repos/${name}/ai/${id}`} />;
   const found = await findOwnProposal(session.user.id, name, id);
   if (!found) notFound();
   const { generation, proposal } = found;

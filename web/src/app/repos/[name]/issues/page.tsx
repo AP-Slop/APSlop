@@ -3,6 +3,7 @@ import { auth } from "@/lib/auth";
 import { listIssues } from "@/lib/github";
 import { Card, CardHeader, Empty, timeAgo } from "@/components/ui";
 import { IssueForm } from "@/components/IssueForm";
+import { SignInRequired } from "@/components/SignInRequired";
 
 export default async function IssuesPage({
   params,
@@ -30,7 +31,7 @@ export default async function IssuesPage({
               <li key={i.number} className="px-4 py-3 flex gap-3">
                 <span className={i.state === "open" ? "text-success" : "text-[#8250df]"}>◉</span>
                 <div>
-                  <a href={i.html_url} target="_blank" rel="noreferrer" className="font-semibold hover:text-accent">{i.title}</a>
+                  <Link href={`/repos/${name}/issues/${i.number}`} className="font-semibold hover:text-accent">{i.title}</Link>
                   <div className="text-xs text-fg-muted mt-0.5">
                     #{i.number} · opened {timeAgo(i.created_at)} by {i.user?.login} · {i.comments} {i.comments === 1 ? "comment" : "comments"}
                   </div>
@@ -40,7 +41,7 @@ export default async function IssuesPage({
           </ul>
         )}
       </Card>
-      {session ? <IssueForm name={name} /> : <p className="text-sm text-fg-muted">Sign in with GitHub to create an issue.</p>}
+      {session ? <IssueForm name={name} /> : <SignInRequired returnTo={`/repos/${name}/issues`} compact />}
     </div>
   );
 }
