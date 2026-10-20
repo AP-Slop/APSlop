@@ -30,8 +30,8 @@ function generationState(status: string): { label: string; tone: "muted" | "succ
   }
 }
 
-export default async function Dashboard() {
-  const session = await auth();
+export default async function Dashboard({ searchParams }: { searchParams: Promise<{ deleted?: string }> }) {
+  const [session, { deleted }] = await Promise.all([auth(), searchParams]);
   if (!session) {
     return (
       <Container>
@@ -50,6 +50,11 @@ export default async function Dashboard() {
         <h1 className="text-xl font-semibold">Dashboard</h1>
         <LinkButton href="/new" variant="primary">New app</LinkButton>
       </div>
+      {deleted && (
+        <div className="mb-4 rounded-md border border-success/40 text-success px-4 py-3 text-sm">
+          {deleted} was deleted. It is no longer in the store, and its repository is gone from GitHub.
+        </div>
+      )}
       <div className="grid gap-6 lg:grid-cols-2">
         <Card>
           <CardHeader>My apps ({apps.length})</CardHeader>

@@ -18,7 +18,8 @@ APSlop は github.com の Organization をバックエンドにする。運用�
 
 | 用途 | 呼び出し元 | 必要な権限 |
 |---|---|---|
-| Org にリポジトリを作成し、作成者を admin コラボレータに追加 | web (`/new`) | Repository: **Administration (RW)** |
+| Org にリポジトリを作成し、作成者を admin コラボレータに追加。Settings での説明の変更とリポジトリの削除 | web (`/new`, Settings) | Repository: **Administration (RW)** |
+| 雛形の `.github/workflows/*.yml`(CI とリリース)を含む最初のコミット | web (`/new`) | Repository: **Workflows (RW)** |
 | 生成したファイルをコミット、リポジトリ・README・PR 差分の閲覧、Release 一覧と APK の取得 | web / store-server | Repository: **Contents (RW)**, **Metadata (R)** |
 | PR 一覧・レビュー・コメントの表示 | web | Repository: **Pull requests (R)** |
 | Issue 一覧の表示 | web | Repository: **Issues (R)** |
@@ -38,6 +39,7 @@ PR の作成・レビュー・マージ、Issue 作成、リリース作成は**
 5. **Repository permissions** を次の通りに設定する:
    - Administration: Read and write
    - Contents: Read and write
+   - Workflows: Read and write(無いと New app の「リポジトリを作成」が 403 になる)
    - Metadata: Read-only(自動で付く)
    - Pull requests: Read-only
    - Issues: Read-only

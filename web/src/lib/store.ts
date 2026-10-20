@@ -52,6 +52,28 @@ export async function listStoreApps(): Promise<StoreApp[]> {
   }
 }
 
+async function storeError(res: Response): Promise<Error> {
+  const json = (await res.json().catch(() => ({}))) as { error?: string };
+  return new Error(json.error ?? `The store server answered ${res.status}`);
+}
+
+/** Change the summary the store shows. False when the package is not in the store. */
+export async function setStoreSummary(packageName: string, summary: string): Promise<boolean> {
+  const res = await storeFetch(`/apps/${encodeURIComponent(packageName)}/summary`, {
+    method: "PUT",
+    body: JSON.stringify({ summary }),
+  });
+  if (res.status === 404) return false;
+  if (!res.ok) throw await storeError(res);
+  return true;
+}
+
+/** Take a package off the store. Succeeds when it is not there. */
+export async function removeFromStore(packageName: string): Promise<void> {
+  const res = await storeFetch(`/apps/${encodeURIComponent(packageName)}`, { method: "DELETE" });
+  if (!res.ok) throw await storeError(res);
+}
+
 export function apkDownloadUrl(apkName: string): string {
   return `${fdroidRepoUrl()}/${apkName}`;
 }

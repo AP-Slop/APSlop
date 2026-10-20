@@ -92,10 +92,12 @@ function firstText(message: Anthropic.Message): string {
 }
 
 /** Turn Anthropic API failures into messages a user can act on (the raw JSON is not shown). */
-export function friendlyApiError(e: unknown): Error {
+export function friendlyApiError(e: unknown, name = "AI"): Error {
   if (e instanceof Anthropic.AuthenticationError || e instanceof Anthropic.PermissionDeniedError) {
     return Object.assign(
-      new Error("AI is not available: the server's AI key was rejected. Ask the site administrator to update it."),
+      new Error(
+        `${name} is not available: the server's key for ${name} was rejected. Choose another Model, or ask the site administrator to update the key.`,
+      ),
       { status: 503 },
     );
   }
@@ -157,7 +159,7 @@ async function runStructured<T>(
         .finalMessage();
     }
   } catch (e) {
-    throw friendlyApiError(e);
+    throw friendlyApiError(e, choice === "deepseek" ? "DeepSeek" : "Claude");
   }
   if (message.stop_reason === "refusal") {
     throw new Error("AI がこのリクエストの生成を拒否しました。内容を見直してください。");
@@ -194,7 +196,7 @@ async function runStructured<T>(
 }
 
 /** Generate a brand-new Android app from a natural-language description. */
-export async function generateApp(prompt: string): Promise<GeneratedApp> {
+export async function generateApp(prompt: string, choice: ModelChoice = "claude"): Promise<GeneratedApp> {
   const [template, rules] = await Promise.all([readTemplateFiles(), readTemplateRules()]);
   const system =
     ANDROID_RULES +
@@ -203,7 +205,7 @@ export async function generateApp(prompt: string): Promise<GeneratedApp> {
       ? `\n## テンプレート (これをベースに生成する。バイナリは省略)\n${templateForPrompt(template)}`
       : "\n## テンプレートは利用できないため、Gradle 設定を含む全ファイルを出力すること。");
   const user = `次の説明から Android アプリを生成してください。\n\n<request>\n${prompt}\n</request>`;
-  const app = await runStructured(GeneratedAppSchema, system, user);
+  const app = await runStructured(GeneratedAppSchema, system, user, choice);
   const expectedPkg = `dev.apslop.apps.${app.slug.replace(/-/g, "_")}`;
   if (app.packageName !== expectedPkg) app.packageName = expectedPkg;
   return app;

@@ -1,5 +1,5 @@
 import { afterEach, describe, expect, it, vi } from "vitest";
-import { GITHUB_SIGNIN_EXPIRED, listOrgRepos, userOctokit } from "./github";
+import { GITHUB_SIGNIN_EXPIRED, WORKFLOWS_NOT_ALLOWED, createRepoWithFiles, listOrgRepos, userOctokit } from "./github";
 
 afterEach(() => {
   vi.unstubAllGlobals();
@@ -66,5 +66,58 @@ describe("listOrgRepos", () => {
 
     const found = await listOrgRepos("attendance");
     expect(found.map((r) => r.name)).toEqual(["attendance-counter"]);
+  });
+});
+
+describe("createRepoWithFiles", { timeout: 20_000 }, () => {
+  // octokit spaces out write requests by about a second each, so these take several seconds.
+  function stubGitHub(treeStatus: number) {
+    vi.stubEnv("GITHUB_ORG", "AP-Slop");
+    vi.stubEnv("GITHUB_ADMIN_TOKEN", "t");
+    vi.stubEnv("GITHUB_CLIENT_ID", "c");
+    vi.stubEnv("GITHUB_CLIENT_SECRET", "s");
+    vi.stubEnv("AUTH_SECRET", "a");
+    const calls: string[] = [];
+    vi.stubGlobal(
+      "fetch",
+      vi.fn(async (url: string, init: RequestInit) => {
+        const path = decodeURIComponent(new URL(url).pathname);
+        const call = `${init.method} ${path}`;
+        calls.push(call);
+        if (call === "POST /orgs/AP-Slop/repos") {
+          return reply(201, { full_name: "AP-Slop/counter", html_url: "https://github.com/AP-Slop/counter", default_branch: "main" });
+        }
+        if (path.endsWith("/git/ref/heads/main")) return reply(200, { object: { sha: "base" } });
+        if (path.endsWith("/git/blobs")) return reply(201, { sha: "blob" });
+        if (path.endsWith("/git/commits/base")) return reply(200, { tree: { sha: "basetree" } });
+        if (path.endsWith("/git/trees")) {
+          return treeStatus === 201 ? reply(201, { sha: "tree" }) : reply(treeStatus, { message: "Resource not accessible by personal access token" });
+        }
+        if (path.endsWith("/git/commits")) return reply(201, { sha: "commit" });
+        if (path.endsWith("/git/refs/heads/main")) return reply(200, {});
+        if (call === "DELETE /repos/AP-Slop/counter") return new Response(null, { status: 204 });
+        if (path.includes("/collaborators/")) return new Response(null, { status: 204 });
+        return reply(404, { message: `unexpected ${call}` });
+      }),
+    );
+    return calls;
+  }
+  const files = [
+    { path: "README.md", content: "# Counter" },
+    { path: ".github/workflows/release.yml", content: "on: push" },
+  ];
+
+  it("deletes the half-made repo and explains the missing Workflows permission", async () => {
+    const calls = stubGitHub(403);
+    const err = await createRepoWithFiles("counter", "Count", files, "someone").catch((e) => e);
+    expect(err.message).toBe(WORKFLOWS_NOT_ALLOWED);
+    expect(calls).toContain("DELETE /repos/AP-Slop/counter");
+  });
+
+  it("keeps the repo when everything was pushed", async () => {
+    const calls = stubGitHub(201);
+    const repo = await createRepoWithFiles("counter", "Count", files, "someone");
+    expect(repo.fullName).toBe("AP-Slop/counter");
+    expect(calls).not.toContain("DELETE /repos/AP-Slop/counter");
   });
 });

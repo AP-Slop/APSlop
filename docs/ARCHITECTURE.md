@@ -72,6 +72,15 @@ Body: { "repo": "org/name", "tag": "v1.2.3" }   // tag 省略時は latest relea
 GET {STORE_SERVER_URL}/apps
 200: [{ "packageName", "name", "summary", "versionName", "versionCode", "iconUrl", "apkUrl", "added", "lastUpdated" }]
 
+PUT {STORE_SERVER_URL}/apps/{packageName}/summary   // Settings で一言を保存したとき
+Headers: X-Store-Token: {STORE_TOKEN}
+Body: { "summary": "one line, 1-80 chars" }
+200: { "packageName", "summary" }   404: ストアに無い
+
+DELETE {STORE_SERVER_URL}/apps/{packageName}          // Settings でアプリを削除したとき
+Headers: X-Store-Token: {STORE_TOKEN}
+200: { "packageName", "removed": <消したファイル数> }   // 無くても 200
+
 GET {STORE_SERVER_URL}/healthz  -> {"ok": true}
 ```
 

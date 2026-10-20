@@ -15,6 +15,7 @@ from pydantic import BaseModel, Field
 
 from . import fdroid
 from .config import settings
+from .signing import SigningError
 from .sync import SyncError, sync_release
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s %(name)s %(levelname)s %(message)s")
@@ -63,6 +64,53 @@ async def sync(req: SyncRequest) -> dict[str, Any]:
         return await run_in_threadpool(sync_release, req.repo, req.tag)
     except SyncError as e:
         raise HTTPException(status_code=e.status, detail=e.message) from e
+
+
+class SummaryRequest(BaseModel):
+    summary: str = Field(..., min_length=1, max_length=80)
+
+
+def _package(package_name: str) -> str:
+    if not fdroid.PACKAGE_NAME.match(package_name):
+        raise HTTPException(status_code=400, detail="invalid package name")
+    return package_name
+
+
+def _set_summary(package_name: str, summary: str) -> bool:
+    with fdroid.repo_lock:
+        if not fdroid.set_summary(package_name, summary):
+            return False
+        fdroid.fdroid_update()
+        return True
+
+
+def _remove(package_name: str) -> int:
+    with fdroid.repo_lock:
+        removed = fdroid.remove_package(package_name)
+        if removed:
+            fdroid.fdroid_update()
+        return removed
+
+
+@app.put("/apps/{package_name}/summary", dependencies=[Depends(require_token)])
+async def put_summary(package_name: str, req: SummaryRequest) -> dict[str, Any]:
+    try:
+        if not await run_in_threadpool(_set_summary, _package(package_name), req.summary.strip()):
+            raise HTTPException(status_code=404, detail=f"{package_name} is not in the store")
+    except SigningError as e:
+        raise HTTPException(status_code=500, detail=str(e)) from e
+    return {"packageName": package_name, "summary": req.summary.strip()}
+
+
+@app.delete("/apps/{package_name}", dependencies=[Depends(require_token)])
+async def delete_app(package_name: str) -> dict[str, Any]:
+    """Take a package off the store. Deleting one that is not there succeeds, so callers can retry."""
+    try:
+        removed = await run_in_threadpool(_remove, _package(package_name))
+    except SigningError as e:
+        raise HTTPException(status_code=500, detail=str(e)) from e
+    log.info("removed %s (%d files)", package_name, removed)
+    return {"packageName": package_name, "removed": removed}
 
 
 @app.get("/apps")

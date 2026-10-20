@@ -13,17 +13,19 @@ POST /sync {repo, tag?}
   4. metadata/<pkg>.yml を書く: Name = APK の app_name、Summary = repo の description、
      Description = タグ時点の README.md (無ければ description)、SourceCode = repo URL
   5. repo/<pkg>_<versionCode>.apk に配置して fdroid update --create-metadata
+PUT  /apps/<pkg>/summary {summary}  metadata/<pkg>.yml の Summary だけを書き換えて fdroid update (無ければ 404)
+DELETE /apps/<pkg>            metadata と repo・archive の <pkg>_*.apk を消して fdroid update (無くても 200)
 GET  /apps                    index-v2.json を平坦化した一覧
 GET  /fdroid/repo/…           F-Droid クライアントが読む静的ファイル (index-v2.json, APK, icons)
 GET  /fdroid/archive/…        古いバージョン (archive_older: 3)
 GET  /healthz
 ```
 
-`fdroid update` と `/sync` は `threading.Lock` で直列化される。
+`fdroid update` と `/sync`・`/apps/<pkg>` の書き換えは `threading.Lock` で直列化される。
 
 ## エンドポイント認証
 
-`POST /sync` は `X-Store-Token` ヘッダが `STORE_TOKEN` と一致する必要がある。それ以外は公開。
+`POST /sync`、`PUT /apps/<pkg>/summary`、`DELETE /apps/<pkg>` は `X-Store-Token` ヘッダが `STORE_TOKEN` と一致する必要がある。それ以外は公開。
 
 ## データ (`/data` ボリューム)
 

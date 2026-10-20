@@ -4,8 +4,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { buttonClass, ErrorBox } from "@/components/ui";
 import type { ModelChoice } from "@/lib/models";
-
-export type ModelPick = { id: ModelChoice; label: string; available: boolean };
+import { ModelSelect, type ModelPick } from "@/components/ModelSelect";
 
 /** Sends a change request to AI, then opens the review screen. Nothing reaches GitHub here. */
 export async function requestProposal(name: string, prompt: string, model: ModelChoice): Promise<string> {
@@ -61,21 +60,7 @@ export function ProposeForm({
         className="w-full rounded-md border border-border p-3 text-sm"
         disabled={busy}
       />
-      <label className="block text-sm">
-        <span className="text-xs text-fg-muted">Model</span>
-        <select
-          value={model}
-          onChange={(e) => setModel(e.target.value as ModelChoice)}
-          disabled={busy}
-          className="mt-1 block w-80 rounded-md border border-border bg-canvas px-2 py-1.5"
-        >
-          {models.map((m) => (
-            <option key={m.id} value={m.id} disabled={!m.available}>
-              {m.available ? m.label : `${m.label} — not set up`}
-            </option>
-          ))}
-        </select>
-      </label>
+      <ModelSelect models={models} value={model} onChange={setModel} disabled={busy} />
       <div className="flex items-center gap-4">
         <button disabled={busy || !modelReady || prompt.trim().length < 5} className={buttonClass("primary")}>
           {busy ? "Generating… (1–3 min)" : "Generate changes"}
