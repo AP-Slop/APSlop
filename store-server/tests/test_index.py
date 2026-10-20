@@ -17,6 +17,8 @@ def test_parse_picks_latest_version_and_absolute_urls():
     assert todo["apkName"] == "dev.apslop.apps.todo_2.apk"
     assert todo["iconUrl"] == "http://store.test/fdroid/repo/icons-640/dev.apslop.apps.todo.2.png"
     assert todo["sourceCode"] == "https://github.com/my-univ-apps/todo"
+    assert todo["apkSize"] == 11
+    assert todo["minSdk"] == 26
 
 
 def test_parse_falls_back_to_any_locale_and_sorts_by_last_updated():
@@ -26,6 +28,7 @@ def test_parse_falls_back_to_any_locale_and_sorts_by_last_updated():
     assert old["name"] == "古いアプリ"
     assert old["iconUrl"] is None
     assert old["summary"] == ""
+    assert old["apkSize"] is None and old["minSdk"] is None
 
 
 def test_parse_empty_index():

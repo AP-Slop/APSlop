@@ -23,12 +23,7 @@ export default async function NewPage() {
   });
   const models = modelOptions().map(({ id, label, available }) => ({ id, label, available }));
   return (
-    <Container className="max-w-3xl">
-      <h1 className="text-2xl font-semibold">AI でアプリを作る</h1>
-      <p className="text-fg-muted mt-1 text-sm">
-        作りたい Android アプリを日本語で説明してください。AI が Kotlin + Jetpack Compose のコードを書き、
-        あなたのリポジトリとして GitHub に置きます。
-      </p>
+    <Container>
       <NewAppWizard models={models} initialModel={preferredModel(last?.model)} />
     </Container>
   );

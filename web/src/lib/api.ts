@@ -24,6 +24,6 @@ export async function readJson<T>(req: Request): Promise<T> {
   try {
     return (await req.json()) as T;
   } catch {
-    throw Object.assign(new Error("JSON ボディが不正です"), { status: 400 });
+    throw Object.assign(new Error("The request body is not valid JSON."), { status: 400 });
   }
 }

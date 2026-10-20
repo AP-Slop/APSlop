@@ -16,7 +16,7 @@ export const POST = handle(async (req: Request) => {
   const { generated, generationId } = Body.parse(await readJson(req));
 
   if ((await prisma.app.findUnique({ where: { slug: generated.slug } })) || (await repoExists(generated.slug))) {
-    return NextResponse.json({ error: `"${generated.slug}" は既に使われています` }, { status: 409 });
+    return NextResponse.json({ error: `The name "${generated.slug}" is already taken. Change the repository name.` }, { status: 409 });
   }
 
   const template = await readTemplateFiles();

@@ -29,7 +29,7 @@ export function env(): Env {
   const parsed = schema.safeParse(process.env);
   if (!parsed.success) {
     const missing = parsed.error.issues.map((i) => i.path.join(".")).join(", ");
-    throw new Error(`環境変数が不足しています: ${missing}`);
+    throw new Error(`Missing environment variables: ${missing}`);
   }
   cached = parsed.data;
   return cached;

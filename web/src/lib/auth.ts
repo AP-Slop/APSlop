@@ -90,7 +90,7 @@ export async function requireSession() {
 
 export class UnauthorizedError extends Error {
   constructor() {
-    super("ログインが必要です");
+    super("Sign in to continue.");
     this.name = "UnauthorizedError";
   }
 }

@@ -28,13 +28,13 @@ export function Diff({ filename, status, additions, deletions, patch }: Props) {
     <Card>
       <CardHeader>
         <span className="font-mono text-xs">{filename}</span>
-        <span className="font-normal text-xs text-fg-muted">{status}</span>
+        <span className="font-normal text-xs text-fg-muted">{status.charAt(0).toUpperCase() + status.slice(1)}</span>
         <span className="ml-auto font-normal text-xs">
           <span className="text-success">+{additions}</span> <span className="text-danger">−{deletions}</span>
         </span>
       </CardHeader>
       {rows.length === 0 ? (
-        <div className="p-4 text-xs text-fg-muted">差分を表示できません (バイナリまたは大きすぎるファイル)。</div>
+        <div className="p-4 text-xs text-fg-muted">This change cannot be shown (a binary or very large file).</div>
       ) : (
         <div className="overflow-x-auto">
           <table className="font-mono text-xs w-full border-collapse">

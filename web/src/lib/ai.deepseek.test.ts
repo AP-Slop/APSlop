@@ -103,6 +103,6 @@ describe("proposeChanges with DeepSeek", () => {
   it("reports a cut-off answer", async () => {
     vi.stubGlobal("fetch", vi.fn(async () => sseToolReply(proposal, "max_tokens")));
     const { proposeChanges } = await import("./ai");
-    await expect(proposeChanges("x", [], "deepseek")).rejects.toThrow("途中で切れました");
+    await expect(proposeChanges("x", [], "deepseek")).rejects.toThrow("got cut off");
   });
 });
