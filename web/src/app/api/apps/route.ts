@@ -4,7 +4,7 @@ import { handle, readJson } from "@/lib/api";
 import { requireSession } from "@/lib/auth";
 import { prisma } from "@/lib/db";
 import { GeneratedAppSchema } from "@/lib/ai";
-import { createRepoWithFiles } from "@/lib/github";
+import { createRepoWithFiles, repoExists } from "@/lib/github";
 import { mergeFiles, readTemplateFiles } from "@/lib/template";
 
 export const maxDuration = 300;
@@ -15,7 +15,7 @@ export const POST = handle(async (req: Request) => {
   const session = await requireSession();
   const { generated, generationId } = Body.parse(await readJson(req));
 
-  if (await prisma.app.findUnique({ where: { slug: generated.slug } })) {
+  if ((await prisma.app.findUnique({ where: { slug: generated.slug } })) || (await repoExists(generated.slug))) {
     return NextResponse.json({ error: `"${generated.slug}" は既に使われています` }, { status: 409 });
   }
 

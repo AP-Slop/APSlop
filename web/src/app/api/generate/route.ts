@@ -4,6 +4,7 @@ import { handle, readJson } from "@/lib/api";
 import { requireSession } from "@/lib/auth";
 import { prisma } from "@/lib/db";
 import { generateApp } from "@/lib/ai";
+import { repoExists } from "@/lib/github";
 import { ModelChoiceSchema, modelOption } from "@/lib/models";
 
 export const maxDuration = 600;
@@ -20,7 +21,8 @@ export const POST = handle(async (req: Request) => {
     const app = await generateApp(prompt, model);
     // Avoid collisions with existing apps by suffixing.
     let slug = app.slug;
-    for (let i = 2; await prisma.app.findUnique({ where: { slug } }); i++) slug = `${app.slug}-${i}`;
+    const taken = async (s: string) => !!(await prisma.app.findUnique({ where: { slug: s } })) || (await repoExists(s));
+    for (let i = 2; await taken(slug); i++) slug = `${app.slug}-${i}`;
     if (slug !== app.slug) {
       app.slug = slug;
       app.packageName = `dev.apslop.apps.${slug.replace(/-/g, "_")}`;
