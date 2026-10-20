@@ -82,6 +82,11 @@ DELETE {STORE_SERVER_URL}/apps/{packageName}          // Settings でアプリ�
 Headers: X-Store-Token: {STORE_TOKEN}
 200: { "packageName", "removed": <消したファイル数> }   // 無くても 200
 
+PUT {STORE_SERVER_URL}/store-app                       // android/publish-store-app.sh が呼ぶ
+Headers: X-Store-Token: {STORE_TOKEN}
+Body: ストアアプリ (dev.apslop.store) の APK そのもの
+200: { "packageName", "versionName", "versionCode", "apkName", "apkUrl" }   400: 他のパッケージ
+
 GET {STORE_SERVER_URL}/healthz  -> {"ok": true}
 ```
 
@@ -151,7 +156,7 @@ web と store-server は docker compose から同じ設定を読む。非秘密�
 | `NEXT_PUBLIC_APP_URL` | `http://localhost:3000` | ブラウザから見える web の URL |
 | `NEXT_PUBLIC_STORE_URL` | `http://localhost:8080` | 同じくストアの URL |
 | `NEXT_PUBLIC_SITE_NAME` | `APSlop` | 大学名など表示用 |
-| `NEXT_PUBLIC_STORE_APP_URL` | (空) | ストアアプリ (APK) の配布 URL。空ならトップの "Download the store app" ボタンを出さない |
+| `NEXT_PUBLIC_STORE_APP_URL` | (空) | ストアアプリ (APK) の配布 URL。空ならストアに載せたストアアプリ (`dev.apslop.store`) を指し、それも無ければ "Download the store app" ボタンを出さない |
 | `STORE_SERVER_URL` | `http://store-server:8080` | web → store-server の内部 URL (compose 内) |
 | `STORE_PORT` | `8080` | ホスト側に公開するポート |
 | `STORE_PUBLIC_URL` | `http://localhost:8080` | F-Droid index に埋め込む公開 URL |

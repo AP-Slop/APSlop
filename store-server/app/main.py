@@ -7,7 +7,7 @@ import secrets
 from contextlib import asynccontextmanager
 from typing import Any
 
-from fastapi import Depends, FastAPI, Header, HTTPException
+from fastapi import Depends, FastAPI, Header, HTTPException, Request
 from fastapi.concurrency import run_in_threadpool
 from fastapi.responses import JSONResponse
 from fastapi.staticfiles import StaticFiles
@@ -16,6 +16,7 @@ from pydantic import BaseModel, Field
 from . import fdroid
 from .config import settings
 from .signing import SigningError
+from .store_app import publish_store_app
 from .sync import SyncError, sync_release
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s %(name)s %(levelname)s %(message)s")
@@ -112,6 +113,21 @@ async def delete_app(package_name: str) -> dict[str, Any]:
         raise HTTPException(status_code=500, detail=str(e)) from e
     log.info("removed %s (%d files)", package_name, removed)
     return {"packageName": package_name, "removed": removed}
+
+
+# Larger than any store app build; the body is held in memory.
+STORE_APP_MAX_BYTES = 100 * 1024 * 1024
+
+
+@app.put("/store-app", dependencies=[Depends(require_token)])
+async def put_store_app(request: Request) -> dict[str, Any]:
+    """Publish the APSlop store app itself (the request body is its APK)."""
+    if int(request.headers.get("content-length") or 0) > STORE_APP_MAX_BYTES:
+        raise HTTPException(status_code=413, detail="the APK is too large")
+    try:
+        return await run_in_threadpool(publish_store_app, await request.body())
+    except SyncError as e:
+        raise HTTPException(status_code=e.status, detail=e.message) from e
 
 
 @app.get("/apps")

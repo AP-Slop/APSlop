@@ -19,6 +19,18 @@ cd android
 - Gradle 9.1 / AGP 8.13 (wrapper 同梱)。AGP 8.x は Gradle 9.6 以降では動かないため、必ず `./gradlew` を使うこと。
 - リリースビルドは `assembleRelease`(署名設定は未定義。配布時は `signingConfigs` を追加するか、`store-server` に署名させる)。
 
+## ストアに載せる
+
+```sh
+android/publish-store-app.sh                                   # 既定の向き先は .env の STORE_PUBLIC_URL
+android/publish-store-app.sh http://10.0.2.2:8081/fdroid/repo  # ローカルのエミュレーター用
+```
+
+`assembleRelease`(未署名)をビルドし、`docker compose` の store-server に `PUT /store-app` で送る。store-server が
+パッケージごとの鍵で署名してストアに載せ、web のトップの "Download the store app" がその APK を指す。
+すでに入っている端末に更新を届けるには `app/build.gradle.kts` の `versionCode` を上げてから実行する。
+debug ビルドとは署名が違うので、debug ビルドが入った端末では一度アンインストールが必要。
+
 ## ストアの向き先
 
 既定のリポジトリ URL はビルド時に埋め込まれる (`BuildConfig.DEFAULT_REPO_URL`)。

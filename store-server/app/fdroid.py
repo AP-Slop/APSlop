@@ -95,9 +95,9 @@ def write_metadata(package_name: str, *, name: str, summary: str, description: s
         f"Summary: {_yaml_str(summary)}",
         "Description: |",
         *[f"  {ln}" for ln in desc.splitlines()],
-        f"SourceCode: {_yaml_str(source_code)}",
-        f"WebSite: {_yaml_str(website)}",
-        f"IssueTracker: {_yaml_str(source_code.rstrip('/') + '/issues')}",
+        *([f"SourceCode: {_yaml_str(source_code)}"] if source_code else []),
+        *([f"WebSite: {_yaml_str(website)}"] if website else []),
+        *([f"IssueTracker: {_yaml_str(source_code.rstrip('/') + '/issues')}"] if source_code else []),
         "",
     ]
     path.write_text("\n".join(lines), encoding="utf-8")

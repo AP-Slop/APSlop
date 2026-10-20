@@ -1,4 +1,4 @@
-import { env, fdroidRepoUrl } from "@/lib/env";
+import { env, fdroidRepoUrl, publicEnv } from "@/lib/env";
 import { prisma } from "@/lib/db";
 
 export type SyncResult = {
@@ -82,6 +82,15 @@ export async function removeFromStore(packageName: string): Promise<void> {
 export async function findStoreApp(packageName: string | null): Promise<StoreApp | null> {
   if (!packageName) return null;
   return (await listStoreApps()).find((a) => a.packageName === packageName) ?? null;
+}
+
+/** The APSlop store app's own package, published in the store by `android/publish-store-app.sh`. */
+export const STORE_APP_PACKAGE = "dev.apslop.store";
+
+/** Where visitors download the store app: NEXT_PUBLIC_STORE_APP_URL if set, else the store's signed copy. Null when neither exists. */
+export async function storeAppDownloadUrl(): Promise<string | null> {
+  if (publicEnv.storeAppUrl) return publicEnv.storeAppUrl;
+  return (await findStoreApp(STORE_APP_PACKAGE))?.apkUrl ?? null;
 }
 
 export function apkDownloadUrl(apkName: string): string {
