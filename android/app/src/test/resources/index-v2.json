@@ -12,6 +12,7 @@
         "added": 1757000000000,
         "lastUpdated": 1757300000000,
         "license": "MIT",
+        "authorName": "alice",
         "sourceCode": "https://github.com/my-univ-apps/timetable",
         "webSite": "",
         "name": {"en-US": "Timetable", "ja": "時間割"},

@@ -13,17 +13,10 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.filled.ArrowBack
-import androidx.compose.material.icons.filled.Code
-import androidx.compose.material.icons.filled.Language
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
 import androidx.compose.material3.CircularProgressIndicator
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.HorizontalDivider
-import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
 import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
@@ -32,7 +25,6 @@ import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
-import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -42,6 +34,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.lifecycle.compose.LocalLifecycleOwner
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
@@ -54,7 +47,6 @@ import dev.apslop.store.viewmodel.AppDetailUiState
 import dev.apslop.store.viewmodel.AppDetailViewModel
 import dev.apslop.store.viewmodel.InstallProgress
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun AppDetailScreen(
     onBack: () -> Unit,
@@ -112,14 +104,7 @@ fun AppDetailScreen(
 
     Scaffold(
         topBar = {
-            TopAppBar(
-                title = { Text(state.app?.name ?: "") },
-                navigationIcon = {
-                    IconButton(onClick = onBack) {
-                        Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = stringResource(R.string.back))
-                    }
-                },
-            )
+            StoreTopBar(title = state.app?.name ?: "", onBack = onBack)
         },
         snackbarHost = { SnackbarHost(snackbar) },
     ) { padding ->
@@ -165,9 +150,16 @@ private fun DetailContent(
             AppIcon(url = app.iconUrl, size = 72.dp)
             Spacer(Modifier.width(16.dp))
             Column(Modifier.weight(1f)) {
-                Text(app.name, style = MaterialTheme.typography.headlineSmall)
+                Text(app.name, style = MaterialTheme.typography.headlineSmall, fontWeight = FontWeight.Bold)
                 if (app.summary.isNotBlank()) {
                     Text(app.summary, style = MaterialTheme.typography.bodyMedium, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                }
+                app.author?.let {
+                    Text(
+                        stringResource(R.string.by_author, it),
+                        style = MaterialTheme.typography.bodyMedium,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    )
                 }
             }
         }
@@ -181,6 +173,7 @@ private fun DetailContent(
             HorizontalDivider()
         }
 
+        app.author?.let { InfoRow(stringResource(R.string.label_author), it) }
         InfoRow(stringResource(R.string.label_version), "${app.latest.versionName} (${app.latest.versionCode})")
         (state.installState as? InstallState.Installed)?.let {
             InfoRow(stringResource(R.string.label_installed_version), "${it.versionName} (${it.versionCode})")
@@ -190,20 +183,9 @@ private fun DetailContent(
         InfoRow(stringResource(R.string.label_updated), formatDate(app.lastUpdated))
         InfoRow(stringResource(R.string.label_package), app.packageName)
 
-        Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-            app.sourceCode?.let { url ->
-                OutlinedButton(onClick = { onOpenUrl(url) }) {
-                    Icon(Icons.Default.Code, contentDescription = null)
-                    Spacer(Modifier.width(6.dp))
-                    Text(stringResource(R.string.source_code))
-                }
-            }
-            app.webSite?.let { url ->
-                OutlinedButton(onClick = { onOpenUrl(url) }) {
-                    Icon(Icons.Default.Language, contentDescription = null)
-                    Spacer(Modifier.width(6.dp))
-                    Text(stringResource(R.string.website))
-                }
+        app.sourceCode?.let { url ->
+            OutlinedButton(onClick = { onOpenUrl(url) }, modifier = Modifier.fillMaxWidth().height(48.dp)) {
+                Text(stringResource(R.string.source_code_on_github))
             }
         }
     }
@@ -234,20 +216,20 @@ private fun InstallSection(
         }
         else -> {
             val installed = state.installState as? InstallState.Installed
-            Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+            Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                 when {
-                    installed == null -> Button(onClick = onInstall, modifier = Modifier.weight(1f)) {
+                    installed == null -> Button(onClick = onInstall, modifier = Modifier.weight(1f).height(48.dp)) {
                         Text(stringResource(R.string.action_install))
                     }
                     installed.isOlderThan(app.latest) -> {
-                        Button(onClick = onInstall, modifier = Modifier.weight(1f)) {
+                        Button(onClick = onInstall, modifier = Modifier.weight(1f).height(48.dp)) {
                             Text(stringResource(R.string.action_update))
                         }
-                        OutlinedButton(onClick = onOpen, modifier = Modifier.weight(1f)) {
+                        OutlinedButton(onClick = onOpen, modifier = Modifier.weight(1f).height(48.dp)) {
                             Text(stringResource(R.string.action_open))
                         }
                     }
-                    else -> Button(onClick = onOpen, modifier = Modifier.weight(1f)) {
+                    else -> Button(onClick = onOpen, modifier = Modifier.weight(1f).height(48.dp)) {
                         Text(stringResource(R.string.action_open))
                     }
                 }

@@ -47,6 +47,7 @@ data class MetadataV2(
     val summary: Localized = emptyMap(),
     val description: Localized = emptyMap(),
     val icon: LocalizedFile = emptyMap(),
+    val authorName: String? = null,
     val sourceCode: String? = null,
     val webSite: String? = null,
     val license: String? = null,
@@ -89,6 +90,8 @@ data class StoreApp(
     val summary: String,
     val description: String,
     val iconUrl: String?,
+    /** The GitHub login of whoever made the app; null for apps synced before authors were recorded. */
+    val author: String?,
     val sourceCode: String?,
     val webSite: String?,
     val license: String?,

@@ -32,6 +32,7 @@ object IndexParser {
                 summary = m.summary.localized().orEmpty(),
                 description = m.description.localized().orEmpty(),
                 iconUrl = m.icon.localizedFile()?.let { join(base, it.name) },
+                author = m.authorName?.takeIf { it.isNotBlank() },
                 sourceCode = m.sourceCode?.takeIf { it.isNotBlank() },
                 webSite = m.webSite?.takeIf { it.isNotBlank() },
                 license = m.license,

@@ -61,6 +61,7 @@ class AppListViewModel(app: Application) : AndroidViewModel(app) {
         val needle = q.trim()
         return name.contains(needle, ignoreCase = true) ||
             summary.contains(needle, ignoreCase = true) ||
+            author.orEmpty().contains(needle, ignoreCase = true) ||
             packageName.contains(needle, ignoreCase = true)
     }
 }

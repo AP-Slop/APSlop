@@ -29,7 +29,7 @@ cd android
 ```
 
 既定値 `http://10.0.2.2:8080/fdroid/repo` はエミュレータからホストの `docker compose up` (store-server: 8080) を指す。
-実行時には「設定」画面で URL を変更でき、DataStore に保存される。
+実行時には Settings 画面で URL を変更でき、DataStore に保存される。
 
 同じ URL を公式 F-Droid クライアントに「リポジトリを追加」しても利用できる。
 
@@ -38,7 +38,7 @@ cd android
 1. `{repoUrl}/index-v2.json` を OkHttp で取得。
 2. `data/IndexModels.kt` の `@Serializable` モデルで必要な部分だけをデコード (`ignoreUnknownKeys = true`)。
    - `repo.name / description / icon`
-   - `packages.<pkg>.metadata.{name, summary, description, icon, sourceCode, webSite, license, added, lastUpdated}`
+   - `packages.<pkg>.metadata.{name, summary, description, icon, authorName, sourceCode, webSite, license, added, lastUpdated}`
    - `packages.<pkg>.versions.<sha>.{file{name,sha256,size}, manifest{versionName, versionCode, usesSdk.minSdkVersion}, added}`
    - ローカライズ値 (`{"en-US": "..."}`) は `en-US` を優先し、無ければ最初の値。
 3. `IndexParser` が `versionCode` 最大のものを最新版として `StoreApp` / `AppVersion` に変換。
@@ -60,6 +60,11 @@ cd android
 `res/xml/network_security_config.xml` で cleartext (http://) を許可している。
 これはローカル開発用 (`http://10.0.2.2:8080`) のため。本番では https のリポジトリを使い、
 `cleartextTrafficPermitted="false"` にすること。
+
+## 画面
+
+文言は英語のみ (`res/values/strings.xml`)。並びと色は Web の Design B に合わせる
+(`docs/superpowers/wireframes/d/store-*.json`。上の帯は `#24292F`、主ボタンは緑 `#1F883D`)。
 
 ## 構成
 
