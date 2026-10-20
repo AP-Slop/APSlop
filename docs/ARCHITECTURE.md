@@ -180,7 +180,7 @@ web と store-server は docker compose から同じ設定を読む。非秘密�
 本番では URL 系を全て `https://<APSLOP_DOMAIN>` に揃える
 (`AUTH_URL` / `NEXT_PUBLIC_APP_URL` / `NEXT_PUBLIC_STORE_URL` / `STORE_PUBLIC_URL`)。
 store-server にはこのほか `STORE_DATA_DIR` / `GITHUB_API_URL` / `STORE_REPO_KEYALIAS` /
-`STORE_KEY_DNAME` / `STORE_DRY_RUN` があり、既定値は `store-server/app/config.py` を参照。
+`STORE_KEY_DNAME` / `STORE_DRY_RUN` / `STORE_APP_SOURCE_URL`(ストアアプリの掲載ページのソースのリンク)があり、既定値は `store-server/app/config.py` を参照。
 
 ## ローカル起動
 

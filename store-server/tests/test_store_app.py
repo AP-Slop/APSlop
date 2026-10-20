@@ -6,7 +6,7 @@ from fastapi.testclient import TestClient
 
 from app import fdroid, main, signing
 from app.config import settings
-from app.store_app import STORE_APP_PACKAGE
+from app.store_app import STORE_APP_PACKAGE, refresh_store_app_metadata
 
 TOKEN = {"X-Store-Token": "test-token"}
 
@@ -42,7 +42,19 @@ def test_publishes_the_store_app_with_fixed_metadata(client, apk_of):
     meta = yaml.safe_load((settings.metadata_dir / f"{STORE_APP_PACKAGE}.yml").read_text(encoding="utf-8"))
     assert meta["Name"] == "APSlop Store"
     assert meta["AuthorName"] == "APSlop"
-    assert "SourceCode" not in meta and "IssueTracker" not in meta
+    assert meta["SourceCode"] == "https://github.com/AP-Slop/APSlop"
+    assert meta["IssueTracker"] == "https://github.com/AP-Slop/APSlop/issues"
+    assert meta["Description"].rstrip().endswith("\nhttp://store.test/fdroid/repo")
+
+
+def test_refreshes_the_metadata_only_when_it_changed(client, apk_of, monkeypatch):
+    assert refresh_store_app_metadata() is False  # not published yet
+    client.put("/store-app", content=b"apk", headers=TOKEN)
+    assert refresh_store_app_metadata() is False
+    monkeypatch.setattr(settings, "store_app_source", "https://github.com/example/store")
+    assert refresh_store_app_metadata() is True
+    meta = yaml.safe_load((settings.metadata_dir / f"{STORE_APP_PACKAGE}.yml").read_text(encoding="utf-8"))
+    assert meta["SourceCode"] == "https://github.com/example/store"
 
 
 def test_refuses_any_other_app(client, apk_of):
