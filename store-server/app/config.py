@@ -21,6 +21,10 @@ class Settings:
     repo_description: str = field(
         default_factory=lambda: _env("STORE_REPO_DESCRIPTION", "大学コミュニティで作られたアプリの F-Droid 互換リポジトリ")
     )
+    # Where the store app's own code lives ("Source code on GitHub" on its store page).
+    store_app_source: str = field(
+        default_factory=lambda: _env("STORE_APP_SOURCE_URL", "https://github.com/AP-Slop/APSlop")
+    )
     key_password: str = field(default_factory=lambda: _env("STORE_KEY_PASSWORD", "change-me"))
     repo_keyalias: str = field(default_factory=lambda: _env("STORE_REPO_KEYALIAS", "apslop"))
     key_dname: str = field(default_factory=lambda: _env("STORE_KEY_DNAME", "CN=APSlop, O=APSlop"))

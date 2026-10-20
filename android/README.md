@@ -30,6 +30,20 @@ android/publish-store-app.sh http://10.0.2.2:8081/fdroid/repo  # ローカルの
 パッケージごとの鍵で署名してストアに載せ、web のトップの "Download the store app" がその APK を指す。
 すでに入っている端末に更新を届けるには `app/build.gradle.kts` の `versionCode` を上げてから実行する。
 debug ビルドとは署名が違うので、debug ビルドが入った端末では一度アンインストールが必要。
+`versionCode` は一度載せたら使い回さない(fdroid は APK のファイル名ごとに情報をキャッシュする)。
+
+### アイコン
+
+元絵は `art/ic_launcher.svg`(108dp のアダプティブアイコンの画面。ランチャーに見えるのは中央の 72dp)。
+ランチャーは `drawable/ic_launcher_foreground.xml`(元絵と同じパス)と背景色 `#24292F` のアダプティブアイコンを使う。
+ストアの一覧のアイコンは fdroid が APK の `res/mipmap-*/ic_launcher.png` から取り出すので、元絵を直したら PNG も作り直す:
+
+```sh
+android/art/render-icons.sh   # rsvg-convert と ImageMagick を使う
+```
+
+release ビルドはリソースのファイル名を短くする(`res/BW.xml` など)と fdroid がアイコンを見つけられないため、
+`gradle.properties` で `android.enableResourceOptimizations=false` にしている。
 
 ### USB でつないだ実機で試す
 
@@ -64,6 +78,8 @@ android/publish-store-app.sh                                      # .env の STO
    - ローカライズ値 (`{"en-US": "..."}`) は `en-US` を優先し、無ければ最初の値。
 3. `IndexParser` が `versionCode` 最大のものを最新版として `StoreApp` / `AppVersion` に変換。
    ファイル名は repo 相対 (`/foo.apk`, `/icons/...`) なので `repoUrl` と結合して絶対 URL にする。
+   アイコンは index が指す `/icons/`(160dpi で、スマホではぼやける)の代わりに、fdroid が同じ名前で作る
+   `/icons-640/` をまず読み、無ければ `/icons/` に戻る。
 4. インストール状態は `PackageManager.getPackageInfo` の `longVersionCode` と比較して
    「インストール / 更新 / 開く」を出し分ける。
 

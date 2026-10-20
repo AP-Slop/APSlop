@@ -72,6 +72,7 @@ Body: { "repo": "org/name", "tag": "v1.2.3", "author": "login" }   // tag 省略
 
 GET {STORE_SERVER_URL}/apps
 200: [{ "packageName", "name", "summary", "description", "versionName", "versionCode", "iconUrl", "apkUrl", "apkName", "apkSize", "minSdk", "sourceCode", "webSite", "added", "lastUpdated" }]
+// iconUrl は fdroid が作った 640dpi の icons-640/ があればそれ、無ければ index-v2 の icons/(160dpi)
 
 PUT {STORE_SERVER_URL}/apps/{packageName}/summary   // Settings で一言を保存したとき
 Headers: X-Store-Token: {STORE_TOKEN}
@@ -179,7 +180,7 @@ web と store-server は docker compose から同じ設定を読む。非秘密�
 本番では URL 系を全て `https://<APSLOP_DOMAIN>` に揃える
 (`AUTH_URL` / `NEXT_PUBLIC_APP_URL` / `NEXT_PUBLIC_STORE_URL` / `STORE_PUBLIC_URL`)。
 store-server にはこのほか `STORE_DATA_DIR` / `GITHUB_API_URL` / `STORE_REPO_KEYALIAS` /
-`STORE_KEY_DNAME` / `STORE_DRY_RUN` があり、既定値は `store-server/app/config.py` を参照。
+`STORE_KEY_DNAME` / `STORE_DRY_RUN` / `STORE_APP_SOURCE_URL`(ストアアプリの掲載ページのソースのリンク)があり、既定値は `store-server/app/config.py` を参照。
 
 ## ローカル起動
 

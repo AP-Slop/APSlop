@@ -40,3 +40,20 @@ def test_find_package():
     assert find_package(FIXTURE, "dev.apslop.apps.todo", 1)["manifest"]["versionName"] == "0.1.0"
     assert find_package(FIXTURE, "dev.apslop.apps.todo", 9) is None
     assert find_package(FIXTURE, "nope", 1) is None
+
+
+def test_parse_prefers_the_640_dpi_icon_when_it_is_on_disk(tmp_path):
+    index = {
+        "packages": {
+            pkg: {
+                "metadata": {"name": {"en-US": pkg}, "icon": {"en-US": {"name": f"/icons/{pkg}.1.png"}}},
+                "versions": {"x": {"manifest": {"versionCode": 1}, "file": {"name": f"/{pkg}_1.apk"}}},
+            }
+            for pkg in ("a", "b")
+        }
+    }
+    (tmp_path / "icons-640").mkdir()
+    (tmp_path / "icons-640" / "a.1.png").write_bytes(b"png")
+    icons = {a["packageName"]: a["iconUrl"] for a in parse_index_v2(index, "http://x/repo", tmp_path)}
+    assert icons == {"a": "http://x/repo/icons-640/a.1.png", "b": "http://x/repo/icons/b.1.png"}
+    assert parse_index_v2(index, "http://x/repo")[0]["iconUrl"].startswith("http://x/repo/icons/")

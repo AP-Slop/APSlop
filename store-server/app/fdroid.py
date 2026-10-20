@@ -191,7 +191,18 @@ def _localized_file(value: Any, base_url: str, lang: str = "en-US") -> str | Non
     return None
 
 
-def parse_index_v2(index: dict[str, Any], repo_url: str) -> list[dict[str, Any]]:
+def _icon_url(value: Any, repo_url: str, repo_dir: Path | None) -> str | None:
+    """The icon fdroid rendered at 640 dpi when it is on disk, else index-v2's own (160 dpi, blurry on phones)."""
+    url = _localized_file(value, repo_url)
+    prefix = repo_url + "/icons/"
+    if url and repo_dir is not None and url.startswith(prefix):
+        name = url[len(prefix) :]
+        if (repo_dir / "icons-640" / name).is_file():
+            return f"{repo_url}/icons-640/{name}"
+    return url
+
+
+def parse_index_v2(index: dict[str, Any], repo_url: str, repo_dir: Path | None = None) -> list[dict[str, Any]]:
     """Flatten an index-v2 document into the /apps contract shape."""
     repo_url = repo_url.rstrip("/")
     apps: list[dict[str, Any]] = []
@@ -215,7 +226,7 @@ def parse_index_v2(index: dict[str, Any], repo_url: str) -> list[dict[str, Any]]
                 "description": _localized(meta.get("description")),
                 "versionName": manifest.get("versionName"),
                 "versionCode": manifest.get("versionCode"),
-                "iconUrl": _localized_file(meta.get("icon"), repo_url),
+                "iconUrl": _icon_url(meta.get("icon"), repo_url, repo_dir),
                 "apkUrl": (repo_url + apk_name) if apk_name else None,
                 "apkName": apk_name.lstrip("/") if apk_name else None,
                 "apkSize": apk_file.get("size"),

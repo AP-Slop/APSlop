@@ -26,7 +26,8 @@ GET  /healthz
 ## ストアアプリ自身の掲載
 
 `PUT /store-app`(本文は APK そのもの)で、ストアアプリ `dev.apslop.store` を他のアプリと同じくパッケージごとの鍵で署名して
-載せる。名前・一言・説明は固定(`app/store_app.py`)。他のパッケージ名の APK は 400。web のトップの
+載せる。名前・一言・説明は固定(`app/store_app.py`)。説明の最後にこのリポジトリの URL、ソースのリンクは
+`STORE_APP_SOURCE_URL`。これらを変えたときは、起動時に metadata を書き直して `fdroid update` する(APK の再送は要らない)。他のパッケージ名の APK は 400。web のトップの
 "Download the store app" はこの APK を指し、ストアアプリは自分自身もストアから更新できる。
 ビルドと送信は `android/publish-store-app.sh` が行う。
 
@@ -76,7 +77,7 @@ curl -X POST localhost:8080/sync -H "X-Store-Token: $STORE_TOKEN" \
 
 `STORE_TOKEN`, `GITHUB_ADMIN_TOKEN`, `STORE_PUBLIC_URL`, `STORE_REPO_NAME`, `STORE_REPO_DESCRIPTION`,
 `STORE_KEY_PASSWORD`, 任意: `STORE_DATA_DIR` (既定 `/data`), `STORE_REPO_KEYALIAS` (`apslop`),
-`STORE_KEY_DNAME`, `STORE_DRY_RUN`.
+`STORE_KEY_DNAME`, `STORE_DRY_RUN`, `STORE_APP_SOURCE_URL` (`https://github.com/AP-Slop/APSlop`).
 
 ## androguard のバージョン固定
 

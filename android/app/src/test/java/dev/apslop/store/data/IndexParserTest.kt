@@ -64,4 +64,11 @@ class IndexParserTest {
         assertEquals("http://x/repo/a.apk", IndexParser.join("http://x/repo", "a.apk"))
         assertEquals("https://cdn/a.apk", IndexParser.join("http://x/repo", "https://cdn/a.apk"))
     }
+
+    @Test
+    fun `hiResIconUrl points at the 640 dpi icon`() {
+        assertEquals("http://x/repo/icons-640/a.1.png", IndexParser.hiResIconUrl("http://x/repo/icons/a.1.png"))
+        assertNull(IndexParser.hiResIconUrl("http://x/repo/icons-640/a.1.png"))
+        assertNull(IndexParser.hiResIconUrl("https://cdn/a.png"))
+    }
 }

@@ -18,6 +18,7 @@ from .sync import SyncError, _prepare_apk, _stage_dir
 log = logging.getLogger("store.store_app")
 
 STORE_APP_PACKAGE = "dev.apslop.store"
+NAME = "APSlop Store"
 SUMMARY = "Install and update the apps made on campus"
 DESCRIPTION = """The store app for APSlop.
 
@@ -25,7 +26,35 @@ DESCRIPTION = """The store app for APSlop.
 - Install them, and update them when a new version comes out
 - Point it at another repository in Settings
 
-You can also add this repository to the official F-Droid client to get the same apps."""
+You can also add this repository to the official F-Droid client to get the same apps:
+{repo_url}"""
+
+
+def _write_metadata() -> Path:
+    return fdroid.write_metadata(
+        STORE_APP_PACKAGE,
+        name=NAME,
+        summary=SUMMARY,
+        description=DESCRIPTION.format(repo_url=settings.repo_url),
+        source_code=settings.store_app_source,
+        website="",
+        author="APSlop",
+    )
+
+
+def refresh_store_app_metadata() -> bool:
+    """Rewrite the store app's metadata when this code (or STORE_APP_SOURCE_URL) changed it, so a
+    deploy reaches the store page without re-uploading the APK. False when nothing changed."""
+    path = settings.metadata_dir / f"{STORE_APP_PACKAGE}.yml"
+    with fdroid.repo_lock:
+        if not path.exists():
+            return False
+        before = path.read_text(encoding="utf-8")
+        if _write_metadata().read_text(encoding="utf-8") == before:
+            return False
+        fdroid.fdroid_update()
+    log.info("refreshed the store app's metadata")
+    return True
 
 
 def publish_store_app(apk: bytes) -> dict[str, Any]:
@@ -45,15 +74,7 @@ def publish_store_app(apk: bytes) -> dict[str, Any]:
         info, signed = _prepare_apk(raw, stage)
 
         with fdroid.repo_lock:
-            fdroid.write_metadata(
-                info.package_name,
-                name=info.app_name or "APSlop Store",
-                summary=SUMMARY,
-                description=DESCRIPTION,
-                source_code="",
-                website="",
-                author="APSlop",
-            )
+            _write_metadata()
             shutil.move(str(signed), settings.repo_dir / signed.name)
             fdroid.fdroid_update()
 

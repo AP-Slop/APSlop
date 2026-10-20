@@ -16,7 +16,7 @@ from pydantic import BaseModel, Field
 from . import fdroid
 from .config import settings
 from .signing import SigningError
-from .store_app import publish_store_app
+from .store_app import publish_store_app, refresh_store_app_metadata
 from .sync import SyncError, sync_release
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s %(name)s %(levelname)s %(message)s")
@@ -32,6 +32,10 @@ mimetypes.add_type("application/java-archive", ".jar")
 @asynccontextmanager
 async def lifespan(_: FastAPI):
     fdroid.initialise()
+    try:
+        await run_in_threadpool(refresh_store_app_metadata)
+    except SigningError as e:  # a broken fdroid run must not keep the store from serving
+        log.error("could not refresh the store app's metadata: %s", e)
     log.info("store-server ready: repo=%s data=%s", settings.repo_url, settings.data_dir)
     yield
 
@@ -132,7 +136,7 @@ async def put_store_app(request: Request) -> dict[str, Any]:
 
 @app.get("/apps")
 def apps() -> list[dict[str, Any]]:
-    return fdroid.parse_index_v2(fdroid.load_index_v2(), settings.repo_url)
+    return fdroid.parse_index_v2(fdroid.load_index_v2(), settings.repo_url, settings.repo_dir)
 
 
 @app.get("/")
