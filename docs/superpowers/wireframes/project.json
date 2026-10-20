@@ -5,9 +5,9 @@
   "device": "desktop",
   "proposals": [
     {
-      "id": "d",
-      "name": "Design E",
-      "note": "モードはスイッチ (Developer Mode のオン・オフ)",
+      "id": "b",
+      "name": "History B",
+      "note": "削除したアプリの行を丸ごと薄く",
       "screens": [
         "top",
         "app-detail",

@@ -11,7 +11,12 @@ function step(name: string) {
   });
 }
 
-vi.mock("@/lib/db", () => ({ prisma: { app: { update: step("db.update"), delete: step("db.delete") } } }));
+vi.mock("@/lib/db", () => ({
+  prisma: {
+    app: { update: step("db.update"), delete: step("db.delete") },
+    generation: { updateMany: step("db.history") },
+  },
+}));
 vi.mock("@/lib/github", () => ({
   repoName: (full: string) => full.split("/")[1],
   updateRepoDescription: step("github.description"),
@@ -71,7 +76,23 @@ describe("updateSummary", () => {
 describe("deleteApp", () => {
   it("takes it off the store before deleting the repo and the app", async () => {
     await deleteApp(app);
-    expect(calls.map((c) => c.split("(")[0])).toEqual(["store.remove", "db.update", "github.delete", "db.delete"]);
+    expect(calls.map((c) => c.split("(")[0])).toEqual([
+      "store.remove",
+      "db.update",
+      "github.delete",
+      "db.history",
+      "db.history",
+      "db.delete",
+    ]);
+  });
+
+  it("discards proposals awaiting review and marks the AI history of the repo", async () => {
+    await deleteApp(app);
+    const history = calls.filter((c) => c.startsWith("db.history"));
+    expect(history[0]).toBe(
+      'db.history({"where":{"repoFullName":"org/counter","status":"READY"},"data":{"status":"DISCARDED"}})',
+    );
+    expect(history[1]).toContain('"where":{"repoFullName":"org/counter","appDeletedAt":null},"data":{"appDeletedAt":"');
   });
 
   it("changes nothing else when the store refuses", async () => {
@@ -89,6 +110,6 @@ describe("deleteApp", () => {
 
   it("skips the store for an app that never reached it", async () => {
     await deleteApp({ ...app, packageName: null, status: "DRAFT" });
-    expect(calls.map((c) => c.split("(")[0])).toEqual(["github.delete", "db.delete"]);
+    expect(calls.map((c) => c.split("(")[0])).toEqual(["github.delete", "db.history", "db.history", "db.delete"]);
   });
 });

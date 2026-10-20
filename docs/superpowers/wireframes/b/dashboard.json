@@ -173,7 +173,7 @@
       "x": 144,
       "y": 152,
       "w": 564,
-      "h": 360,
+      "h": 512,
       "name": "My Apps",
       "style": {
         "fill": "$bg"
@@ -437,7 +437,7 @@
       "x": 732,
       "y": 152,
       "w": 564,
-      "h": 360,
+      "h": 512,
       "name": "AI History",
       "style": {
         "fill": "$bg"
@@ -789,6 +789,244 @@
             "size": "sm",
             "color": "#CF222E"
           }
+        },
+        {
+          "id": "dx",
+          "type": "divider",
+          "x": 0,
+          "y": 320,
+          "w": 564,
+          "h": 1
+        },
+        {
+          "id": "gx0",
+          "type": "group",
+          "x": 16,
+          "y": 336,
+          "name": "Deleted App Row",
+          "children": [
+            {
+              "id": "rx0k",
+              "type": "rect",
+              "x": 0,
+              "y": 0,
+              "w": 76,
+              "h": 24,
+              "name": "Badge",
+              "style": {
+                "radius": 12,
+                "fill": "$bg",
+                "opacity": 0.5
+              },
+              "children": [
+                {
+                  "id": "tx0k",
+                  "type": "text",
+                  "x": 8,
+                  "y": 0,
+                  "w": 60,
+                  "h": 24,
+                  "text": "New app",
+                  "style": {
+                    "size": "sm",
+                    "color": "$muted",
+                    "align": "center"
+                  }
+                }
+              ]
+            },
+            {
+              "id": "rx0s",
+              "type": "rect",
+              "x": 96,
+              "y": 0,
+              "w": 52,
+              "h": 24,
+              "name": "Badge",
+              "style": {
+                "radius": 12,
+                "fill": "$bg",
+                "opacity": 0.5
+              },
+              "children": [
+                {
+                  "id": "tx0s",
+                  "type": "text",
+                  "x": 8,
+                  "y": 0,
+                  "w": 36,
+                  "h": 24,
+                  "text": "Done",
+                  "style": {
+                    "size": "sm",
+                    "color": "#1A7F37",
+                    "align": "center"
+                  }
+                }
+              ]
+            },
+            {
+              "id": "tx0d",
+              "type": "text",
+              "x": 192,
+              "y": 0,
+              "w": 136,
+              "h": 24,
+              "text": "Sep 10, 09:12",
+              "style": {
+                "color": "$muted",
+                "size": "sm",
+                "opacity": 0.5
+              }
+            },
+            {
+              "id": "tx0n",
+              "type": "text",
+              "x": 328,
+              "y": 0,
+              "w": 208,
+              "h": 24,
+              "text": "study-timer · deleted",
+              "style": {
+                "color": "$muted",
+                "size": "sm",
+                "align": "right",
+                "opacity": 0.5
+              }
+            },
+            {
+              "id": "tx0p",
+              "type": "text",
+              "x": 0,
+              "y": 28,
+              "w": 528,
+              "h": 24,
+              "text": "A timer for study sessions, with a weekly total.",
+              "style": {
+                "size": "sm",
+                "opacity": 0.5
+              }
+            }
+          ]
+        },
+        {
+          "id": "dx0",
+          "type": "divider",
+          "x": 0,
+          "y": 408,
+          "w": 564,
+          "h": 1
+        },
+        {
+          "id": "gx1",
+          "type": "group",
+          "x": 16,
+          "y": 424,
+          "name": "Deleted App Row",
+          "children": [
+            {
+              "id": "rx1k",
+              "type": "rect",
+              "x": 0,
+              "y": 0,
+              "w": 36,
+              "h": 24,
+              "name": "Badge",
+              "style": {
+                "radius": 12,
+                "fill": "$bg",
+                "opacity": 0.5
+              },
+              "children": [
+                {
+                  "id": "tx1k",
+                  "type": "text",
+                  "x": 8,
+                  "y": 0,
+                  "w": 20,
+                  "h": 24,
+                  "text": "PR",
+                  "style": {
+                    "size": "sm",
+                    "color": "$muted",
+                    "align": "center"
+                  }
+                }
+              ]
+            },
+            {
+              "id": "rx1s",
+              "type": "rect",
+              "x": 96,
+              "y": 0,
+              "w": 52,
+              "h": 24,
+              "name": "Badge",
+              "style": {
+                "radius": 12,
+                "fill": "$bg",
+                "opacity": 0.5
+              },
+              "children": [
+                {
+                  "id": "tx1s",
+                  "type": "text",
+                  "x": 8,
+                  "y": 0,
+                  "w": 36,
+                  "h": 24,
+                  "text": "Done",
+                  "style": {
+                    "size": "sm",
+                    "color": "#1A7F37",
+                    "align": "center"
+                  }
+                }
+              ]
+            },
+            {
+              "id": "tx1d",
+              "type": "text",
+              "x": 192,
+              "y": 0,
+              "w": 136,
+              "h": 24,
+              "text": "Sep 10, 11:30",
+              "style": {
+                "color": "$muted",
+                "size": "sm",
+                "opacity": 0.5
+              }
+            },
+            {
+              "id": "tx1n",
+              "type": "text",
+              "x": 328,
+              "y": 0,
+              "w": 208,
+              "h": 24,
+              "text": "study-timer #2 · deleted",
+              "style": {
+                "color": "$muted",
+                "size": "sm",
+                "align": "right",
+                "opacity": 0.5
+              }
+            },
+            {
+              "id": "tx1p",
+              "type": "text",
+              "x": 0,
+              "y": 28,
+              "w": 528,
+              "h": 24,
+              "text": "Add a break reminder every 25 minutes",
+              "style": {
+                "size": "sm",
+                "opacity": 0.5
+              }
+            }
+          ]
         }
       ]
     },
