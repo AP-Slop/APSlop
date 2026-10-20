@@ -79,7 +79,7 @@ def ensure_repo_keystore(cfg: Settings = settings) -> Path:
 
 
 def write_metadata(package_name: str, *, name: str, summary: str, description: str,
-                   source_code: str, website: str, cfg: Settings = settings) -> Path:
+                   source_code: str, website: str, author: str = "", cfg: Settings = settings) -> Path:
     """Write metadata/<pkg>.yml. Only overwrites fields we own; keeps file if it already exists
     and was hand-edited (we always regenerate — the GitHub repo is the source of truth)."""
     cfg.metadata_dir.mkdir(parents=True, exist_ok=True)
@@ -90,6 +90,7 @@ def write_metadata(package_name: str, *, name: str, summary: str, description: s
         "Categories:",
         "  - University",
         f"License: {_yaml_str('Unknown')}",
+        *([f"AuthorName: {_yaml_str(author)}"] if author else []),
         f"Name: {_yaml_str(name or package_name)}",
         f"Summary: {_yaml_str(summary)}",
         "Description: |",

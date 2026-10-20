@@ -38,7 +38,7 @@ def _prepare_apk(src: Path, stage: Path) -> tuple[signing.ApkInfo, Path]:
     return info, final
 
 
-def sync_release(repo_full_name: str, tag: str | None) -> dict[str, Any]:
+def sync_release(repo_full_name: str, tag: str | None, author: str | None = None) -> dict[str, Any]:
     if "/" not in repo_full_name:
         raise SyncError(400, "repo must be 'owner/name'")
     try:
@@ -74,6 +74,9 @@ def sync_release(repo_full_name: str, tag: str | None) -> dict[str, Any]:
                     description=readme or repo.get("description") or "",
                     source_code=repo.get("html_url", ""),
                     website=repo.get("homepage") or repo.get("html_url", ""),
+                    # The repo belongs to the organization, so the author is whoever the caller names
+                    # (the app's owner), else whoever published the release.
+                    author=author or (release.get("author") or {}).get("login") or "",
                 )
             for _, path in prepared:
                 shutil.move(str(path), settings.repo_dir / path.name)
