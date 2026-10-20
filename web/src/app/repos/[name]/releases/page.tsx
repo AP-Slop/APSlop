@@ -1,8 +1,9 @@
 import { auth } from "@/lib/auth";
 import { prisma } from "@/lib/db";
 import { getRepo, listReleases, listWorkflowRuns } from "@/lib/github";
+import { apkDownloadUrl } from "@/lib/store";
 import { Markdown } from "@/components/Markdown";
-import { Badge, Card, CardHeader, Empty, formatDate, formatSize } from "@/components/ui";
+import { Badge, Card, CardHeader, Empty, buttonClass, formatDate, formatSize } from "@/components/ui";
 import { ReleaseForm } from "@/components/ReleaseForm";
 import { SyncButton } from "@/components/SyncButton";
 import { SignInRequired } from "@/components/SignInRequired";
@@ -28,6 +29,8 @@ export default async function ReleasesPage({ params }: { params: Promise<{ name:
         ) : (
           releases.map((r) => {
             const apk = r.assets.find((a) => a.name.endsWith(".apk"));
+            // The store signs the CI build; only that signed copy installs on a phone.
+            const signedApk = app?.latestApkName && r.tag_name === `v${app.latestVersion}` ? app.latestApkName : null;
             return (
               <Card key={r.id}>
                 <CardHeader>
@@ -39,16 +42,28 @@ export default async function ReleasesPage({ params }: { params: Promise<{ name:
                 <div className="p-4 space-y-3 text-sm">
                   {r.body && <Markdown>{r.body}</Markdown>}
                   <div className="flex items-center gap-3 flex-wrap">
+                    {signedApk && (
+                      <a href={apkDownloadUrl(signedApk)} className={buttonClass("primary")}>Download APK</a>
+                    )}
                     {apk ? (
                       <>
-                        <a href={apk.browser_download_url} className="text-accent hover:underline">{apk.name} ({formatSize(apk.size)})</a>
+                        <span className="text-fg-muted">
+                          Unsigned build:{" "}
+                          <a href={apk.browser_download_url} className="text-accent hover:underline">{apk.name}</a> ({formatSize(apk.size)})
+                        </span>
                         {isOwner && <SyncButton slug={app.slug} tag={r.tag_name} />}
                       </>
                     ) : (
                       <span className="text-fg-muted">No APK yet. The CI build attaches it in a few minutes.</span>
                     )}
-                    {app?.latestVersion && r.tag_name === `v${app.latestVersion}` && <Badge tone="success">Published</Badge>}
+                    {signedApk && <Badge tone="success">Published</Badge>}
                   </div>
+                  {apk && !signedApk && (
+                    <p className="text-xs text-fg-muted">
+                      Phones cannot install the unsigned build. Once it is in the store (which signs it), download it from
+                      here, the app&apos;s page or the store app.
+                    </p>
+                  )}
                 </div>
               </Card>
             );
