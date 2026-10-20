@@ -2,7 +2,8 @@ import { auth } from "@/lib/auth";
 import { findOwnProposal } from "@/lib/proposal-store";
 import { ProposeForm } from "@/components/ProposeForm";
 import { SignInRequired } from "@/components/SignInRequired";
-import { choiceForModel, modelOptions } from "@/lib/models";
+import { choiceForModel, modelOptions, preferredModel } from "@/lib/models";
+import { prisma } from "@/lib/db";
 import { getIssue } from "@/lib/github";
 
 /** "Create PR with AI" on an issue starts from the issue's title and description. */
@@ -27,7 +28,10 @@ export default async function AiPage({
   const previous = session?.user?.id && from ? await findOwnProposal(session.user.id, name, from) : null;
   const fromIssue = !previous && issue ? await issuePrompt(name, Number(issue)) : null;
   const models = modelOptions().map(({ id, label, available }) => ({ id, label, available }));
-  const initialModel = previous ? choiceForModel(previous.generation.model) : models.find((m) => m.available)?.id ?? "claude";
+  const last = session?.user?.id && !previous
+    ? await prisma.generation.findFirst({ where: { userId: session.user.id }, orderBy: { createdAt: "desc" }, select: { model: true } })
+    : null;
+  const initialModel = previous ? choiceForModel(previous.generation.model) : preferredModel(last?.model);
   return (
     <div>
       <h2 className="text-lg font-semibold">Create PR with AI</h2>

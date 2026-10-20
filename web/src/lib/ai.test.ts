@@ -8,7 +8,8 @@ const body = { type: "error", error: { type: "authentication_error", message: "i
 describe("friendlyApiError", () => {
   it("explains a rejected key without the raw JSON", () => {
     const e = friendlyApiError(Anthropic.APIError.generate(401, body, "401 invalid x-api-key", headers));
-    expect(e.message).toContain("AI key was rejected");
+    expect(e.message).toContain("key for AI was rejected");
+    expect(e.message).toContain("Choose another Model");
     expect(e.message).not.toContain("invalid x-api-key");
     expect((e as { status?: number }).status).toBe(503);
   });

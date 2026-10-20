@@ -4,20 +4,20 @@ import { handle, readJson } from "@/lib/api";
 import { requireSession } from "@/lib/auth";
 import { prisma } from "@/lib/db";
 import { generateApp } from "@/lib/ai";
-import { env } from "@/lib/env";
+import { ModelChoiceSchema, modelOption } from "@/lib/models";
 
 export const maxDuration = 600;
 
-const Body = z.object({ prompt: z.string().min(10).max(8000) });
+const Body = z.object({ prompt: z.string().min(10).max(8000), model: ModelChoiceSchema.default("claude") });
 
 export const POST = handle(async (req: Request) => {
   const session = await requireSession();
-  const { prompt } = Body.parse(await readJson(req));
+  const { prompt, model } = Body.parse(await readJson(req));
   const generation = await prisma.generation.create({
-    data: { userId: session.user.id, kind: "CREATE", prompt, model: env().ANTHROPIC_MODEL },
+    data: { userId: session.user.id, kind: "CREATE", prompt, model: modelOption(model).model },
   });
   try {
-    const app = await generateApp(prompt);
+    const app = await generateApp(prompt, model);
     // Avoid collisions with existing apps by suffixing.
     let slug = app.slug;
     for (let i = 2; await prisma.app.findUnique({ where: { slug } }); i++) slug = `${app.slug}-${i}`;

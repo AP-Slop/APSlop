@@ -11,7 +11,7 @@ function deepseekLabel(model: string): string {
   return model === "deepseek-flash" ? "DeepSeek V4.1 Flash" : `DeepSeek (${model})`;
 }
 
-/** Models offered on "Create PR with AI". An option without an API key is shown but cannot be picked. */
+/** Models offered on "New app" and "Create PR with AI". An option without an API key is shown but cannot be picked. */
 export function modelOptions(): ModelOption[] {
   const e = env();
   return [
@@ -22,6 +22,14 @@ export function modelOptions(): ModelOption[] {
 
 export function modelOption(id: ModelChoice): ModelOption {
   return modelOptions().find((o) => o.id === id)!;
+}
+
+/** The AI picked at first: the one the user last used, when the server still has a key for it; else the first that has one. */
+export function preferredModel(lastModel?: string | null): ModelChoice {
+  const options = modelOptions();
+  const last = lastModel ? choiceForModel(lastModel) : null;
+  if (last && options.some((o) => o.id === last && o.available)) return last;
+  return options.find((o) => o.available)?.id ?? "claude";
 }
 
 /** The choice that produced a stored generation (older rows only ever used Claude). */

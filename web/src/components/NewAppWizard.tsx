@@ -3,6 +3,8 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { buttonClass, Card, CardHeader, ErrorBox } from "@/components/ui";
+import { ModelSelect, type ModelPick } from "@/components/ModelSelect";
+import type { ModelChoice } from "@/lib/models";
 
 type GeneratedFile = { path: string; content: string };
 type GeneratedApp = {
@@ -20,9 +22,11 @@ const EXAMPLES = [
   "ポモドーロタイマー。25分作業・5分休憩を繰り返し、完了回数を保存する。",
 ];
 
-export function NewAppWizard() {
+export function NewAppWizard({ models, initialModel }: { models: ModelPick[]; initialModel: ModelChoice }) {
   const router = useRouter();
   const [prompt, setPrompt] = useState("");
+  const [model, setModel] = useState<ModelChoice>(initialModel);
+  const modelReady = models.some((m) => m.id === model && m.available);
   const [phase, setPhase] = useState<"input" | "generating" | "review" | "creating">("input");
   const [error, setError] = useState<string | null>(null);
   const [app, setApp] = useState<GeneratedApp | null>(null);
@@ -36,7 +40,7 @@ export function NewAppWizard() {
       const res = await fetch("/api/generate", {
         method: "POST",
         headers: { "content-type": "application/json" },
-        body: JSON.stringify({ prompt }),
+        body: JSON.stringify({ prompt, model }),
       });
       const json = await res.json();
       if (!res.ok) throw new Error(json.error ?? "生成に失敗しました");
@@ -88,7 +92,8 @@ export function NewAppWizard() {
             </button>
           ))}
         </div>
-        <button onClick={generate} disabled={prompt.trim().length < 10 || phase === "generating"} className={buttonClass("primary")}>
+        <ModelSelect models={models} value={model} onChange={setModel} disabled={phase === "generating"} />
+        <button onClick={generate} disabled={prompt.trim().length < 10 || !modelReady || phase === "generating"} className={buttonClass("primary")}>
           {phase === "generating" ? "生成中… (1〜3 分かかります)" : "コードを生成する"}
         </button>
       </div>
