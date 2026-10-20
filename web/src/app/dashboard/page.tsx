@@ -7,12 +7,16 @@ import { AppStatusBadge, Badge, Card, CardHeader, Container, Empty, LinkButton, 
 
 export const dynamic = "force-dynamic";
 
-/** Where an AI history row leads: the PR, the review screen of a pending proposal, or the repo. */
+/** Where an AI history row leads (rows of a deleted app lead nowhere: its repo is gone): the PR, the review screen of a pending proposal, or the repo. */
 function generationHref(g: { id: string; repoFullName: string | null; prNumber: number | null; status: string; kind: string }) {
   const repo = `/repos/${repoName(g.repoFullName!)}`;
   if (g.prNumber) return `${repo}/pulls/${g.prNumber}`;
   if (g.kind === "MODIFY" && g.status === "READY") return `${repo}/ai/${g.id}`;
   return repo;
+}
+
+function generationLabel(g: { repoFullName: string | null; prNumber: number | null }) {
+  return `${repoName(g.repoFullName!)}${g.prNumber ? ` #${g.prNumber}` : ""}`;
 }
 
 function generationState(status: string): { label: string; tone: "muted" | "success" | "danger" | "attention" } {
@@ -84,16 +88,19 @@ export default async function Dashboard({ searchParams }: { searchParams: Promis
               {generations.map((g) => {
                 const state = generationState(g.status);
                 return (
-                  <li key={g.id} className="px-4 py-3">
+                  <li key={g.id} className={`px-4 py-3${g.appDeletedAt ? " opacity-50" : ""}`}>
                     <div className="flex items-center gap-2">
                       <Badge>{g.kind === "CREATE" ? "New app" : "PR"}</Badge>
                       <Badge tone={state.tone}>{state.label}</Badge>
                       <span className="text-xs text-fg-muted">{formatDate(g.createdAt)}</span>
-                      {g.repoFullName && (
-                        <Link href={generationHref(g)} className="text-xs text-accent hover:underline ml-auto">
-                          {repoName(g.repoFullName)}{g.prNumber ? ` #${g.prNumber}` : ""}
-                        </Link>
-                      )}
+                      {g.repoFullName &&
+                        (g.appDeletedAt ? (
+                          <span className="text-xs text-fg-muted ml-auto">{generationLabel(g)} · deleted</span>
+                        ) : (
+                          <Link href={generationHref(g)} className="text-xs text-accent hover:underline ml-auto">
+                            {generationLabel(g)}
+                          </Link>
+                        ))}
                     </div>
                     <p className="mt-1 line-clamp-2">{g.prompt}</p>
                     {g.error && <p className="mt-1 text-xs text-danger">{g.error}</p>}

@@ -37,6 +37,8 @@ export async function updateSummary(app: App, summary: string): Promise<App> {
 
 /**
  * Off the store first (if that fails nothing has changed), then the repo, then the app row.
+ * Once the repo is gone, AI history rows for it are marked (proposals still awaiting review are discarded),
+ * before the app row goes, so a repeat still finds them.
  * Each step can be repeated, so a delete that stopped half way can simply be run again.
  */
 export async function deleteApp(app: App): Promise<void> {
@@ -50,5 +52,8 @@ export async function deleteApp(app: App): Promise<void> {
     }
   }
   await deleteRepo(repoName(app.repoFullName));
+  const ofRepo = { repoFullName: app.repoFullName };
+  await prisma.generation.updateMany({ where: { ...ofRepo, status: "READY" }, data: { status: "DISCARDED" } });
+  await prisma.generation.updateMany({ where: { ...ofRepo, appDeletedAt: null }, data: { appDeletedAt: new Date() } });
   await prisma.app.delete({ where: { id: app.id } });
 }

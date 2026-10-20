@@ -101,7 +101,7 @@ android/publish-store-app.sh                                      # .env の STO
 ## 画面
 
 文言は英語のみ (`res/values/strings.xml`)。並びと色は Web の Design B に合わせる
-(`docs/superpowers/wireframes/d/store-*.json`。上の帯は `#24292F`、主ボタンは緑 `#1F883D`)。
+(`docs/superpowers/wireframes/b/store-*.json`。上の帯は `#24292F`、主ボタンは緑 `#1F883D`)。
 
 ## 構成
 

@@ -56,4 +56,6 @@ model Generation {
   error        String?
   createdAt    DateTime  @default(now())
   finishedAt   DateTime?
+  /// When the app this was for was deleted (its repo is gone, so the row no longer links anywhere)
+  appDeletedAt DateTime?
 }
