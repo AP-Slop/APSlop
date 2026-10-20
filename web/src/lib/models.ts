@@ -24,7 +24,7 @@ export function modelOption(id: ModelChoice): ModelOption {
   return modelOptions().find((o) => o.id === id)!;
 }
 
-/** The AI picked at first: the one the user last used, when the server still has a key for it; else the first that has one. */
+/** The AI picked at first: the one the user last used successfully (callers skip failed runs), when the server still has a key for it; else the first that has one. */
 export function preferredModel(lastModel?: string | null): ModelChoice {
   const options = modelOptions();
   const last = lastModel ? choiceForModel(lastModel) : null;

@@ -29,7 +29,7 @@ export default async function AiPage({
   const fromIssue = !previous && issue ? await issuePrompt(name, Number(issue)) : null;
   const models = modelOptions().map(({ id, label, available }) => ({ id, label, available }));
   const last = session?.user?.id && !previous
-    ? await prisma.generation.findFirst({ where: { userId: session.user.id }, orderBy: { createdAt: "desc" }, select: { model: true } })
+    ? await prisma.generation.findFirst({ where: { userId: session.user.id, status: { not: "FAILED" } }, orderBy: { createdAt: "desc" }, select: { model: true } })
     : null;
   const initialModel = previous ? choiceForModel(previous.generation.model) : preferredModel(last?.model);
   return (

@@ -17,7 +17,7 @@ export default async function NewPage() {
     );
   }
   const last = await prisma.generation.findFirst({
-    where: { userId: session.user.id },
+    where: { userId: session.user.id, status: { not: "FAILED" } },
     orderBy: { createdAt: "desc" },
     select: { model: true },
   });
