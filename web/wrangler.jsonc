@@ -1,0 +1,24 @@
+// Cloudflare Workers deployment of the web app (OpenNext). See docs/DEPLOY_CLOUDFLARE.md.
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "apslop-web",
+  "main": ".open-next/worker.js",
+  "compatibility_date": "2026-10-01",
+  "compatibility_flags": ["nodejs_compat"],
+  "assets": {
+    "directory": ".open-next/assets",
+    "binding": "ASSETS"
+  },
+  "services": [{ "binding": "WORKER_SELF_REFERENCE", "service": "apslop-web" }],
+  // AI generation waits minutes on the model; waiting is not CPU time, but parsing/committing can be.
+  "limits": { "cpu_ms": 300000 },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "apslop",
+      "database_id": "00000000-0000-0000-0000-000000000000",
+      "migrations_dir": "prisma/d1-migrations"
+    }
+  ],
+  "observability": { "enabled": true }
+}

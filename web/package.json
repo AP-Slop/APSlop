@@ -8,19 +8,28 @@
     "start": "next start",
     "lint": "eslint",
     "typecheck": "tsc --noEmit",
-    "postinstall": "prisma generate",
+    "postinstall": "prisma generate && node scripts/bundle-template.mjs",
     "db:push": "prisma db push",
     "sync-template": "node scripts/sync-template.mjs",
-    "test": "vitest run"
+    "test": "vitest run",
+    "predev": "node scripts/bundle-template.mjs",
+    "prebuild": "node scripts/bundle-template.mjs",
+    "pretest": "node scripts/bundle-template.mjs",
+    "pretypecheck": "node scripts/bundle-template.mjs",
+    "cf:build": "APSLOP_CF=1 opennextjs-cloudflare build",
+    "preview": "APSLOP_CF=1 opennextjs-cloudflare build && opennextjs-cloudflare preview",
+    "deploy": "APSLOP_CF=1 opennextjs-cloudflare build && opennextjs-cloudflare deploy"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.124.0",
     "@libsql/client": "^0.18.0",
+    "@opennextjs/cloudflare": "^1.20.13",
+    "@prisma/adapter-d1": "^7.10.1",
     "@prisma/adapter-libsql": "^7.10.0",
     "@prisma/client": "^7.10.0",
     "diff": "^8.0.4",
     "dotenv": "^17.4.2",
-    "next": "16.3.4",
+    "next": "^16.4.2",
     "next-auth": "^5.0.0-beta.32",
     "octokit": "^5.0.5",
     "react": "19.2.8",
@@ -35,10 +44,11 @@
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "eslint": "^9",
-    "eslint-config-next": "16.3.4",
+    "eslint-config-next": "^16.4.2",
     "prisma": "^7.10.0",
     "tailwindcss": "^4",
     "typescript": "^5",
-    "vitest": "^3.2.7"
+    "vitest": "^3.2.7",
+    "wrangler": "^4.151.3"
   }
 }

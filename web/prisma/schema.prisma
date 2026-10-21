@@ -3,6 +3,14 @@ generator client {
   output   = "../src/generated/prisma"
 }
 
+// Same client for Cloudflare Workers (loads the query compiler as a wasm module).
+// The Cloudflare build swaps it in for the one above; see next.config.ts.
+generator cloudflare {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma-cf"
+  runtime  = "cloudflare"
+}
+
 datasource db {
   provider = "sqlite"
 }
