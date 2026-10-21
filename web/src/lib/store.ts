@@ -1,3 +1,4 @@
+import { cloudflareEnv } from "@/lib/cloudflare";
 import { env, fdroidRepoUrl, publicEnv } from "@/lib/env";
 import { prisma } from "@/lib/db";
 
@@ -26,13 +27,18 @@ export type StoreApp = {
   lastUpdated: number;
 };
 
+/** On Cloudflare (wrangler.jsonc): the store container and the R2 bucket that holds its files. */
+type StoreBindings = {
+  STORE: { getByName(name: string): { fetch(input: string, init?: RequestInit): Promise<Response> } };
+  STORE_FILES: { get(key: string): Promise<{ json(): Promise<unknown> } | null> };
+};
+
 async function storeFetch(path: string, init?: RequestInit): Promise<Response> {
   const e = env();
-  return fetch(`${e.STORE_SERVER_URL.replace(/\/$/, "")}${path}`, {
-    ...init,
-    headers: { "content-type": "application/json", "X-Store-Token": e.STORE_TOKEN, ...(init?.headers ?? {}) },
-    cache: "no-store",
-  });
+  const headers = { "content-type": "application/json", "X-Store-Token": e.STORE_TOKEN, ...(init?.headers ?? {}) };
+  const store = cloudflareEnv<StoreBindings>()?.STORE;
+  if (store) return store.getByName("store").fetch(`http://store${path}`, { ...init, headers });
+  return fetch(`${e.STORE_SERVER_URL.replace(/\/$/, "")}${path}`, { ...init, headers, cache: "no-store" });
 }
 
 /** Ask the store server to ingest the APK from a GitHub release. `author` is shown as the app's author in the store. */
@@ -48,6 +54,9 @@ export async function syncRelease(repoFullName: string, tag?: string, author?: s
 
 export async function listStoreApps(): Promise<StoreApp[]> {
   try {
+    // On Cloudflare the list is a file the store writes on every change, so pages never wait for the container to start.
+    const files = cloudflareEnv<StoreBindings>()?.STORE_FILES;
+    if (files) return ((await (await files.get("apps.json"))?.json()) ?? []) as StoreApp[];
     const res = await storeFetch("/apps");
     if (!res.ok) return [];
     return (await res.json()) as StoreApp[];

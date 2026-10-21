@@ -22,6 +22,14 @@ GET  /healthz
 ```
 
 `fdroid update` と `/sync`・`/apps/<pkg>` の書き換えは `threading.Lock` で直列化される。
+`fdroid update` のたびに `/apps` と同じ一覧を `/data/apps.json` にも書く。
+
+## ディスクが残らないホスト (Cloudflare Containers)
+
+`STORE_MIRROR_URL` を設定すると、起動時にそこから `/data` を丸ごと復元し(失敗したら起動しない。空のディスクで
+署名鍵を作り直さないため)、`fdroid update` のたびに変わったファイルを書き戻す(`app/mirror.py`)。
+`fdroid/config.yml`(鍵のパスワード入り)と `incoming/` は送らない。config の変化は `fdroid/config.sha256` で見る。
+相手の API は [web/cloudflare/worker.ts](../web/cloudflare/worker.ts)、構成は [docs/DEPLOY_CLOUDFLARE.md](../docs/DEPLOY_CLOUDFLARE.md)。
 
 ## ストアアプリ自身の掲載
 
@@ -77,7 +85,7 @@ curl -X POST localhost:8080/sync -H "X-Store-Token: $STORE_TOKEN" \
 
 `STORE_TOKEN`, `GITHUB_ADMIN_TOKEN`, `STORE_PUBLIC_URL`, `STORE_REPO_NAME`, `STORE_REPO_DESCRIPTION`,
 `STORE_KEY_PASSWORD`, 任意: `STORE_DATA_DIR` (既定 `/data`), `STORE_REPO_KEYALIAS` (`apslop`),
-`STORE_KEY_DNAME`, `STORE_DRY_RUN`, `STORE_APP_SOURCE_URL` (`https://github.com/AP-Slop/APSlop`).
+`STORE_KEY_DNAME`, `STORE_DRY_RUN`, `STORE_APP_SOURCE_URL` (`https://github.com/AP-Slop/APSlop`), `STORE_MIRROR_URL`.
 
 ## androguard のバージョン固定
 

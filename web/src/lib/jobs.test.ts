@@ -2,10 +2,12 @@ import { afterEach, describe, expect, it, vi } from "vitest";
 
 const after = vi.fn();
 const runProposal = vi.fn(async () => {});
+const syncAppBySlug = vi.fn(async () => ({}));
 const getCloudflareContext = vi.fn();
 
 vi.mock("next/server", () => ({ after }));
 vi.mock("@/lib/proposal-store", () => ({ runProposal }));
+vi.mock("@/lib/store", () => ({ syncAppBySlug }));
 vi.mock("@opennextjs/cloudflare", () => ({ getCloudflareContext }));
 vi.mock("@/lib/models", async () => {
   const { z } = await import("zod");
@@ -35,6 +37,15 @@ describe("runInBackground", () => {
     expect(after).toHaveBeenCalledTimes(1);
     await after.mock.calls[0][0]();
     expect(runProposal).toHaveBeenCalledWith("g1", "repo", "claude");
+  });
+});
+
+describe("runJob", () => {
+  it("syncs a release into the store and swallows a failure", async () => {
+    const { runJob } = await import("./jobs");
+    syncAppBySlug.mockRejectedValueOnce(new Error("no APK yet"));
+    await expect(runJob({ kind: "sync", slug: "timer", tag: "v1.0.0" })).resolves.toBeUndefined();
+    expect(syncAppBySlug).toHaveBeenCalledWith("timer", "v1.0.0");
   });
 });
 

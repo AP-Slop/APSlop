@@ -28,6 +28,8 @@ class Settings:
     key_password: str = field(default_factory=lambda: _env("STORE_KEY_PASSWORD", "change-me"))
     repo_keyalias: str = field(default_factory=lambda: _env("STORE_REPO_KEYALIAS", "apslop"))
     key_dname: str = field(default_factory=lambda: _env("STORE_KEY_DNAME", "CN=APSlop, O=APSlop"))
+    # Object storage that holds the data dir when the disk does not persist (see app/mirror.py); "" = off.
+    mirror_url: str = field(default_factory=lambda: _env("STORE_MIRROR_URL", "").rstrip("/"))
     # Skip running fdroid / keytool (used by tests and local dev without the toolchain).
     dry_run: bool = field(default_factory=lambda: _env("STORE_DRY_RUN", "0") == "1")
 
@@ -54,6 +56,11 @@ class Settings:
     @property
     def incoming_dir(self) -> Path:
         return self.data_dir / "incoming"
+
+    @property
+    def apps_json(self) -> Path:
+        """The /apps list as a file, so a host can serve it without waking this server."""
+        return self.data_dir / "apps.json"
 
     @property
     def repo_url(self) -> str:

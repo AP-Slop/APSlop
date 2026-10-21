@@ -1,12 +1,15 @@
 import { after } from "next/server";
-import { getCloudflareContext } from "@opennextjs/cloudflare";
 import { z } from "zod";
+import { cloudflareEnv } from "@/lib/cloudflare";
 import { ModelChoiceSchema } from "@/lib/models";
 import { runProposal } from "@/lib/proposal-store";
+import { syncAppBySlug } from "@/lib/store";
 
 /** Work that must finish even if the browser that asked for it goes away. */
 export const JobSchema = z.discriminatedUnion("kind", [
   z.object({ kind: z.literal("propose"), id: z.string().min(1), name: z.string().min(1), model: ModelChoiceSchema }),
+  // A release reached GitHub (webhook): put its APK in the store. Takes a while when the store has to start.
+  z.object({ kind: z.literal("sync"), slug: z.string().min(1), tag: z.string().min(1) }),
 ]);
 export type Job = z.infer<typeof JobSchema>;
 
@@ -14,11 +17,7 @@ type Queue = { send(body: Job): Promise<void> };
 
 /** The Cloudflare Queue for jobs, or undefined under Node (docker / next dev). */
 function jobQueue(): Queue | undefined {
-  try {
-    return (getCloudflareContext().env as { JOBS?: Queue }).JOBS;
-  } catch {
-    return undefined;
-  }
+  return cloudflareEnv<{ JOBS: Queue }>()?.JOBS;
 }
 
 /**
@@ -36,5 +35,9 @@ export async function runJob(job: Job): Promise<void> {
   switch (job.kind) {
     case "propose":
       return runProposal(job.id, job.name, job.model);
+    case "sync":
+      // The APK may still be missing (CI running); the next webhook or "Sync to store" catches up.
+      await syncAppBySlug(job.slug, job.tag).catch((e) => console.warn(`sync of ${job.slug} failed:`, (e as Error).message));
+      return;
   }
 }

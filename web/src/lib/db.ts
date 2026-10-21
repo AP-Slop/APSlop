@@ -1,7 +1,7 @@
-import { getCloudflareContext } from "@opennextjs/cloudflare";
 import { PrismaD1 } from "@prisma/adapter-d1";
 import { PrismaLibSql } from "@prisma/adapter-libsql";
 import { PrismaClient } from "@/generated/prisma/client";
+import { cloudflareEnv } from "@/lib/cloudflare";
 
 /** Cloudflare's D1 binding (typed via the adapter so the Workers runtime types stay out of the build). */
 type D1Database = ConstructorParameters<typeof PrismaD1>[0];
@@ -11,11 +11,7 @@ const d1Clients = new WeakMap<D1Database, PrismaClient>();
 
 /** The D1 binding when running on Cloudflare Workers; undefined under Node (docker / next dev / tests). */
 function d1(): D1Database | undefined {
-  try {
-    return (getCloudflareContext().env as { DB?: D1Database }).DB;
-  } catch {
-    return undefined;
-  }
+  return cloudflareEnv<{ DB: D1Database }>()?.DB;
 }
 
 function client(): PrismaClient {

@@ -1,6 +1,7 @@
 """fdroidserver integration: repo initialisation, metadata, `fdroid update`, index parsing."""
 from __future__ import annotations
 
+import hashlib
 import json
 import logging
 import re
@@ -9,6 +10,9 @@ import threading
 from pathlib import Path
 from typing import Any
 
+import httpx
+
+from . import mirror
 from .config import Settings, settings
 from .signing import SigningError, run, which
 
@@ -47,10 +51,17 @@ def write_config(cfg: Settings = settings) -> tuple[Path, bool]:
         "",
     ]
     text = "\n".join(lines)
-    changed = not path.exists() or path.read_text(encoding="utf-8") != text
-    if changed:
+    if not path.exists() or path.read_text(encoding="utf-8") != text:
         path.write_text(text, encoding="utf-8")
         path.chmod(0o600)
+    # config.yml is not kept in the mirror (it holds the key password), so whether it changed since the
+    # index was generated is told by a digest of its other settings, which is kept.
+    public = "\n".join(ln for ln in lines if not ln.startswith(("keystorepass:", "keypass:")))
+    digest = hashlib.sha256(public.encode()).hexdigest()
+    stamp = cfg.fdroid_dir / "config.sha256"
+    changed = not stamp.exists() or stamp.read_text(encoding="utf-8").strip() != digest
+    if changed:
+        stamp.write_text(digest + "\n", encoding="utf-8")
     return path, changed
 
 
@@ -136,18 +147,32 @@ def fdroid_update(cfg: Settings = settings) -> str:
     """Run `fdroid update` (caller must hold repo_lock)."""
     if cfg.dry_run:
         log.info("dry run: skipping fdroid update")
-        return "dry-run"
-    tool = which("fdroid")
-    if not tool:
-        raise SigningError("fdroid not found")
-    proc = subprocess.run(
-        [tool, "update", "--create-metadata", "--pretty"],
-        cwd=cfg.fdroid_dir, capture_output=True, text=True,
-    )
-    if proc.returncode != 0:
-        tail = (proc.stderr or proc.stdout or "")[-3000:]
-        raise SigningError(f"fdroid update failed: {tail}")
-    return proc.stdout[-3000:]
+        out = "dry-run"
+    else:
+        tool = which("fdroid")
+        if not tool:
+            raise SigningError("fdroid not found")
+        proc = subprocess.run(
+            [tool, "update", "--create-metadata", "--pretty"],
+            cwd=cfg.fdroid_dir, capture_output=True, text=True,
+        )
+        if proc.returncode != 0:
+            tail = (proc.stderr or proc.stdout or "")[-3000:]
+            raise SigningError(f"fdroid update failed: {tail}")
+        out = proc.stdout[-3000:]
+    _published(cfg)
+    return out
+
+
+def _published(cfg: Settings) -> None:
+    """After the repo changed: the app list file, and the copy in object storage."""
+    apps = parse_index_v2(load_index_v2(cfg), cfg.repo_url, cfg.repo_dir)
+    cfg.apps_json.write_text(json.dumps(apps, ensure_ascii=False), encoding="utf-8")
+    if mirror.enabled(cfg):
+        try:
+            mirror.push(cfg)
+        except (mirror.MirrorError, httpx.HTTPError) as e:
+            raise SigningError(f"could not save the store: {e}") from e
 
 
 def initialise(cfg: Settings = settings) -> None:

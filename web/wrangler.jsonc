@@ -25,6 +25,13 @@
     "producers": [{ "binding": "JOBS", "queue": "apslop-jobs" }],
     "consumers": [{ "queue": "apslop-jobs", "max_batch_size": 1, "max_batch_timeout": 0, "max_retries": 0 }]
   },
+  // The store: store-server/ in a container (one instance, "store"), its files in R2 (served by cloudflare/worker.ts).
+  "containers": [
+    { "class_name": "StoreContainer", "image": "../store-server/Dockerfile", "instance_type": "standard-1", "max_instances": 1 }
+  ],
+  "durable_objects": { "bindings": [{ "name": "STORE", "class_name": "StoreContainer" }] },
+  "migrations": [{ "tag": "v1", "new_sqlite_classes": ["StoreContainer"] }],
+  "r2_buckets": [{ "binding": "STORE_FILES", "bucket_name": "apslop-store" }],
   "observability": { "enabled": true },
   // Non-secret settings (see docs/ARCHITECTURE.md). Secrets are set with `wrangler secret`.
   "vars": {
@@ -34,8 +41,6 @@
     "ANTHROPIC_MODEL": "claude-opus-5",
     "NEXT_PUBLIC_APP_URL": "https://apslop-web.taku1029-dev.workers.dev",
     "NEXT_PUBLIC_STORE_URL": "https://apslop-web.taku1029-dev.workers.dev",
-    "NEXT_PUBLIC_SITE_NAME": "APSlop",
-    // The store server is not on Cloudflare yet; until then the store parts stay empty.
-    "STORE_SERVER_URL": "http://store.invalid"
+    "NEXT_PUBLIC_SITE_NAME": "APSlop"
   }
 }

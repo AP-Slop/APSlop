@@ -3,7 +3,10 @@
 # like every other app). Run on the host that runs `docker compose`, from anywhere in the repo.
 #
 #   android/publish-store-app.sh [repo-url]
+#   STORE_TOKEN=… android/publish-store-app.sh --cloudflare <site-url>
 #
+# With --cloudflare the store app points at <site-url>/fdroid/repo and is uploaded to the site
+# (docs/DEPLOY_CLOUDFLARE.md); STORE_TOKEN is the Worker's secret of that name.
 # The app's default repository is repo-url, else STORE_PUBLIC_URL from .env + /fdroid/repo, so phones
 # that download it from the website open this store without any setup. Locally, pass
 # http://10.0.2.2:<STORE_PORT>/fdroid/repo for the Android emulator. Bump versionCode in
@@ -11,6 +14,24 @@
 set -eu
 root=$(cd "$(dirname "$0")/.." && pwd)
 cd "$root"
+
+build() {
+  echo "Building the store app for $1"
+  ./android/gradlew -p android -q :app:assembleRelease -Papslop.repoUrl="$1"
+}
+apk=android/app/build/outputs/apk/release/app-release-unsigned.apk
+
+if [ "${1:-}" = "--cloudflare" ]; then
+  site=${2:?usage: publish-store-app.sh --cloudflare <site-url>}
+  site=${site%/}
+  : "${STORE_TOKEN:?set STORE_TOKEN to the Worker secret}"
+  build "$site/fdroid/repo"
+  # The token goes in through stdin, so it never shows in the process list.
+  printf 'X-Store-Token: %s\n' "$STORE_TOKEN" |
+    curl -fsS -X PUT -H @- -H 'Content-Type: application/vnd.android.package-archive' --data-binary @"$apk" "$site/_store/store-app"
+  echo
+  exit
+fi
 
 if [ $# -ge 1 ]; then
   repo_url=$1
@@ -20,9 +41,7 @@ else
   repo_url="${public_url%/}/fdroid/repo"
 fi
 
-echo "Building the store app for $repo_url"
-./android/gradlew -p android -q :app:assembleRelease -Papslop.repoUrl="$repo_url"
-apk=android/app/build/outputs/apk/release/app-release-unsigned.apk
+build "$repo_url"
 
 docker compose cp "$apk" store-server:/tmp/store-app.apk
 # The token stays inside the container.
