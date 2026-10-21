@@ -25,5 +25,17 @@
     "producers": [{ "binding": "JOBS", "queue": "apslop-jobs" }],
     "consumers": [{ "queue": "apslop-jobs", "max_batch_size": 1, "max_batch_timeout": 0, "max_retries": 0 }]
   },
-  "observability": { "enabled": true }
+  "observability": { "enabled": true },
+  // Non-secret settings (see docs/ARCHITECTURE.md). Secrets are set with `wrangler secret`.
+  "vars": {
+    "GITHUB_ORG": "AP-Slop",
+    "AUTH_URL": "https://apslop-web.taku1029-dev.workers.dev",
+    "AUTH_TRUST_HOST": "true",
+    "ANTHROPIC_MODEL": "claude-opus-5",
+    "NEXT_PUBLIC_APP_URL": "https://apslop-web.taku1029-dev.workers.dev",
+    "NEXT_PUBLIC_STORE_URL": "https://apslop-web.taku1029-dev.workers.dev",
+    "NEXT_PUBLIC_SITE_NAME": "APSlop",
+    // The store server is not on Cloudflare yet; until then the store parts stay empty.
+    "STORE_SERVER_URL": "http://store.invalid"
+  }
 }
