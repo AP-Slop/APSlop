@@ -89,8 +89,10 @@ export class StoreContainer extends DurableObject<Env> {
   }
 
   async fetch(request: Request): Promise<Response> {
+    // Read the body before a cold start: an upload left unread for ~30 s is dropped with a 502.
+    const body = request.body ? await request.arrayBuffer() : null;
     await this.boot();
-    return this.container.getTcpPort(STORE_PORT).fetch(request);
+    return this.container.getTcpPort(STORE_PORT).fetch(new Request(request, { body }));
   }
 
   private boot(): Promise<void> {

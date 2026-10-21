@@ -50,7 +50,7 @@ web はストアの一覧を R2 の `apps.json`(fdroid update のたびにコン
 
 ```sh
 cd web
-npm run cf:deploy     # OpenNext でビルド → wrangler deploy。ストアのイメージも docker でビルドして送る
+npm run deploy        # OpenNext でビルド → wrangler deploy。ストアのイメージも docker でビルドして送る
 ```
 
 ストアのイメージのビルドに docker が要る(linux/amd64)。
@@ -80,7 +80,7 @@ STORE_TOKEN=… android/publish-store-app.sh --cloudflare https://apslop-web.<su
 
 ## ローカルで試す
 
-`npm run cf:preview` で Worker を手元で動かせる(`.dev.vars` に secret)。ストアのコンテナは手元の docker で動くはずだが、
+`npm run preview` で Worker を手元で動かせる(`.dev.vars` に secret)。ストアのコンテナは手元の docker で動くはずだが、
 環境によってはコンテナが起動しない。そのときは store-server のイメージを直接動かして R2 の代わりの API に向ける:
 
 ```sh
