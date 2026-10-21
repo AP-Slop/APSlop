@@ -1,61 +1,19 @@
-import fs from "node:fs/promises";
-import path from "node:path";
 import type { RepoFile } from "@/lib/github";
+// Built by scripts/bundle-template.mjs (runs before dev/build/test) from ./template, since
+// Cloudflare Workers have no filesystem to read the template from at runtime.
+import bundle from "@/generated/template-bundle.json";
 
-const SKIP_DIRS = new Set([".gradle", "build", ".idea", "node_modules", ".git"]);
-const TEXT_EXT = /\.(kt|kts|xml|md|txt|yml|yaml|json|properties|gradle|pro|sh|bat|gitignore|toml)$/i;
-/** Rules for the AI prompt; never committed into student repos. */
-const RULES_FILE = "TEMPLATE_RULES.md";
 /** Source dirs of the template's placeholder package, dropped once the AI supplies its own package. */
 const TEMPLATE_PKG_DIRS = ["app/src/main/java/dev/apslop/apps/template/", "app/src/test/java/dev/apslop/apps/template/"];
 
-/** Reads TEMPLATE_RULES.md from the template dir, or "" if absent. */
+/** TEMPLATE_RULES.md of the template (rules for the AI prompt; never committed into student repos), or "". */
 export async function readTemplateRules(): Promise<string> {
-  try {
-    return await fs.readFile(path.join(templateDir(), RULES_FILE), "utf-8");
-  } catch {
-    return "";
-  }
+  return bundle.rules;
 }
 
-/** Directory holding the Android app template (copied into the image at /app/template). */
-export function templateDir(): string {
-  return process.env.TEMPLATE_DIR ?? path.join(process.cwd(), "template");
-}
-
-/** Reads every file under the template dir; binaries become base64 blobs. */
+/** Every file of the Android app template; binaries are base64 blobs. Empty if no template was bundled. */
 export async function readTemplateFiles(): Promise<RepoFile[]> {
-  const root = templateDir();
-  try {
-    await fs.access(root);
-  } catch {
-    return [];
-  }
-  const out: RepoFile[] = [];
-  async function walk(dir: string) {
-    for (const entry of await fs.readdir(dir, { withFileTypes: true })) {
-      if (entry.isDirectory()) {
-        if (SKIP_DIRS.has(entry.name)) continue;
-        await walk(path.join(dir, entry.name));
-        continue;
-      }
-      if (!entry.isFile()) continue;
-      const abs = path.join(dir, entry.name);
-      const rel = path.relative(root, abs).split(path.sep).join("/");
-      if (rel === "local.properties" || rel === RULES_FILE) continue;
-      const buf = await fs.readFile(abs);
-      const isText = TEXT_EXT.test(entry.name) || entry.name === "gradlew" || !buf.subarray(0, 8000).includes(0);
-      const stat = await fs.stat(abs);
-      const mode = stat.mode & 0o111 ? ("100755" as const) : ("100644" as const);
-      out.push(
-        isText
-          ? { path: rel, content: buf.toString("utf-8"), mode }
-          : { path: rel, content: buf.toString("base64"), encoding: "base64", mode },
-      );
-    }
-  }
-  await walk(root);
-  return out;
+  return (bundle.files as RepoFile[]).map((f) => ({ ...f }));
 }
 
 /** Template files, with binaries omitted and long files truncated — for the AI prompt. */

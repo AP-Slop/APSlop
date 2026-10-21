@@ -49,3 +49,8 @@ next-env.d.ts
 *.db
 *.db-journal
 tsconfig.tsbuildinfo
+
+# Cloudflare (OpenNext / wrangler)
+/.open-next
+/.wrangler
+.dev.vars*

@@ -13,7 +13,7 @@ from fastapi.responses import JSONResponse
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel, Field
 
-from . import fdroid
+from . import fdroid, mirror
 from .config import settings
 from .signing import SigningError
 from .store_app import publish_store_app, refresh_store_app_metadata
@@ -31,6 +31,8 @@ mimetypes.add_type("application/java-archive", ".jar")
 
 @asynccontextmanager
 async def lifespan(_: FastAPI):
+    if mirror.enabled():
+        await run_in_threadpool(mirror.restore)
     fdroid.initialise()
     try:
         await run_in_threadpool(refresh_store_app_metadata)

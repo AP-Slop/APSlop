@@ -2,9 +2,7 @@ import { createHmac, timingSafeEqual } from "node:crypto";
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/db";
 import { env } from "@/lib/env";
-import { syncAppBySlug } from "@/lib/store";
-
-export const maxDuration = 300;
+import { runInBackground } from "@/lib/jobs";
 
 function verify(raw: string, signature: string | null): boolean {
   const secret = env().GITHUB_WEBHOOK_SECRET;
@@ -28,17 +26,12 @@ type WorkflowRunEvent = {
   repository?: { full_name: string };
 };
 
-/** Sync an app's release into the store; APK may still be missing (CI running), so never fail the hook. */
+/** Sync an app's release into the store after answering: GitHub gives up on a hook after 10 seconds. */
 async function syncForRepo(fullName: string, tag: string) {
   const app = await prisma.app.findUnique({ where: { repoFullName: fullName } });
   if (!app) return NextResponse.json({ ignored: "unknown app" });
-  try {
-    const updated = await syncAppBySlug(app.slug, tag);
-    return NextResponse.json({ synced: updated.slug, version: updated.latestVersion });
-  } catch (e) {
-    console.warn("webhook sync failed:", (e as Error).message);
-    return NextResponse.json({ synced: false, error: (e as Error).message }, { status: 202 });
-  }
+  await runInBackground({ kind: "sync", slug: app.slug, tag });
+  return NextResponse.json({ queued: app.slug, tag }, { status: 202 });
 }
 
 export async function POST(req: Request) {
