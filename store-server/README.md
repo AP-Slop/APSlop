@@ -95,5 +95,5 @@ fdroidserver 公式イメージ同梱の androguard 3.4 は AGP 8 系がビル�
 
 fdroidserver の公式 Docker イメージは amd64 専用のため使わず、`python:3.12-slim-bookworm` に
 Debian パッケージ (`default-jdk-headless`, `apksigner`, `zipalign`, `aapt`) と PyPI の
-`fdroidserver` / `androguard==4.1.2` を入れて構成している。同じ Dockerfile が Oracle Cloud の
-Ampere A1 (arm64) でもビルドできる。ローカル (amd64) では雛形 APK の署名から index 生成まで検証済み。
+`fdroidserver` / `androguard==4.1.2` を入れて構成している。同じ Dockerfile が arm64 でもビルドできる
+(Cloudflare Containers は amd64)。ローカル (amd64) では雛形 APK の署名から index 生成まで検証済み。

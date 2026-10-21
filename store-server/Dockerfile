@@ -1,5 +1,5 @@
 # store-server: FastAPI + fdroidserver, built from Debian packages so the same image
-# builds on amd64 and arm64 (e.g. Oracle Cloud Ampere A1). The official fdroidserver
+# builds on amd64 and arm64. The official fdroidserver
 # docker image is amd64-only, so it is not used here.
 FROM python:3.12-slim-bookworm
 

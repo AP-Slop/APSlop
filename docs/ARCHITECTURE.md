@@ -149,7 +149,7 @@ web と store-server は docker compose から同じ設定を読む。非秘密�
 | `GITHUB_ORG` | `AP-Slop` | 全リポジトリを置く Organization |
 | `GITHUB_CLIENT_ID` | `Iv1.xxx` | 利用者ログイン用 OAuth App |
 | `AUTH_URL` | `http://localhost:3000` | Auth.js のベース URL |
-| `AUTH_TRUST_HOST` | 本番で `true` | リバースプロキシ配下では必須 |
+| `AUTH_TRUST_HOST` | 本番で `true` | ホスト名をリクエストから取る (Workers では必須) |
 | `ANTHROPIC_MODEL` | `claude-opus-5` | アプリ生成に使うモデル |
 | `DEEPSEEK_MODEL` | `deepseek-flash` | 「Create PR with AI」で使う DeepSeek のモデル (DeepSeek-V4.1-Flash-1017 は `deepseek-flash` で呼ぶ) |
 | `DEEPSEEK_BASE_URL` | `https://api.deepseek.com/anthropic` | DeepSeek の Anthropic 互換エンドポイント |
@@ -162,7 +162,6 @@ web と store-server は docker compose から同じ設定を読む。非秘密�
 | `STORE_PORT` | `8080` | ホスト側に公開するポート |
 | `STORE_PUBLIC_URL` | `http://localhost:8080` | F-Droid index に埋め込む公開 URL |
 | `STORE_REPO_NAME` / `STORE_REPO_DESCRIPTION` | — | ストアの表示名と説明 |
-| `APSLOP_DOMAIN` | `apslop.example.com` | 本番の公開ホスト名 (Caddy が証明書を取る名前) |
 
 ### `.env.secrets` (秘密)
 
@@ -177,8 +176,8 @@ web と store-server は docker compose から同じ設定を読む。非秘密�
 | `STORE_TOKEN` | web ↔ store-server の共有トークン |
 | `STORE_KEY_PASSWORD` | APK 署名鍵 / リポジトリ鍵のパスワード (6 文字以上) |
 
-本番では URL 系を全て `https://<APSLOP_DOMAIN>` に揃える
-(`AUTH_URL` / `NEXT_PUBLIC_APP_URL` / `NEXT_PUBLIC_STORE_URL` / `STORE_PUBLIC_URL`)。
+本番 (Cloudflare) の設定は `web/wrangler.jsonc` の `vars` と Worker の secret に置く
+([DEPLOY_CLOUDFLARE.md](DEPLOY_CLOUDFLARE.md))。
 store-server にはこのほか `STORE_DATA_DIR` / `GITHUB_API_URL` / `STORE_REPO_KEYALIAS` /
 `STORE_KEY_DNAME` / `STORE_DRY_RUN` / `STORE_APP_SOURCE_URL`(ストアアプリの掲載ページのソースのリンク)があり、既定値は `store-server/app/config.py` を参照。
 
