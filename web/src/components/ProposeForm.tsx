@@ -6,7 +6,12 @@ import { buttonClass, ErrorBox } from "@/components/ui";
 import type { ModelChoice } from "@/lib/models";
 import { ModelSelect, type ModelPick } from "@/components/ModelSelect";
 
-/** Sends a change request to AI, then opens the review screen. Nothing reaches GitHub here. */
+const POLL_MS = 3000;
+
+/**
+ * Sends a change request to AI and waits until the proposal is ready for review. Nothing reaches GitHub here.
+ * AI works in the background, so closing the page does not lose the result (it shows up on the dashboard).
+ */
 export async function requestProposal(name: string, prompt: string, model: ModelChoice): Promise<string> {
   const res = await fetch(`/api/repos/${name}/propose`, {
     method: "POST",
@@ -15,7 +20,17 @@ export async function requestProposal(name: string, prompt: string, model: Model
   });
   const json = await res.json().catch(() => ({}));
   if (!res.ok) throw new Error(json.error ?? "Could not generate changes");
-  return json.id as string;
+  const id = json.id as string;
+  for (;;) {
+    await new Promise((r) => setTimeout(r, POLL_MS));
+    const poll = await fetch(`/api/repos/${name}/propose/${id}`, { cache: "no-store" }).catch(() => null);
+    if (!poll || poll.status >= 500) continue; // a dropped connection or a restart: keep waiting
+    const state = await poll.json().catch(() => ({}));
+    if (!poll.ok) throw new Error(state.error ?? "Could not generate changes");
+    if (state.status === "PENDING") continue;
+    if (state.status === "FAILED") throw new Error(state.error ?? "Could not generate changes");
+    return id;
+  }
 }
 
 export function ProposeForm({

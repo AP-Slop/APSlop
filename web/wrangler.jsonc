@@ -2,7 +2,7 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "apslop-web",
-  "main": ".open-next/worker.js",
+  "main": "cloudflare/worker.ts",
   "compatibility_date": "2026-10-01",
   "compatibility_flags": ["nodejs_compat"],
   "assets": {
@@ -16,9 +16,14 @@
     {
       "binding": "DB",
       "database_name": "apslop",
-      "database_id": "00000000-0000-0000-0000-000000000000",
+      "database_id": "84314678-fca8-4d3d-8501-ffe6b03d705f",
       "migrations_dir": "prisma/d1-migrations"
     }
   ],
+  // Background jobs (AI proposals) that must outlive the request; consumed in cloudflare/worker.ts.
+  "queues": {
+    "producers": [{ "binding": "JOBS", "queue": "apslop-jobs" }],
+    "consumers": [{ "queue": "apslop-jobs", "max_batch_size": 1, "max_batch_timeout": 0, "max_retries": 0 }]
+  },
   "observability": { "enabled": true }
 }
