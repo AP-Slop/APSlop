@@ -36,9 +36,5 @@ docker compose up --build
 
 ## デプロイ
 
-Oracle Cloud Always Free(Ampere A1 / ARM64)に Caddy + Docker Compose で公開する手順は
-[docs/DEPLOY_ORACLE.md](docs/DEPLOY_ORACLE.md) を参照。本番は次で起動する。
-
-```sh
-docker compose -f docker-compose.yml -f docker-compose.prod.yml up -d --build
-```
+本番は Cloudflare(Workers + D1 + Queues + Containers + R2、Workers Paid プラン)で動かす。
+手順は [docs/DEPLOY_CLOUDFLARE.md](docs/DEPLOY_CLOUDFLARE.md) を参照。`docker compose` はローカル開発用。
