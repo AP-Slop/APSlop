@@ -1,0 +1,2726 @@
+/* ---------- editor shell ---------- */
+:root {
+  --left: 220px;
+  --right: 300px;
+  --header: 48px;
+}
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  font-family: system-ui, sans-serif;
+  font-size: 13px;
+  color: #222;
+  background: #ececef;
+}
+#app {
+  position: relative;
+  display: grid;
+  grid-template-rows: var(--header) auto minmax(0, 1fr);
+  height: 100vh;
+}
+#header {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  padding: 0 12px;
+  background: #fff;
+  border-bottom: 1px solid #ddd;
+}
+#header .hdr-select {
+  font: inherit;
+  padding: 4px 8px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  background: #fff;
+  max-width: 180px;
+}
+#header .hdr-screen {
+  max-width: 320px;
+}
+#header .hdr-project {
+  margin-left: 4px;
+}
+#header {
+  grid-row: 1;
+}
+#banner {
+  grid-row: 2;
+}
+#start,
+#editor {
+  grid-row: 3;
+  display: grid;
+  min-height: 0;
+}
+#start[hidden],
+#editor[hidden] {
+  display: none;
+}
+#start {
+  grid-template-columns: var(--left) 1fr;
+}
+#editor {
+  grid-template-columns: var(--left) 1fr var(--right);
+}
+aside,
+#start-nav {
+  background: #f8f8fa;
+  overflow: auto;
+  padding: 8px;
+}
+#left,
+#start-nav {
+  border-right: 1px solid #ddd;
+}
+#right {
+  border-left: 1px solid #ddd;
+}
+#start-main {
+  overflow: auto;
+  padding: 16px 32px 32px;
+}
+#canvas-wrap {
+  position: relative;
+  overflow: auto;
+  user-select: none;
+}
+#canvas {
+  min-height: 100%;
+}
+#stopped {
+  position: absolute;
+  inset: 0;
+  z-index: 15;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(20, 20, 24, .4);
+  color: #fff;
+  font-weight: 600;
+  font-size: 16px;
+  pointer-events: none;
+}
+#stopped[hidden] {
+  display: none;
+}
+.panel-title {
+  font-weight: 600;
+  margin: 8px 0 4px;
+  font-size: 11px;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  color: #666;
+}
+/* A title that is a name (「MySet を直す」): written as it is, not upper-cased. */
+.panel-title.is-name {
+  text-transform: none;
+}
+.tree-section-title {
+  cursor: pointer;
+  user-select: none;
+  text-transform: none;
+  font-size: 12px;
+}
+.nav-btn {
+  display: block;
+  width: 100%;
+  text-align: left;
+  margin-bottom: 8px;
+  padding: 10px 12px;
+}
+.nav-btn.is-active,
+.tab-btn.is-active {
+  background: #2563EB;
+  color: #fff;
+  border-color: #2563EB;
+}
+.start-title {
+  font-size: 20px;
+  margin: 8px 0 4px;
+}
+.tabs {
+  display: flex;
+  gap: 8px;
+  margin: 12px 0 16px;
+}
+.templates-body {
+  display: flex;
+  gap: 24px;
+  align-items: flex-start;
+}
+.section-head {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin: 20px 0 8px;
+}
+.section-name {
+  font-weight: 600;
+  font-size: 15px;
+}
+.section-empty {
+  margin: 0 0 8px;
+}
+.card-row,
+.card-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+}
+.card {
+  position: relative;
+  padding: 12px 16px 16px;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, .06);
+}
+.card.is-clickable {
+  cursor: pointer;
+}
+.card.is-clickable:hover {
+  border-color: #2563EB;
+}
+.card-title {
+  margin-top: 8px;
+  font-weight: 600;
+}
+.card-del {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  width: 24px;
+  height: 24px;
+  border: none;
+  border-radius: 50%;
+  background: #eee;
+  cursor: pointer;
+  font: inherit;
+}
+.card-del:hover {
+  background: #fde2e2;
+}
+.has-error {
+  color: #b00;
+}
+.thumb-empty {
+  background: repeating-linear-gradient(45deg, #f4f4f6 0 10px, #e6e6ea 10px 11px);
+  border: 1px solid #ddd;
+}
+.wf-thumb {
+  position: relative;
+  overflow: hidden;
+  pointer-events: none;
+  border: 1px solid #ddd;
+}
+.wf-thumb-frame {
+  box-shadow: none;
+}
+.create-form {
+  width: 260px;
+  flex: none;
+  padding: 16px;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  display: grid;
+  gap: 10px;
+}
+.create-form .form-title {
+  font-weight: 600;
+}
+.create-form label {
+  display: grid;
+  gap: 4px;
+  color: #555;
+}
+.create-form input,
+.create-form select {
+  font: inherit;
+  padding: 5px 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+.create-form input.is-invalid {
+  border-color: #b00;
+}
+.form-error {
+  color: #b00;
+}
+.form-actions {
+  display: flex;
+  gap: 8px;
+}
+.dropzone {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin: 12px 0;
+  padding: 24px;
+  background: #fff;
+  border: 2px dashed #bbb;
+  border-radius: 8px;
+}
+.dropzone.is-over {
+  border-color: #2563EB;
+  background: #eef3ff;
+}
+.dropzone-text {
+  flex: 1;
+  color: #555;
+}
+.import-form {
+  margin-bottom: 16px;
+  padding: 16px;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, .06);
+}
+.import-form .form-title {
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+.import-body {
+  display: flex;
+  gap: 24px;
+  align-items: flex-start;
+}
+.import-preview {
+  width: 160px;
+  max-height: 200px;
+  object-fit: contain;
+  border: 1px solid #ddd;
+  background: #fafafa;
+}
+.import-fields {
+  display: grid;
+  gap: 10px;
+  flex: 1;
+  min-width: 0;
+  max-width: 920px;
+}
+.import-pair {
+  display: grid;
+  grid-template-columns: minmax(0, 4fr) minmax(0, 5fr);
+  gap: 16px;
+}
+.import-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 12px;
+}
+.import-row .form-actions {
+  margin-left: auto;
+}
+.import-fields label {
+  display: grid;
+  gap: 4px;
+  color: #555;
+}
+.import-fields label.import-check {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: inherit;
+}
+.import-target {
+  display: grid;
+  grid-template-columns: 160px 180px minmax(0, 300px);
+  gap: 12px;
+}
+.import-fields input[type="text"],
+.import-fields select {
+  width: 100%;
+  box-sizing: border-box;
+  font: inherit;
+  padding: 5px 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+.import-fields input.is-invalid {
+  border-color: #b00;
+}
+.ref-img {
+  display: block;
+  max-height: 180px;
+  object-fit: contain;
+  border: 1px solid #ddd;
+  background: #fafafa;
+}
+.ref-missing {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #b00;
+}
+.ref-pending {
+  color: #2563EB;
+  font-weight: 600;
+}
+.ref-note {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.card-link {
+  color: #2563EB;
+  text-decoration: none;
+}
+.card-link:hover {
+  text-decoration: underline;
+}
+.tree-row {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 8px 3px 0;
+  border-radius: 4px;
+  cursor: pointer;
+  white-space: nowrap;
+  overflow: hidden;
+  user-select: none;
+}
+.tree-row:hover {
+  background: #e9e9ee;
+}
+/* Under a type's Default row while the type has one (live-myset spec §5.3): seen, not pressed. */
+.tree-hint {
+  pointer-events: none;
+  font-size: 11px;
+}
+.tree-row.is-current {
+  background: #dfe7ff;
+  font-weight: 600;
+}
+.tree-toggle {
+  display: inline-block;
+  width: 14px;
+  text-align: center;
+  color: #666;
+  flex: none;
+}
+.tree-toggle.is-empty {
+  visibility: hidden;
+}
+.tree-label {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+/* A mirrored text's source (values spec §5.2): 「← 設定 › 名前」 after its name. */
+.tree-from {
+  color: #888;
+  margin-left: 6px;
+  font-size: 11px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.tree-row.is-broken {
+  color: #b00;
+  cursor: default;
+}
+.tree-del {
+  margin-left: auto;
+  flex: none;
+  width: 20px;
+  height: 20px;
+  border: none;
+  border-radius: 50%;
+  background: transparent;
+  color: #666;
+  cursor: pointer;
+  font: inherit;
+  line-height: 1;
+}
+.tree-del:hover {
+  background: #fde2e2;
+  color: #b00;
+}
+.tree-lock {
+  margin-left: auto;
+  flex: none;
+  width: 20px;
+  text-align: center;
+  font-size: 11px;
+  opacity: 0;
+  cursor: pointer;
+}
+.tree-row:hover .tree-lock {
+  opacity: .3;
+}
+.tree-lock.is-on,
+.tree-row:hover .tree-lock.is-on {
+  opacity: 1;
+}
+.quad {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  min-width: 0;
+}
+.quad > * {
+  flex: 1;
+  min-width: 0;
+}
+.quad input {
+  width: 100%;
+  min-width: 0;
+}
+.id-line {
+  font-size: 11px;
+  margin: -4px 0 6px;
+}
+.own-hint {
+  font-size: 11px;
+  margin: 2px 0 10px;
+}
+.set-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 8px;
+}
+.set-type {
+  color: #6b7280;
+  font-size: 12px;
+  white-space: nowrap;
+}
+.set-box .set-detach {
+  margin: 0;
+}
+.set-diff {
+  margin: -4px 0 8px;
+}
+.set-box {
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 8px 12px;
+  margin: 8px 0 12px;
+  display: grid;
+  gap: 8px;
+}
+.set-box .set-name {
+  font-weight: 600;
+}
+.set-actions {
+  display: flex;
+  gap: 8px;
+}
+.set-actions .btn {
+  flex: 1;
+}
+.set-detach {
+  margin: -4px 0 12px;
+}
+.from-set {
+  opacity: .6;
+}
+.field-with-mark {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.field-with-mark > :first-child {
+  flex: 1;
+  min-width: 0;
+}
+.field-mark {
+  font-size: 11px;
+  color: #6b7280;
+  white-space: nowrap;
+}
+.field-mark.is-own {
+  color: #2563eb;
+}
+.field-mark .mark-x {
+  cursor: pointer;
+  margin-left: 4px;
+}
+button.btn-ghost {
+  background: transparent;
+  border-color: transparent;
+  color: #6b7280;
+}
+button.btn-ghost.is-danger {
+  color: #c0392b;
+}
+.tree-row.is-drop-target {
+  outline: 2px solid #2563EB;
+  outline-offset: -2px;
+}
+.tree-drop-line {
+  position: fixed;
+  z-index: 30;
+  height: 2px;
+  background: #2563EB;
+  pointer-events: none;
+}
+.tree-ghost {
+  position: fixed;
+  z-index: 30;
+  padding: 2px 8px;
+  border: 1px solid #bbb;
+  border-radius: 4px;
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, .2);
+  opacity: .85;
+  pointer-events: none;
+  white-space: nowrap;
+  font-size: 12px;
+}
+.item {
+  padding: 6px 8px;
+  border-radius: 6px;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+}
+.item:hover {
+  background: #e9e9ee;
+}
+.item.is-current {
+  background: #dfe7ff;
+  font-weight: 600;
+}
+.muted {
+  color: #888;
+}
+.field {
+  display: grid;
+  grid-template-columns: 76px 1fr;
+  gap: 6px;
+  align-items: center;
+  margin: 4px 0;
+}
+.field label {
+  color: #555;
+}
+.field input,
+.field select,
+.field textarea {
+  width: 100%;
+  font: inherit;
+  padding: 3px 6px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background: #fff;
+}
+/* A boolean prop with its text (`check`): the box keeps its size, the text beside it. */
+.field .prop-check {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+.field .prop-check input {
+  width: auto;
+  margin: 0;
+}
+.field input.is-invalid {
+  border-color: #b00;
+}
+.field input:disabled {
+  opacity: .5;
+}
+.field .pair {
+  display: flex;
+  gap: 4px;
+}
+.field .pair input {
+  width: 50%;
+}
+.field .pair select {
+  width: 50%;
+}
+/* A laid-out box's size that follows its contents (layout spec §5.1): the computed value, faint. */
+.field input.is-fit {
+  opacity: .6;
+}
+/* A row of choices pressed one at a time (並べ方, 揃え, 詰め方; layout spec §5.1). */
+.chips {
+  display: flex;
+  gap: 4px;
+  margin: 4px 0;
+}
+.chip-btn {
+  flex: 1;
+  padding: 4px 0;
+  border: 1px solid #2563EB;
+  border-radius: 6px;
+  background: transparent;
+  color: #2563EB;
+  font: inherit;
+  font-size: 12px;
+  cursor: pointer;
+}
+.chip-btn.is-on {
+  background: #2563EB;
+  color: #fff;
+}
+.chip-btn:disabled {
+  opacity: .5;
+  cursor: default;
+}
+.sub-title {
+  margin: 10px 0 2px;
+  font-weight: 600;
+  color: #444;
+}
+.swatch {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.swatch-colors {
+  display: flex;
+}
+.swatch-colors span {
+  width: 14px;
+  height: 14px;
+  border: 1px solid #0002;
+}
+button.btn {
+  font: inherit;
+  padding: 4px 10px;
+  border: 1px solid #bbb;
+  background: #fff;
+  border-radius: 6px;
+  cursor: pointer;
+}
+button.btn:hover {
+  background: #f2f2f5;
+}
+button.btn:disabled {
+  opacity: .5;
+  cursor: default;
+}
+button.btn-primary {
+  background: #2563EB;
+  color: #fff;
+  border-color: #2563EB;
+}
+button.btn-primary:hover {
+  background: #1d4ed8;
+}
+button.btn-block {
+  display: block;
+  width: 100%;
+  margin-top: 12px;
+}
+button.btn-danger {
+  color: #b00;
+  border-color: #e08a8a;
+}
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #c33;
+  display: inline-block;
+  margin-right: 4px;
+}
+.dot.is-on {
+  background: #2a2;
+}
+.spacer {
+  flex: 1;
+}
+#banner {
+  z-index: 20;
+  background: #fff4d6;
+  border-bottom: 1px solid #e6c46a;
+  padding: 8px 12px;
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+#banner[hidden] {
+  display: none;
+}
+#banner.is-error {
+  background: #fde2e2;
+  border-color: #e08a8a;
+}
+#banner ul {
+  margin: 0;
+  padding-left: 18px;
+}
+/* Typing into an input during 再生: laid over the drawn field (typing.ts). */
+.play-typing {
+  position: absolute;
+  z-index: 12;
+  box-sizing: border-box;
+  margin: 0;
+  border: 2px solid #2563EB;
+  outline: none;
+  resize: none;
+  line-height: 1.2;
+  user-select: text;
+}
+.wf-inline {
+  position: absolute;
+  z-index: 10;
+  font: inherit;
+  padding: 2px 4px;
+  border: 1px solid #2563EB;
+  border-radius: 3px;
+}
+
+/* ---------- stage and overlay ---------- */
+.wf-stage {
+  position: relative;
+  margin: 24px auto;
+}
+.wf-frame {
+  position: absolute;
+  left: 0;
+  top: 0;
+  transform-origin: 0 0;
+  background: var(--wf-bg);
+  font-family: var(--wf-font);
+  color: var(--wf-text);
+  overflow: hidden;
+  box-shadow: 0 2px 16px rgba(0, 0, 0, .15);
+}
+.wf-overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+/* A transient outline (render.ts showOutlines) is drawn like the part's selection frame. */
+.wf-sel,
+.wf-outline {
+  position: absolute;
+  border: 1px solid #2563EB;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .8);
+}
+/* The box a canvas drag would put its parts in (spec §5.6.1): dashed, unlike a selection frame. */
+.wf-outline-drop {
+  border: 2px dashed #2563EB;
+}
+/*
+ * What a selection shows of a layout (layout spec §5.3), in the theme's $primary (the overlay
+ * carries the theme's colours): the bands between the children, the pad lines and their numbers
+ * of a selected box, and the thin frame around the box of a selected laid-out part.
+ */
+.wf-outline-band {
+  background: var(--wf-primary, #2563EB);
+  opacity: 0.15;
+  border: none;
+  box-shadow: none;
+  pointer-events: none;
+}
+.wf-outline-line {
+  background: var(--wf-primary, #2563EB);
+  opacity: 0.6;
+  border: none;
+  box-shadow: none;
+  pointer-events: none;
+}
+.wf-outline-label {
+  border: none;
+  box-shadow: none;
+  color: var(--wf-primary, #2563EB);
+  font-size: 11px;
+  line-height: 16px;
+  /* Each number starts at its place's left (guidesOf keeps the place inside the box), as drawn in
+     the wireframe; a place cut by the box's edge hides what falls outside. */
+  overflow: hidden;
+  white-space: nowrap;
+  pointer-events: none;
+}
+.wf-outline-parent {
+  border: 1px solid var(--wf-primary, #2563EB);
+  box-shadow: none;
+  opacity: 0.4;
+  pointer-events: none;
+}
+/* Where a canvas drag puts its parts in a laid-out box (layout spec §5.3): a 3px line, the
+   rectangle's width or height giving the 3px. */
+.wf-outline-slot {
+  background: var(--wf-primary, #2563EB);
+  border: none;
+  box-shadow: none;
+  opacity: 1;
+  pointer-events: none;
+}
+/* The row of a list the user looks at (list items spec §5.3): thinner than a selection frame. */
+.wf-row-frame {
+  position: absolute;
+  outline: 1px dotted #2563EB;
+  outline-offset: -1px;
+  background: rgba(37, 99, 235, .06);
+}
+.wf-handle {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  margin: -4px 0 0 -4px;
+  background: #fff;
+  border: 1px solid #2563EB;
+  pointer-events: auto;
+}
+.wf-handle-nw,
+.wf-handle-se {
+  cursor: nwse-resize;
+}
+.wf-handle-ne,
+.wf-handle-sw {
+  cursor: nesw-resize;
+}
+.wf-handle-n,
+.wf-handle-s {
+  cursor: ns-resize;
+}
+.wf-handle-e,
+.wf-handle-w {
+  cursor: ew-resize;
+}
+.wf-entered {
+  position: absolute;
+  border: 1px dashed #888;
+}
+.wf-marquee {
+  position: fixed;
+  z-index: 20;
+  border: 1px solid #2563EB;
+  background: rgba(37, 99, 235, .12);
+  pointer-events: none;
+}
+
+/* ---------- parts ---------- */
+.wf-el {
+  position: absolute;
+  overflow: hidden;
+  cursor: default;
+  user-select: none;
+}
+.wf-type-group {
+  overflow: visible;
+}
+/* The 2px rings of a badge and an avatar's dot reach past the box. */
+.wf-type-badge,
+.wf-type-avatar {
+  overflow: visible;
+}
+/* What a scrolling box holds (scroll spec §4.6): moved by how far it is sent; the box cuts it. */
+.wf-scroll {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+}
+/* The bar on the edge a box sends toward: seen while it was sent lately, then it fades. */
+.wf-scrollbar {
+  position: absolute;
+  background: var(--wf-text);
+  opacity: .35;
+  border-radius: 2px;
+  pointer-events: none;
+  animation-name: wf-scrollbar-fade;
+  animation-timing-function: linear;
+  animation-fill-mode: forwards;
+}
+.wf-scrollbar-y {
+  right: 2px;
+  width: 4px;
+}
+.wf-scrollbar-x {
+  bottom: 2px;
+  height: 4px;
+}
+@keyframes wf-scrollbar-fade {
+  from {
+    opacity: .35;
+  }
+  to {
+    opacity: 0;
+  }
+}
+/*
+ * Hit areas on the canvas. pointer-events is inherited, so every part says it outright: a part is
+ * hit, except a group (no look, no hit area: a press between its children goes through) and a part
+ * that is locked itself (it is selected from Select or by right click). Their contents are hit as
+ * usual unless they are locked or groups themselves; the longer selector wins for those.
+ */
+#canvas .wf-el {
+  pointer-events: auto;
+}
+#canvas .wf-el.wf-type-group,
+#canvas .wf-el.is-locked {
+  pointer-events: none;
+}
+/*
+ * A canvas move drag (render.ts dragCopies): copies of the dragged parts on top of every part, only
+ * seen (no hit area), and the originals under them hidden so nothing shows twice.
+ */
+.wf-drag-layer {
+  position: absolute;
+  inset: 0;
+}
+#canvas .wf-drag-layer,
+#canvas .wf-drag-layer .wf-el {
+  pointer-events: none;
+}
+/* The copies are seen through, lifted with the elevated shadow (the wireframe's drag-ghost), so
+   the line where they go in a layout shows under them (layout spec §5.3). The layer carries the
+   opacity: a part's own opacity is set on the part itself. */
+.wf-drag-layer {
+  opacity: 0.85;
+}
+.wf-drag-layer > .wf-el {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, .12);
+}
+.wf-el.is-dragged {
+  visibility: hidden;
+}
+.wf-text {
+  padding: 0 2px;
+  white-space: pre-wrap;
+  line-height: 1.3;
+}
+.wf-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  padding: 0 8px;
+}
+.wf-input {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+.wf-label {
+  margin-bottom: 4px;
+  line-height: 1.2;
+}
+.wf-field {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 10px;
+  /* background, border and border-radius come inline from the part's style (fieldStyle). */
+  color: var(--wf-muted);
+  font-size: var(--wf-size-md);
+}
+.wf-field-multi {
+  align-items: flex-start;
+  padding-top: 8px;
+}
+/* What was typed during 再生, in place of the placeholder. */
+.wf-value {
+  color: var(--wf-text);
+  overflow: hidden;
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+.wf-adorn {
+  color: var(--wf-muted);
+}
+.wf-check {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  height: 100%;
+}
+.wf-checkbox {
+  width: 18px;
+  height: 18px;
+  border: 2px solid var(--wf-muted);
+  border-radius: 4px;
+  flex: none;
+}
+.wf-checkbox.is-on {
+  background: var(--wf-primary);
+  border-color: var(--wf-primary);
+}
+.wf-switch {
+  position: relative;
+  width: 36px;
+  height: 20px;
+  border-radius: 10px;
+  background: var(--wf-border);
+  flex: none;
+}
+.wf-switch.is-on {
+  background: var(--wf-primary);
+}
+.wf-knob {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #fff;
+}
+.wf-switch.is-on .wf-knob {
+  left: 18px;
+}
+.wf-image {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: repeating-linear-gradient(45deg, transparent 0 10px, var(--wf-border) 10px 11px);
+}
+.wf-caption {
+  background: var(--wf-surface);
+  padding: 2px 6px;
+  border-radius: var(--wf-radius-sm);
+}
+.wf-icon {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 9px;
+  color: var(--wf-muted);
+  overflow: hidden;
+}
+.wf-elevated,
+.wf-seg-item.is-active,
+.wf-slider-knob {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, .12);
+}
+.wf-list .wf-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 0 16px;
+  border-bottom: 1px solid var(--wf-border);
+}
+.wf-line {
+  flex: 1;
+  height: 8px;
+  border-radius: 4px;
+  background: var(--wf-border);
+}
+.wf-lead {
+  width: 24px;
+  height: 24px;
+  border-radius: 6px;
+  background: var(--wf-border);
+  flex: none;
+}
+.wf-lead-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+}
+.wf-trail {
+  color: var(--wf-muted);
+  font-size: var(--wf-size-lg);
+}
+.wf-trail-toggle {
+  width: 28px;
+  height: 16px;
+  border-radius: 8px;
+  background: var(--wf-border);
+}
+/* A row's mark turned on (values spec §11): the toggle part's on colour. */
+.wf-trail-toggle.is-on {
+  background: var(--wf-primary);
+}
+/* Rows with contents (list items spec §3.1): a text column, a right-hand text, a selected tint. */
+.wf-list .wf-row.is-selected {
+  background: color-mix(in srgb, var(--wf-primary) 12%, transparent);
+}
+.wf-row-body {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 2px;
+  overflow: hidden;
+}
+.wf-row-body .wf-line {
+  flex: none;
+  width: 100%;
+}
+.wf-row-text {
+  font-size: var(--wf-size-md);
+  color: var(--wf-text);
+  white-space: nowrap;
+  overflow: hidden;
+}
+.wf-row-sub,
+.wf-row-meta {
+  font-size: var(--wf-size-sm);
+  color: var(--wf-muted);
+  white-space: nowrap;
+  overflow: hidden;
+}
+.wf-row-meta {
+  flex: none;
+  max-width: 40%;
+}
+.wf-navbar-box {
+  border-bottom: 1px solid var(--wf-border);
+}
+.wf-navbar {
+  display: flex;
+  align-items: flex-end;
+  height: 100%;
+  padding: 0 16px 12px;
+}
+.wf-nav-side {
+  width: 56px;
+  font-size: 22px;
+  line-height: 1;
+  color: var(--wf-primary);
+}
+.wf-nav-side:last-child {
+  text-align: right;
+  font-size: var(--wf-size-md);
+}
+.wf-nav-title {
+  flex: 1;
+}
+.wf-tabbar-box {
+  border-top: 1px solid var(--wf-border);
+}
+.wf-tabbar {
+  display: flex;
+  height: 100%;
+  padding-bottom: 20px;
+}
+.wf-tab {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  color: var(--wf-muted);
+  font-size: var(--wf-size-sm);
+}
+.wf-tab-dot {
+  width: 22px;
+  height: 22px;
+  border-radius: 6px;
+  background: var(--wf-border);
+}
+.wf-tab.is-active {
+  color: var(--wf-primary);
+}
+.wf-tab.is-active .wf-tab-dot {
+  background: var(--wf-primary);
+}
+/* tabs (PR-15 spec §3.1): a plate (the part's box) with a white chip under the active label. */
+.wf-seg {
+  display: flex;
+  height: 100%;
+  box-sizing: border-box;
+  padding: 4px;
+  gap: 2px;
+}
+.wf-seg-item {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 6px;
+  border-radius: var(--wf-radius-md);
+}
+.wf-seg-item.is-active {
+  background: var(--wf-surface);
+}
+.wf-seg-item > span {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+/* radio (PR-15 spec §3.2): rows of text with a divider, a check on the chosen one. */
+.wf-radio {
+  height: 100%;
+  overflow: hidden;
+}
+.wf-radio-row {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 0 12px;
+  border-bottom: 1px solid var(--wf-border);
+}
+.wf-radio-row:last-child {
+  border-bottom: none;
+}
+.wf-radio-text {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.wf-radio-mark {
+  flex: none;
+  color: var(--wf-primary);
+  font-weight: bold;
+}
+/* slider (PR-15 spec §3.3): a line, the part up to the value, a knob; the end values under the line. */
+.wf-slider {
+  position: relative;
+  height: 100%;
+}
+.wf-slider-track,
+.wf-slider-fill {
+  position: absolute;
+  height: 6px;
+  border-radius: 3px;
+}
+.wf-slider-track {
+  background: var(--wf-border);
+}
+.wf-slider-knob {
+  position: absolute;
+  box-sizing: border-box;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--wf-surface);
+}
+.wf-slider-end {
+  position: absolute;
+  white-space: nowrap;
+}
+.wf-slider-end.is-max {
+  text-align: right;
+}
+/* progress (PR-16 spec §3.1): a track, the filled part, the percentage; or three dots. */
+.wf-progress,
+.wf-spin {
+  position: relative;
+  height: 100%;
+  overflow: hidden;
+}
+.wf-progress-track,
+.wf-progress-fill {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+}
+.wf-progress-track {
+  width: 100%;
+  background: var(--wf-border);
+}
+.wf-progress-label {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  line-height: 1;
+  white-space: nowrap;
+}
+.wf-spin-dot {
+  position: absolute;
+  border-radius: 50%;
+}
+@keyframes wf-spin {
+  0%,
+  100% {
+    opacity: 0.3;
+  }
+  33% {
+    opacity: 1;
+  }
+}
+/* Only while playing (再生 and Animation ▶); the delay comes from the frame's clock (render.ts). */
+body.is-run .wf-spin-dot,
+body.is-playing .wf-spin-dot {
+  animation: wf-spin 900ms linear infinite;
+  animation-delay: calc(var(--wf-spin, 0ms) + var(--wf-spin-i, 0ms));
+}
+.wf-unknown {
+  background: #cfcfcf;
+  border: 1px dashed #888;
+}
+.wf-unknown-label {
+  font-size: 11px;
+  padding: 4px;
+  color: #333;
+}
+
+/* ---------- right-click list ---------- */
+.ctx-menu {
+  position: fixed;
+  z-index: 40;
+  width: 200px;
+  padding: 4px 0;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, .18);
+  font-size: 13px;
+  user-select: none;
+}
+.ctx-item {
+  display: flex;
+  align-items: center;
+  height: 28px;
+  padding: 0 12px 0 16px;
+  cursor: pointer;
+}
+.ctx-item:hover {
+  background: #e9e9ee;
+}
+.ctx-item.is-disabled {
+  color: #999;
+  opacity: .5;
+  cursor: default;
+}
+.ctx-item.is-disabled:hover {
+  background: transparent;
+}
+.ctx-key {
+  margin-left: auto;
+  color: #888;
+  font-size: 12px;
+}
+.ctx-sep {
+  height: 1px;
+  margin: 4px 0;
+  background: #ddd;
+}
+
+/* ---------- states (PR-2) ---------- */
+/* A child of a box with a border line: pulled back by the line's width (render.ts renderElement). */
+.wf-el.in-border {
+  margin: -1px 0 0 -1px;
+}
+/* A selected part that is not drawn in this look: where it is placed, dashed, no handles. */
+.wf-sel.is-hidden {
+  border-style: dashed;
+  box-shadow: none;
+}
+.tree-eye {
+  margin-left: auto;
+  flex: none;
+  width: 20px;
+  text-align: center;
+  font-size: 11px;
+  opacity: 0;
+  cursor: pointer;
+}
+.tree-row:hover .tree-eye {
+  opacity: .3;
+}
+.tree-eye.is-on,
+.tree-row:hover .tree-eye.is-on {
+  opacity: 1;
+}
+.tree-eye + .tree-lock {
+  margin-left: 0;
+}
+/* Rows of a list under it (list items spec §5.2): plain text, no marks. */
+.tree-row.is-row .tree-label {
+  color: #555;
+  font-weight: 400;
+}
+.tree-row.is-row.is-current .tree-label {
+  color: #1d4ed8;
+  font-weight: 600;
+}
+/* The rows table (list items spec §5.1, figure §5.5). */
+.rows .row-line {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin: 2px 0;
+}
+.rows .row-no {
+  width: 18px;
+  text-align: right;
+  color: #555;
+  cursor: pointer;
+  flex: none;
+}
+.rows .row-line.is-open .row-no {
+  color: #1d4ed8;
+  font-weight: 600;
+}
+.rows .row-line input {
+  flex: 1;
+  min-width: 0;
+  font: inherit;
+  padding: 3px 6px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background: #fff;
+}
+.rows .row-line input.is-invalid,
+.rows .row-detail input.is-invalid {
+  border-color: #b00;
+}
+.rows .row-btn {
+  font: inherit;
+  font-size: 11px;
+  line-height: 1;
+  padding: 3px 6px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background: #fff;
+  cursor: pointer;
+  flex: none;
+}
+.rows .row-btn:disabled {
+  opacity: .4;
+  cursor: default;
+}
+.rows .row-detail {
+  margin: 2px 0 6px 22px;
+  padding-left: 6px;
+  border-left: 2px solid #dfe7ff;
+}
+.rows .row-detail .field {
+  grid-template-columns: 40px 1fr;
+}
+.rows .row-actions {
+  display: flex;
+  gap: 4px;
+  margin: 4px 0 2px;
+}
+.tree-row.is-faint .tree-label,
+.tree-row.is-faint .tree-toggle {
+  opacity: .45;
+}
+#state-badge {
+  position: sticky;
+  top: 8px;
+  left: 0;
+  z-index: 12;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  width: max-content;
+  max-width: calc(100% - 32px);
+  margin: 8px auto 0;
+  padding: 2px 4px 2px 12px;
+  height: 32px;
+  box-sizing: border-box;
+  border: 1px solid #2563EB;
+  border-radius: 6px;
+  background: #fff;
+  color: #2563EB;
+  font-size: 12px;
+}
+#state-badge[hidden] {
+  display: none;
+}
+#state-badge .btn {
+  padding: 2px 8px;
+}
+.state-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 6px 10px;
+  margin: 2px 0;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  cursor: pointer;
+  user-select: none;
+}
+.state-row:hover {
+  background: #e9e9ee;
+}
+.state-row.is-current {
+  border-color: #2563EB;
+  font-weight: 600;
+}
+.state-note {
+  flex: none;
+  font-size: 11px;
+  font-weight: 400;
+  color: #666;
+}
+.state-row.is-current .state-note {
+  color: #2563EB;
+}
+.state-rename {
+  flex: 1;
+  min-width: 0;
+}
+.state-diff {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 2px 0;
+}
+.state-diff-text {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.state-revert {
+  flex: none;
+  padding: 2px 8px;
+}
+.state-rename.is-invalid {
+  outline: 2px solid #d33;
+}
+
+/* ---------- motion (PR-3) ---------- */
+/* Animation: ▶ at the end of a state row; the name takes the room so the note sits beside it. */
+.state-name {
+  flex: 1;
+  min-width: 0;
+}
+.state-play {
+  flex: none;
+  padding: 0 8px;
+  line-height: 20px;
+  font-weight: 400;
+}
+/* What a state changes, part by part: its lines, then the thin line that says how it moves. */
+.motion-part {
+  margin: 2px -6px;
+  padding: 0 5px;
+  border: 1px solid transparent;
+  border-radius: 6px;
+}
+.motion-part.is-open {
+  border-color: #c9d6f5;
+  background: #f6f8fe;
+  padding-bottom: 6px;
+}
+.motion-line {
+  padding: 0 0 3px 12px;
+  font-size: 12px;
+  color: #777;
+  cursor: pointer;
+  user-select: none;
+}
+.motion-line:hover {
+  color: #2563EB;
+}
+.motion-line.is-static {
+  cursor: default;
+  color: #777;
+}
+.motion-candidates {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin: 2px 0 6px;
+}
+.motion-candidate {
+  padding: 2px 8px;
+  font-size: 12px;
+}
+.motion-candidate.is-current {
+  background: #2563EB;
+  border-color: #2563EB;
+  color: #fff;
+}
+.motion-tone {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: 4px 0;
+  font-size: 12px;
+}
+.motion-tone label {
+  flex: none;
+  color: #555;
+}
+.motion-tone select,
+.motion-tone input {
+  flex: 1;
+  min-width: 0;
+  font: inherit;
+  padding: 2px 4px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background: #fff;
+}
+.motion-tone select:disabled,
+.motion-tone input:disabled {
+  opacity: .5;
+}
+.motion-mine-label {
+  margin: 6px 0 0;
+  font-size: 11px;
+  color: #777;
+}
+.motion-mine {
+  margin-top: 2px;
+}
+.motion-mine-edit {
+  flex: 1 1 100%;
+}
+.motion-mine-rename {
+  width: 100%;
+  box-sizing: border-box;
+  font: inherit;
+  font-size: 12px;
+  padding: 2px 4px;
+  border: 1px solid #2563EB;
+  border-radius: 4px;
+  background: #fff;
+}
+.motion-mine-why {
+  margin-top: 2px;
+  font-size: 11px;
+  color: #777;
+}
+.motion-mine-why.is-error {
+  color: #B3261E;
+}
+.motion-tone-note {
+  margin: 4px 0;
+  font-size: 12px;
+  color: #777;
+}
+.motion-save {
+  margin-top: 6px;
+}
+.motion-inner-add {
+  margin-top: 6px;
+}
+/* A candidate's sample (render.ts Playing): where the part starts, dashed, and a note beside it. */
+.wf-ghost {
+  position: absolute;
+  border: 1px dashed #2563EB;
+  border-radius: 4px;
+}
+.wf-play-note {
+  position: absolute;
+  transform: translate(-100%, -100%);
+  padding: 0 6px;
+  white-space: nowrap;
+  font-size: 11px;
+  line-height: 20px;
+  color: #2563EB;
+  background: rgba(255, 255, 255, .9);
+  border-radius: 4px;
+}
+/* ▶ is running (animation-ui.ts): the strip says so, and the panels take no input. */
+body.is-playing #header,
+body.is-playing #left,
+body.is-playing #right {
+  opacity: .6;
+}
+/* The window left of the right panel (panels/preview.ts): a candidate's sample, or 中身を選ぶ. */
+.motion-float {
+  position: fixed;
+  z-index: 30;
+  width: 228px;
+  box-sizing: border-box;
+  padding: 8px 12px 10px;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, .18);
+  font-size: 13px;
+}
+.motion-sample {
+  pointer-events: none;
+}
+/* The window right of a Dynamic Elements row (PR-13): seen, never pressed. Over the guide's bubble
+   (#guide-layer): it is up only while the mouse is on the row, and going to the bubble closes it. */
+.dynamic-hover {
+  z-index: 55;
+  pointer-events: none;
+}
+/* An Elements row's part alone (PR-17): on the theme's background, no device frame around it. */
+.float-stage.is-alone {
+  background: var(--wf-bg);
+}
+.float-stage.is-alone .wf-frame {
+  background: transparent;
+  box-shadow: none;
+}
+.dynamic-hover-part {
+  position: absolute;
+}
+/* A Default row's example (PR-17): a wider window, and the part itself framed like a selection. */
+.dynamic-hover.is-wide {
+  width: 308px;
+}
+.dynamic-hover .wf-el.is-hover-mark {
+  outline: 2px solid #2563EB;
+  outline-offset: 3px;
+}
+.dynamic-hover-frame {
+  position: absolute;
+  box-sizing: border-box;
+  background: var(--wf-bg, #fff);
+}
+.float-title {
+  margin-bottom: 6px;
+  font-weight: 600;
+  color: #444;
+}
+.float-stage {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid #eee;
+  border-radius: 6px;
+  background: #f4f4f6;
+}
+.float-inner {
+  position: absolute;
+  left: 0;
+  top: 0;
+  transform-origin: 0 0;
+  font-family: var(--wf-font);
+  color: var(--wf-text);
+}
+.float-note {
+  margin-top: 6px;
+  font-size: 12px;
+  color: #888;
+}
+.float-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 3px 8px;
+  border-radius: 4px;
+  cursor: pointer;
+  user-select: none;
+}
+.float-row:hover {
+  background: #e9e9ee;
+}
+.float-row.is-added {
+  cursor: default;
+  color: #999;
+}
+.float-row.is-added:hover {
+  background: none;
+}
+.float-row-label {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.float-row-note {
+  flex: none;
+  font-size: 11px;
+}
+
+/* 編集 | ▶ 再生 in the header (triggers spec §5.1). */
+.hdr-mode {
+  display: inline-flex;
+  padding: 2px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  background: #f4f4f5;
+}
+.hdr-mode .hdr-mode-btn {
+  border: none;
+  background: transparent;
+  padding: 2px 10px;
+  border-radius: 4px;
+}
+.hdr-mode .hdr-mode-btn.is-on {
+  background: #2563EB;
+  color: #fff;
+}
+/* 再生 runs (main.ts): the canvas is the real thing, the panels take no input. */
+body.is-run #left section {
+  opacity: .45;
+  pointer-events: none;
+}
+#play-note {
+  margin: 12px 12px 0;
+  font-size: 12px;
+  color: #666;
+}
+#play-note[hidden],
+body:not(.is-run) #play-note {
+  display: none;
+}
+body.is-run #right .panel-title,
+body.is-run #themes {
+  display: none;
+}
+/* Gesture spec §4.1: while 再生 runs, the canvas's pointer is the design's — the browser neither scrolls nor zooms it. */
+body.is-run #canvas-wrap {
+  touch-action: none;
+}
+body.is-run #canvas-wrap .wf-el {
+  cursor: default;
+}
+#state-badge.is-run {
+  border-color: #059669;
+  color: #059669;
+}
+/* A screen coming or going is cut at the frame; the one beneath stays put. */
+.wf-stage.is-clipped {
+  overflow: hidden;
+}
+.wf-frame.wf-under {
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+.wf-stage.is-clipped > .wf-frame:not(.wf-under) {
+  z-index: 1;
+}
+/* The right panel while 再生 runs (panels/play.ts). */
+.play-title {
+  font-weight: 600;
+  font-size: 14px;
+  margin: 4px 0 8px;
+}
+.play-sub {
+  font-size: 11px;
+  color: #666;
+  margin: 10px 0 4px;
+}
+.play-screen {
+  font-size: 14px;
+}
+.play-path {
+  font-size: 12px;
+  margin-top: 2px;
+}
+.play-rule {
+  border: none;
+  border-top: 1px solid #e5e7eb;
+  margin: 12px 0 4px;
+}
+.play-none {
+  font-size: 12px;
+  padding: 4px 8px;
+}
+.play-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 13px;
+}
+.play-row .play-row-label {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.play-row .play-row-kind {
+  color: #666;
+  font-size: 12px;
+}
+.play-row .play-row-state {
+  font-weight: 600;
+  white-space: nowrap;
+}
+.play-row.is-fresh {
+  background: rgba(37, 99, 235, .15);
+}
+.play-pending .play-row-state {
+  font-weight: normal;
+  color: #666;
+}
+.play-restart {
+  margin-top: 16px;
+}
+
+/* ---------- blocks (PR-4b): Animation → ブロック (panels/blocks.ts, wireframe c/editor-blocks) ---------- */
+.blocks-title {
+  margin: 10px 0 4px;
+  font-size: 12px;
+}
+.blk {
+  margin: 0 0 8px;
+}
+/* A folded block: one line in a blue frame, pressed to open. */
+.blk.is-folded {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 4px 4px 12px;
+  border: 1px solid #2563EB;
+  border-radius: 8px;
+  background: #fff;
+  cursor: pointer;
+}
+.blk.is-folded:hover {
+  background: #f6f8fe;
+}
+.blk-no {
+  flex: none;
+  font-size: 12px;
+  color: #888;
+  cursor: pointer;
+  user-select: none;
+}
+.blk-sentence {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 13px;
+}
+.blk-head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 4px;
+}
+.blk-gap {
+  flex: 1;
+}
+/* 32 × 24 as in the wireframe (button.btn alone would make them wider than that). */
+button.blk-play,
+button.blk-more {
+  flex: none;
+  width: 32px;
+  height: 24px;
+  padding: 0;
+  line-height: 20px;
+}
+/* The four strips: Trigger (blue), If (amber), Then (green), Else (grey); the last three sit in a little. */
+.blk-strip {
+  margin: 4px 0 4px 8px;
+  padding: 6px 8px;
+  border: 1px solid;
+  border-radius: 8px;
+  font-size: 12px;
+}
+.blk-trigger {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  margin-left: 0;
+  background: #2563EB;
+  border-color: #2563EB;
+}
+.blk-trigger .blk-label {
+  margin-right: auto;
+  color: #fff;
+  font-weight: 700;
+}
+.blk-hint {
+  margin: 2px 12px 4px;
+  font-size: 11px;
+  color: var(--wf-muted);
+}
+.blk-if {
+  background: #FEF3C7;
+  border-color: #D97706;
+}
+.blk-if .blk-label,
+.blk-if .blk-add {
+  color: #D97706;
+}
+.blk-then {
+  background: #D1FAE5;
+  border-color: #059669;
+}
+.blk-then .blk-label,
+.blk-then .blk-add {
+  color: #059669;
+}
+.blk-else {
+  background: #f6f6f6;
+  border-color: #ddd;
+}
+.blk-else .blk-label {
+  color: #888;
+}
+.blk-strip.is-empty {
+  opacity: .65;
+}
+.blk-strip-head {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.blk-strip-head .blk-label {
+  font-weight: 700;
+}
+.blk-strip-head .blk-add {
+  margin-left: auto;
+}
+.blk-row-item {
+  display: flex;
+  /* A row with many chips (a compare with its range, values spec §10) goes on below; its ✕ ends it. */
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px;
+  margin-top: 4px;
+}
+.blk-row-item select.chip {
+  flex: 0 1 auto;
+  min-width: 0;
+}
+.blk-num {
+  color: #888;
+}
+.blk-text {
+  flex: 1;
+  color: #555;
+}
+.blk-add,
+.blk-remove {
+  padding: 0 6px;
+  line-height: 20px;
+  background: transparent;
+  border-color: transparent;
+}
+.blk-add {
+  font-weight: 600;
+}
+.blk-remove {
+  flex: none;
+  margin-left: auto;
+  color: #888;
+}
+select.chip,
+input.chip {
+  max-width: 132px;
+  padding: 1px 4px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background: #fff;
+  font: inherit;
+  font-size: 12px;
+}
+select.chip:disabled {
+  opacity: .6;
+}
+input.chip-ms {
+  width: 72px;
+}
+/* The text an input is compared with or given (empty = 空). */
+input.chip-text {
+  width: 96px;
+}
+/* A side of a range (a length or a number); empty = not written. */
+input.chip-num {
+  width: 56px;
+}
+.blk-range {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+.blk-ms {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+.block-add {
+  margin-top: 2px;
+}
+/* 「… を … で動かす」 (saved-motions spec §5.3, wireframe d/editor-blocks-play): the part chip and the
+   kind chip are narrower than the others, so the row fits one line; the motion chip is a button that
+   reads as the other chips, and opens its list right under itself, over what follows. The list sits
+   where it would start in the flow after the chip (the line under the chip, a wrapped row too) and
+   ends at the row's right edge, so it never runs out of the panel. */
+.blk-row-item select.chip.chip-play-part,
+.blk-row-item select.chip.chip-play-kind {
+  max-width: 96px;
+}
+.blk-row-item:has(.blk-motion-menu) {
+  position: relative;
+}
+.blk-motion-at {
+  display: inline-block;
+  flex: 0 1 auto;
+  min-width: 0;
+}
+button.chip.blk-motion {
+  flex: 0 1 auto;
+  min-width: 0;
+  max-width: 132px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  padding: 1px 6px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background: #fff;
+  font: inherit;
+  font-size: 12px;
+  cursor: pointer;
+}
+button.chip.blk-motion.is-open {
+  border-color: #2563EB;
+}
+button.chip.blk-motion:disabled {
+  opacity: .6;
+  cursor: default;
+}
+.blk-motion-menu {
+  position: absolute;
+  right: 0;
+  z-index: 25;
+  width: 232px;
+  box-sizing: border-box;
+  margin-top: 4px;
+  padding: 4px;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, .18);
+}
+.blk-motion-item {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 4px 8px;
+  border: 0;
+  border-radius: 4px;
+  background: transparent;
+  font: inherit;
+  font-size: 12px;
+  text-align: left;
+  color: inherit;
+  cursor: pointer;
+}
+.blk-motion-item:hover {
+  background: #f6f8fe;
+}
+/* The motion the action plays: marked as the candidates mark theirs (✓), bold on a light ground. */
+.blk-motion-item.is-current {
+  background: #f1f1f1;
+  font-weight: 700;
+}
+.blk-motion-label {
+  flex: none;
+  min-width: 52px;
+}
+.blk-motion-note {
+  min-width: 0;
+  color: #777;
+  font-size: 11px;
+  font-weight: 400;
+}
+.blk-motion-sep {
+  margin: 4px 8px;
+  border-top: 1px solid #e5e5e5;
+}
+.blk-motion-head {
+  padding: 2px 8px;
+  font-size: 11px;
+  color: #777;
+}
+.blk-motion-new {
+  color: #2563EB;
+}
+/* 「動きを作る」 (saved-motions spec §5.2, wireframe editor-movement): the right panel to itself. */
+body.is-building #right .panel-title,
+body.is-building #themes {
+  display: none;
+}
+.movement {
+  padding: 4px 0 16px;
+  font-size: 12px;
+}
+.movement-head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+button.movement-back {
+  padding: 2px 8px;
+  border-color: transparent;
+  font-size: 12px;
+}
+.movement-title {
+  font-weight: 600;
+  font-size: 13px;
+}
+.movement-field {
+  display: grid;
+  gap: 4px;
+  margin-bottom: 10px;
+  color: #555;
+}
+.movement-name {
+  font: inherit;
+  font-size: 13px;
+  padding: 6px 8px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+.movement-use {
+  display: grid;
+  grid-template-columns: 84px 1fr;
+  align-items: center;
+  color: #555;
+}
+.movement-use-text {
+  color: #222;
+}
+.movement-divider {
+  margin: 12px 0;
+  border: 0;
+  border-top: 1px solid #e3e3e8;
+}
+.movement-section {
+  margin: 4px 0 6px;
+  font-weight: 600;
+  white-space: pre;
+}
+.movement-step {
+  position: relative;
+  margin-bottom: 8px;
+  padding: 6px 10px 8px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  background: #fff;
+}
+.movement-step-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+.movement-chip-row,
+.movement-chip-edit {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin: 4px 0;
+}
+button.movement-chip {
+  flex: 1;
+  min-width: 0;
+  padding: 2px 8px;
+  text-align: left;
+  font-size: 12px;
+}
+button.movement-x {
+  flex: none;
+  width: 24px;
+  padding: 2px 0;
+  border-color: transparent;
+  font-size: 12px;
+}
+.movement-chip-label {
+  flex: none;
+  min-width: 44px;
+}
+.movement-value {
+  width: 48px;
+  min-width: 0;
+  font: inherit;
+  padding: 2px 4px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+.movement-value.is-invalid {
+  border-color: #b00;
+}
+.movement-color {
+  min-width: 0;
+  max-width: 84px;
+  font: inherit;
+  padding: 2px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+.movement-hex {
+  width: 72px;
+}
+.movement-unit {
+  color: #888;
+}
+button.movement-ok {
+  flex: none;
+  margin-left: auto;
+  padding: 2px 10px;
+  font-size: 12px;
+}
+button.movement-add-item {
+  padding: 2px 8px;
+  border-color: transparent;
+  color: #2563EB;
+  font-size: 12px;
+}
+.movement-picker {
+  position: absolute;
+  z-index: 20;
+  left: 8px;
+  right: 8px;
+  display: grid;
+  padding: 6px 0;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, .18);
+}
+.movement-pick {
+  display: grid;
+  gap: 1px;
+  padding: 4px 12px;
+  border: 0;
+  background: transparent;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+.movement-pick:hover:not(:disabled) {
+  background: #f2f2f5;
+}
+.movement-pick:disabled {
+  opacity: .4;
+  cursor: default;
+}
+.movement-pick-label {
+  font-weight: 600;
+}
+.movement-pick-note {
+  font-size: 11px;
+  color: #888;
+}
+.movement-timing {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 8px;
+}
+.movement-timing label {
+  flex: none;
+  color: #888;
+}
+.movement-timing select,
+.movement-timing input {
+  min-width: 0;
+  font: inherit;
+  padding: 2px 4px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background: #fff;
+}
+.movement-speed {
+  width: 76px;
+}
+.movement-easing {
+  flex: 1;
+}
+.movement-ms,
+.movement-delay {
+  width: 60px;
+}
+.movement-repeat {
+  width: 48px;
+}
+.movement-timing label.movement-alt {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-left: 6px;
+  color: inherit;
+}
+.movement-timing input.movement-alt-box {
+  padding: 0;
+  margin: 0;
+}
+button.movement-add-step {
+  margin-top: 0;
+  margin-bottom: 12px;
+  font-size: 12px;
+}
+.movement-fit-label,
+.movement-fit-why {
+  color: #888;
+}
+.movement-fit-types {
+  margin: 4px 0;
+}
+.movement-why {
+  margin-top: 12px;
+}
+.movement-why-line {
+  color: #C62828;
+  font-size: 11px;
+  line-height: 18px;
+}
+.movement-foot {
+  display: flex;
+  gap: 8px;
+  margin-top: 6px;
+}
+.movement-foot button {
+  flex: 1;
+}
+
+/* 「MySet を直す」: the parts that follow the MySet being edited (live-myset spec §5.2) */
+.wf-el.is-linked {
+  outline: 2px solid #2563EB;
+  outline-offset: 6px;
+  border-radius: 8px;
+}
+.linked-tag {
+  position: absolute;
+  font-size: 11px;
+  color: #2563EB;
+  white-space: nowrap;
+}
+
+/* ---------- the guide (試し方の案内) ---------- */
+#guide-layer {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  pointer-events: none;
+}
+#guide-layer[hidden],
+#guide-layer.is-stopped {
+  display: none;
+}
+.guide-frame {
+  position: fixed;
+  border: 2px solid #2563EB;
+  border-radius: 6px;
+  pointer-events: none;
+  box-sizing: border-box;
+}
+.guide-frame.look {
+  border-color: #E58A00;
+}
+.guide-bubble {
+  position: fixed;
+  pointer-events: auto;
+  width: 320px;
+  max-width: calc(100vw - 16px);
+  box-sizing: border-box;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, .18);
+  padding: 12px 16px 16px;
+  font-size: 13px;
+  color: #222;
+}
+.guide-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.guide-step {
+  font-size: 12px;
+}
+.guide-close {
+  border: 0;
+  background: none;
+  font-size: 14px;
+  cursor: pointer;
+  color: #2563EB;
+  padding: 2px 6px;
+}
+.guide-pre {
+  color: #E58A00;
+  font-size: 12px;
+  margin-top: 8px;
+}
+.guide-label {
+  color: #777;
+  font-size: 12px;
+  margin-top: 8px;
+}
+.guide-do {
+  font-weight: 600;
+  margin-top: 4px;
+  line-height: 1.5;
+}
+.guide-see {
+  margin-top: 4px;
+  line-height: 1.5;
+}
+.guide-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 12px;
+}
+#header .guide-btn {
+  margin-left: 8px;
+}
+
+/* badge, avatar, fab (PR-16 spec §3.3-§3.5). */
+.wf-badge,
+.wf-avatar {
+  position: relative;
+  height: 100%;
+}
+.wf-badge-dot,
+.wf-avatar-dot {
+  position: absolute;
+  border-radius: 50%;
+}
+.wf-badge-text {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+  line-height: 1.3;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.wf-avatar-photo {
+  position: absolute;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+.wf-avatar-head,
+.wf-avatar-body {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--wf-muted);
+}
+.wf-avatar-head {
+  top: 18%;
+  width: 36%;
+  height: 36%;
+  border-radius: 50%;
+}
+.wf-avatar-body {
+  top: 62%;
+  width: 70%;
+  height: 70%;
+  border-radius: 50%;
+}
+.wf-avatar-dot {
+  background: #30a46c;
+  box-shadow: 0 0 0 2px var(--wf-bg);
+}
+
+/* chip (PR-16 spec §3.2): a filled pill, the text centred and cut with an ellipsis. */
+.wf-chip {
+  box-sizing: border-box;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 12px;
+  overflow: hidden;
+}
+.wf-chip-text {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+/* table (PR-20 spec §3.1): a grey header band, rows split by a line; cells cut with an ellipsis. */
+.wf-table {
+  position: relative;
+  height: 100%;
+  overflow: hidden;
+}
+.wf-table-head,
+.wf-table-row {
+  position: absolute;
+  left: 0;
+  right: 0;
+}
+.wf-table-head {
+  top: 0;
+  background: var(--wf-surface);
+}
+.wf-table-cell {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  box-sizing: border-box;
+  padding: 0 12px;
+  line-height: 1.3;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.wf-table-line {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: var(--wf-border);
+}
+/* breadcrumb (PR-20 spec §3.3): each piece at its own x, centred on the line; cut at the right edge. */
+.wf-crumbs {
+  position: relative;
+  height: 100%;
+  overflow: hidden;
+}
+.wf-crumb,
+.wf-crumb-sep {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  line-height: 1.3;
+  text-align: center;
+  white-space: nowrap;
+}
+
+/* sidenav (PR-20 spec §3.2): a title, items with an empty square; the current one on a light band. */
+.wf-sidenav {
+  position: relative;
+  height: 100%;
+  overflow: hidden;
+}
+.wf-sidenav-head {
+  position: absolute;
+  left: 20px;
+  right: 20px;
+  top: 20px;
+  height: 28px;
+  line-height: 28px;
+  color: var(--wf-text);
+  font-size: var(--wf-size-md);
+  font-weight: bold;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.wf-sidenav-item {
+  position: absolute;
+  height: 40px;
+  border-radius: var(--wf-radius-md);
+}
+.wf-sidenav-item.is-active {
+  background: color-mix(in srgb, var(--wf-primary) 12%, transparent);
+}
+.wf-sidenav-icon {
+  position: absolute;
+  left: 12px;
+  top: 8px;
+  width: 24px;
+  height: 24px;
+  box-sizing: border-box;
+  border: 1px solid var(--wf-border);
+  border-radius: var(--wf-radius-sm);
+}
+.wf-sidenav-text {
+  position: absolute;
+  left: 48px;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  line-height: 1.3;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}

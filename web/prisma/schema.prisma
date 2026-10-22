@@ -25,6 +25,7 @@ model User {
   createdAt   DateTime     @default(now())
   apps        App[]
   generations Generation[]
+  designs     Design[]
 }
 
 model App {
@@ -74,4 +75,29 @@ model Generation {
   buildRounds  Int       @default(0)
   /// The last CI run that reported
   buildRunUrl  String?
+  /// CREATE: the screens (wireframe) the user confirmed before the code was written
+  designId     String?
+  design       Design?   @relation(fields: [designId], references: [id])
+}
+
+/// The screens of an app before its code exists: AI draws them from the prompt, the user edits them in
+/// the embedded wireframe editor (src/lib/wireframe-store.ts), then the code is generated from them.
+model Design {
+  id          String       @id @default(cuid())
+  userId      String
+  user        User         @relation(fields: [userId], references: [id])
+  prompt      String
+  model       String
+  /// DRAWING (AI at work) | READY | FAILED
+  status      String       @default("DRAWING")
+  /// What the app does, as AI read it and the user edited it (plain text, one feature per line)
+  plan        String       @default("")
+  /// The wireframe's project.json (JSON text)
+  project     String       @default("{}")
+  /// The screens, JSON text of an object: screen id -> screen file
+  screens     String       @default("{}")
+  error       String?
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
+  generations Generation[]
 }

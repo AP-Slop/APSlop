@@ -4,6 +4,7 @@ import { cloudflareEnv } from "@/lib/cloudflare";
 import { ModelChoiceSchema } from "@/lib/models";
 import { runProposal } from "@/lib/proposal-store";
 import { runBuildFix } from "@/lib/build-fix";
+import { runDraw } from "@/lib/design-store";
 import { syncAppBySlug } from "@/lib/store";
 
 /** Work that must finish even if the browser that asked for it goes away. */
@@ -13,6 +14,8 @@ export const JobSchema = z.discriminatedUnion("kind", [
   z.object({ kind: z.literal("sync"), slug: z.string().min(1), tag: z.string().min(1) }),
   // CI failed on a branch AI committed to (webhook): have AI commit a fix.
   z.object({ kind: z.literal("fix"), id: z.string().min(1), runId: z.number().int() }),
+  // New app: AI draws the screens of a design before any code is written.
+  z.object({ kind: z.literal("draw"), id: z.string().min(1), model: ModelChoiceSchema }),
 ]);
 export type Job = z.infer<typeof JobSchema>;
 
@@ -40,6 +43,8 @@ export async function runJob(job: Job): Promise<void> {
       return runProposal(job.id, job.name, job.model);
     case "fix":
       return runBuildFix(job.id, job.runId);
+    case "draw":
+      return runDraw(job.id, job.model);
     case "sync":
       // The APK may still be missing (CI running); the next webhook or "Sync to store" catches up.
       await syncAppBySlug(job.slug, job.tag).catch((e) => console.warn(`sync of ${job.slug} failed:`, (e as Error).message));

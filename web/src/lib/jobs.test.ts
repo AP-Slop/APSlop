@@ -10,6 +10,8 @@ vi.mock("next/server", () => ({ after }));
 vi.mock("@/lib/proposal-store", () => ({ runProposal }));
 vi.mock("@/lib/store", () => ({ syncAppBySlug }));
 vi.mock("@/lib/build-fix", () => ({ runBuildFix }));
+const runDraw = vi.fn();
+vi.mock("@/lib/design-store", () => ({ runDraw }));
 vi.mock("@opennextjs/cloudflare", () => ({ getCloudflareContext }));
 vi.mock("@/lib/models", async () => {
   const { z } = await import("zod");
@@ -48,6 +50,12 @@ describe("runJob", () => {
     syncAppBySlug.mockRejectedValueOnce(new Error("no APK yet"));
     await expect(runJob({ kind: "sync", slug: "timer", tag: "v1.0.0" })).resolves.toBeUndefined();
     expect(syncAppBySlug).toHaveBeenCalledWith("timer", "v1.0.0");
+  });
+
+  it("has AI draw the screens of a design", async () => {
+    const { runJob } = await import("./jobs");
+    await runJob({ kind: "draw", id: "d1", model: "claude" });
+    expect(runDraw).toHaveBeenCalledWith("d1", "claude");
   });
 
   it("has AI fix a failed build", async () => {

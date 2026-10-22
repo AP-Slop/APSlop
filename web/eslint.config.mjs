@@ -15,6 +15,9 @@ const eslintConfig = defineConfig([
     // Cloudflare build output (OpenNext / wrangler)
     ".open-next/**",
     ".wrangler/**",
+    // The wireframe editor, copied as built (scripts/sync-wireframe.mjs)
+    "public/wireframe/**",
+    "src/vendor/**",
   ]),
 ]);
 

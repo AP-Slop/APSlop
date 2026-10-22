@@ -5,15 +5,17 @@
   "device": "desktop",
   "proposals": [
     {
-      "id": "b",
-      "name": "History B",
-      "note": "削除したアプリの行を丸ごと薄く",
+      "id": "a",
+      "name": "Design A",
+      "note": "New app: AI の画面を見て、直すときだけ編集画面へ",
       "screens": [
         "top",
         "app-detail",
         "sign-in-required",
         "dashboard",
         "new-input",
+        "new-design",
+        "new-design-edit",
         "new-review",
         "repos",
         "repo-code",

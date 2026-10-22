@@ -123,7 +123,7 @@ function invalidOutput(detail: string): Error {
   return new Error(`AI's answer was not in the expected form (${detail}). Try Regenerate.`);
 }
 
-async function runStructured<T>(
+export async function runStructured<T>(
   schema: z.ZodType<T>,
   system: string,
   user: string,

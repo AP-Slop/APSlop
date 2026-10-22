@@ -6,6 +6,7 @@ import { prisma } from "@/lib/db";
 import { GeneratedAppSchema } from "@/lib/ai";
 import { createRepoWithFiles, repoExists } from "@/lib/github";
 import { mergeFiles, readTemplateFiles } from "@/lib/template";
+import { parseFiles, repoFiles } from "@/lib/wireframe-store";
 
 export const maxDuration = 300;
 
@@ -20,7 +21,10 @@ export const POST = handle(async (req: Request) => {
   }
 
   const template = await readTemplateFiles();
-  const files = mergeFiles(template, generated.files);
+  // The screens the code was written from go into the repo too (docs/wireframes/), for later changes.
+  const generation = generationId ? await prisma.generation.findFirst({ where: { id: generationId, userId: session.user.id } }) : null;
+  const design = generation?.designId ? await prisma.design.findUnique({ where: { id: generation.designId } }) : null;
+  const files = mergeFiles(template, [...generated.files, ...(design ? repoFiles(parseFiles(design)) : [])]);
   const repo = await createRepoWithFiles(generated.slug, generated.summary, files, session.user.login);
 
   const app = await prisma.app.create({

@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Edit screens · APSlop</title>
+    <link rel="stylesheet" href="/wireframe/editor.css">
+    <style>
+      /* A bar of the site's own above the editor: back to the design page. */
+      #apslop-bar { height: 40px; display: flex; align-items: center; gap: 12px; padding: 0 16px; background: #24292f; color: #fff; font: 13px/1 -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans JP", sans-serif; }
+      #apslop-bar a { color: #fff; text-decoration: none; padding: 6px 10px; border-radius: 6px; border: 1px solid rgba(255,255,255,.3); }
+      #apslop-bar a:hover { background: rgba(255,255,255,.12); }
+      #apslop-bar .title { opacity: .8; }
+      #apslop-bar .done { margin-left: auto; background: #1f883d; border-color: #1f883d; font-weight: 600; }
+      #app { height: calc(100vh - 40px); }
+    </style>
+    <script>
+      // Which design this editor works on: /wireframe/index.html?design=<id>&screen=<id>
+      (function () {
+        var params = new URLSearchParams(location.search);
+        var design = params.get("design") || "";
+        if (!/^[a-z0-9]+$/.test(design)) {
+          document.documentElement.innerHTML = "<body style='font-family:sans-serif;padding:24px'>No design given. Open this page from a design on APSlop.</body>";
+          throw new Error("no design");
+        }
+        window.WIREFRAME_API_BASE = "/api/wireframe/" + design;
+        window.WIREFRAME_NO_WS = true;
+        window.APSLOP_DESIGN_URL = "/new/design/" + design;
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="apslop-bar">
+      <a id="apslop-back" href="#">← Back to screens</a>
+      <span class="title">Edit screens — save with the Save button (or Ctrl+S), then go back.</span>
+      <a id="apslop-done" class="done" href="#">Done editing</a>
+    </div>
+    <script>
+      document.getElementById("apslop-back").href = window.APSLOP_DESIGN_URL;
+      document.getElementById("apslop-done").href = window.APSLOP_DESIGN_URL;
+    </script>
+    <div id="app">
+      <header id="header"></header>
+      <div id="banner" hidden data-guide="banner"></div>
+      <div id="start" hidden>
+        <nav id="start-nav"></nav>
+        <main id="start-main"></main>
+      </div>
+      <div id="editor" hidden>
+        <aside id="left">
+          <section id="tree-section"></section>
+          <section id="elements-section"></section>
+          <section id="dynamic-section"></section>
+          <div id="play-note" hidden>再生中は編集できません。「編集」に戻ると、最初の State に戻ります</div>
+        </aside>
+        <main id="canvas-wrap">
+          <div id="state-badge" hidden></div>
+          <div id="canvas"></div>
+        </main>
+        <aside id="right">
+          <div class="panel-title">属性</div>
+          <section id="props"></section>
+          <div class="panel-title">見本帳</div>
+          <section id="themes"></section>
+        </aside>
+      </div>
+      <div id="stopped" hidden>停止中… つなぎ直しています</div>
+    </div>
+    <script type="module" src="/wireframe/editor.js"></script>
+  </body>
+</html>

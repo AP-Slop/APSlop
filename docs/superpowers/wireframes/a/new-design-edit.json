@@ -1,0 +1,546 @@
+{
+  "version": 1,
+  "id": "new-design-edit",
+  "title": "開発者: 新しいアプリ(画面を直す)",
+  "device": "desktop",
+  "elements": [
+    {
+      "id": "r188",
+      "type": "rect",
+      "x": 0,
+      "y": 0,
+      "w": 1440,
+      "h": 56,
+      "name": "Developer Header",
+      "style": {
+        "fill": "#24292F",
+        "radius": 0
+      },
+      "children": [
+        {
+          "id": "i179",
+          "type": "icon",
+          "x": 144,
+          "y": 16,
+          "w": 24,
+          "h": 24,
+          "text": "AP logo"
+        },
+        {
+          "id": "t180",
+          "type": "text",
+          "x": 176,
+          "y": 16,
+          "w": 160,
+          "h": 24,
+          "text": "APSlop Developers",
+          "style": {
+            "weight": "bold",
+            "color": "#FFFFFF"
+          }
+        },
+        {
+          "id": "t181",
+          "type": "text",
+          "x": 360,
+          "y": 16,
+          "w": 88,
+          "h": 24,
+          "text": "Dashboard",
+          "style": {
+            "color": "#FFFFFF",
+            "weight": "normal"
+          }
+        },
+        {
+          "id": "t182",
+          "type": "text",
+          "x": 464,
+          "y": 16,
+          "w": 104,
+          "h": 24,
+          "text": "Repositories",
+          "style": {
+            "color": "#FFFFFF",
+            "weight": "normal"
+          }
+        },
+        {
+          "id": "t183",
+          "type": "text",
+          "x": 584,
+          "y": 16,
+          "w": 72,
+          "h": 24,
+          "text": "New app",
+          "style": {
+            "color": "#FFFFFF",
+            "weight": "bold"
+          }
+        },
+        {
+          "id": "hu1",
+          "type": "rect",
+          "x": 580,
+          "y": 52,
+          "w": 80,
+          "h": 4,
+          "name": "Current Place",
+          "style": {
+            "fill": "#FD8C73",
+            "border": "none",
+            "radius": 2
+          }
+        },
+        {
+          "id": "i185",
+          "type": "icon",
+          "x": 1040,
+          "y": 16,
+          "w": 24,
+          "h": 24,
+          "text": "avatar"
+        },
+        {
+          "id": "t186",
+          "type": "text",
+          "x": 1072,
+          "y": 16,
+          "w": 112,
+          "h": 24,
+          "text": "taku1029-dev",
+          "style": {
+            "color": "#FFFFFF"
+          }
+        },
+        {
+          "id": "t187",
+          "type": "text",
+          "x": 1200,
+          "y": 16,
+          "w": 96,
+          "h": 24,
+          "text": "Sign out",
+          "style": {
+            "color": "#FFFFFF",
+            "align": "right"
+          }
+        },
+        {
+          "id": "hm1",
+          "type": "toggle",
+          "x": 832,
+          "y": 12,
+          "w": 184,
+          "h": 32,
+          "name": "Mode Switch",
+          "text": "Developer Mode",
+          "props": {
+            "checked": true
+          },
+          "style": {
+            "color": "#FFFFFF"
+          }
+        }
+      ]
+    },
+    {
+      "id": "back",
+      "type": "button",
+      "x": 144,
+      "y": 72,
+      "w": 168,
+      "h": 40,
+      "text": "← Back to screens",
+      "variant": "ghost"
+    },
+    {
+      "id": "ttl",
+      "type": "text",
+      "x": 328,
+      "y": 80,
+      "w": 480,
+      "h": 24,
+      "text": "New app — edit screens",
+      "style": {
+        "weight": "bold"
+      }
+    },
+    {
+      "id": "done",
+      "type": "button",
+      "x": 1136,
+      "y": 72,
+      "w": 160,
+      "h": 40,
+      "text": "Done editing",
+      "variant": "filled"
+    },
+    {
+      "id": "editor",
+      "type": "rect",
+      "x": 144,
+      "y": 128,
+      "w": 1152,
+      "h": 680,
+      "name": "Wireframe Editor",
+      "style": {
+        "fill": "$surface",
+        "radius": 0
+      },
+      "children": [
+        {
+          "id": "editor-bar",
+          "type": "rect",
+          "x": 0,
+          "y": 0,
+          "w": 1152,
+          "h": 48,
+          "name": "Editor Bar",
+          "style": {
+            "fill": "$surface",
+            "radius": 0
+          },
+          "children": [
+            {
+              "id": "editor-scr",
+              "type": "input",
+              "x": 16,
+              "y": 8,
+              "w": 200,
+              "h": 32,
+              "text": "",
+              "props": {
+                "placeholder": "Screen: Today's menu",
+                "kind": "select"
+              }
+            },
+            {
+              "id": "editor-undo",
+              "type": "button",
+              "x": 232,
+              "y": 8,
+              "w": 72,
+              "h": 32,
+              "text": "Undo",
+              "variant": "ghost"
+            },
+            {
+              "id": "editor-redo",
+              "type": "button",
+              "x": 312,
+              "y": 8,
+              "w": 72,
+              "h": 32,
+              "text": "Redo",
+              "variant": "ghost"
+            },
+            {
+              "id": "editor-play",
+              "type": "button",
+              "x": 400,
+              "y": 8,
+              "w": 88,
+              "h": 32,
+              "text": "▶ Play",
+              "variant": "ghost"
+            },
+            {
+              "id": "editor-save",
+              "type": "button",
+              "x": 1048,
+              "y": 8,
+              "w": 88,
+              "h": 32,
+              "text": "Save",
+              "variant": "outline"
+            }
+          ]
+        },
+        {
+          "id": "editor-left",
+          "type": "rect",
+          "x": 0,
+          "y": 48,
+          "w": 176,
+          "h": 632,
+          "name": "Select / Elements",
+          "style": {
+            "fill": "$bg",
+            "radius": 0
+          },
+          "children": [
+            {
+              "id": "editor-l1",
+              "type": "text",
+              "x": 12,
+              "y": 12,
+              "w": 152,
+              "h": 24,
+              "text": "Select",
+              "style": {
+                "weight": "bold"
+              }
+            },
+            {
+              "id": "editor-l2",
+              "type": "text",
+              "x": 12,
+              "y": 44,
+              "w": 152,
+              "h": 24,
+              "text": "  App Bar",
+              "style": {
+                "size": "sm"
+              }
+            },
+            {
+              "id": "editor-l3",
+              "type": "text",
+              "x": 12,
+              "y": 72,
+              "w": 152,
+              "h": 24,
+              "text": "  Menu List",
+              "style": {
+                "size": "sm"
+              }
+            },
+            {
+              "id": "editor-l4",
+              "type": "text",
+              "x": 12,
+              "y": 100,
+              "w": 152,
+              "h": 24,
+              "text": "  Review Button",
+              "style": {
+                "size": "sm"
+              }
+            },
+            {
+              "id": "editor-l5",
+              "type": "text",
+              "x": 12,
+              "y": 148,
+              "w": 152,
+              "h": 24,
+              "text": "Elements",
+              "style": {
+                "weight": "bold"
+              }
+            },
+            {
+              "id": "editor-l6",
+              "type": "text",
+              "x": 12,
+              "y": 180,
+              "w": 152,
+              "h": 24,
+              "text": "  text  button  input  list",
+              "style": {
+                "size": "sm",
+                "color": "$muted"
+              }
+            }
+          ]
+        },
+        {
+          "id": "editor-phone",
+          "type": "rect",
+          "x": 448,
+          "y": 72,
+          "w": 232,
+          "h": 400,
+          "name": "Screen Thumbnail",
+          "props": {
+            "elevated": true
+          },
+          "children": [
+            {
+              "id": "editor-phone-nav",
+              "type": "rect",
+              "x": 0,
+              "y": 0,
+              "w": 232,
+              "h": 40,
+              "name": "App Bar",
+              "style": {
+                "fill": "#24292F",
+                "radius": 0
+              },
+              "children": [
+                {
+                  "id": "editor-phone-nav-t",
+                  "type": "text",
+                  "x": 12,
+                  "y": 8,
+                  "w": 208,
+                  "h": 24,
+                  "text": "Today's menu",
+                  "style": {
+                    "color": "#FFFFFF",
+                    "weight": "bold"
+                  }
+                }
+              ]
+            },
+            {
+              "id": "editor-phone-row0",
+              "type": "text",
+              "x": 12,
+              "y": 56,
+              "w": 208,
+              "h": 24,
+              "text": "Curry rice  ★★★★☆ 4.2",
+              "style": {
+                "size": "sm"
+              }
+            },
+            {
+              "id": "editor-phone-row1",
+              "type": "text",
+              "x": 12,
+              "y": 92,
+              "w": 208,
+              "h": 24,
+              "text": "Udon  ★★★☆☆ 3.1",
+              "style": {
+                "size": "sm"
+              }
+            },
+            {
+              "id": "editor-phone-row2",
+              "type": "text",
+              "x": 12,
+              "y": 128,
+              "w": 208,
+              "h": 24,
+              "text": "Katsu-don  ★★★★★ 4.8",
+              "style": {
+                "size": "sm"
+              }
+            },
+            {
+              "id": "editor-phone-btn",
+              "type": "button",
+              "x": 16,
+              "y": 344,
+              "w": 200,
+              "h": 40,
+              "text": "Write a review",
+              "variant": "filled"
+            }
+          ]
+        },
+        {
+          "id": "editor-right",
+          "type": "rect",
+          "x": 952,
+          "y": 48,
+          "w": 200,
+          "h": 632,
+          "name": "Properties",
+          "style": {
+            "fill": "$bg",
+            "radius": 0
+          },
+          "children": [
+            {
+              "id": "editor-r1",
+              "type": "text",
+              "x": 12,
+              "y": 12,
+              "w": 176,
+              "h": 24,
+              "text": "Properties",
+              "style": {
+                "weight": "bold"
+              }
+            },
+            {
+              "id": "editor-r2",
+              "type": "text",
+              "x": 12,
+              "y": 44,
+              "w": 176,
+              "h": 24,
+              "text": "text: Today's menu",
+              "style": {
+                "size": "sm"
+              }
+            },
+            {
+              "id": "editor-r3",
+              "type": "text",
+              "x": 12,
+              "y": 72,
+              "w": 176,
+              "h": 24,
+              "text": "x 0  y 0  w 232  h 40",
+              "style": {
+                "size": "sm",
+                "color": "$muted"
+              }
+            },
+            {
+              "id": "editor-r4",
+              "type": "text",
+              "x": 12,
+              "y": 120,
+              "w": 176,
+              "h": 24,
+              "text": "Animation",
+              "style": {
+                "weight": "bold"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "r199",
+      "type": "rect",
+      "x": 0,
+      "y": 844,
+      "w": 1440,
+      "h": 56,
+      "name": "Footer",
+      "style": {
+        "radius": 0,
+        "border": "none",
+        "fill": "$bg"
+      },
+      "children": [
+        {
+          "id": "t197",
+          "type": "text",
+          "x": 144,
+          "y": 16,
+          "w": 400,
+          "h": 24,
+          "text": "APSlop — a campus community GitHub",
+          "style": {
+            "color": "$muted",
+            "size": "sm"
+          }
+        },
+        {
+          "id": "t198",
+          "type": "text",
+          "x": 816,
+          "y": 16,
+          "w": 480,
+          "h": 24,
+          "text": "F-Droid repository: https://apslop.example.com/fdroid/repo",
+          "style": {
+            "color": "$muted",
+            "size": "sm",
+            "align": "right"
+          }
+        }
+      ]
+    }
+  ]
+}

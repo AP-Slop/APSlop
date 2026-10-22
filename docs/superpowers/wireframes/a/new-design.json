@@ -1,0 +1,674 @@
+{
+  "version": 1,
+  "id": "new-design",
+  "title": "開発者: 新しいアプリ(画面の確認)",
+  "device": {
+    "w": 1440,
+    "h": 1064
+  },
+  "elements": [
+    {
+      "id": "r188",
+      "type": "rect",
+      "x": 0,
+      "y": 0,
+      "w": 1440,
+      "h": 56,
+      "name": "Developer Header",
+      "style": {
+        "fill": "#24292F",
+        "radius": 0
+      },
+      "children": [
+        {
+          "id": "i179",
+          "type": "icon",
+          "x": 144,
+          "y": 16,
+          "w": 24,
+          "h": 24,
+          "text": "AP logo"
+        },
+        {
+          "id": "t180",
+          "type": "text",
+          "x": 176,
+          "y": 16,
+          "w": 160,
+          "h": 24,
+          "text": "APSlop Developers",
+          "style": {
+            "weight": "bold",
+            "color": "#FFFFFF"
+          }
+        },
+        {
+          "id": "t181",
+          "type": "text",
+          "x": 360,
+          "y": 16,
+          "w": 88,
+          "h": 24,
+          "text": "Dashboard",
+          "style": {
+            "color": "#FFFFFF",
+            "weight": "normal"
+          }
+        },
+        {
+          "id": "t182",
+          "type": "text",
+          "x": 464,
+          "y": 16,
+          "w": 104,
+          "h": 24,
+          "text": "Repositories",
+          "style": {
+            "color": "#FFFFFF",
+            "weight": "normal"
+          }
+        },
+        {
+          "id": "t183",
+          "type": "text",
+          "x": 584,
+          "y": 16,
+          "w": 72,
+          "h": 24,
+          "text": "New app",
+          "style": {
+            "color": "#FFFFFF",
+            "weight": "bold"
+          }
+        },
+        {
+          "id": "hu1",
+          "type": "rect",
+          "x": 580,
+          "y": 52,
+          "w": 80,
+          "h": 4,
+          "name": "Current Place",
+          "style": {
+            "fill": "#FD8C73",
+            "border": "none",
+            "radius": 2
+          }
+        },
+        {
+          "id": "i185",
+          "type": "icon",
+          "x": 1040,
+          "y": 16,
+          "w": 24,
+          "h": 24,
+          "text": "avatar"
+        },
+        {
+          "id": "t186",
+          "type": "text",
+          "x": 1072,
+          "y": 16,
+          "w": 112,
+          "h": 24,
+          "text": "taku1029-dev",
+          "style": {
+            "color": "#FFFFFF"
+          }
+        },
+        {
+          "id": "t187",
+          "type": "text",
+          "x": 1200,
+          "y": 16,
+          "w": 96,
+          "h": 24,
+          "text": "Sign out",
+          "style": {
+            "color": "#FFFFFF",
+            "align": "right"
+          }
+        },
+        {
+          "id": "hm1",
+          "type": "toggle",
+          "x": 832,
+          "y": 12,
+          "w": 184,
+          "h": 32,
+          "name": "Mode Switch",
+          "text": "Developer Mode",
+          "props": {
+            "checked": true
+          },
+          "style": {
+            "color": "#FFFFFF"
+          }
+        }
+      ]
+    },
+    {
+      "id": "ttl",
+      "type": "text",
+      "x": 144,
+      "y": 88,
+      "w": 600,
+      "h": 32,
+      "text": "New app — screens",
+      "style": {
+        "size": "lg",
+        "weight": "bold"
+      }
+    },
+    {
+      "id": "sub",
+      "type": "text",
+      "x": 144,
+      "y": 128,
+      "w": 1152,
+      "h": 24,
+      "text": "AI drew what the app does and its screens from your description. Fix anything that is off, or go straight to the code.",
+      "style": {
+        "color": "$muted"
+      }
+    },
+    {
+      "id": "plan",
+      "type": "rect",
+      "x": 144,
+      "y": 176,
+      "w": 1152,
+      "h": 184,
+      "name": "What The App Does",
+      "style": {
+        "fill": "$bg"
+      },
+      "children": [
+        {
+          "id": "plan-hdr",
+          "type": "rect",
+          "x": 0,
+          "y": 0,
+          "w": 1152,
+          "h": 40,
+          "name": "Card Header",
+          "style": {
+            "fill": "$surface",
+            "radius": 0
+          },
+          "children": [
+            {
+              "id": "plan-title",
+              "type": "text",
+              "x": 16,
+              "y": 8,
+              "w": 1120,
+              "h": 24,
+              "text": "What the app does (edit freely)",
+              "style": {
+                "weight": "bold"
+              }
+            }
+          ]
+        },
+        {
+          "id": "plan-text",
+          "type": "input",
+          "x": 16,
+          "y": 56,
+          "w": 1120,
+          "h": 112,
+          "text": "",
+          "props": {
+            "placeholder": "• Rate today's cafeteria menus with 1–5 stars\n• See the average rating per menu\n• Write a short comment with each rating\n• Browse past reviews by date",
+            "kind": "text",
+            "multiline": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "screens",
+      "type": "rect",
+      "x": 144,
+      "y": 376,
+      "w": 1152,
+      "h": 504,
+      "name": "Screens",
+      "style": {
+        "fill": "$bg"
+      },
+      "children": [
+        {
+          "id": "screens-hdr",
+          "type": "rect",
+          "x": 0,
+          "y": 0,
+          "w": 1152,
+          "h": 40,
+          "name": "Card Header",
+          "style": {
+            "fill": "$surface",
+            "radius": 0
+          },
+          "children": [
+            {
+              "id": "screens-title",
+              "type": "text",
+              "x": 16,
+              "y": 8,
+              "w": 1120,
+              "h": 24,
+              "text": "Screens (3)",
+              "style": {
+                "weight": "bold"
+              }
+            },
+            {
+              "id": "edit-top",
+              "type": "button",
+              "x": 1016,
+              "y": 4,
+              "w": 120,
+              "h": 32,
+              "text": "Edit screens",
+              "variant": "outline"
+            }
+          ]
+        },
+        {
+          "id": "shot1",
+          "type": "rect",
+          "x": 16,
+          "y": 56,
+          "w": 232,
+          "h": 400,
+          "name": "Screen Thumbnail",
+          "props": {
+            "elevated": true
+          },
+          "children": [
+            {
+              "id": "shot1-nav",
+              "type": "rect",
+              "x": 0,
+              "y": 0,
+              "w": 232,
+              "h": 40,
+              "name": "App Bar",
+              "style": {
+                "fill": "#24292F",
+                "radius": 0
+              },
+              "children": [
+                {
+                  "id": "shot1-nav-t",
+                  "type": "text",
+                  "x": 12,
+                  "y": 8,
+                  "w": 208,
+                  "h": 24,
+                  "text": "Today's menu",
+                  "style": {
+                    "color": "#FFFFFF",
+                    "weight": "bold"
+                  }
+                }
+              ]
+            },
+            {
+              "id": "shot1-row0",
+              "type": "text",
+              "x": 12,
+              "y": 56,
+              "w": 208,
+              "h": 24,
+              "text": "Curry rice  ★★★★☆ 4.2",
+              "style": {
+                "size": "sm"
+              }
+            },
+            {
+              "id": "shot1-row1",
+              "type": "text",
+              "x": 12,
+              "y": 92,
+              "w": 208,
+              "h": 24,
+              "text": "Udon  ★★★☆☆ 3.1",
+              "style": {
+                "size": "sm"
+              }
+            },
+            {
+              "id": "shot1-row2",
+              "type": "text",
+              "x": 12,
+              "y": 128,
+              "w": 208,
+              "h": 24,
+              "text": "Katsu-don  ★★★★★ 4.8",
+              "style": {
+                "size": "sm"
+              }
+            },
+            {
+              "id": "shot1-btn",
+              "type": "button",
+              "x": 16,
+              "y": 344,
+              "w": 200,
+              "h": 40,
+              "text": "Write a review",
+              "variant": "filled"
+            }
+          ]
+        },
+        {
+          "id": "shot1-cap",
+          "type": "text",
+          "x": 16,
+          "y": 464,
+          "w": 232,
+          "h": 24,
+          "text": "Today's menu",
+          "style": {
+            "align": "center",
+            "size": "sm",
+            "color": "$muted"
+          }
+        },
+        {
+          "id": "shot2",
+          "type": "rect",
+          "x": 288,
+          "y": 56,
+          "w": 232,
+          "h": 400,
+          "name": "Screen Thumbnail",
+          "props": {
+            "elevated": true
+          },
+          "children": [
+            {
+              "id": "shot2-nav",
+              "type": "rect",
+              "x": 0,
+              "y": 0,
+              "w": 232,
+              "h": 40,
+              "name": "App Bar",
+              "style": {
+                "fill": "#24292F",
+                "radius": 0
+              },
+              "children": [
+                {
+                  "id": "shot2-nav-t",
+                  "type": "text",
+                  "x": 12,
+                  "y": 8,
+                  "w": 208,
+                  "h": 24,
+                  "text": "Write a review",
+                  "style": {
+                    "color": "#FFFFFF",
+                    "weight": "bold"
+                  }
+                }
+              ]
+            },
+            {
+              "id": "shot2-row0",
+              "type": "text",
+              "x": 12,
+              "y": 56,
+              "w": 208,
+              "h": 24,
+              "text": "Menu: Curry rice",
+              "style": {
+                "size": "sm"
+              }
+            },
+            {
+              "id": "shot2-row1",
+              "type": "text",
+              "x": 12,
+              "y": 92,
+              "w": 208,
+              "h": 24,
+              "text": "Stars: ★★★★☆",
+              "style": {
+                "size": "sm"
+              }
+            },
+            {
+              "id": "shot2-row2",
+              "type": "text",
+              "x": 12,
+              "y": 128,
+              "w": 208,
+              "h": 24,
+              "text": "Comment…",
+              "style": {
+                "size": "sm"
+              }
+            },
+            {
+              "id": "shot2-btn",
+              "type": "button",
+              "x": 16,
+              "y": 344,
+              "w": 200,
+              "h": 40,
+              "text": "Post",
+              "variant": "filled"
+            }
+          ]
+        },
+        {
+          "id": "shot2-cap",
+          "type": "text",
+          "x": 288,
+          "y": 464,
+          "w": 232,
+          "h": 24,
+          "text": "Write a review",
+          "style": {
+            "align": "center",
+            "size": "sm",
+            "color": "$muted"
+          }
+        },
+        {
+          "id": "shot3",
+          "type": "rect",
+          "x": 560,
+          "y": 56,
+          "w": 232,
+          "h": 400,
+          "name": "Screen Thumbnail",
+          "props": {
+            "elevated": true
+          },
+          "children": [
+            {
+              "id": "shot3-nav",
+              "type": "rect",
+              "x": 0,
+              "y": 0,
+              "w": 232,
+              "h": 40,
+              "name": "App Bar",
+              "style": {
+                "fill": "#24292F",
+                "radius": 0
+              },
+              "children": [
+                {
+                  "id": "shot3-nav-t",
+                  "type": "text",
+                  "x": 12,
+                  "y": 8,
+                  "w": 208,
+                  "h": 24,
+                  "text": "Past reviews",
+                  "style": {
+                    "color": "#FFFFFF",
+                    "weight": "bold"
+                  }
+                }
+              ]
+            },
+            {
+              "id": "shot3-row0",
+              "type": "text",
+              "x": 12,
+              "y": 56,
+              "w": 208,
+              "h": 24,
+              "text": "10/22 Curry rice ★4 'Spicy but good'",
+              "style": {
+                "size": "sm"
+              }
+            },
+            {
+              "id": "shot3-row1",
+              "type": "text",
+              "x": 12,
+              "y": 92,
+              "w": 208,
+              "h": 24,
+              "text": "10/21 Udon ★3 'A bit bland'",
+              "style": {
+                "size": "sm"
+              }
+            },
+            {
+              "id": "shot3-row2",
+              "type": "text",
+              "x": 12,
+              "y": 128,
+              "w": 208,
+              "h": 24,
+              "text": "10/20 Katsu-don ★5",
+              "style": {
+                "size": "sm"
+              }
+            },
+            {
+              "id": "shot3-btn",
+              "type": "button",
+              "x": 16,
+              "y": 344,
+              "w": 200,
+              "h": 40,
+              "text": "Back",
+              "variant": "filled"
+            }
+          ]
+        },
+        {
+          "id": "shot3-cap",
+          "type": "text",
+          "x": 560,
+          "y": 464,
+          "w": 232,
+          "h": 24,
+          "text": "Past reviews",
+          "style": {
+            "align": "center",
+            "size": "sm",
+            "color": "$muted"
+          }
+        }
+      ]
+    },
+    {
+      "id": "go",
+      "type": "button",
+      "x": 144,
+      "y": 904,
+      "w": 240,
+      "h": 40,
+      "text": "Looks good, generate code",
+      "variant": "filled"
+    },
+    {
+      "id": "edit",
+      "type": "button",
+      "x": 400,
+      "y": 904,
+      "w": 120,
+      "h": 40,
+      "text": "Edit screens",
+      "variant": "outline"
+    },
+    {
+      "id": "over",
+      "type": "button",
+      "x": 536,
+      "y": 904,
+      "w": 104,
+      "h": 40,
+      "text": "Start over",
+      "variant": "ghost"
+    },
+    {
+      "id": "note",
+      "type": "text",
+      "x": 144,
+      "y": 960,
+      "w": 1152,
+      "h": 24,
+      "text": "Takes 1–3 minutes. You review the code before the repository is created.",
+      "style": {
+        "color": "$muted",
+        "size": "sm"
+      }
+    },
+    {
+      "id": "r199",
+      "type": "rect",
+      "x": 0,
+      "y": 1008,
+      "w": 1440,
+      "h": 56,
+      "name": "Footer",
+      "style": {
+        "radius": 0,
+        "border": "none",
+        "fill": "$bg"
+      },
+      "children": [
+        {
+          "id": "t197",
+          "type": "text",
+          "x": 144,
+          "y": 16,
+          "w": 400,
+          "h": 24,
+          "text": "APSlop — a campus community GitHub",
+          "style": {
+            "color": "$muted",
+            "size": "sm"
+          }
+        },
+        {
+          "id": "t198",
+          "type": "text",
+          "x": 816,
+          "y": 16,
+          "w": 480,
+          "h": 24,
+          "text": "F-Droid repository: https://apslop.example.com/fdroid/repo",
+          "style": {
+            "color": "$muted",
+            "size": "sm",
+            "align": "right"
+          }
+        }
+      ]
+    }
+  ]
+}

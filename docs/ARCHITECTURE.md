@@ -43,7 +43,11 @@ Git の実体は github.com 上の Organization に置き、自前サーバー�
 
 1. **ログイン**: GitHub OAuth。初回ログイン時に Org へ招待(admin token)し、`User` を作成。
 2. **AI でアプリを作る** (`/new`):
-   - 説明文を入力 → Claude が雛形をベースにファイル一式を生成(tool-use で構造化出力)。
+   - 説明文を入力 → "Draw screens": AI が「できること」と画面 2〜5 枚(ワイヤーフレーム)を描く(`Design` 行、`draw` ジョブ、
+     `web/src/lib/design-ai.ts`)。`/new/design/<id>` で見て、"Edit screens" で `utils/wireframe` の編集画面(そのまま組み込み。
+     `web/public/wireframe/`、API は `/api/wireframe/<id>/api/...`、`web/src/lib/wireframe-store.ts`)で直す。
+   - "Looks good, generate code" → 説明文 + できること + 画面(概要と JSON)から AI が雛形をベースにファイル一式を生成(構造化出力)。
+     画面は `docs/wireframes/` としてリポジトリにも入る。
    - web が Org に `<slug>` リポジトリを作成し、Git Data API で全ファイルを1コミットで投入。利用者を admin コラボレータに追加。
    - `App` レコード(status=DRAFT)を作る。
    - テンプレの CI(`assembleDebug testDebugUnitTest`)が初期コミットをビルドする。結果は `workflow_run` webhook で
@@ -139,7 +143,10 @@ App         id, slug (unique), repoFullName (unique), name, summary, description
             ownerId -> User, createdAt, updatedAt, publishedAt?
 Generation  id, userId -> User, kind (CREATE|MODIFY), prompt, model, status,
             repoFullName?, prNumber?, error?, createdAt, finishedAt?,
-            buildStatus? (BUILDING|FIXING|PASSED|FAILED), buildBranch?, buildRounds, buildRunUrl?
+            buildStatus? (BUILDING|FIXING|PASSED|FAILED), buildBranch?, buildRounds, buildRunUrl?,
+            designId? -> Design
+Design      id, userId -> User, prompt, model, status (DRAWING|READY|FAILED), plan (できること、テキスト),
+            project (wireframe の project.json), screens (JSON: 画面 id -> 画面ファイル), error?, createdAt, updatedAt
 ```
 
 ## 環境変数

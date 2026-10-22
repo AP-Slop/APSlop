@@ -221,19 +221,19 @@
       "type": "button",
       "x": 144,
       "y": 448,
-      "w": 160,
+      "w": 144,
       "h": 40,
-      "text": "Generate code",
+      "text": "Draw screens",
       "variant": "filled"
     },
     {
       "id": "t196",
       "type": "text",
-      "x": 320,
+      "x": 304,
       "y": 456,
-      "w": 400,
+      "w": 800,
       "h": 24,
-      "text": "At least 10 characters. Takes 1–3 minutes.",
+      "text": "At least 10 characters. AI first draws what the app does and its screens (about 1 minute); the code comes after you confirm them.",
       "style": {
         "color": "$muted",
         "size": "sm"
