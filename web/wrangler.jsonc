@@ -7,8 +7,11 @@
   "compatibility_flags": ["nodejs_compat"],
   "assets": {
     "directory": ".open-next/assets",
-    "binding": "ASSETS"
+    "binding": "ASSETS",
+    // Every request goes through cloudflare/worker.ts first, so the site lock (SITE_PASSWORD) covers static files.
+    "run_worker_first": true
   },
+  "preview_urls": false,
   "services": [{ "binding": "WORKER_SELF_REFERENCE", "service": "apslop-web" }],
   // AI generation waits minutes on the model; waiting is not CPU time, but parsing/committing can be.
   "limits": { "cpu_ms": 300000 },
