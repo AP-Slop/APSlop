@@ -6,6 +6,8 @@ import { Badge, Card, CardHeader, formatDate } from "@/components/ui";
 import { Diff } from "@/components/Diff";
 import { PrActions } from "@/components/PrActions";
 import { SignInRequired } from "@/components/SignInRequired";
+import { BuildStatus } from "@/components/BuildStatus";
+import { prisma } from "@/lib/db";
 
 export default async function PullPage({ params }: { params: Promise<{ name: string; number: string }> }) {
   const { name, number } = await params;
@@ -19,6 +21,11 @@ export default async function PullPage({ params }: { params: Promise<{ name: str
     auth(),
   ]);
   const canWrite = session?.user?.login ? await canWriteRepo(name, session.user.login) : false;
+  // The CI build of what AI committed for this pull request, if AI made it.
+  const generation = await prisma.generation.findFirst({
+    where: { repoFullName: pr.base.repo.full_name, prNumber: n, buildStatus: { not: null } },
+    orderBy: { createdAt: "desc" },
+  });
   const additions = files.reduce((a, f) => a + f.additions, 0);
   const deletions = files.reduce((a, f) => a + f.deletions, 0);
   const status = pr.merged ? { label: "Merged", tone: "accent" as const } : pr.state === "open" ? { label: "Open", tone: "success" as const } : { label: "Closed", tone: "danger" as const };
@@ -31,6 +38,7 @@ export default async function PullPage({ params }: { params: Promise<{ name: str
         </h1>
         <div className="mt-2 flex items-center gap-2 text-sm text-fg-muted flex-wrap">
           <Badge tone={status.tone}>{status.label}</Badge>
+          {generation && <BuildStatus build={generation} />}
           <span>
             <strong>{pr.user?.login}</strong> {pr.merged ? "merged" : "wants to merge"} {pr.commits} {pr.commits === 1 ? "commit" : "commits"} into{" "}
             <code className="font-mono bg-canvas-subtle px-1 rounded">{pr.base.ref}</code> from{" "}

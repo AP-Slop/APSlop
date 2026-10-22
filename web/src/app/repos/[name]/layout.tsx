@@ -5,6 +5,7 @@ import { getRepo, getRepoCounts } from "@/lib/github";
 import { prisma } from "@/lib/db";
 import { AppStatusBadge, Badge, Container, LinkButton } from "@/components/ui";
 import { RepoTabs } from "@/components/RepoTabs";
+import { BuildStatus } from "@/components/BuildStatus";
 
 export const dynamic = "force-dynamic";
 
@@ -22,10 +23,15 @@ export default async function RepoLayout({
   } catch {
     notFound();
   }
-  const [app, counts, session] = await Promise.all([
+  const [app, counts, session, created] = await Promise.all([
     prisma.app.findUnique({ where: { repoFullName: repo.full_name } }),
     getRepoCounts(name).catch(() => ({ openIssues: 0, openPulls: 0 })),
     auth(),
+    // The CI build of the code AI wrote for this app (New app), while it is being built or fixed, or its result.
+    prisma.generation.findFirst({
+      where: { repoFullName: repo.full_name, kind: "CREATE", buildStatus: { not: null } },
+      orderBy: { createdAt: "desc" },
+    }),
   ]);
   const isOwner = !!app && !!session?.user?.id && app.ownerId === session.user.id;
 
@@ -44,6 +50,7 @@ export default async function RepoLayout({
                 <AppStatusBadge status={app.status} version={app.latestVersion} />
               </Link>
             )}
+            {created && <BuildStatus build={created} />}
             <div className="ml-auto flex items-center gap-4">
               <a href={repo.html_url} target="_blank" rel="noreferrer" className="text-sm text-accent hover:underline">
                 Open on GitHub ↗

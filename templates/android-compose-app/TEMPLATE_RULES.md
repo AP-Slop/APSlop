@@ -63,6 +63,9 @@ app/src/test/java/dev/apslop/apps/template/ExampleUnitTest.kt
 - No secrets, API keys, or hardcoded credentials in source.
 - Every Kotlin file must compile: correct package line, all imports present, no unresolved symbols.
   Keep state with `remember` / `rememberSaveable` / `ViewModel` (lifecycle-viewmodel-compose).
+- A Kotlin property `var name` already has `getName()` / `setName()` on the JVM: never declare
+  `fun setName(...)` / `fun getName()` in the same class (Platform declaration clash). Name the
+  method differently (`updateName`) or make the property private with a public method.
 - Keep the single-Activity structure (`MainActivity` declared in the manifest with
   `android:exported="true"` and the LAUNCHER intent filter).
 - Keep the launcher icon resources: the adaptive XML in `mipmap-anydpi-v26` AND the PNGs in

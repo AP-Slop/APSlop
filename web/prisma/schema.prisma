@@ -66,4 +66,12 @@ model Generation {
   finishedAt   DateTime?
   /// When the app this was for was deleted (its repo is gone, so the row no longer links anywhere)
   appDeletedAt DateTime?
+  /// The CI build of what this committed (CREATE: the default branch; MODIFY: the PR branch), see src/lib/build-fix.ts:
+  /// BUILDING | FIXING (AI is committing a fix) | PASSED | FAILED
+  buildStatus  String?
+  buildBranch  String?
+  /// How many fixes AI has committed for this build
+  buildRounds  Int       @default(0)
+  /// The last CI run that reported
+  buildRunUrl  String?
 }

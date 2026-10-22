@@ -528,6 +528,49 @@ export async function createRelease(
   return data;
 }
 
+/** The log of the first failed job of a workflow run, or null when no job failed. */
+type RunJob = { id: number; status: string; conclusion: string | null; steps?: { conclusion: string | null }[] };
+
+/**
+ * The job of a failed run to read the log of. Right after a run completes, GitHub may still list the
+ * failed job as in progress with no conclusion (its steps already say which one failed), or list no job
+ * at all for a moment; so the steps count too, and the caller retries while nothing is listed.
+ */
+export function pickFailedJob<J extends RunJob>(jobs: J[]): J | null {
+  return (
+    jobs.find((j) => j.conclusion === "failure") ??
+    jobs.find((j) => j.steps?.some((s) => s.conclusion === "failure")) ??
+    (jobs.length === 1 && jobs[0].status !== "completed" ? jobs[0] : null)
+  );
+}
+
+const JOB_LOOKUPS = 4;
+const JOB_LOOKUP_WAIT_MS = 5_000;
+
+/** Plain-text log of the failed job of a workflow run, or null when GitHub lists none. */
+export async function getFailedJobLog(name: string, runId: number, wait = JOB_LOOKUP_WAIT_MS): Promise<string | null> {
+  const gh = adminOctokit();
+  const owner = org();
+  let job: RunJob | null = null;
+  for (let attempt = 1; !job; attempt++) {
+    const { data } = await gh.rest.actions.listJobsForWorkflowRun({ owner, repo: name, run_id: runId, per_page: 50 });
+    job = pickFailedJob(data.jobs);
+    if (job || attempt >= JOB_LOOKUPS) break;
+    await new Promise((r) => setTimeout(r, wait));
+  }
+  if (!job) return null;
+  // GitHub answers with a redirect to the plain-text log, which Octokit follows.
+  const res = await gh.rest.actions.downloadJobLogsForWorkflowRun({ owner, repo: name, job_id: job.id });
+  const text = typeof res.data === "string" ? res.data : new TextDecoder().decode(res.data as ArrayBuffer);
+  return text.trim() ? text : null;
+}
+
+/** Commit `files` on top of the current head of `branch`, as the server (AI build fixes). */
+export async function commitFiles(name: string, branch: string, files: RepoFile[], message: string): Promise<string> {
+  const base = await getBranchSha(name, branch);
+  return pushTree(adminOctokit(), org(), name, branch, files, message, base);
+}
+
 export async function listWorkflowRuns(name: string) {
   const gh = adminOctokit();
   const { data } = await gh.rest.actions.listWorkflowRunsForRepo({ owner: org(), repo: name, per_page: 10 });

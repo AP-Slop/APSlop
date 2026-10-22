@@ -3,6 +3,7 @@ import { NextResponse } from "next/server";
 import { prisma } from "@/lib/db";
 import { env } from "@/lib/env";
 import { runInBackground } from "@/lib/jobs";
+import { recordCiRun } from "@/lib/build-fix";
 
 function verify(raw: string, signature: string | null): boolean {
   const secret = env().GITHUB_WEBHOOK_SECRET;
@@ -22,7 +23,7 @@ type ReleaseEvent = {
 
 type WorkflowRunEvent = {
   action: string;
-  workflow_run?: { name: string; event: string; conclusion: string | null; head_branch: string | null };
+  workflow_run?: { id: number; name: string; event: string; conclusion: string | null; head_branch: string | null; html_url: string };
   repository?: { full_name: string };
 };
 
@@ -42,14 +43,21 @@ export async function POST(req: Request) {
   const event = req.headers.get("x-github-event");
   if (event === "ping") return NextResponse.json({ ok: true });
 
-  // Reliable path: the template's "Release" workflow finished (APK is attached by then).
   if (event === "workflow_run") {
     const payload = JSON.parse(raw) as WorkflowRunEvent;
     const run = payload.workflow_run;
     const fullName = payload.repository?.full_name;
-    if (payload.action !== "completed" || run?.conclusion !== "success" || !fullName) {
-      return NextResponse.json({ ignored: "workflow not completed successfully" });
+    if (payload.action !== "completed" || !run?.conclusion || !fullName) {
+      return NextResponse.json({ ignored: "workflow not completed" });
     }
+    // The template's "CI" workflow finished on a branch AI committed to: record it, and have AI fix a failure.
+    if (run.name === "CI" && run.head_branch) {
+      const outcome = await recordCiRun({ repoFullName: fullName, branch: run.head_branch, conclusion: run.conclusion, runUrl: run.html_url });
+      if (outcome.action === "fix") await runInBackground({ kind: "fix", id: outcome.id, runId: run.id });
+      return NextResponse.json(outcome, { status: outcome.action === "fix" ? 202 : 200 });
+    }
+    // Reliable path: the template's "Release" workflow finished (APK is attached by then).
+    if (run.conclusion !== "success") return NextResponse.json({ ignored: "workflow not completed successfully" });
     // head_branch carries the tag name for tag-triggered runs.
     const tag = run.event === "push" && run.head_branch?.startsWith("v") ? run.head_branch : undefined;
     if (!tag) return NextResponse.json({ ignored: "not a release tag run" });
