@@ -43,8 +43,24 @@ web はストアの一覧を R2 の `apps.json`(fdroid update のたびにコン
    | `ANTHROPIC_API_KEY` / `DEEPSEEK_API_KEY` | AI |
    | `STORE_TOKEN` | Worker とコンテナの間の合言葉。`openssl rand -hex 32` |
    | `STORE_KEY_PASSWORD` | 署名鍵のパスワード。**既存のストアを移すなら、その鍵と同じ値** |
+   | `SITE_PASSWORD` | 任意。入れている間はサイト全体に鍵がかかる(下の「サイトに鍵をかける」) |
 
 5. Org の webhook の Payload URL を `<URL>/api/webhooks/github` に向ける([SETUP_GITHUB.md](SETUP_GITHUB.md) の 4)
+
+## サイトに鍵をかける
+
+開発中など、サイトを自分だけが開ける状態にしたいときは `SITE_PASSWORD` を入れる。入れている間は、ページ・API・静的ファイル・
+ストア (`/fdroid/…`) のすべてで Basic 認証を求める(ユーザー名は任意)。`wrangler.jsonc` の `run_worker_first` で静的ファイルも
+Worker を通るので、鍵の外に漏れるファイルはない。
+
+```sh
+cd web
+npx wrangler secret put SITE_PASSWORD     # 鍵をかける(すぐ効く。deploy 不要)
+npx wrangler secret delete SITE_PASSWORD  # 鍵を外す
+```
+
+GitHub の webhook(`POST /api/webhooks/github`、署名で確かめる)とストアアプリの掲載(`PUT /_store/store-app`、`X-Store-Token`)は
+鍵がかかっていても通る。スマホのストアアプリはパスワードを送れないので、鍵の間はストアを読めない。
 
 ## デプロイ
 
