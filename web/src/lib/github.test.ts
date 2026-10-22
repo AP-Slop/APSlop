@@ -1,5 +1,5 @@
 import { afterEach, describe, expect, it, vi } from "vitest";
-import { GITHUB_SIGNIN_EXPIRED, WORKFLOWS_NOT_ALLOWED, canWriteRepo, createRepoWithFiles, listOrgRepos, userOctokit } from "./github";
+import { GITHUB_SIGNIN_EXPIRED, WORKFLOWS_NOT_ALLOWED, canWriteRepo, createRepoWithFiles, getFailedJobLog, listOrgRepos, pickFailedJob, userOctokit } from "./github";
 
 afterEach(() => {
   vi.unstubAllGlobals();
@@ -147,5 +147,54 @@ describe("canWriteRepo", () => {
     );
     const result = Object.fromEntries(await Promise.all(Object.keys(roles).map(async (l) => [l, await canWriteRepo("counter", l)])));
     expect(result).toEqual({ writer: true, maintainer: true, owner: true, reader: false, triager: false, stranger: false });
+  });
+});
+
+describe("getFailedJobLog", () => {
+  const stubEnvs = () => {
+    vi.stubEnv("GITHUB_ORG", "AP-Slop");
+    vi.stubEnv("GITHUB_ADMIN_TOKEN", "t");
+    vi.stubEnv("GITHUB_CLIENT_ID", "c");
+    vi.stubEnv("GITHUB_CLIENT_SECRET", "s");
+    vi.stubEnv("AUTH_SECRET", "a");
+  };
+  const failedStep = { name: "Build", status: "completed", conclusion: "failure" };
+
+  it("picks the job whose step failed even while GitHub still lists the job as in progress", () => {
+    const jobs = [
+      { id: 1, status: "completed", conclusion: "success", steps: [] },
+      { id: 2, status: "in_progress", conclusion: null, steps: [{ conclusion: "success" }, failedStep] },
+    ];
+    expect(pickFailedJob(jobs)?.id).toBe(2);
+    expect(pickFailedJob([{ id: 3, status: "completed", conclusion: "failure" }])?.id).toBe(3);
+    expect(pickFailedJob([{ id: 4, status: "in_progress", conclusion: null, steps: [] }])?.id).toBe(4);
+    expect(pickFailedJob([{ id: 5, status: "completed", conclusion: "success" }])).toBeNull();
+    expect(pickFailedJob([])).toBeNull();
+  });
+
+  it("retries while GitHub lists no job yet, then downloads the failed job's log", async () => {
+    stubEnvs();
+    let listings = 0;
+    vi.stubGlobal(
+      "fetch",
+      vi.fn(async (url: string) => {
+        const path = new URL(url).pathname;
+        if (path.endsWith("/actions/runs/9/jobs")) {
+          listings++;
+          return reply(200, { total_count: listings === 1 ? 0 : 1, jobs: listings === 1 ? [] : [{ id: 7, status: "in_progress", conclusion: null, steps: [failedStep] }] });
+        }
+        if (path.endsWith("/actions/jobs/7/logs")) return new Response("2026-10-22T10:10:18Z e: file:///x.kt:1:1 boom\n", { status: 200 });
+        return reply(404, { message: "Not Found" });
+      }),
+    );
+    const log = await getFailedJobLog("cafeteria-review", 9, 1);
+    expect(listings).toBe(2);
+    expect(log).toContain("boom");
+  });
+
+  it("gives up with null when no job ever shows up", async () => {
+    stubEnvs();
+    vi.stubGlobal("fetch", vi.fn(async () => reply(200, { total_count: 0, jobs: [] })));
+    expect(await getFailedJobLog("cafeteria-review", 9, 1)).toBeNull();
   });
 });

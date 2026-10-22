@@ -529,15 +529,40 @@ export async function createRelease(
 }
 
 /** The log of the first failed job of a workflow run, or null when no job failed. */
-export async function getFailedJobLog(name: string, runId: number): Promise<string | null> {
+type RunJob = { id: number; status: string; conclusion: string | null; steps?: { conclusion: string | null }[] };
+
+/**
+ * The job of a failed run to read the log of. Right after a run completes, GitHub may still list the
+ * failed job as in progress with no conclusion (its steps already say which one failed), or list no job
+ * at all for a moment; so the steps count too, and the caller retries while nothing is listed.
+ */
+export function pickFailedJob<J extends RunJob>(jobs: J[]): J | null {
+  return (
+    jobs.find((j) => j.conclusion === "failure") ??
+    jobs.find((j) => j.steps?.some((s) => s.conclusion === "failure")) ??
+    (jobs.length === 1 && jobs[0].status !== "completed" ? jobs[0] : null)
+  );
+}
+
+const JOB_LOOKUPS = 4;
+const JOB_LOOKUP_WAIT_MS = 5_000;
+
+/** Plain-text log of the failed job of a workflow run, or null when GitHub lists none. */
+export async function getFailedJobLog(name: string, runId: number, wait = JOB_LOOKUP_WAIT_MS): Promise<string | null> {
   const gh = adminOctokit();
   const owner = org();
-  const { data } = await gh.rest.actions.listJobsForWorkflowRun({ owner, repo: name, run_id: runId, per_page: 50 });
-  const job = data.jobs.find((j) => j.conclusion === "failure");
+  let job: RunJob | null = null;
+  for (let attempt = 1; !job; attempt++) {
+    const { data } = await gh.rest.actions.listJobsForWorkflowRun({ owner, repo: name, run_id: runId, per_page: 50 });
+    job = pickFailedJob(data.jobs);
+    if (job || attempt >= JOB_LOOKUPS) break;
+    await new Promise((r) => setTimeout(r, wait));
+  }
   if (!job) return null;
   // GitHub answers with a redirect to the plain-text log, which Octokit follows.
   const res = await gh.rest.actions.downloadJobLogsForWorkflowRun({ owner, repo: name, job_id: job.id });
-  return typeof res.data === "string" ? res.data : new TextDecoder().decode(res.data as ArrayBuffer);
+  const text = typeof res.data === "string" ? res.data : new TextDecoder().decode(res.data as ArrayBuffer);
+  return text.trim() ? text : null;
 }
 
 /** Commit `files` on top of the current head of `branch`, as the server (AI build fixes). */
