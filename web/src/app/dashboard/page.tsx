@@ -2,6 +2,9 @@ import Link from "next/link";
 import { auth } from "@/lib/auth";
 import { prisma } from "@/lib/db";
 import { repoName } from "@/lib/github";
+import { isBuildRunning } from "@/lib/build-fix";
+import { AutoRefresh } from "@/components/AutoRefresh";
+import { BuildStatus } from "@/components/BuildStatus";
 import { SignInRequired } from "@/components/SignInRequired";
 import { AppStatusBadge, Badge, Card, CardHeader, Container, Empty, LinkButton, formatDate } from "@/components/ui";
 
@@ -81,6 +84,7 @@ export default async function Dashboard({ searchParams }: { searchParams: Promis
         </Card>
         <Card>
           <CardHeader>AI history</CardHeader>
+          {generations.some((g) => isBuildRunning(g.buildStatus)) && <AutoRefresh />}
           {generations.length === 0 ? (
             <Empty>Nothing yet.</Empty>
           ) : (
@@ -92,6 +96,7 @@ export default async function Dashboard({ searchParams }: { searchParams: Promis
                     <div className="flex items-center gap-2">
                       <Badge>{g.kind === "CREATE" ? "New app" : "PR"}</Badge>
                       <Badge tone={state.tone}>{state.label}</Badge>
+                      <BuildStatus build={g} refresh={false} />
                       <span className="text-xs text-fg-muted">{formatDate(g.createdAt)}</span>
                       {g.repoFullName &&
                         (g.appDeletedAt ? (

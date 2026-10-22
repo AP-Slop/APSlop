@@ -40,6 +40,13 @@ export const ProposedChangesSchema = z.object({
 
 export type ProposedChanges = z.infer<typeof ProposedChangesSchema>;
 
+export const BuildFixSchema = z.object({
+  summary: z.string().max(100).describe("何を直したかの一行 (コミットメッセージに使う)"),
+  files: z.array(GeneratedFileSchema).describe("変更するファイルのみ、完全な内容。変更しないファイルは含めない"),
+});
+
+export type BuildFix = z.infer<typeof BuildFixSchema>;
+
 const ANDROID_RULES = `
 あなたは大学コミュニティ向けプラットフォーム「APSlop」の Android アプリ生成エンジンです。
 利用者はプログラミング初心者のことが多く、生成物はそのまま GitHub Actions で \`./gradlew assembleRelease\` が通り、
@@ -226,9 +233,30 @@ export async function proposeChanges(
 - 既存のパッケージ名や Gradle 構成は変えない。
 - versionCode / versionName は変更しない (リリース時に別途更新する)。
 `;
-  const listing = currentFiles.map((f) => `<file path="${f.path}">\n${f.content}\n</file>`).join("\n\n");
-  const user = `<repository>\n${listing}\n</repository>\n\n<request>\n${prompt}\n</request>`;
+  const user = `${repositoryListing(currentFiles)}\n\n<request>\n${prompt}\n</request>`;
   return runStructured(ProposedChangesSchema, system, user, choice);
+}
+
+/** Make a failed CI build pass: the files to change on the same branch, given the build log's errors. */
+export async function fixBuild(errors: string, currentFiles: RepoFile[], choice: ModelChoice = "claude"): Promise<BuildFix> {
+  const system =
+    ANDROID_RULES +
+    `
+## ビルド修正のルール
+- 以下に現在のリポジトリの全テキストファイルと、GitHub Actions のビルド (\`./gradlew assembleDebug testDebugUnitTest\`) が失敗したログの抜粋がある。
+- ログの原因を取り除く最小の変更だけを行う。機能を増やさず、関係ないファイルは触らない。
+- 同じ種類の誤りがほかの場所にも潜んでいれば、まとめて直す (次のビルドで同じ失敗を繰り返さない)。
+- 変更するファイルのみ、完全な内容で出力する。
+- Gradle 設定 (settings.gradle.kts / build.gradle.kts / gradle/libs.versions.toml / gradle.properties / .github/workflows) は、ログが依存関係の問題を示すときだけ変える。
+- versionCode / versionName は変更しない。
+`;
+  const user = `${repositoryListing(currentFiles)}\n\n<build_log>\n${errors}\n</build_log>\n\n上のログの失敗を直して、ビルドが通るようにしてください。`;
+  return runStructured(BuildFixSchema, system, user, choice);
+}
+
+function repositoryListing(files: RepoFile[]): string {
+  const listing = files.map((f) => `<file path="${f.path}">\n${f.content}\n</file>`).join("\n\n");
+  return `<repository>\n${listing}\n</repository>`;
 }
 
 /** Simple slug sanitizer for user-supplied names. */

@@ -43,7 +43,11 @@ export const POST = handle(async (req: Request, ctx: { params: Promise<{ name: s
       body.trim() ? `${body.trim()}\n\n---\n${note}` : note,
       proposal.baseSha,
     );
-    await prisma.generation.update({ where: { id: generation.id }, data: { status: "DONE", prNumber: pr.number } });
+    // CI builds the pull request; the webhook records the result (and has AI fix a failure on the branch).
+    await prisma.generation.update({
+      where: { id: generation.id },
+      data: { status: "DONE", prNumber: pr.number, buildStatus: "BUILDING", buildBranch: branch, buildRounds: 0 },
+    });
     return NextResponse.json({ prNumber: pr.number, url: pr.htmlUrl });
   } catch (e) {
     await prisma.generation.update({ where: { id: generation.id }, data: { status: "READY" } });

@@ -46,10 +46,14 @@ Git の実体は github.com 上の Organization に置き、自前サーバー�
    - 説明文を入力 → Claude が雛形をベースにファイル一式を生成(tool-use で構造化出力)。
    - web が Org に `<slug>` リポジトリを作成し、Git Data API で全ファイルを1コミットで投入。利用者を admin コラボレータに追加。
    - `App` レコード(status=DRAFT)を作る。
+   - テンプレの CI(`assembleDebug testDebugUnitTest`)が初期コミットをビルドする。結果は `workflow_run` webhook で
+     `Generation.buildStatus` に記録し、失敗なら AI にログの抜粋と全ファイルを渡して修正コミットを main に積む
+     (最大 2 回。`web/src/lib/build-fix.ts`)。画面には "Building… / AI is fixing the build (1/2) / Build passed / Build failed"。
 3. **公開する**: UI から「リリース」→ タグ `vX.Y.Z` を作成。テンプレの GitHub Actions が `assembleRelease`(未署名 APK)をビルドし、Release に添付する。
 4. **取り込み**: Release ワークフロー完了の `workflow_run` webhook(APK 添付済み)→ web が `store-server` の `POST /sync` を呼ぶ → store-server が APK をダウンロードし、パッケージごとの鍵で署名して `fdroid update`。`App` の `latestVersion` 等を更新、status=PUBLISHED。
 5. **配信**: Android クライアント(または公式 F-Droid クライアント)が `https://<store>/fdroid/repo` を読む。
 6. **改良・PR**: 他人のリポジトリに対しても「AI に変更を依頼」→ ブランチ作成 + コミット + PR 作成(利用者トークン)。PR 画面でレビュー・マージ。
+   PR の CI が失敗したら 2 と同じ要領で AI が PR ブランチに修正コミットを積む(サーバー用トークン)。
 
 ## 契約 (コンポーネント間インターフェース)
 
@@ -134,7 +138,8 @@ App         id, slug (unique), repoFullName (unique), name, summary, description
             status (DRAFT|PUBLISHED|FAILED), latestVersion?, latestVersionCode?,
             ownerId -> User, createdAt, updatedAt, publishedAt?
 Generation  id, userId -> User, kind (CREATE|MODIFY), prompt, model, status,
-            repoFullName?, prNumber?, error?, createdAt, finishedAt?
+            repoFullName?, prNumber?, error?, createdAt, finishedAt?,
+            buildStatus? (BUILDING|FIXING|PASSED|FAILED), buildBranch?, buildRounds, buildRunUrl?
 ```
 
 ## 環境変数

@@ -37,9 +37,10 @@ export const POST = handle(async (req: Request) => {
     },
   });
   if (generationId) {
+    // CI builds the initial commit; the webhook records the result (and has AI fix a failure).
     await prisma.generation.updateMany({
       where: { id: generationId, userId: session.user.id },
-      data: { repoFullName: repo.fullName },
+      data: { repoFullName: repo.fullName, buildStatus: "BUILDING", buildBranch: repo.defaultBranch, buildRounds: 0 },
     });
   }
   return NextResponse.json({ slug: app.slug, repoFullName: repo.fullName, htmlUrl: repo.htmlUrl });

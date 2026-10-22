@@ -528,6 +528,24 @@ export async function createRelease(
   return data;
 }
 
+/** The log of the first failed job of a workflow run, or null when no job failed. */
+export async function getFailedJobLog(name: string, runId: number): Promise<string | null> {
+  const gh = adminOctokit();
+  const owner = org();
+  const { data } = await gh.rest.actions.listJobsForWorkflowRun({ owner, repo: name, run_id: runId, per_page: 50 });
+  const job = data.jobs.find((j) => j.conclusion === "failure");
+  if (!job) return null;
+  // GitHub answers with a redirect to the plain-text log, which Octokit follows.
+  const res = await gh.rest.actions.downloadJobLogsForWorkflowRun({ owner, repo: name, job_id: job.id });
+  return typeof res.data === "string" ? res.data : new TextDecoder().decode(res.data as ArrayBuffer);
+}
+
+/** Commit `files` on top of the current head of `branch`, as the server (AI build fixes). */
+export async function commitFiles(name: string, branch: string, files: RepoFile[], message: string): Promise<string> {
+  const base = await getBranchSha(name, branch);
+  return pushTree(adminOctokit(), org(), name, branch, files, message, base);
+}
+
 export async function listWorkflowRuns(name: string) {
   const gh = adminOctokit();
   const { data } = await gh.rest.actions.listWorkflowRunsForRepo({ owner: org(), repo: name, per_page: 10 });
